@@ -4,7 +4,7 @@
   <title><![CDATA[Category: TokuMx | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/tokumx/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2014-09-16T11:36:04+08:00</updated>
+  <updated>2014-09-16T11:42:41+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -130,7 +130,13 @@
 <ul>
 <li><p>稳定性; 因为采用了自定义的内存管理，不如MongoDB的MMap方式管理稳定，如果<code>cacheSize</code>设置不合适，而Tokumx的机器还有其他占用内村比较大的进程，会导致OOP，被系统杀掉的几率比较大。这要求我们设置<code>cacheSize</code>要斟酌一下。可以参考<a href="http://docs.tokutek.com/tokumx/tokumx-server-parameters.html">这里</a>; 顺便说一下，如果你的系统内存占用控制得当，是没有多大问题的。</p></li>
 <li><p>Tokumx的 Capped Collections性能比较渣，但是在我看来，存储方式的改变已经不需要这种方式了，所以这个不是问题。</p></li>
-<li><p>Mongodb升级,新Feature的支持，还有商业化的问题。Tokumx的官网上的blog有人问了这个问题，问Tokumx有没有同MongoDB Merge的计划，开发者做了回答，很详尽。</p></li>
+<li><p>Mongodb升级,新Feature的支持，还有商业化的问题。Tokumx的官网上的blog有人问了这个问题，问Tokumx有没有同MongoDB Merge的计划，开发者做了回答，很详尽。</p>
+
+<p>  首先Tokumx的开发团队很小的，可能不会及时跟进Mongodb的新Feature移植</p>
+
+<p>  第二两家公司有不同的商业化考量，另外代码的Merge有一定工作量，未来不太可能合并</p>
+
+<p>  Tokumx只专注于存储性能的改进</p></li>
 </ul>
 
 
