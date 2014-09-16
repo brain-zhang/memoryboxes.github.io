@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MongoDB | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/mongodb/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2014-09-16T10:53:28+08:00</updated>
+  <updated>2014-09-16T10:55:00+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -36,6 +36,8 @@
 
 <p>1.首先mongodb删除一个document的时候并不是物理上真正删除数据，而是维护一个deleteList链表数组，每次删除就在链表里面做一个标记。怎么表示这次删除的空间大小范围呢,如图示:</p>
 
+<p>```</p>
+
 <pre><code>        ---------------------------------------
 </code></pre>
 
@@ -49,6 +51,8 @@
                 +-+     +-+   +-+   +-+    +-+
                         +-+   +-+   +-+    +-+
 </code></pre>
+
+<p>```</p>
 
 <p>2.对每一个被删除的docment计算其大小，然后插入到合适的链表中去，这样下次插入新数据的时候，先计算合适的空间大小，再在这个链表数组中找到合适的空闲空间指针地址，插入数据。如果没有合适的，再去开辟新空间。</p>
 
