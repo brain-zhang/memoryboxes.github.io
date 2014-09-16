@@ -160,7 +160,8 @@
 <p>存储方式的改变，也改变了MongoDB默认用的MMap内存管理算法，Tokumx采用自定义的内存管理，直接表现就是占用内存可以手工控制了(事实上也推荐你指定一个内存占用值)，不像MongoDB那样对内存的占用贪得无厌。得益于Fractal Tree，因为I/O的减少，分形树索引不会要求索引必须小于内存。即使超过内存的限制，TokuMX依然可以维持很高的写入性能。</p>
 
 <p>可以参考<a href="http://www.tokutek.com/2013/07/how-tokumx-gets-great-compression-for-mongodb/">这里</a>
-以及<a href="http://www.tokutek.com/2013/07/tokumx-fractal-treer-indexes-what-are-they/">这里</a></p>
+以及<a href="http://www.tokutek.com/2013/07/tokumx-fractal-treer-indexes-what-are-they/">这里</a>
+以及<a href="http://forms.tokutek.com/acton/attachment/6118/f-0039/1/-/-/-/-/lsm-vs-fractal.pdf">这里</a></p>
 
 <p>Tokumx宣称了很多很好的<a href="http://www.tokutek.com/products/tokumx-for-mongodb/">特性</a>:</p>
 
