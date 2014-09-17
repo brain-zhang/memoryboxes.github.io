@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Colorscheme - memoryboxes blog</title>
+  <title>svn1.7+ Zsh报错 - memoryboxes blog</title>
   <meta name="author" content="memoryboxes">
 
   
-  <meta name="description" content="Category: colorscheme">
+  <meta name="description" content="更新svn(subversion)>1.7后 zsh 的svn自动完成会报错。 _arguments:comparguments:312: invalid argument: [--cl]:arg: 修改方法: 打开文件：/usr/share/zsh/4.3.11/functions/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://memoryboxes.github.ioblog/categories/colorscheme">
+  <link rel="canonical" href="http://memoryboxes.github.io/blog/2014/09/17/svn1-dot-7-plus-zshbao-cuo">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="memoryboxes blog" type="application/atom+xml">
@@ -64,35 +64,98 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Colorscheme</h1>
+    
+      <h1 class="entry-title">svn1.7+ Zsh报错</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-17T08:40:14+08:00" pubdate data-updated="true">Sep 17<span>th</span>, 2014</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>更新svn(subversion)>1.7后 zsh 的svn自动完成会报错。</p>
 
-  
-  <h2>2014</h2>
+<p><code>_arguments:comparguments:312: invalid argument: [--cl]:arg:</code></p>
 
-<article>
-  
-<h1><a href="/blog/2014/02/25/jie-jue-tmuxxia-vim-colorschemeshi-xiao-de-wen-ti/">解决tmux下vim Colorscheme失效的问题</a></h1>
-<time datetime="2014-02-25T08:05:48+08:00" pubdate><span class='month'>Feb</span> <span class='day'>25</span> <span class='year'>2014</span></time>
+<p>修改方法:</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/color/'>color</a>, <a class='category' href='/blog/categories/colorscheme/'>colorscheme</a>, <a class='category' href='/blog/categories/config/'>config</a>, <a class='category' href='/blog/categories/tmux/'>tmux</a>, <a class='category' href='/blog/categories/vim/'>vim</a></span>
-</footer>
+<p>打开文件：/usr/share/zsh/4.3.11/functions/_subversion</p>
 
+<p>找到35行左右</p>
 
-</article>
+<p><code>${=${${${(M)${(f)"$(LC_ALL=C _call_program options svn help $cmd)"#(*Valid options:|(#e))}:#* :*}%% #:*}/ (arg|ARG)/:arg:}/(#b)-([[:alpha:]]) \[--([a-z-]##)\](:arg:)#/(--$match[2])-    $match[1]$match[3] (-$match[1])--$match[2]$match[3]}</code>
+改为</p>
 
+<p><code>${=${${${(M)${(f)"$(LC_ALL=C _call_program options svn help $cmd)"#(*Valid options:|(#e))}:#* :*}%% #:*}/ (arg|ARG)/:arg:}/(#b)(-##)([[:alpha:]]##) \[--([a-z-]##)\](:arg:)#/(--$match[3])$match[1]$match[2]$match[4] ($match[1]$match[2])--$match[3]$match[4]}</code></p>
+
+<p>参考资料：
+<a href="http://www.zsh.org/mla/workers/2011/msg01448.html">http://www.zsh.org/mla/workers/2011/msg01448.html</a></p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">memoryboxes</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-17T08:40:14+08:00" pubdate data-updated="true">Sep 17<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/svn/'>SVN</a>, <a class='category' href='/blog/categories/zsh/'>Zsh</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/09/17/zi-ding-yi-djangode-mi-ma-ce-lue/" title="Previous Post: 自定义Django的密码策略">&laquo; 自定义Django的密码策略</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
