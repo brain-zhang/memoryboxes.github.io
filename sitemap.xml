@@ -55,12 +55,18 @@
         <lastmod>2014-09-17T08:33:19+08:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://memoryboxes.github.io/blog/2014/09/17/auto-reload-modules-in-django-shell/
+        </loc>
+        <lastmod>2014-09-17T08:36:32+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://memoryboxes.github.io/</loc>
-        <lastmod>2014-09-17T08:33:45+08:00</lastmod>
+        <lastmod>2014-09-17T08:36:32+08:00</lastmod>
     </url>
     <url>
         <loc>http://memoryboxes.github.io/blog/archives/</loc>
-        <lastmod>2014-09-17T08:33:45+08:00</lastmod>
+        <lastmod>2014-09-17T08:36:32+08:00</lastmod>
     </url>
     <url>
         <loc>http://memoryboxes.github.io/robots.txt</loc>

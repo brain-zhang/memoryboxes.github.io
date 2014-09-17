@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Django | memoryboxes blog]]></title>
+  <link href="http://memoryboxes.github.io/blog/categories/django/atom.xml" rel="self"/>
+  <link href="http://memoryboxes.github.io/"/>
+  <updated>2014-09-17T08:36:39+08:00</updated>
+  <id>http://memoryboxes.github.io/</id>
+  <author>
+    <name><![CDATA[memoryboxes]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Auto Reload Modules in Django Shell]]></title>
+    <link href="http://memoryboxes.github.io/blog/2014/09/17/auto-reload-modules-in-django-shell/"/>
+    <updated>2014-09-17T08:36:01+08:00</updated>
+    <id>http://memoryboxes.github.io/blog/2014/09/17/auto-reload-modules-in-django-shell</id>
+    <content type="html"><![CDATA[<p><code>python manage.py shell</code></p>
+
+<p>太常用了，但是每次修改模块代码后，总要 exit—>reset 才能重新load一遍代码，实在是不爽。</p>
+
+<p>也曾经改造ipython，想要代码修改后实时载入，各种坑，最后各种懒之下还是老老实实reload。</p>
+
+<p>最近发现一个扩展，django-externsions:</p>
+
+<p><a href="https://github.com/django-extensions/django-extensions">https://github.com/django-extensions/django-extensions</a></p>
+
+<p>装上好用不少，貌似还比较靠谱，推荐之。</p>
+]]></content>
+  </entry>
+  
+</feed>
