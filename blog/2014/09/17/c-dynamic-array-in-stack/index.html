@@ -5,11 +5,18 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: 批量删除 - memoryboxes blog</title>
+  <title>C:dynamic Array in Stack - memoryboxes blog</title>
   <meta name="author" content="memoryboxes">
 
   
-  <meta name="description" content="Category: 批量删除">
+  <meta name="description" content="以前一直认为C99 只支持const int 定义数组，今天才学到C99里面是支持动态数组的。 1
+2
+3
+4
+5
+int main()
+{ int x = 12; char pz[x];
+} C99是支持的。在gcc4+以上的版本里测试OK。 另外stackoverflow上提到C++ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +25,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://memoryboxes.github.ioblog/categories/pi-liang-shan-chu">
+  <link rel="canonical" href="http://memoryboxes.github.io/blog/2014/09/17/c-dynamic-array-in-stack">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="memoryboxes blog" type="application/atom+xml">
@@ -64,35 +71,105 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: 批量删除</h1>
+    
+      <h1 class="entry-title">C:dynamic Array in Stack</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-17T08:42:25+08:00" pubdate data-updated="true">Sep 17<span>th</span>, 2014</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>以前一直认为C99 只支持const int 定义数组，今天才学到C99里面是支持动态数组的。</p>
 
-  
-  <h2>2014</h2>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>int main()
+</span><span class='line'>{
+</span><span class='line'>    int x = 12;
+</span><span class='line'>    char pz[x];
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
-<article>
-  
-<h1><a href="/blog/2014/02/27/pi-liang-shan-chu-mongo-collections/">批量删除mongo Collections</a></h1>
-<time datetime="2014-02-27T09:24:04+08:00" pubdate><span class='month'>Feb</span> <span class='day'>27</span> <span class='year'>2014</span></time>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/collections/'>collections</a>, <a class='category' href='/blog/categories/mongodb/'>mongodb</a>, <a class='category' href='/blog/categories/pi-liang-shan-chu/'>批量删除</a>, <a class='category' href='/blog/categories/biao/'>表</a></span>
-</footer>
+<p>C99是支持的。在gcc4+以上的版本里测试OK。</p>
 
+<p>另外stackoverflow上提到C++不支持动态数组，在g++4.4.7里面试了一下，也是可以的。</p>
 
-</article>
+<p>不是我不明白，这世界变化快。</p>
 
+<p>Out好多好多年了…….</p>
+
+<p>参考:
+<a href="http://stackoverflow.com/questions/1204521/dynamic-array-in-stack">http://stackoverflow.com/questions/1204521/dynamic-array-in-stack</a> <a href="http://stackoverflow.com/questions/737240/c-c-array-size-at-run-time-w-o-dynamic-allocation-is-allowed">http://stackoverflow.com/questions/737240/c-c-array-size-at-run-time-w-o-dynamic-allocation-is-allowed</a></p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">memoryboxes</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-17T08:42:25+08:00" pubdate data-updated="true">Sep 17<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/array/'>Array</a>, <a class='category' href='/blog/categories/c/'>C</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/09/17/svn1-dot-7-plus-zshbao-cuo/" title="Previous Post: svn1.7+ Zsh报错">&laquo; svn1.7+ Zsh报错</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
