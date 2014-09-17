@@ -2,56 +2,68 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://memoryboxes.github.io/blog/2014/02/22/hello/</loc>
-        <lastmod>2014-09-16T10:36:28+08:00</lastmod>
+        <lastmod>2014-09-17T08:29:40+08:00</lastmod>
     </url>
     <url>
         <loc>http://memoryboxes.github.io/blog/2014/02/22/shuang-meng-ji/</loc>
-        <lastmod>2014-09-16T10:36:28+08:00</lastmod>
+        <lastmod>2014-09-17T08:29:40+08:00</lastmod>
     </url>
     <url>
         <loc>
             http://memoryboxes.github.io/blog/2014/02/25/jie-jue-tmuxxia-vim-colorschemeshi-xiao-de-wen-ti/
         </loc>
-        <lastmod>2014-09-16T10:36:28+08:00</lastmod>
+        <lastmod>2014-09-17T08:29:40+08:00</lastmod>
     </url>
     <url>
         <loc>
             http://memoryboxes.github.io/blog/2014/02/27/pi-liang-shan-chu-mongo-collections/
         </loc>
-        <lastmod>2014-09-16T10:36:28+08:00</lastmod>
+        <lastmod>2014-09-17T08:29:40+08:00</lastmod>
     </url>
     <url>
         <loc>http://memoryboxes.github.io/blog/2014/03/14/wei-centostian-jia-epel-repo/</loc>
-        <lastmod>2014-09-16T10:36:28+08:00</lastmod>
+        <lastmod>2014-09-17T08:29:40+08:00</lastmod>
     </url>
     <url>
         <loc>http://memoryboxes.github.io/blog/2014/03/26/freeze-svn-externals-for-tags/</loc>
-        <lastmod>2014-09-16T11:51:51+08:00</lastmod>
+        <lastmod>2014-09-17T08:29:40+08:00</lastmod>
     </url>
     <url>
         <loc>http://memoryboxes.github.io/blog/2014/07/03/wei-cexport-json-by-mongoexport/</loc>
-        <lastmod>2014-09-16T10:36:28+08:00</lastmod>
+        <lastmod>2014-09-17T08:29:40+08:00</lastmod>
     </url>
     <url>
         <loc>http://memoryboxes.github.io/blog/2014/09/16/cong-mongodbqian-yi-dao-tokumx/</loc>
-        <lastmod>2014-09-16T17:43:31+08:00</lastmod>
+        <lastmod>2014-09-17T08:33:45+08:00</lastmod>
     </url>
     <url>
         <loc>
             http://memoryboxes.github.io/blog/2014/09/16/rake-gen-deploy-rejected-in-octopress/
         </loc>
-        <lastmod>2014-09-16T11:57:22+08:00</lastmod>
+        <lastmod>2014-09-17T08:29:40+08:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://memoryboxes.github.io/blog/2014/09/17/vim-ming-ling-xing-cao-zuo-xiao-ji-qiao/
+        </loc>
+        <lastmod>2014-09-17T08:31:03+08:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://memoryboxes.github.io/blog/2014/09/17/vim-dui-xuan-zhong-fan-wei-nei-rong-pi-liang-ti-huan/
+        </loc>
+        <lastmod>2014-09-17T08:33:19+08:00</lastmod>
     </url>
     <url>
         <loc>http://memoryboxes.github.io/</loc>
-        <lastmod>2014-09-16T17:43:31+08:00</lastmod>
+        <lastmod>2014-09-17T08:33:45+08:00</lastmod>
     </url>
     <url>
         <loc>http://memoryboxes.github.io/blog/archives/</loc>
-        <lastmod>2014-09-16T17:43:31+08:00</lastmod>
+        <lastmod>2014-09-17T08:33:45+08:00</lastmod>
     </url>
     <url>
         <loc>http://memoryboxes.github.io/robots.txt</loc>
-        <lastmod>2014-09-16T10:36:28+08:00</lastmod>
+        <lastmod>2014-09-17T08:29:40+08:00</lastmod>
     </url>
 </urlset>

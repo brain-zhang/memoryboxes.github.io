@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MongoDB | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/mongodb/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2014-09-16T17:43:36+08:00</updated>
+  <updated>2014-09-17T08:34:11+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -100,7 +100,7 @@
 </ul>
 
 
-<p>与Mongodg对比，官方宣称的限制有两个:</p>
+<p>与MongoDB对比，官方宣称的限制有两个:</p>
 
 <ul>
 <li>不支持全文索引</li>
