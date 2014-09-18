@@ -29,6 +29,9 @@ categories: Markdown
     |                    |
     +--------------------+
 
+参考:
+https://meta.stackexchange.com/questions/177133/turn-off-markdown-formatting/177135#177135?newreg=acda653c863843a99d1008c464864262
+
 
 引发了一点兴趣，meta.stackexchange.com上面有个测试语法专贴，各种乱搞洋洋大观:
 
