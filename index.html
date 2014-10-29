@@ -9,18 +9,7 @@
   <meta name="author" content="memoryboxes">
 
   
-  <meta name="description" content="虽然因为llvm的出现，开源工具链又开始慢慢进化了，但是很多项目还是需要autotools自动gen configure的，但是我每次命令都记不全，还是记一下吧 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-#!/bin/bash echo "Running aclocal..." &hellip;">
+  <meta name="description" content="虽然有[grunt-contrib-watch])(https://github.com/gruntjs/grunt-contrib-watch)的存在，但多个人编辑同一份css/js代码时，还要操心编译这个事，实在是多余。 想到的最直接的办法就是jenkins上开一个项目，自动编译一把， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +65,83 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/10/29/how-to-auto-gen-css-slash-js-by-grunt-and-jenkins/">How to Auto Gen Css/js by Grunt and Jenkins</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-29T12:16:15+08:00" pubdate data-updated="true">Oct 29<span>th</span>, 2014</time>
+        
+        
+           | <a href="/blog/2014/10/29/how-to-auto-gen-css-slash-js-by-grunt-and-jenkins/#comments">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>虽然有[grunt-contrib-watch])(<a href="https://github.com/gruntjs/grunt-contrib-watch">https://github.com/gruntjs/grunt-contrib-watch</a>)的存在，但多个人编辑同一份css/js代码时，还要操心编译这个事，实在是多余。</p>
+
+<p>想到的最直接的办法就是jenkins上开一个项目，自动编译一把，再自动提交:</p>
+
+<p>虽然是野路子，但效果那是杠杠的。</p>
+
+<p>记一下一些要注意的点:</p>
+
+<ul>
+<li><p>有时候自动编译会失败，需要标记一下:
+ <code>
+ /usr/local/node-v0.10.20-linux-x64/bin/grunt --force |tee $PWD_DIR/grunt.log
+ err_count=`grep 'Error' $PWD_DIR/*.log|wc -l`
+ fail_count=`grep 'failed' *.log|wc -l`
+ abort_count=`grep 'Aborting' *.log|wc -l`
+ if [[ $err_count -gt 0 || $fail_count -gt 0 || $abort_count -gt 0 ]]; then
+     exit 1
+ fi
+</code>
+ 这样jenkins编译失败，就会标红了</p></li>
+<li><p>还有个坑，有时候新增加了一个js的代码目录，这样编译后也会多一个目录，这就需要svn每次提交的时候，不要忘了强制add一下当前所有目录:
+ <code>
+ svn add static/dist/ --force
+</code></p></li>
+<li><p>最后，极少数的情况编译后会出现冲突，因为编译的时候有人同样编译了一把提交了，这样自动提交会失败，也需要标记一下:
+ <code>``
+ svn ci --no-auth-cache --username=xxx --password=xxx static/dist/* -m "jenkins:auto grunt" 2&gt;&amp;1| tee $PWD_DIR/svn.log
+ err_count=</code>grep &lsquo;Error&rsquo; $PWD_DIR/<em>.log|wc -l<code>
+ fail_count=</code>grep &lsquo;failed&rsquo; </em>.log|wc -l<code>
+ abort_count=</code>grep &lsquo;Aborting&rsquo; *.log|wc -l`
+ if [[ $err_count -gt 0 || $fail_count -gt 0 || $abort_count -gt 0 ]]; then
+     exit 1
+ fi</p>
+
+<p> &#8220;`</p></li>
+</ul>
+
+
+<p>这样基本上看看jenkins的状态，或是让jenkins自动发发邮件，就舒心了。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -761,52 +827,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/17/vim-ming-ling-xing-cao-zuo-xiao-ji-qiao/">Vim 命令行操作小技巧</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-09-17T08:30:15+08:00" pubdate data-updated="true">Sep 17<span>th</span>, 2014</time>
-        
-        
-           | <a href="/blog/2014/09/17/vim-ming-ling-xing-cao-zuo-xiao-ji-qiao/#comments">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>vim 使用:进入命令行后，除了直接敲命令外，一般会有两个操作:</p>
-
-<p>1.查看历史指令并执行</p>
-
-<p>2.复制寄存器中的内容
-1 查看历史指令需要在进入命令行之前使用q:,再选则就OK了。</p>
-
-<p>2 使用寄存器，一般复制时使用&#8221; + [寄存器名称] + y，进入命令行后再输入ctrl R，选择相应的寄存器粘贴就OK了。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -840,6 +860,10 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/10/29/how-to-auto-gen-css-slash-js-by-grunt-and-jenkins/">How to Auto Gen Css/js by Grunt and Jenkins</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/10/29/how-to-compile-by-autotools/">How to Compile by Autotools</a>
       </li>
     
@@ -853,10 +877,6 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
     
       <li class="post">
         <a href="/blog/2014/09/17/python2-dot-x%3Aerror-when-printing-an-exception-containing-a-unicode-string/">python2.x：Error When Printing an Exception Containing a Unicode String</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/09/17/c-dynamic-array-in-stack/">C:dynamic Array in Stack</a>
       </li>
     
   </ul>
@@ -917,6 +937,8 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
 <li class='category'><a href='/blog/categories/externals/'>externals (1)</a></li>
 <li class='category'><a href='/blog/categories/freeze/'>freeze (1)</a></li>
 <li class='category'><a href='/blog/categories/gcc/'>gcc (1)</a></li>
+<li class='category'><a href='/blog/categories/grunt/'>grunt (1)</a></li>
+<li class='category'><a href='/blog/categories/jenkins/'>jenkins (1)</a></li>
 <li class='category'><a href='/blog/categories/mongodb/'>mongodb (1)</a></li>
 <li class='category'><a href='/blog/categories/mongoexport/'>mongoexport (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (1)</a></li>
