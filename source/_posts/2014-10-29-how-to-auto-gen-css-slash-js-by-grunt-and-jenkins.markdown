@@ -6,7 +6,7 @@ comments: true
 categories: grunt jenkins
 ---
 
-虽然有[grunt-contrib-watch])(https://github.com/gruntjs/grunt-contrib-watch)的存在，但多个人编辑同一份css/js代码时，还要操心编译这个事，实在是多余。
+虽然有[grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch)的存在，但多个人编辑同一份css/js代码时，还要操心编译这个事，实在是多余。
 
 想到的最直接的办法就是jenkins上开一个项目，自动编译一把，再自动提交:
 
@@ -44,7 +44,6 @@ categories: grunt jenkins
     if [[ $err_count -gt 0 || $fail_count -gt 0 || $abort_count -gt 0 ]]; then
         exit 1
     fi
-
     ```
 
 这样基本上看看jenkins的状态，或是让jenkins自动发发邮件，就舒心了。
