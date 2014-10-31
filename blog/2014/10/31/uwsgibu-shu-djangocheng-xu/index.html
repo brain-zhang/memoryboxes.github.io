@@ -170,7 +170,7 @@
 
 <p>执行:</p>
 
-<pre><code>uwsgi --http :8000 --chdir xxxxx/testuwsgi --module wsgi
+<pre><code>uwsgi --http :8000 --chdir xxxxx/testuwsgi --module testuwsgi.wsgi
 </code></pre>
 
 <p>访问:</p>
@@ -194,12 +194,12 @@ openssl x509 -req -days 365 -in foobar.csr -signkey foobar.key -out foobar.crt
 
 <h4>走起</h4>
 
-<pre><code>uwsgi --master --https 0.0.0.0:8443,foobar.crt,foobar.key --chdir xxxxx/testuwsgi --module wsgi
+<pre><code>uwsgi --master --https 0.0.0.0:8443,foobar.crt,foobar.key --chdir xxxxx/testuwsgi --module testuwsgi.wsgi
 </code></pre>
 
 <p>访问的时候要以:</p>
 
-<p><a href="http://127.0.0.1:8443/">http://127.0.0.1:8443/</a></p>
+<p><a href="https://127.0.0.1:8443/">https://127.0.0.1:8443/</a></p>
 
 <p>OK了</p>
 
