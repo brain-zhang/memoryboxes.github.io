@@ -63,7 +63,7 @@ application = WSGIHandler()
 
 执行:
 
-    uwsgi --http :8000 --chdir xxxxx/testuwsgi --module wsgi
+    uwsgi --http :8000 --chdir xxxxx/testuwsgi --module testuwsgi.wsgi
 
 访问:
 
@@ -85,11 +85,11 @@ uwsgi自1.3版本开始支持https
 
 #### 走起
 
-    uwsgi --master --https 0.0.0.0:8443,foobar.crt,foobar.key --chdir xxxxx/testuwsgi --module wsgi
+    uwsgi --master --https 0.0.0.0:8443,foobar.crt,foobar.key --chdir xxxxx/testuwsgi --module testuwsgi.wsgi
 
 访问的时候要以:
 
-http://127.0.0.1:8443/
+https://127.0.0.1:8443/
 
 
 OK了
