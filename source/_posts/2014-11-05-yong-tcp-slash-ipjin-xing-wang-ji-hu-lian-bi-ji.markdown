@@ -59,7 +59,7 @@ categories: TCP/IP 读书摘录
 
 * 127.0.0.1 是本地环回地址, 专供自己访问自己, 速度大( 不用经过整个协议栈 )
 
-* 地址管理早期是由[IANA](https://www.iana.org/about ) 管理的，早期的IANA地址维护者仅仅是一个人,[Jon Postel] (http://en.wikipedia.org/wiki/Jon_Postel )，这位传奇人物在1998年过世，后来IANA成长为更完善的组织，ICANN是也,目前由ICANN管理地址相关分配工作。
+* 地址管理早期是由[IANA](https://www.iana.org/about ) 管理的，早期的IANA地址维护者仅仅是一个人,[Jon Postel](http://en.wikipedia.org/wiki/Jon_Postel )，这位传奇人物在1998年过世，后来IANA成长为更完善的组织，ICANN是也,目前由ICANN管理地址相关分配工作。
 
 * IBM的地址段是9.0.0.0，AT&T的地址段是12.0.0.0
 
