@@ -4,7 +4,7 @@
   <title><![CDATA[memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2014-11-16T13:22:20+08:00</updated>
+  <updated>2014-11-16T13:26:23+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -50,7 +50,7 @@
 如果用Zero Copy的话，可能性能有提升，但也不会太高。目前抓流量效率最好的是Intel的DPDK，可以到10Gbps。</p>
 
 <p>还有魔豆提到用Selenium做自动化测试的事情，我用Selenium觉得，他的适用场景在WEB UI很少变化，并且页面结构简单的企业软件，像传统的路由器管理界面这样的东西，用它的录制测试还是可以的。
-但是界面稍微个性化一些，想让测试代码长久，必须写代码，而且是简单可靠的代码，不能单纯追求覆盖率。Selenium的测试代码虽然好写，但也容易废弃，要想写的简单可靠还是很有难度的。</p>
+但是界面稍微个性化一些，想让测试代码长久，必须手写代码，而且是简单可靠的代码，不能单纯追求覆盖率。Selenium的测试代码虽然好写，但也容易废弃，要想写的简单可靠还是很有难度的。</p>
 
 <p>关于UI测试，我的想法就是，尽量降低编写成本，如果一个UI测试挂了，你不能在5分钟之内修复它，直接丢弃掉！编写UI自动化测试的成本不应该超过5分钟，如果一个测试要频繁维护，那么，是重新写一个的时候了。
 要想达到这个目标，我想到的简单解决方案就是图像DIFF，facebook之前出过一个huxley，我很有兴趣的研究过，还PULL过代码，但这个东西还是离我心目中的自动化图像DIFF有距离。后来又自己写了一个能把每天的测试结果保存下来，并能基于时间查看对比的东东，但效果也不好。</p>
