@@ -4,7 +4,7 @@
   <title><![CDATA[memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2014-11-16T13:13:16+08:00</updated>
+  <updated>2014-11-16T13:15:36+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -63,14 +63,18 @@
 <p>  对比的截图可以是基于录制时间最早的case的，如果中途重新录制，提供用户自定义机制。</p></li>
 <li><p>支持时间轴功能</p>
 
-<p>  1、查询时间范围的灵活选择，可以很简洁的查询某段时间、或某个时间点的case.
-  2、可以在时间轴上直接修改比较模板的base时间点
-  3、以不同颜色标识base时间点、pass的测试、fail的测试以及fail的个数，测试名称等</p></li>
+<p>  1、查询时间范围的灵活选择，可以很简洁的查询某段时间、或某个时间点的case.</p>
+
+<p>  2、可以在时间轴上直接修改比较模板的base时间点</p>
+
+<p>  3、以不同颜色标识base时间点、pass的测试、fail的测试以及fail的个数，测试名称等</p></li>
 <li><p>比较智能的图像DIFF算法:</p>
 
-<p>  1、首先要能忽略指定区域，因为有些区域能够预测到是不断变化的。
-  2、能对整张图、或某几个区域提供多个选择，如果符合其中一个我们就认为是OK的
-  3、能提供组件级的识别，比如某个button，某个搜索框等等，一张截图里面如果所有指定的组件都OK，我们就认为是OK的。</p></li>
+<p>  1、首先要能忽略指定区域，因为有些区域能够预测到是不断变化的。</p>
+
+<p>  2、能对整张图、或某几个区域提供多个选择，如果符合其中一个我们就认为是OK的</p>
+
+<p>  3、能提供组件级的识别，比如某个button，某个搜索框等等，一张截图里面如果所有指定的组件都OK，我们就认为是OK的。</p></li>
 </ul>
 
 
