@@ -37,7 +37,7 @@ categories: Python
 * Django和创业的两个议题都有点浅，太多讲Python的ABC了，这方面的内容可以收缩下
 
 
-另外有点Confuse，会上有人提到用libpcap抓包分析网络流的，黄东老师说性能没问题。其实我们这测试下来，绑定CPU抓包，libpcap通常的性能就在单网卡400Mbps左右。
+另外有点Confuse，会上有人提到用libpcap抓包分析网络流的，黄冬老师说性能没问题。其实我们这测试下来，绑定CPU抓包，libpcap通常的性能就在单网卡400Mbps左右。
 如果用Zero Copy的话，可能性能有提升，但也不会太高。目前抓流量效率最好的是Intel的DPDK，可以到10Gbps。
 
 还有魔豆提到用Selenium做自动化测试的事情，我用Selenium觉得，他的适用场景在WEB UI很少变化，并且页面结构简单的企业软件，像传统的路由器管理界面这样的东西，用它的录制测试还是可以的。
