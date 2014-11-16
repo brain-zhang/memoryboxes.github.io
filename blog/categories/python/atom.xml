@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2014-11-16T12:32:44+08:00</updated>
+  <updated>2014-11-16T12:51:16+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -31,6 +31,7 @@
 <li><p>黄冬老师讲测试3层设备或者网站性能的最好办法，是把一段时间的DDOS发包抓下来，或者造出一堆SYN，直接用tcpreplay打到目标机上。很好很粗暴，也很有效</p></li>
 <li><p>关于OpenCL在数据计算领域的应用，让我有点吃惊，已经这么易用了，回头要看看</p></li>
 <li><p>以前一直听人说postgresql怎么怎么好，这次又被强化了一遍，这个也要研究研究</p></li>
+<li><p>中间看有人调试程序用lldb，之前我一直以为它不靠谱，貌似已经很成熟了</p></li>
 <li><p>主持人非常专业，聪敏又风趣，可以直接上央视啦</p></li>
 </ul>
 
@@ -42,6 +43,9 @@
 <li><p>Django和创业的两个议题都有点浅，太多讲Python的ABC了，这方面的内容可以收缩下</p></li>
 </ul>
 
+
+<p>另外有点Confuse，会上有人提到用libpcap抓包分析网络流的，黄东老师说性能没问题。其实我们这测试下来，绑定CPU抓包，libpcap通常的性能就在单网卡400Mbps左右。
+如果用Zero Copy的话，可能性能有提升，但也不会太高。目前抓流量效率最好的是Intel的DPDK，可以到10Gbps。</p>
 
 <p>最后感概下，Pycon一年比一年进步，志愿者们功不可没。对于他们的工作，怎么赞誉都不过分。非常感谢!</p>
 ]]></content>
