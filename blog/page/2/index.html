@@ -9,12 +9,7 @@
   <meta name="author" content="memoryboxes">
 
   
-  <meta name="description" content="Django 从1.4 版本开始，包含了一些安全方面的重要提升。其中一个是使用 PBKDF2 密码加密算法代替了 SHA1 。另外一个特性是你可以添加自己的密码加密方法。 Django 会使用你提供的第一个密码加密方法（在你的 setting.py 文件里要至少有一个方法） 1
-2
-3
-4
-5
-6 &hellip;">
+  <meta name="description" content="更新svn(subversion)>1.7后 zsh 的svn自动完成会报错。 _arguments:comparguments:312: invalid argument: [--cl]:arg: 修改方法: 打开文件：/usr/share/zsh/4.3.11/functions/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,6 +65,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/17/svn1-dot-7-plus-zshbao-cuo/">svn1.7+ Zsh报错</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-17T08:40:14+08:00" pubdate data-updated="true">Sep 17<span>th</span>, 2014</time>
+        
+        
+           | <a href="/blog/2014/09/17/svn1-dot-7-plus-zshbao-cuo/#comments">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>更新svn(subversion)>1.7后 zsh 的svn自动完成会报错。</p>
+
+<p><code>_arguments:comparguments:312: invalid argument: [--cl]:arg:</code></p>
+
+<p>修改方法:</p>
+
+<p>打开文件：/usr/share/zsh/4.3.11/functions/_subversion</p>
+
+<p>找到35行左右</p>
+
+<p><code>${=${${${(M)${(f)"$(LC_ALL=C _call_program options svn help $cmd)"#(*Valid options:|(#e))}:#* :*}%% #:*}/ (arg|ARG)/:arg:}/(#b)-([[:alpha:]]) \[--([a-z-]##)\](:arg:)#/(--$match[2])-    $match[1]$match[3] (-$match[1])--$match[2]$match[3]}</code>
+改为</p>
+
+<p><code>${=${${${(M)${(f)"$(LC_ALL=C _call_program options svn help $cmd)"#(*Valid options:|(#e))}:#* :*}%% #:*}/ (arg|ARG)/:arg:}/(#b)(-##)([[:alpha:]]##) \[--([a-z-]##)\](:arg:)#/(--$match[3])$match[1]$match[2]$match[4] ($match[1]$match[2])--$match[3]$match[4]}</code></p>
+
+<p>参考资料：
+<a href="http://www.zsh.org/mla/workers/2011/msg01448.html">http://www.zsh.org/mla/workers/2011/msg01448.html</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -813,116 +863,6 @@ yum update
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/27/pi-liang-shan-chu-mongo-collections/">批量删除mongo Collections</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-27T09:24:04+08:00" pubdate data-updated="true">Feb 27<span>th</span>, 2014</time>
-        
-        
-           | <a href="/blog/2014/02/27/pi-liang-shan-chu-mongo-collections/#comments">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>mongodb没有批量删除collecton的命令，平常建立了很多a1,a2,a3的表删除有些麻烦，写个小脚本方便些。</p>
-
-<pre><code>mongorm.sh -d database -c a*
-</code></pre>
-
-<p>就很方便删除了。</p>
-
-<div><script src='https://gist.github.com/9242308.js'></script>
-<noscript><pre><code>#!/bin/bash
-# remove mongodb&#39;s collections with command &quot;mongn rm app*&quot;
-# Usage `mongorm &lt;-c collections*&gt; &lt;-d dababase&gt;`
-
-E_BADARGS=85
-E_NOFILE=86
-
-DATABASE=&#39;&#39;
-COLLECTIONS=&#39;&#39;
-
-while getopts &quot;c:d:h&quot; arg
-do
-        case $arg in
-             c)
-                echo &quot;-c $OPTARG&quot;
-                COLLECTIONS=$OPTARG
-                ;;
-             d)
-                echo &quot;-d $OPTARG&quot;
-                DATABASE=$OPTARG
-                ;;
-             h)
-                 echo &quot;mongorm &lt;-d database&gt; &lt;-c collections&gt;&quot;
-                 echo &quot;for exp:&quot;
-                 echo &quot;        mongorm -d bpc -c app*&quot;
-                 ;;
-             ?)
-                echo &quot;unkonw argument&quot;
-        exit 1
-        ;;
-        esac
-done
-
-if [[ -z &quot;$DATABASE&quot; ]]
-    # Correct number of arguments passed to script?
-then
-    echo &#39;Usage: -d database&#39;
-    echo &#39;please do mongorm.sh -h to get more info&#39;
-    exit $E_BADARGS
-fi
-
-if [[ -z &quot;$COLLECTIONS&quot; ]]
-    # Correct number of arguments passed to script?
-then
-    echo &#39;Usage: -c collections&#39;
-    echo &#39;please do mongorm.sh -h to get more info&#39;
-    exit $E_BADARGS
-fi
-
-mongojs_rm_function=`cat &lt;&lt; EOF
-db.getCollectionNames().forEach(function(c) {
-    if(c.match(&quot;$COLLECTIONS&quot;)) {
-                db.getCollection(c).drop();
-                    }
-                  });
-EOF
-`
-echo $mongojs_rm_function&gt;remove.js
-
-mongo 127.0.0.1:27017/$DATABASE remove.js
-rm -rf remove.js </code></pre></noscript></div>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -958,6 +898,10 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/11/29/ke-ji-jin-bu-shi-an-quan-xing-ye-de-zui-gen-ben-bao-zhang/">科技进步是安全行业的最根本保障</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/11/16/pycon2017-in-shanghai/">Pycon2014 in Shanghai</a>
       </li>
     
@@ -971,10 +915,6 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
     
       <li class="post">
         <a href="/blog/2014/10/29/how-to-auto-gen-css-slash-js-by-grunt-and-jenkins/">How to Auto Gen Css/js by Grunt and Jenkins</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/29/how-to-compile-by-autotools/">How to Compile by Autotools</a>
       </li>
     
   </ul>
@@ -1038,6 +978,7 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
 <li class='category'><a href='/blog/categories/gcc/'>gcc (1)</a></li>
 <li class='category'><a href='/blog/categories/grunt/'>grunt (1)</a></li>
 <li class='category'><a href='/blog/categories/jenkins/'>jenkins (1)</a></li>
+<li class='category'><a href='/blog/categories/life/'>life (1)</a></li>
 <li class='category'><a href='/blog/categories/mongodb/'>mongodb (1)</a></li>
 <li class='category'><a href='/blog/categories/mongoexport/'>mongoexport (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (1)</a></li>
