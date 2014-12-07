@@ -27,33 +27,33 @@ categories: git
     ```
         ssh-keygen -t rsa -f ~/.ssh/id_rsa_work -c xxx@gmail.com
     ```
+
     然后根据提示连续回车即可在~/.ssh目录下得到id_rsa_work和id_rsa_work.pub两个文件，id_rsa_work.pub文件里存放的就是我们要使用的key
 
     ```
         ssh-keygen -t rsa -f ~/.ssh/id_rsa_github -c xxx@gmail.com
     ```
+
     然后根据提示连续回车即可在~/.ssh目录下得到id_rsa_github和id_rsa_github.pub两个文件，id_rsa_gthub.pub文件里存放的就是我们要使用的key
 
 * 把id_rsa_xxx.pub中的key添加到github或gitlab上，这一步在github或gitlab上都有帮助，不再赘述
 
 * 编辑 `~/.ssh/config`，设定不同的git 服务器对应不同的key
 
-    ```
-        # 该文件用于配置私钥对应的服务器
+```
+    # Default github user(first@mail.com),注意User项直接填git，不用填在github的用户名
+    Host github.com
+     HostName github.com
+     User git
+     IdentityFile ~/.ssh/id_rsa_github
 
-        # Default github user(first@mail.com),注意User项直接填git，不用填在github的用户名
-        Host github.com
-         HostName github.com
-         User git
-         IdentityFile ~/.ssh/id_rsa_github
-
-        # second user(second@mail.com)
-        # 建一个gitlab别名，新建的帐号使用这个别名做克隆和更新
-        Host 172.16.11.11
-         HostName 172.16.11.11
-         User work
-         IdentityFile ~/.ssh/id_rsa_work
-    ```
+    # second user(second@mail.com)
+    # 建一个gitlab别名，新建的帐号使用这个别名做克隆和更新
+    Host 172.16.11.11
+     HostName 172.16.11.11
+     User work
+     IdentityFile ~/.ssh/id_rsa_work
+```
 
 编辑完成后可以使用命令 `ssh -vT git@github.com` 看看是不是采用了正确的id_rsa_github.pub文件
 
@@ -61,21 +61,19 @@ categories: git
 
 * 从上面一步可以看到，ssh区分账号，其实靠的是HostName这个字段，因此如果在github上有多个账号，很容易的可以把不同的账号映射到不同的HostName上就可以了。比如我有A和B两个账号， 先按照步骤一生成不同的key文件，再修改`~/.ssh/config` 内容应该是这样的。
 
-    ```
-        # 该文件用于配置私钥对应的服务器
+```
+    # Default github user(A@mail.com),注意User项直接填git，不用填在github的用户名
+    Host A.github.com
+     HostName github.com
+     User git
+     IdentityFile ~/.ssh/id_rsa_github_A
 
-        # Default github user(A@mail.com),注意User项直接填git，不用填在github的用户名
-        Host A.github.com
-         HostName github.com
-         User git
-         IdentityFile ~/.ssh/id_rsa_github_A
-
-        # second user(B@mail.com)
-        # 建一个gitlab别名，新建的帐号使用这个别名做克隆和更新
-        Host A.github.com
-         HostName github.com
-         User git
-         IdentityFile ~/.ssh/id_rsa_github_B
+    # second user(B@mail.com)
+    # 建一个gitlab别名，新建的帐号使用这个别名做克隆和更新
+    Host A.github.com
+     HostName github.com
+     User git
+     IdentityFile ~/.ssh/id_rsa_github_B
     ```
 
 同时你的github的repo ssh url就要做相应的修改了，比如根据上面的配置,原连接地址是:
