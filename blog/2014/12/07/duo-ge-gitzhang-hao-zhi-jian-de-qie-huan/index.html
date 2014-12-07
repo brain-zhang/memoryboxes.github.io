@@ -116,35 +116,44 @@
 
 <p>  <code>
       ssh-keygen -t rsa -f ~/.ssh/id_rsa_work -c xxx@gmail.com
- </code>
-  然后根据提示连续回车即可在~/.ssh目录下得到id_rsa_work和id_rsa_work.pub两个文件，id_rsa_work.pub文件里存放的就是我们要使用的key</p>
+ </code></p>
+
+<p>  然后根据提示连续回车即可在~/.ssh目录下得到id_rsa_work和id_rsa_work.pub两个文件，id_rsa_work.pub文件里存放的就是我们要使用的key</p>
 
 <p>  <code>
       ssh-keygen -t rsa -f ~/.ssh/id_rsa_github -c xxx@gmail.com
- </code>
-  然后根据提示连续回车即可在~/.ssh目录下得到id_rsa_github和id_rsa_github.pub两个文件，id_rsa_gthub.pub文件里存放的就是我们要使用的key</p></li>
+ </code></p>
+
+<p>  然后根据提示连续回车即可在~/.ssh目录下得到id_rsa_github和id_rsa_github.pub两个文件，id_rsa_gthub.pub文件里存放的就是我们要使用的key</p></li>
 <li><p>把id_rsa_xxx.pub中的key添加到github或gitlab上，这一步在github或gitlab上都有帮助，不再赘述</p></li>
-<li><p>编辑 <code>~/.ssh/config</code>，设定不同的git 服务器对应不同的key</p>
-
-<p>  &#8220;`
-      # 该文件用于配置私钥对应的服务器</p>
-
-<pre><code>  # Default github user(first@mail.com),注意User项直接填git，不用填在github的用户名
-  Host github.com
-   HostName github.com
-   User git
-   IdentityFile ~/.ssh/id_rsa_github
-
-  # second user(second@mail.com)
-  # 建一个gitlab别名，新建的帐号使用这个别名做克隆和更新
-  Host 172.16.11.11
-   HostName 172.16.11.11
-   User work
-   IdentityFile ~/.ssh/id_rsa_work
-</code></pre>
-
-<p>  &#8220;`</p></li>
+<li><p>编辑 <code>~/.ssh/config</code>，设定不同的git 服务器对应不同的key</p></li>
 </ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Default github user(first@mail.com),注意User项直接填git，不用填在github的用户名
+</span><span class='line'>Host github.com
+</span><span class='line'> HostName github.com
+</span><span class='line'> User git
+</span><span class='line'> IdentityFile ~/.ssh/id_rsa_github
+</span><span class='line'>
+</span><span class='line'># second user(second@mail.com)
+</span><span class='line'># 建一个gitlab别名，新建的帐号使用这个别名做克隆和更新
+</span><span class='line'>Host 172.16.11.11
+</span><span class='line'> HostName 172.16.11.11
+</span><span class='line'> User work
+</span><span class='line'> IdentityFile ~/.ssh/id_rsa_work</span></code></pre></td></tr></table></div></figure>
 
 
 <p>编辑完成后可以使用命令 <code>ssh -vT git@github.com</code> 看看是不是采用了正确的id_rsa_github.pub文件</p>
@@ -152,48 +161,9 @@
 <p>这样每次push的时候系统就会根据不同的仓库地址使用不同的账号提交了</p>
 
 <ul>
-<li><p>从上面一步可以看到，ssh区分账号，其实靠的是HostName这个字段，因此如果在github上有多个账号，很容易的可以把不同的账号映射到不同的HostName上就可以了。比如我有A和B两个账号， 先按照步骤一生成不同的key文件，再修改<code>~/.ssh/config</code> 内容应该是这样的。</p>
-
-<p>  &#8220;`
-      # 该文件用于配置私钥对应的服务器</p>
-
-<pre><code>  # Default github user(A@mail.com),注意User项直接填git，不用填在github的用户名
-  Host A.github.com
-   HostName github.com
-   User git
-   IdentityFile ~/.ssh/id_rsa_github_A
-
-  # second user(B@mail.com)
-  # 建一个gitlab别名，新建的帐号使用这个别名做克隆和更新
-  Host A.github.com
-   HostName github.com
-   User git
-   IdentityFile ~/.ssh/id_rsa_github_B
-</code></pre>
-
-<p>  &#8220;`</p></li>
+<li>从上面一步可以看到，ssh区分账号，其实靠的是HostName这个字段，因此如果在github上有多个账号，很容易的可以把不同的账号映射到不同的HostName上就可以了。比如我有A和B两个账号， 先按照步骤一生成不同的key文件，再修改<code>~/.ssh/config</code> 内容应该是这样的。</li>
 </ul>
 
-
-<p>同时你的github的repo ssh url就要做相应的修改了，比如根据上面的配置,原连接地址是:</p>
-
-<pre><code>git@github.com:testA/gopkg.git
-</code></pre>
-
-<p>那么根据上面的配置，就要把<code>github.com</code>换成<code>A.github.com</code>, 那么ssh解析的时候就会自动把<code>testA.github.com</code> 转换为 <code>github.com</code>,修改后就是</p>
-
-<pre><code>git@A.github.com:testA/gopkg.git
-</code></pre>
-
-<p>直接更改 <code>repo/.git/config</code> 里面的url即可</p>
-
-<p>这样每次push的时候系统就会根据不同的仓库地址使用不同的账号提交了</p>
-
-<h1>一些题外话</h1>
-
-<h2>我有一个repo，想要同时push到不同的仓库该如何设置?</h2>
-
-<p>很简单， 直接更改 <code>repo/.git/config</code> 里面的url即可，把里面对应tag下的url增加一个就可以了。例:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -210,22 +180,93 @@
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[remote "GitHub"]
-</span><span class='line'>    url = git@github.com:elliottcable/Paws.o.git
-</span><span class='line'>    fetch = +refs/heads/*:refs/remotes/GitHub/*
-</span><span class='line'>[branch "Master"]
-</span><span class='line'>    remote = GitHub
-</span><span class='line'>    merge = refs/heads/Master
-</span><span class='line'>[remote "Codaset"]
-</span><span class='line'>    url = git@codaset.com:elliottcable/paws-o.git
-</span><span class='line'>    fetch = +refs/heads/*:refs/remotes/Codaset/*
-</span><span class='line'>[remote "Paws"]
-</span><span class='line'>    url = git@github.com:Paws/Paws.o.git
-</span><span class='line'>    fetch = +refs/heads/*:refs/remotes/Paws/*
-</span><span class='line'>[remote "Origin"]
-</span><span class='line'>    url = git@github.com:Paws/Paws.o.git
-</span><span class='line'>    url = git@codaset.com:elliottcable/paws-o.git</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Default github user(A@mail.com),注意User项直接填git，不用填在github的用户名
+</span><span class='line'>Host A.github.com
+</span><span class='line'> HostName github.com
+</span><span class='line'> User git
+</span><span class='line'> IdentityFile ~/.ssh/id_rsa_github_A
+</span><span class='line'>
+</span><span class='line'># second user(B@mail.com)
+</span><span class='line'># 建一个gitlab别名，新建的帐号使用这个别名做克隆和更新
+</span><span class='line'>Host A.github.com
+</span><span class='line'> HostName github.com
+</span><span class='line'> User git
+</span><span class='line'> IdentityFile ~/.ssh/id_rsa_github_B
+</span><span class='line'>```
+</span><span class='line'>
+</span><span class='line'>同时你的github的repo ssh url就要做相应的修改了，比如根据上面的配置,原连接地址是:
+</span><span class='line'>
+</span><span class='line'>git@github.com:testA/gopkg.git
+</span><span class='line'>
+</span><span class='line'>那么根据上面的配置，就要把`github.com`换成`A.github.com`, 那么ssh解析的时候就会自动把`testA.github.com` 转换为 `github.com`,修改后就是
+</span><span class='line'>
+</span><span class='line'>git@A.github.com:testA/gopkg.git
+</span><span class='line'>
+</span><span class='line'>直接更改 `repo/.git/config` 里面的url即可
+</span><span class='line'>
+</span><span class='line'>这样每次push的时候系统就会根据不同的仓库地址使用不同的账号提交了
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>一些题外话
+</span><span class='line'>===============================
+</span><span class='line'>
+</span><span class='line'>我有一个repo，想要同时push到不同的仓库该如何设置?
+</span><span class='line'>--------------------------------------------------
+</span><span class='line'>
+</span><span class='line'>很简单， 直接更改 `repo/.git/config` 里面的url即可，把里面对应tag下的url增加一个就可以了。例:
+</span></code></pre></td></tr></table></div></figure>
 
+
+<p>[remote &ldquo;GitHub&rdquo;]</p>
+
+<pre><code>url = git@github.com:elliottcable/Paws.o.git
+fetch = +refs/heads/*:refs/remotes/GitHub/*
+</code></pre>
+
+<p>[branch &ldquo;Master&rdquo;]</p>
+
+<pre><code>remote = GitHub
+merge = refs/heads/Master
+</code></pre>
+
+<p>[remote &ldquo;Codaset&rdquo;]</p>
+
+<pre><code>url = git@codaset.com:elliottcable/paws-o.git
+fetch = +refs/heads/*:refs/remotes/Codaset/*
+</code></pre>
+
+<p>[remote &ldquo;Paws&rdquo;]</p>
+
+<pre><code>url = git@github.com:Paws/Paws.o.git
+fetch = +refs/heads/*:refs/remotes/Paws/*
+</code></pre>
+
+<p>[remote &ldquo;Origin&rdquo;]</p>
+
+<pre><code>url = git@github.com:Paws/Paws.o.git
+url = git@codaset.com:elliottcable/paws-o.git
+</code></pre>
+
+<p>&#8220;`</p>
 
 <p>上面这个立即就是有4个远端仓库，不同的tag表示不同的远端仓库，最后的Origin标签写法表示默认push到github和codaset这两个远端仓库去。当然，你可以自己随意定制tag和url</p>
 
