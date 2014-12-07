@@ -74,7 +74,7 @@ categories: git
      HostName github.com
      User git
      IdentityFile ~/.ssh/id_rsa_github_B
-    ```
+```
 
 同时你的github的repo ssh url就要做相应的修改了，比如根据上面的配置,原连接地址是:
 
