@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2014-12-07T16:10:48+08:00</updated>
+  <updated>2014-12-07T16:19:52+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -94,8 +94,9 @@ Host A.github.com
  HostName github.com
  User git
  IdentityFile ~/.ssh/id_rsa_github_B
-```
 </code></pre>
+
+<p>```</p>
 
 <p>同时你的github的repo ssh url就要做相应的修改了，比如根据上面的配置,原连接地址是:</p>
 
