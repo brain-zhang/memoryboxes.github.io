@@ -4,7 +4,7 @@
   <title><![CDATA[memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2014-12-07T16:34:18+08:00</updated>
+  <updated>2014-12-08T09:11:43+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Docker中的网络]]></title>
+    <link href="http://memoryboxes.github.io/blog/2014/12/08/dockerzhong-de-wang-luo/"/>
+    <updated>2014-12-08T08:25:53+08:00</updated>
+    <id>http://memoryboxes.github.io/blog/2014/12/08/dockerzhong-de-wang-luo</id>
+    <content type="html"><![CDATA[<p>Docker的默认网络是非常弱的，他使用的是一个虚拟网桥和container中的veth pair通信，在container中，默认是没有对外的IP的，外部主机或容器只能通过NAT，或者自定义iptable来实现主机或容器间的互联互通。
+这种局限性非常明显:</p>
+
+<ul>
+<li><p>如果我要配置一个sshd service，需要手工配置转发规则，非常不便</p></li>
+<li><p>无法使用DHCP</p></li>
+<li><p>NAT无法在宿主机上用一个端口提供不同服务，所以有多个container绑定到一个物理网卡时，因为无法分配多个对外IP，所以诸如Http 这样的服务只能跑在同一IP的不同端口上。</p></li>
+<li><p>在Container中无法正常tcpdump</p></li>
+</ul>
+
+
+<p>理想的容器内网卡应该像VMware的NSX那样，让你&#8217;基本上&#8217;感觉不到这是个虚拟的网卡，当然，这个和Docker的初衷有点不符了。但我们解决问题为先，工具是那一个，但不同人用法不同。</p>
+
+<p>将Docker Container连接到本地网络，有四种搞法 (具体请参考:<a href="http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/">http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/</a>)，下面简单描述下:</p>
+
+<ul>
+<li><p>采用官方默认的搞法，用NAT:</p>
+
+<p>  <code>
+  ip addr add 10.12.0.117/21 dev em1
+  docker run -d --name web -p 10.12.0.117:80:80 centos/simpleweb
+  -A DOCKER -d 10.12.0.117/32 ! -i docker0 -p tcp -m tcp  --dport 80 -j DNAT --to-destination 172.17.0.4:80
+ </code>
+ 这种方法简单，但也有上面所说的各种缺点</p></li>
+<li><p>建立自己的网桥和veth pair，为每个网桥分配一个IP，每个veth对绑定一个网桥，映射进docker容器，这样在容器内就得到了一个接近于真实的网卡。并且有能与本地网络的通信</p>
+
+<p>  这种办法其实是对默认docker网络实现的一种升级，但是解决了原来的诸多局限，缺点是操作比较麻烦，另外容器内用tcpdump也会有问题</p></li>
+<li><p>使用Open vSwitch Bridge，模拟第二种办法。</p>
+
+<p>  这种方法就是用Open vSwitch简化了操作，但是又引入了一套东西。</p></li>
+<li><p>建立macvlan虚拟网卡，容器启动后用nsenter工具映射到容器的network namespace中</p>
+
+<p>  这种办法我觉得是最干净简洁的，而且采用macvlan，还意外获得了一种能力，就是你能在宿主机上创建子macvlan设备，从而能向容器内的macvlan设备打入精确的流量。
+  另外，在容器内tcpdump包也很完美，如果想捕获二层协议包，可以用macvtap替换macvlan。</p></li>
+</ul>
+
+
+<p>需要注意的是，如果想要tcpdump macvtap，需要linux kernel 3.14以上的支持，参见<a href="https://github.com/torvalds/linux/commit/6acf54f1cf0a6747bac9fea26f34cfc5a9029523">这里</a>。</p>
+
+<p>最后推荐为了简化macvlan的操作，我写的一个小工具:<a href="https://github.com/memoryboxes/dockerfly">dockerfly</a></p>
+
+<p>参考:</p>
+
+<ul>
+<li><p>Linux 上的基础网络设备详解
+  <a href="http://www.ibm.com/developerworks/cn/linux/1310_xiawc_networkdevice/index.html">http://www.ibm.com/developerworks/cn/linux/1310_xiawc_networkdevice/index.html</a></p></li>
+<li><p>Linux 上虚拟网络与真实网络的映射
+  <a href="http://www.ibm.com/developerworks/cn/linux/1312_xiawc_linuxvirtnet/index.html">http://www.ibm.com/developerworks/cn/linux/1312_xiawc_linuxvirtnet/index.html</a></p></li>
+<li><p>网络虚拟化技术: TUN/TAP MACVLAN MACVTAP
+  <a href="https://blog.kghost.info/2013/03/27/linux-network-tun/">https://blog.kghost.info/2013/03/27/linux-network-tun/</a></p></li>
+<li><p>Coupling Docker and Open vSwitch
+  <a href="http://fbevmware.blogspot.com/2013/12/coupling-docker-and-open-vswitch.html">http://fbevmware.blogspot.com/2013/12/coupling-docker-and-open-vswitch.html</a></p></li>
+<li><p>four ways to connect a docker
+  <a href="http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/">http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[多个git账号之间的切换]]></title>
@@ -1185,52 +1249,6 @@ openssl x509 -req -days 365 -in foobar.csr -signkey foobar.key -out foobar.crt
 
 <pre><code>You should use `"`  not  `'` in query string
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Freeze Svn:externals for Tags/branch]]></title>
-    <link href="http://memoryboxes.github.io/blog/2014/03/26/freeze-svn-externals-for-tags/"/>
-    <updated>2014-03-26T18:12:23+08:00</updated>
-    <id>http://memoryboxes.github.io/blog/2014/03/26/freeze-svn-externals-for-tags</id>
-    <content type="html"><![CDATA[<p>svn的external link在多个项目互相引用时很有用。</p>
-
-<p>但我们想要做tag及branch的时候，需要将external link的文件或目录固定在某个版本。</p>
-
-<h2>搜了一下，基本上有几个办法:</h2>
-
-<p>使用tortoisesvn>1.7版本，打tag及branch的时候可以固定在某一版本:</p>
-
-<pre><code>¦   http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-dug-branchtag.html
-
-
-缺点是这样打出来的branch，checkout下来后，svn up还是回到最新的版本。
-</code></pre>
-
-<p>使用一个perl脚本，可以在打branch的时候把extern link一起拷贝到branch底下，这样相当于是建立了一个新的external link拷贝，修改branch不会影响到trunk</p>
-
-<pre><code>¦   https://svn.apache.org/repos/asf/subversion/trunk/contrib/client-side/svncopy/
-
-
-缺点是这样打出来的branch底下会多出来external link的拷贝，不完美。
-</code></pre>
-
-<p>有人开发了工具, C#的，但我在win7下面打branch的时候会报错</p>
-
-<pre><code>¦   http://svnxf.codeplex.com/
-</code></pre>
-
-<h4>原先以为这样的事情总该有个simple的解决办法的，但还真是没找到，自己实际写个脚本想做这个事情才发现不简单。想要做这件事的前提是要把代码check到本地来，这样就不如直接调命令了，如果远程操作svn库，就需要三方开发。</h4>
-
-<h2>最后简单的办法是:</h2>
-
-<p>如果是打tag，采用方法一，用tortoisesvn固定在一个版本</p>
-
-<p>如果是打branch，先用tortoisesvn 固定在一个版本，再把branch分支checkout下来，用命令 <code>svn propedit svn:externals .</code>取消external link，再重新加入版本库，最后提交。</p>
-
-<p>参考:</p>
-
-<p><a href="http://stackoverflow.com/questions/1982538/how-to-have-tortoisesvn-always-freeze-svnexternals-for-tags">http://stackoverflow.com/questions/1982538/how-to-have-tortoisesvn-always-freeze-svnexternals-for-tags</a></p>
 ]]></content>
   </entry>
   
