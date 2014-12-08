@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Network | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/network/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2014-12-08T09:13:57+08:00</updated>
+  <updated>2014-12-08T09:15:46+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -34,14 +34,19 @@
 <p>将Docker Container连接到本地网络，有四种搞法 (具体请参考:<a href="http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/">http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/</a>)，下面简单描述下:</p>
 
 <ul>
-<li><p>采用官方默认的搞法，用NAT:</p>
+<li>采用官方默认的搞法，用NAT:</li>
+</ul>
 
-<p>  ```
-  ip addr add 10.12.0.117/21 dev em1</p>
 
-<p>  docker run -d &mdash;name web -p 10.12.0.117:80:80 centos/simpleweb
-  ```
- 这种方法简单，但也有上面所说的各种缺点</p></li>
+<p>```
+ip addr add 10.12.0.117/21 dev em1</p>
+
+<p>docker run -d &mdash;name web -p 10.12.0.117:80:80 centos/simpleweb
+```</p>
+
+<p>   这种方法简单，但也有上面所说的各种缺点</p>
+
+<ul>
 <li><p>建立自己的网桥和veth pair，为每个网桥分配一个IP，每个veth对绑定一个网桥，映射进docker容器，这样在容器内就得到了一个接近于真实的网卡。并且有能与本地网络的通信</p>
 
 <p>  这种办法其实是对默认docker网络实现的一种升级，但是解决了原来的诸多局限，缺点是操作比较麻烦，另外容器内用tcpdump也会有问题</p></li>
@@ -62,20 +67,46 @@
 <p>参考:</p>
 
 <ul>
-<li><p>Linux 上的基础网络设备详解
-  <a href="http://www.ibm.com/developerworks/cn/linux/1310_xiawc_networkdevice/index.html">http://www.ibm.com/developerworks/cn/linux/1310_xiawc_networkdevice/index.html</a></p></li>
-<li><p>Linux 上虚拟网络与真实网络的映射
-  <a href="http://www.ibm.com/developerworks/cn/linux/1312_xiawc_linuxvirtnet/index.html">http://www.ibm.com/developerworks/cn/linux/1312_xiawc_linuxvirtnet/index.html</a></p></li>
-<li><p>网络虚拟化技术: TUN/TAP MACVLAN MACVTAP
-  <a href="https://blog.kghost.info/2013/03/27/linux-network-tun/">https://blog.kghost.info/2013/03/27/linux-network-tun/</a></p></li>
-<li><p>Coupling Docker and Open vSwitch
-  <a href="http://fbevmware.blogspot.com/2013/12/coupling-docker-and-open-vswitch.html">http://fbevmware.blogspot.com/2013/12/coupling-docker-and-open-vswitch.html</a></p></li>
-<li><p>four ways to connect a docker
-  <a href="http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/">http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/</a></p></li>
-<li><p>Docker containers should not run an SSH server
-  <a href="https://news.ycombinator.com/item?id=7950326">https://news.ycombinator.com/item?id=7950326</a></p></li>
+<li>Linux 上的基础网络设备详解</li>
 </ul>
 
+
+<p><a href="http://www.ibm.com/developerworks/cn/linux/1310_xiawc_networkdevice/index.html">http://www.ibm.com/developerworks/cn/linux/1310_xiawc_networkdevice/index.html</a></p>
+
+<ul>
+<li>Linux 上虚拟网络与真实网络的映射</li>
+</ul>
+
+
+<p><a href="http://www.ibm.com/developerworks/cn/linux/1312_xiawc_linuxvirtnet/index.html">http://www.ibm.com/developerworks/cn/linux/1312_xiawc_linuxvirtnet/index.html</a></p>
+
+<ul>
+<li>网络虚拟化技术: TUN/TAP MACVLAN MACVTAP</li>
+</ul>
+
+
+<p><a href="https://blog.kghost.info/2013/03/27/linux-network-tun/">https://blog.kghost.info/2013/03/27/linux-network-tun/</a></p>
+
+<ul>
+<li>Coupling Docker and Open vSwitch</li>
+</ul>
+
+
+<p><a href="http://fbevmware.blogspot.com/2013/12/coupling-docker-and-open-vswitch.html">http://fbevmware.blogspot.com/2013/12/coupling-docker-and-open-vswitch.html</a></p>
+
+<ul>
+<li>four ways to connect a docker</li>
+</ul>
+
+
+<p><a href="http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/">http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/</a></p>
+
+<ul>
+<li>Docker containers should not run an SSH server</li>
+</ul>
+
+
+<p><a href="https://news.ycombinator.com/item?id=7950326">https://news.ycombinator.com/item?id=7950326</a></p>
 ]]></content>
   </entry>
   
