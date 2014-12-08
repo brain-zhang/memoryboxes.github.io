@@ -116,11 +116,11 @@
 <ul>
 <li><p>采用官方默认的搞法，用NAT:</p>
 
-<p>  <code>
-  ip addr add 10.12.0.117/21 dev em1
-  docker run -d --name web -p 10.12.0.117:80:80 centos/simpleweb
-  -A DOCKER -d 10.12.0.117/32 ! -i docker0 -p tcp -m tcp  --dport 80 -j DNAT --to-destination 172.17.0.4:80
- </code>
+<p>  &#8220;`
+  ip addr add 10.12.0.117/21 dev em1</p>
+
+<p>  docker run -d &mdash;name web -p 10.12.0.117:80:80 centos/simpleweb
+  &#8220;`
  这种方法简单，但也有上面所说的各种缺点</p></li>
 <li><p>建立自己的网桥和veth pair，为每个网桥分配一个IP，每个veth对绑定一个网桥，映射进docker容器，这样在容器内就得到了一个接近于真实的网卡。并且有能与本地网络的通信</p>
 
@@ -152,6 +152,8 @@
   <a href="http://fbevmware.blogspot.com/2013/12/coupling-docker-and-open-vswitch.html">http://fbevmware.blogspot.com/2013/12/coupling-docker-and-open-vswitch.html</a></p></li>
 <li><p>four ways to connect a docker
   <a href="http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/">http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/</a></p></li>
+<li><p>Docker containers should not run an SSH server
+  <a href="https://news.ycombinator.com/item?id=7950326">https://news.ycombinator.com/item?id=7950326</a></p></li>
 </ul>
 
 </div>
