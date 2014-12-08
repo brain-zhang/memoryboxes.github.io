@@ -77,3 +77,7 @@ http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/
 * Docker containers should not run an SSH server
 
 https://news.ycombinator.com/item?id=7950326
+
+* Proposal: Native Docker Multi-Host Networking
+
+https://github.com/docker/docker/issues/8951
