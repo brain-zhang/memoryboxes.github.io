@@ -24,11 +24,12 @@ Docker的默认网络是非常弱的，他使用的是一个虚拟网桥和conta
 
 * 采用官方默认的搞法，用NAT:
 
-    ```
-    ip addr add 10.12.0.117/21 dev em1
+```
+ip addr add 10.12.0.117/21 dev em1
 
-    docker run -d --name web -p 10.12.0.117:80:80 centos/simpleweb
-    ```
+docker run -d --name web -p 10.12.0.117:80:80 centos/simpleweb
+```
+
    这种方法简单，但也有上面所说的各种缺点
 
 * 建立自己的网桥和veth pair，为每个网桥分配一个IP，每个veth对绑定一个网桥，映射进docker容器，这样在容器内就得到了一个接近于真实的网卡。并且有能与本地网络的通信
@@ -53,19 +54,25 @@ Docker的默认网络是非常弱的，他使用的是一个虚拟网桥和conta
 参考:
 
 * Linux 上的基础网络设备详解
-    http://www.ibm.com/developerworks/cn/linux/1310_xiawc_networkdevice/index.html
+
+http://www.ibm.com/developerworks/cn/linux/1310_xiawc_networkdevice/index.html
 
 * Linux 上虚拟网络与真实网络的映射
-    http://www.ibm.com/developerworks/cn/linux/1312_xiawc_linuxvirtnet/index.html
+
+http://www.ibm.com/developerworks/cn/linux/1312_xiawc_linuxvirtnet/index.html
 
 * 网络虚拟化技术: TUN/TAP MACVLAN MACVTAP
-    https://blog.kghost.info/2013/03/27/linux-network-tun/
+
+https://blog.kghost.info/2013/03/27/linux-network-tun/
 
 * Coupling Docker and Open vSwitch
-    http://fbevmware.blogspot.com/2013/12/coupling-docker-and-open-vswitch.html
+
+http://fbevmware.blogspot.com/2013/12/coupling-docker-and-open-vswitch.html
 
 * four ways to connect a docker
-    http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/
+
+http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/
 
 * Docker containers should not run an SSH server
-    https://news.ycombinator.com/item?id=7950326
+
+https://news.ycombinator.com/item?id=7950326
