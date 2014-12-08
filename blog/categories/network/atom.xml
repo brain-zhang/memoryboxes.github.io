@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Network | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/network/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2014-12-08T09:22:47+08:00</updated>
+  <updated>2014-12-08T09:43:34+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -108,6 +108,13 @@ ip addr add 10.12.0.117/21 dev em1</p>
 
 
 <p><a href="https://news.ycombinator.com/item?id=7950326">https://news.ycombinator.com/item?id=7950326</a></p>
+
+<ul>
+<li>Proposal: Native Docker Multi-Host Networking</li>
+</ul>
+
+
+<p><a href="https://github.com/docker/docker/issues/8951">https://github.com/docker/docker/issues/8951</a></p>
 ]]></content>
   </entry>
   
