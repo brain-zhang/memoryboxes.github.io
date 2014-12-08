@@ -43,6 +43,7 @@ docker run -d --name web -p 10.12.0.117:80:80 centos/simpleweb
 * 建立macvlan虚拟网卡，容器启动后用nsenter工具映射到容器的network namespace中
 
     这种办法我觉得是最干净简洁的，而且采用macvlan，还意外获得了一种能力，就是你能在宿主机上创建子macvlan设备，从而能向容器内的macvlan设备打入精确的流量。
+    采用这种方法得到的container，可以在里面启动sshd，远程ssh上去各种操作，这样使用同一般的虚拟机没有多大差别。
     另外，在容器内tcpdump包也很完美，如果想捕获二层协议包，可以用macvtap替换macvlan。
 
 需要注意的是，如果想要tcpdump macvtap，需要linux kernel 3.14以上的支持，参见[这里](https://github.com/torvalds/linux/commit/6acf54f1cf0a6747bac9fea26f34cfc5a9029523)。
