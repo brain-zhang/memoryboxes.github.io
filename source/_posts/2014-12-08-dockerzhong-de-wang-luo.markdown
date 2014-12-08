@@ -26,8 +26,8 @@ Docker的默认网络是非常弱的，他使用的是一个虚拟网桥和conta
 
     ```
     ip addr add 10.12.0.117/21 dev em1
+
     docker run -d --name web -p 10.12.0.117:80:80 centos/simpleweb
-    -A DOCKER -d 10.12.0.117/32 ! -i docker0 -p tcp -m tcp  --dport 80 -j DNAT --to-destination 172.17.0.4:80
     ```
    这种方法简单，但也有上面所说的各种缺点
 
@@ -66,3 +66,6 @@ Docker的默认网络是非常弱的，他使用的是一个虚拟网桥和conta
 
 * four ways to connect a docker
     http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/
+
+* Docker containers should not run an SSH server
+    https://news.ycombinator.com/item?id=7950326
