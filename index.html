@@ -9,8 +9,7 @@
   <meta name="author" content="memoryboxes">
 
   
-  <meta name="description" content="Docker的默认网络是非常弱的，他使用的是一个虚拟网桥和container中的veth pair通信，在container中，默认是没有对外的IP的，外部主机或容器只能通过NAT，或者自定义iptable来实现主机或容器间的互联互通。
-这种局限性非常明显: 如果我要配置一个sshd &hellip;">
+  <meta name="description" content="libpcap为了提高效率，调用setsockopt(handle-&gt;fd, SOL_PACKET, PACKET_RX_RING,(void *) &amp;req, sizeof(req))时采用kmalloc分配内存。 可以参考: https://www.kernel.org/doc/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +65,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/12/25/libpcappacket-mmapnei-cun-fen-pei/">Libpcap PACKET_MMAP内存分配</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-25T10:03:49+08:00" pubdate data-updated="true">Dec 25<span>th</span>, 2014</time>
+        
+        
+           | <a href="/blog/2014/12/25/libpcappacket-mmapnei-cun-fen-pei/#comments">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>libpcap为了提高效率，调用<code>setsockopt(handle-&gt;fd, SOL_PACKET, PACKET_RX_RING,(void *) &amp;req, sizeof(req))</code>时采用kmalloc分配内存。</p>
+
+<p>可以参考:</p>
+
+<p><a href="https://www.kernel.org/doc/Documentation/networking/packet_mmap.txt">https://www.kernel.org/doc/Documentation/networking/packet_mmap.txt</a></p>
+
+<p>kmalloc底层依赖linux的slab内存分配机制，在2.6.22内核之后，slub取代slab成为默认的内存分配器。空间和时间上都有所提升。值得升级。</p>
+
+<p>另外，centos5.9默认采用的2.6.18内核，编译的时候默认的KMALLOC_MAX_SIZE 设置为size-131072，这对于有很大内存的机器，分配效率是不高的。</p>
+
+<p>最简单的办法就是用rpm包升级到2.6.33.9-rt31.86.el5rt，这个内核编译的时候已经将KMALLOC_MAX_SIZE设置为size-4194304。</p>
+
+<p>这个问题是追踪libpcap的抓包程序，内存分配频繁失败发现的。</p>
+
+<p>只能说，内核升级频繁，很多编译开关影响很大，要想全面发挥linux的性能，只能紧跟潮流啊。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1113,50 +1165,6 @@ openssl x509 -req -days 365 -in foobar.csr -signkey foobar.key -out foobar.crt
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/18/docker-cheat-sheet/">Docker Cheat Sheet</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-09-18T09:09:52+08:00" pubdate data-updated="true">Sep 18<span>th</span>, 2014</time>
-        
-        
-           | <a href="/blog/2014/09/18/docker-cheat-sheet/#comments">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>Container</h4>
-
-<pre><code>* `docker run` creates a container
-
-* 待续
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1190,6 +1198,10 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/12/25/libpcappacket-mmapnei-cun-fen-pei/">Libpcap PACKET_MMAP内存分配</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/08/dockerzhong-de-wang-luo/">Docker中的网络</a>
       </li>
     
@@ -1203,10 +1215,6 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
     
       <li class="post">
         <a href="/blog/2014/11/16/pycon2017-in-shanghai/">Pycon2014 in Shanghai</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/11/05/yong-tcp-slash-ipjin-xing-wang-ji-hu-lian-bi-ji/">用TCP/IP进行网际互连 (笔记)</a>
       </li>
     
   </ul>
@@ -1250,6 +1258,7 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
 <li class='category'><a href='/blog/categories/docker/'>Docker (1)</a></li>
 <li class='category'><a href='/blog/categories/markdown/'>Markdown (1)</a></li>
 <li class='category'><a href='/blog/categories/mongodb/'>MongoDB (1)</a></li>
+<li class='category'><a href='/blog/categories/packet-mmap/'>PACKET_MMAP (1)</a></li>
 <li class='category'><a href='/blog/categories/python/'>Python (2)</a></li>
 <li class='category'><a href='/blog/categories/svn/'>SVN (1)</a></li>
 <li class='category'><a href='/blog/categories/tcp-ip/'>TCP/IP (1)</a></li>
@@ -1272,6 +1281,7 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
 <li class='category'><a href='/blog/categories/git/'>git (1)</a></li>
 <li class='category'><a href='/blog/categories/grunt/'>grunt (1)</a></li>
 <li class='category'><a href='/blog/categories/jenkins/'>jenkins (1)</a></li>
+<li class='category'><a href='/blog/categories/libpcap/'>libpcap (1)</a></li>
 <li class='category'><a href='/blog/categories/life/'>life (1)</a></li>
 <li class='category'><a href='/blog/categories/mongodb/'>mongodb (1)</a></li>
 <li class='category'><a href='/blog/categories/mongoexport/'>mongoexport (1)</a></li>
