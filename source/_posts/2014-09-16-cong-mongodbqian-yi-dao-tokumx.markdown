@@ -133,6 +133,20 @@ Tokumx宣称了很多很好的[特性](http://www.tokutek.com/products/tokumx-fo
 
 * 还是会莫名down掉，down掉几率还是要比Mongodb大
 
+#### 再次更新:经过实际数据测试，usePowerOf2Size的磁盘重复利用的确比较好
+
+* 采用Padding 的存储方式，磁盘重复利用率为32%
+
+* 采用usePowerOf2Size 的存储方式，磁盘重复利用率为73%
+
+* 采用usePowerOf2Size 的存储方式比Padding 的存储方式，磁盘多占用10%
+
+所以假如有一年的数据，Padding的存储方式，storageSize为1T，设定过期时间是1年，那么第二年后，数据库增长为1.7T
+
+同样的数据，usePowerOf2Size 的存储方式，storageSize为1.1T，设定过期时间是1年，那么第二年后，数据库增长为1.5T
+
+这个数字会根据插入记录的离散度有所变化，但大概比例应该就是这样的。
+
 #### 总的来说，Tokumx还是只适合单机用啊，机器一多，各种毛病都来了~~~，大家如果分布式，等mongodb 2.8版本更靠谱一些。
 
 
