@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MongoDB | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/mongodb/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2014-12-25T10:15:03+08:00</updated>
+  <updated>2014-12-30T09:37:29+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -151,6 +151,21 @@
 <li><p>还是会莫名down掉，down掉几率还是要比Mongodb大</p></li>
 </ul>
 
+
+<h4>再次更新:经过实际数据测试，usePowerOf2Size的磁盘重复利用的确比较好</h4>
+
+<ul>
+<li><p>采用Padding 的存储方式，磁盘重复利用率为32%</p></li>
+<li><p>采用usePowerOf2Size 的存储方式，磁盘重复利用率为73%</p></li>
+<li><p>采用usePowerOf2Size 的存储方式比Padding 的存储方式，磁盘多占用10%</p></li>
+</ul>
+
+
+<p>所以假如有一年的数据，Padding的存储方式，storageSize为1T，设定过期时间是1年，那么第二年后，数据库增长为1.7T</p>
+
+<p>同样的数据，usePowerOf2Size 的存储方式，storageSize为1.1T，设定过期时间是1年，那么第二年后，数据库增长为1.5T</p>
+
+<p>这个数字会根据插入记录的离散度有所变化，但大概比例应该就是这样的。</p>
 
 <h4>总的来说，Tokumx还是只适合单机用啊，机器一多，各种毛病都来了~~~，大家如果分布式，等mongodb 2.8版本更靠谱一些。</h4>
 ]]></content>
