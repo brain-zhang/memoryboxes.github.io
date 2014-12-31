@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Vim - memoryboxes blog</title>
+  <title>Macvtap Ethernet Support Tcpdump - memoryboxes blog</title>
   <meta name="author" content="memoryboxes">
 
   
-  <meta name="description" content="Category: vim">
+  <meta name="description" content="用macvtap模拟网卡时，用tcpdump抓包是抓不到的，后来发现3.14版本以上的内核修正了这一点。 参考这个提交: https://github.com/torvalds/linux/commit/6acf54f1cf0a6747bac9fea26f34cfc5a9029523
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://memoryboxes.github.ioblog/categories/vim">
+  <link rel="canonical" href="http://memoryboxes.github.io/blog/2014/12/31/macvtap-ethernet-support-tcpdump">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="memoryboxes blog" type="application/atom+xml">
@@ -64,37 +65,110 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Vim</h1>
+    
+      <h1 class="entry-title">Macvtap Ethernet Support Tcpdump</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-31T17:05:01+08:00" pubdate data-updated="true">Dec 31<span>st</span>, 2014</time>
+        
+        
+           | <a href="#comments">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>用macvtap模拟网卡时，用tcpdump抓包是抓不到的，后来发现3.14版本以上的内核修正了这一点。</p>
 
-  
-  <h2>2014</h2>
+<p>参考这个提交:</p>
 
-<article>
-  
-<h1><a href="/blog/2014/02/25/jie-jue-tmuxxia-vim-colorschemeshi-xiao-de-wen-ti/">解决tmux下vim Colorscheme失效的问题</a></h1>
-<time datetime="2014-02-25T08:05:48+08:00" pubdate><span class='month'>Feb</span> <span class='day'>25</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/color/'>color</a>, <a class='category' href='/blog/categories/colorscheme/'>colorscheme</a>, <a class='category' href='/blog/categories/config/'>config</a>, <a class='category' href='/blog/categories/tmux/'>tmux</a>, <a class='category' href='/blog/categories/vim/'>vim</a></span>
-</footer>
-
-
-</article>
-
+<p><a href="https://github.com/torvalds/linux/commit/6acf54f1cf0a6747bac9fea26f34cfc5a9029523">https://github.com/torvalds/linux/commit/6acf54f1cf0a6747bac9fea26f34cfc5a9029523</a></p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">memoryboxes</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-31T17:05:01+08:00" pubdate data-updated="true">Dec 31<span>st</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/macvtap/'>Macvtap</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/12/30/linuxshuang-wang-qia-shuang-lu-you-she-zhi/" title="Previous Post: Linux多网卡多路由设置">&laquo; Linux多网卡多路由设置</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
+
+  <section>
+    <h1>Comments</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"memoryboxes-github"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+</div>
+  </section>
 
 </div>
 

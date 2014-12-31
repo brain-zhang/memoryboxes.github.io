@@ -9,7 +9,18 @@
   <meta name="author" content="memoryboxes">
 
   
-  <meta name="description" content="有时候想要在Markdwon里面画ASCII画，会被Format掉，例如: &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+ &mdash;&mdash;&mdash; &mdash;&mdash;& &hellip;">
+  <meta name="description" content="虽然因为llvm的出现，开源工具链又开始慢慢进化了，但是很多项目还是需要autotools自动gen configure的，但是我每次命令都记不全，还是记一下吧 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+#!/bin/bash echo "Running aclocal..." &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +76,69 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/10/29/how-to-compile-by-autotools/">How to Compile by Autotools</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-29T12:12:30+08:00" pubdate data-updated="true">Oct 29<span>th</span>, 2014</time>
+        
+        
+           | <a href="/blog/2014/10/29/how-to-compile-by-autotools/#comments">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>虽然因为llvm的出现，开源工具链又开始慢慢进化了，但是很多项目还是需要autotools自动gen configure的，但是我每次命令都记不全，还是记一下吧</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/bash
+</span><span class='line'>
+</span><span class='line'>echo "Running aclocal..."
+</span><span class='line'>aclocal || exit 1
+</span><span class='line'>echo "Running autoheader..."
+</span><span class='line'>autoheader || exit 1
+</span><span class='line'>echo "Running autoconf..."
+</span><span class='line'>autoconf || exit 1
+</span><span class='line'>echo "Running automake..."
+</span><span class='line'>automake --add-missing --copy || exit 1
+</span><span class='line'>echo "Finished."</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -733,51 +807,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/16/rake-gen-deploy-rejected-in-octopress/">Rake Gen Deploy Rejected in Octopress</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-09-16T11:55:56+08:00" pubdate data-updated="true">Sep 16<span>th</span>, 2014</time>
-        
-        
-           | <a href="/blog/2014/09/16/rake-gen-deploy-rejected-in-octopress/#comments">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Octopress老版本，例如我用的，在一台新机器上check 下来Repo，重建source分支时，会报rejected错误。</p>
-
-<p>怎么pull也不管用，解决办法参考这里:</p>
-
-<p><a href="http://stackoverflow.com/questions/17609453/rake-gen-deploy-rejected-in-octopress">http://stackoverflow.com/questions/17609453/rake-gen-deploy-rejected-in-octopress</a></p>
-
-<h3>悲剧提示，我后来发现有一段blog被revert掉了，诡异的是在github上面的提交记录也没了，要慎用，要做好备份。</h3>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -813,6 +842,10 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/12/31/macvtap-ethernet-support-tcpdump/">Macvtap Ethernet Support Tcpdump</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/30/linuxshuang-wang-qia-shuang-lu-you-she-zhi/">Linux多网卡多路由设置</a>
       </li>
     
@@ -826,10 +859,6 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
     
       <li class="post">
         <a href="/blog/2014/12/07/duo-ge-gitzhang-hao-zhi-jian-de-qie-huan/">多个git账号之间的切换</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/11/29/ke-ji-jin-bu-shi-an-quan-xing-ye-de-zui-gen-ben-bao-zhang/">科技进步是安全行业的最根本保障</a>
       </li>
     
   </ul>
@@ -871,6 +900,7 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
 <li class='category'><a href='/blog/categories/c/'>C (1)</a></li>
 <li class='category'><a href='/blog/categories/django/'>Django (3)</a></li>
 <li class='category'><a href='/blog/categories/docker/'>Docker (1)</a></li>
+<li class='category'><a href='/blog/categories/macvtap/'>Macvtap (1)</a></li>
 <li class='category'><a href='/blog/categories/markdown/'>Markdown (1)</a></li>
 <li class='category'><a href='/blog/categories/mongodb/'>MongoDB (1)</a></li>
 <li class='category'><a href='/blog/categories/packet-mmap/'>PACKET_MMAP (1)</a></li>
