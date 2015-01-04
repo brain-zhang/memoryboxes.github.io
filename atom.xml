@@ -4,7 +4,7 @@
   <title><![CDATA[memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2014-12-31T17:06:49+08:00</updated>
+  <updated>2015-01-04T09:21:27+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -12,6 +12,234 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript设计模式 - 笔记1]]></title>
+    <link href="http://memoryboxes.github.io/blog/2015/01/04/javascriptshe-ji-mo-shi-bi-ji-1/"/>
+    <updated>2015-01-04T08:25:15+08:00</updated>
+    <id>http://memoryboxes.github.io/blog/2015/01/04/javascriptshe-ji-mo-shi-bi-ji-1</id>
+    <content type="html"><![CDATA[<p>javascript设计模式 (读书笔记1)</p>
+
+<h1>富有表现力的javascript</h1>
+
+<h2>弱类型语言</h2>
+
+<p>javascript中有三种原始类型:布尔型、数值型(不区分浮点数和整数)和字符串型。</p>
+
+<p>此外，还有对象类型和包含可执行代码的函数类型。前者是一种复合类型(数组是一种特殊的对象)。</p>
+
+<p>最后，还有空类型(null)和未定义类型(undefined)。</p>
+
+<p>原始数据类型按值传送，其他数据类型则按引用传送。</p>
+
+<h2>函数是一等对象</h2>
+
+<ul>
+<li>匿名函数</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>(function(){
+</span><span class='line'>    var foo = 10;
+</span><span class='line'>    var bar = 2;
+</span><span class='line'>    alert(foo * bar);
+</span><span class='line'>})();</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>闭包</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var baz;
+</span><span class='line'>(function(){
+</span><span class='line'>    var foo = 10;
+</span><span class='line'>    var bar = 2;
+</span><span class='line'>    baz = function(){
+</span><span class='line'>        return foo * bar;
+</span><span class='line'>    }
+</span><span class='line'>})();
+</span><span class='line'>baz(); //baz可以访问foo和bar，即使是在匿名函数外面执行</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p>作用域、嵌套函数和闭包</p>
+
+<ul>
+<li><p>js中，只有函数具有作用域：</p>
+
+<p>  在一个函数内部声明的变量，外部无法访问；</p>
+
+<p>  定义在一个函数中的变量在该函数的内嵌函数中是可以访问的</p></li>
+<li><p>js中的作用域是词法性的：</p>
+
+<p>  函数运行在定义他们的作用域中，而不是调用他们的作用域中；</p>
+
+<p>  可以利用这个特性定义静态方法和属性；</p></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>对象的易变性(mutable)和内省(introspection)</h2>
+
+<ul>
+<li><p>易变性：js中可以对象前定义的类和实例化的对象进行修改</p></li>
+<li><p>内省：js中可以在运行时检查对象所具有的属性和方法</p></li>
+</ul>
+
+
+<h1>接口</h1>
+
+<ul>
+<li><p>接口也是一种对象，判断一个类是否是实现了某类接口，就是传入这个接口，而后比较。</p>
+
+<p>  java有专门的接口类，C++有虚基类，而C在linux kernel中的对象设计方法实际上也是一种接口实现，这都是接口在语言层面支持的体现</p></li>
+<li><p>封装(encapsulation)和信息隐藏：信息隐藏是目的，而封装则是藉以达到这个目的的技术</p>
+
+<p>  java和C++有 private关键字作为支持，Python有&#8217;__&lsquo;的命名约定，js中一般用闭包来模拟</p></li>
+</ul>
+
+
+<h2>接口实现</h2>
+
+<h3>用注释来模拟</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/*
+</span><span class='line'>interface Composite {
+</span><span class='line'>    function add(child);
+</span><span class='line'>    function remove(child);
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>interface FormItem{
+</span><span class='line'>    function save();
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>var CompositeForm = function(id, method, action) {
+</span><span class='line'>    //implements Composite, FromItem
+</span><span class='line'>    ...
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>CompositeForm.prototype.add = function(child) {
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span><span class='line'>CompositeForm.prototype.remove= function(child) {
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span><span class='line'>CompositeForm.prototype.save= function() {
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p>优点：简单明了，代码体积小</p></li>
+<li><p>缺点：无法错误检查</p></li>
+</ul>
+
+
+<h3>用属性检查模仿接口</h3>
+
+<p>约定所有类明确声明实现了那些接口，和这些类打交道的对象可以针对这些声明做检查。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/*
+</span><span class='line'>interface Composite {
+</span><span class='line'>    function add(child);
+</span><span class='line'>    function remove(child);
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>interface FormItem{
+</span><span class='line'>    function save();
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>var CompositeForm = function(id, method, action) {
+</span><span class='line'>    //implements Composite, FromItem
+</span><span class='line'>    this.implementsInterfaces = ['Composite', 'FromItem'];
+</span><span class='line'>    ...
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>CompositeForm.prototype.add = function(child) {
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span><span class='line'>CompositeForm.prototype.remove= function(child) {
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span><span class='line'>CompositeForm.prototype.save= function() {
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Macvtap Ethernet Support Tcpdump]]></title>
@@ -1231,22 +1459,6 @@ openssl x509 -req -days 365 -in foobar.csr -signkey foobar.key -out foobar.crt
 <p>解脱了….</p>
 
 <p>记一下免得又忘掉。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Vim 命令行操作小技巧]]></title>
-    <link href="http://memoryboxes.github.io/blog/2014/09/17/vim-ming-ling-xing-cao-zuo-xiao-ji-qiao/"/>
-    <updated>2014-09-17T08:30:15+08:00</updated>
-    <id>http://memoryboxes.github.io/blog/2014/09/17/vim-ming-ling-xing-cao-zuo-xiao-ji-qiao</id>
-    <content type="html"><![CDATA[<p>vim 使用:进入命令行后，除了直接敲命令外，一般会有两个操作:</p>
-
-<p>1.查看历史指令并执行</p>
-
-<p>2.复制寄存器中的内容
-1 查看历史指令需要在进入命令行之前使用q:,再选则就OK了。</p>
-
-<p>2 使用寄存器，一般复制时使用&#8221; + [寄存器名称] + y，进入命令行后再输入ctrl R，选择相应的寄存器粘贴就OK了。</p>
 ]]></content>
   </entry>
   

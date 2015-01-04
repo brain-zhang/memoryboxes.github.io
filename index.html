@@ -9,8 +9,7 @@
   <meta name="author" content="memoryboxes">
 
   
-  <meta name="description" content="用macvtap模拟网卡时，用tcpdump抓包是抓不到的，后来发现3.14版本以上的内核修正了这一点。 参考这个提交: https://github.com/torvalds/linux/commit/6acf54f1cf0a6747bac9fea26f34cfc5a9029523
-">
+  <meta name="description" content="javascript设计模式 (读书笔记1) 富有表现力的javascript 弱类型语言 javascript中有三种原始类型:布尔型、数值型(不区分浮点数和整数)和字符串型。 此外，还有对象类型和包含可执行代码的函数类型。前者是一种复合类型(数组是一种特殊的对象)。 最后，还有空类型(null &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +65,264 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/04/javascriptshe-ji-mo-shi-bi-ji-1/">Javascript设计模式 - 笔记1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-04T08:25:15+08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2015</time>
+        
+        
+           | <a href="/blog/2015/01/04/javascriptshe-ji-mo-shi-bi-ji-1/#comments">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>javascript设计模式 (读书笔记1)</p>
+
+<h1>富有表现力的javascript</h1>
+
+<h2>弱类型语言</h2>
+
+<p>javascript中有三种原始类型:布尔型、数值型(不区分浮点数和整数)和字符串型。</p>
+
+<p>此外，还有对象类型和包含可执行代码的函数类型。前者是一种复合类型(数组是一种特殊的对象)。</p>
+
+<p>最后，还有空类型(null)和未定义类型(undefined)。</p>
+
+<p>原始数据类型按值传送，其他数据类型则按引用传送。</p>
+
+<h2>函数是一等对象</h2>
+
+<ul>
+<li>匿名函数</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>(function(){
+</span><span class='line'>    var foo = 10;
+</span><span class='line'>    var bar = 2;
+</span><span class='line'>    alert(foo * bar);
+</span><span class='line'>})();</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>闭包</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var baz;
+</span><span class='line'>(function(){
+</span><span class='line'>    var foo = 10;
+</span><span class='line'>    var bar = 2;
+</span><span class='line'>    baz = function(){
+</span><span class='line'>        return foo * bar;
+</span><span class='line'>    }
+</span><span class='line'>})();
+</span><span class='line'>baz(); //baz可以访问foo和bar，即使是在匿名函数外面执行</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p>作用域、嵌套函数和闭包</p>
+
+<ul>
+<li><p>js中，只有函数具有作用域：</p>
+
+<p>  在一个函数内部声明的变量，外部无法访问；</p>
+
+<p>  定义在一个函数中的变量在该函数的内嵌函数中是可以访问的</p></li>
+<li><p>js中的作用域是词法性的：</p>
+
+<p>  函数运行在定义他们的作用域中，而不是调用他们的作用域中；</p>
+
+<p>  可以利用这个特性定义静态方法和属性；</p></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>对象的易变性(mutable)和内省(introspection)</h2>
+
+<ul>
+<li><p>易变性：js中可以对象前定义的类和实例化的对象进行修改</p></li>
+<li><p>内省：js中可以在运行时检查对象所具有的属性和方法</p></li>
+</ul>
+
+
+<h1>接口</h1>
+
+<ul>
+<li><p>接口也是一种对象，判断一个类是否是实现了某类接口，就是传入这个接口，而后比较。</p>
+
+<p>  java有专门的接口类，C++有虚基类，而C在linux kernel中的对象设计方法实际上也是一种接口实现，这都是接口在语言层面支持的体现</p></li>
+<li><p>封装(encapsulation)和信息隐藏：信息隐藏是目的，而封装则是藉以达到这个目的的技术</p>
+
+<p>  java和C++有 private关键字作为支持，Python有&#8217;__&lsquo;的命名约定，js中一般用闭包来模拟</p></li>
+</ul>
+
+
+<h2>接口实现</h2>
+
+<h3>用注释来模拟</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/*
+</span><span class='line'>interface Composite {
+</span><span class='line'>    function add(child);
+</span><span class='line'>    function remove(child);
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>interface FormItem{
+</span><span class='line'>    function save();
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>var CompositeForm = function(id, method, action) {
+</span><span class='line'>    //implements Composite, FromItem
+</span><span class='line'>    ...
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>CompositeForm.prototype.add = function(child) {
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span><span class='line'>CompositeForm.prototype.remove= function(child) {
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span><span class='line'>CompositeForm.prototype.save= function() {
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p>优点：简单明了，代码体积小</p></li>
+<li><p>缺点：无法错误检查</p></li>
+</ul>
+
+
+<h3>用属性检查模仿接口</h3>
+
+<p>约定所有类明确声明实现了那些接口，和这些类打交道的对象可以针对这些声明做检查。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/*
+</span><span class='line'>interface Composite {
+</span><span class='line'>    function add(child);
+</span><span class='line'>    function remove(child);
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>interface FormItem{
+</span><span class='line'>    function save();
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>var CompositeForm = function(id, method, action) {
+</span><span class='line'>    //implements Composite, FromItem
+</span><span class='line'>    this.implementsInterfaces = ['Composite', 'FromItem'];
+</span><span class='line'>    ...
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>CompositeForm.prototype.add = function(child) {
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span><span class='line'>CompositeForm.prototype.remove= function(child) {
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span><span class='line'>CompositeForm.prototype.save= function() {
+</span><span class='line'>    ...
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1074,106 +1331,6 @@ openssl x509 -req -days 365 -in foobar.csr -signkey foobar.key -out foobar.crt
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/10/29/how-to-auto-gen-css-slash-js-by-grunt-and-jenkins/">How to Auto Gen Css/js by Grunt and Jenkins</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-10-29T12:16:15+08:00" pubdate data-updated="true">Oct 29<span>th</span>, 2014</time>
-        
-        
-           | <a href="/blog/2014/10/29/how-to-auto-gen-css-slash-js-by-grunt-and-jenkins/#comments">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>虽然有<a href="https://github.com/gruntjs/grunt-contrib-watch">grunt-contrib-watch</a>的存在，但多个人编辑同一份css/js代码时，还要操心编译这个事，实在是多余。</p>
-
-<p>想到的最直接的办法就是jenkins上开一个项目，自动编译一把，再自动提交:</p>
-
-<p>虽然是野路子，但效果那是杠杠的。</p>
-
-<p>记一下一些要注意的点:</p>
-
-<ul>
-<li>有时候自动编译会失败，需要标记一下:</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>/usr/local/node-v0.10.20-linux-x64/bin/grunt --force |tee $PWD_DIR/grunt.log
-</span><span class='line'>err_count=`grep 'Error' $PWD_DIR/*.log|wc -l`
-</span><span class='line'>fail_count=`grep 'failed' *.log|wc -l`
-</span><span class='line'>abort_count=`grep 'Aborting' *.log|wc -l`
-</span><span class='line'>if [[ $err_count -gt 0 || $fail_count -gt 0 || $abort_count -gt 0 ]]; then
-</span><span class='line'>    exit 1
-</span><span class='line'>fi</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样jenkins编译失败，就会标红了</p>
-
-<ul>
-<li>还有个坑，有时候新增加了一个js的代码目录，这样编译后也会多一个目录，这就需要svn每次提交的时候，不要忘了强制add一下当前所有目录:</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>svn add static/dist/ --force</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>最后，极少数的情况编译后会出现冲突，因为编译的时候有人同样编译了一把提交了，这样自动提交会失败，也需要标记一下:</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>svn ci --no-auth-cache --username=xxx --password=xxx static/dist/* -m "jenkins:auto grunt" 2&gt;&1| tee $PWD_DIR/svn.log
-</span><span class='line'>err_count=`grep 'Error' $PWD_DIR/*.log|wc -l`
-</span><span class='line'>fail_count=`grep 'failed' *.log|wc -l`
-</span><span class='line'>abort_count=`grep 'Aborting' *.log|wc -l`
-</span><span class='line'>if [[ $err_count -gt 0 || $fail_count -gt 0 || $abort_count -gt 0 ]]; then
-</span><span class='line'>    exit 1
-</span><span class='line'>fi</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样基本上看看jenkins的状态，或是让jenkins自动发发邮件，就舒心了。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1207,6 +1364,10 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/04/javascriptshe-ji-mo-shi-bi-ji-1/">Javascript设计模式 - 笔记1</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/31/macvtap-ethernet-support-tcpdump/">Macvtap Ethernet Support Tcpdump</a>
       </li>
     
@@ -1220,10 +1381,6 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
     
       <li class="post">
         <a href="/blog/2014/12/08/dockerzhong-de-wang-luo/">Docker中的网络</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/07/duo-ge-gitzhang-hao-zhi-jian-de-qie-huan/">多个git账号之间的切换</a>
       </li>
     
   </ul>
@@ -1290,6 +1447,7 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
 <li class='category'><a href='/blog/categories/gcc/'>gcc (1)</a></li>
 <li class='category'><a href='/blog/categories/git/'>git (1)</a></li>
 <li class='category'><a href='/blog/categories/grunt/'>grunt (1)</a></li>
+<li class='category'><a href='/blog/categories/javascript设计模式/'>javascript设计模式 (1)</a></li>
 <li class='category'><a href='/blog/categories/jenkins/'>jenkins (1)</a></li>
 <li class='category'><a href='/blog/categories/libpcap/'>libpcap (1)</a></li>
 <li class='category'><a href='/blog/categories/life/'>life (1)</a></li>
@@ -1319,7 +1477,7 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - memoryboxes -
+  Copyright &copy; 2015 - memoryboxes -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
