@@ -4,7 +4,7 @@
   <title><![CDATA[memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-01-04T09:21:27+08:00</updated>
+  <updated>2015-01-04T09:55:12+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -208,6 +208,18 @@
 <span class='line-number'>24</span>
 <span class='line-number'>25</span>
 <span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>/*
 </span><span class='line'>interface Composite {
 </span><span class='line'>    function add(child);
@@ -224,19 +236,71 @@
 </span><span class='line'>    this.implementsInterfaces = ['Composite', 'FromItem'];
 </span><span class='line'>    ...
 </span><span class='line'>};
+</span><span class='line'>    ...
 </span><span class='line'>
-</span><span class='line'>CompositeForm.prototype.add = function(child) {
-</span><span class='line'>    ...
+</span><span class='line'>function addForm(formInstance) {
+</span><span class='line'>    if (!implements(formInstance, 'Composite', 'FormItem')) {
+</span><span class='line'>        throw new Error("object does not implement a required interface");
+</span><span class='line'>    }
 </span><span class='line'>}
-</span><span class='line'>CompositeForm.prototype.remove= function(child) {
-</span><span class='line'>    ...
-</span><span class='line'>}
-</span><span class='line'>CompositeForm.prototype.save= function() {
-</span><span class='line'>    ...
+</span><span class='line'>
+</span><span class='line'>function implements(objects) {
+</span><span class='line'>    for (var i = 1; i &lt; arguments.length; i++) {
+</span><span class='line'>        var interfaceName = arguments[i];
+</span><span class='line'>        var interfaceFound = false;
+</span><span class='line'>        for (var j = 0; j &lt; object.implementsInterfaces[j] == interfaceName) {
+</span><span class='line'>            interfaceFound = true;
+</span><span class='line'>            break;
+</span><span class='line'>        }
+</span><span class='line'>        if (!interfaceFound) {
+</span><span class='line'>            return false;
+</span><span class='line'>        }
+</span><span class='line'>    }
+</span><span class='line'>    return true;
 </span><span class='line'>}
 </span></code></pre></td></tr></table></div></figure>
 
 
+<ul>
+<li><p>优点:有错误检查</p></li>
+<li><p>缺点:每次调用都要检查，啰嗦，另外防不住有说了实现但没有干活的</p></li>
+</ul>
+
+
+<h1>鸭式辨型模仿接口</h1>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var Composite = new Intreface('Composite', ['add', 'remove']);
+</span><span class='line'>var FormItem = new Interface('FormItem', ['save']);
+</span><span class='line'>var CompositeForm = function(id, method, action) {
+</span><span class='line'>    ...
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>function addForm(formInstance) {
+</span><span class='line'>    ensureImplements(formInstance, Composite, FormItem);
+</span><span class='line'>    ......
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>interface类和ensureImplements的实现参见:
+<a href="http://jsdesignpatterns.com">http://jsdesignpatterns.com</a></p>
+
+<p>原理是对所有方法及其参数作严格检查。</p>
+
+<ul>
+<li><p>优点：进一步加强了错误检查</p></li>
+<li><p>缺点：增大了调试难度</p></li>
+</ul>
 
 ]]></content>
   </entry>

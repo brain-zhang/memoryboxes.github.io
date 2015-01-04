@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Javascript设计模式 | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/javascriptshe-ji-mo-shi/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-01-04T09:21:27+08:00</updated>
+  <updated>2015-01-04T09:55:12+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -197,26 +197,75 @@ this.implementsInterfaces = ['Composite', 'FromItem'];
 
 <p>};</p>
 
-<p>CompositeForm.prototype.add = function(child) {</p>
-
 <pre><code>...
 </code></pre>
 
-<p>}
-CompositeForm.prototype.remove= function(child) {</p>
+<p>function addForm(formInstance) {</p>
 
-<pre><code>...
+<pre><code>if (!implements(formInstance, 'Composite', 'FormItem')) {
+    throw new Error("object does not implement a required interface");
+}
 </code></pre>
 
-<p>}
-CompositeForm.prototype.save= function() {</p>
+<p>}</p>
 
-<pre><code>...
+<p>function implements(objects) {</p>
+
+<pre><code>for (var i = 1; i &lt; arguments.length; i++) {
+    var interfaceName = arguments[i];
+    var interfaceFound = false;
+    for (var j = 0; j &lt; object.implementsInterfaces[j] == interfaceName) {
+        interfaceFound = true;
+        break;
+    }
+    if (!interfaceFound) {
+        return false;
+    }
+}
+return true;
 </code></pre>
 
 <p>}</p>
 
 <p>```</p>
+
+<ul>
+<li><p>优点:有错误检查</p></li>
+<li><p>缺点:每次调用都要检查，啰嗦，另外防不住有说了实现但没有干活的</p></li>
+</ul>
+
+
+<h1>鸭式辨型模仿接口</h1>
+
+<p>```
+var Composite = new Intreface(&lsquo;Composite&rsquo;, [&lsquo;add&rsquo;, &lsquo;remove&rsquo;]);
+var FormItem = new Interface(&lsquo;FormItem&rsquo;, [&lsquo;save&rsquo;]);
+var CompositeForm = function(id, method, action) {</p>
+
+<pre><code>...
+</code></pre>
+
+<p>};</p>
+
+<p>function addForm(formInstance) {</p>
+
+<pre><code>ensureImplements(formInstance, Composite, FormItem);
+......
+</code></pre>
+
+<p>}</p>
+
+<p>```
+interface类和ensureImplements的实现参见:
+<a href="http://jsdesignpatterns.com">http://jsdesignpatterns.com</a></p>
+
+<p>原理是对所有方法及其参数作严格检查。</p>
+
+<ul>
+<li><p>优点：进一步加强了错误检查</p></li>
+<li><p>缺点：增大了调试难度</p></li>
+</ul>
+
 ]]></content>
   </entry>
   
