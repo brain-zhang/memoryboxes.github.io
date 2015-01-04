@@ -4,7 +4,7 @@
   <title><![CDATA[memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-01-04T09:57:40+08:00</updated>
+  <updated>2015-01-04T09:58:44+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -22,9 +22,11 @@
 
 <h2>弱类型语言</h2>
 
-<p>javascript中有三种原始类型:布尔型、数值型(不区分浮点数和整数)和字符串型。
-此外，还有对象类型和包含可执行代码的函数类型。前者是一种复合类型(数组是一种特殊的对象)。
-最后，还有空类型(null)和未定义类型(undefined)。</p>
+<p>javascript中有三种原始类型:布尔型、数值型(不区分浮点数和整数)和字符串型。</p>
+
+<p>此外，还有对象类型和包含可执行代码的函数类型。前者是一种复合类型(数组是一种特殊的对象)。</p>
+
+<p>最后，还有空类型(null)和未定义类型(undefined)。</p>
 
 <p>原始数据类型按值传送，其他数据类型则按引用传送。</p>
 
