@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Javascript设计模式 | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/javascriptshe-ji-mo-shi/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-01-04T09:55:12+08:00</updated>
+  <updated>2015-01-04T09:57:40+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -18,17 +18,13 @@
     <link href="http://memoryboxes.github.io/blog/2015/01/04/javascriptshe-ji-mo-shi-bi-ji-1/"/>
     <updated>2015-01-04T08:25:15+08:00</updated>
     <id>http://memoryboxes.github.io/blog/2015/01/04/javascriptshe-ji-mo-shi-bi-ji-1</id>
-    <content type="html"><![CDATA[<p>javascript设计模式 (读书笔记1)</p>
-
-<h1>富有表现力的javascript</h1>
+    <content type="html"><![CDATA[<h1>富有表现力的javascript</h1>
 
 <h2>弱类型语言</h2>
 
-<p>javascript中有三种原始类型:布尔型、数值型(不区分浮点数和整数)和字符串型。</p>
-
-<p>此外，还有对象类型和包含可执行代码的函数类型。前者是一种复合类型(数组是一种特殊的对象)。</p>
-
-<p>最后，还有空类型(null)和未定义类型(undefined)。</p>
+<p>javascript中有三种原始类型:布尔型、数值型(不区分浮点数和整数)和字符串型。
+此外，还有对象类型和包含可执行代码的函数类型。前者是一种复合类型(数组是一种特殊的对象)。
+最后，还有空类型(null)和未定义类型(undefined)。</p>
 
 <p>原始数据类型按值传送，其他数据类型则按引用传送。</p>
 
@@ -76,14 +72,12 @@ baz(); //baz可以访问foo和bar，即使是在匿名函数外面执行
 <ul>
 <li><p>js中，只有函数具有作用域：</p>
 
-<p>  在一个函数内部声明的变量，外部无法访问；</p>
-
-<p>  定义在一个函数中的变量在该函数的内嵌函数中是可以访问的</p></li>
+<p>  在一个函数内部声明的变量，外部无法访问；
+  定义在一个函数中的变量在该函数的内嵌函数中是可以访问的</p></li>
 <li><p>js中的作用域是词法性的：</p>
 
-<p>  函数运行在定义他们的作用域中，而不是调用他们的作用域中；</p>
-
-<p>  可以利用这个特性定义静态方法和属性；</p></li>
+<p>  函数运行在定义他们的作用域中，而不是调用他们的作用域中；
+  可以利用这个特性定义静态方法和属性；</p></li>
 </ul>
 </li>
 </ul>
@@ -92,8 +86,8 @@ baz(); //baz可以访问foo和bar，即使是在匿名函数外面执行
 <h2>对象的易变性(mutable)和内省(introspection)</h2>
 
 <ul>
-<li><p>易变性：js中可以对象前定义的类和实例化的对象进行修改</p></li>
-<li><p>内省：js中可以在运行时检查对象所具有的属性和方法</p></li>
+<li>易变性：js中可以对象前定义的类和实例化的对象进行修改</li>
+<li>内省：js中可以在运行时检查对象所具有的属性和方法</li>
 </ul>
 
 
@@ -161,8 +155,8 @@ CompositeForm.prototype.save= function() {</p>
 <p>```</p>
 
 <ul>
-<li><p>优点：简单明了，代码体积小</p></li>
-<li><p>缺点：无法错误检查</p></li>
+<li>优点：简单明了，代码体积小</li>
+<li>缺点：无法错误检查</li>
 </ul>
 
 
@@ -230,8 +224,8 @@ return true;
 <p>```</p>
 
 <ul>
-<li><p>优点:有错误检查</p></li>
-<li><p>缺点:每次调用都要检查，啰嗦，另外防不住有说了实现但没有干活的</p></li>
+<li>优点:有错误检查</li>
+<li>缺点:每次调用都要检查，啰嗦，另外防不住有说了实现但没有干活的</li>
 </ul>
 
 
@@ -262,8 +256,8 @@ interface类和ensureImplements的实现参见:
 <p>原理是对所有方法及其参数作严格检查。</p>
 
 <ul>
-<li><p>优点：进一步加强了错误检查</p></li>
-<li><p>缺点：增大了调试难度</p></li>
+<li>优点：进一步加强了错误检查</li>
+<li>缺点：增大了调试难度</li>
 </ul>
 
 ]]></content>
