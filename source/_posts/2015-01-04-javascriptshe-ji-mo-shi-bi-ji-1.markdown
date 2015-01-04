@@ -3,7 +3,7 @@ layout: post
 title: "javascript设计模式 - 笔记1"
 date: 2015-01-04 08:25:15 +0800
 comments: true
-categories: javascript Pattern
+categories: javascriptPattern
 ---
 # 富有表现力的javascript
 
