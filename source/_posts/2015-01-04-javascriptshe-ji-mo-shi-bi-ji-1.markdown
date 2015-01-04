@@ -133,16 +133,56 @@ var CompositeForm = function(id, method, action) {
     this.implementsInterfaces = ['Composite', 'FromItem'];
     ...
 };
+    ...
 
-CompositeForm.prototype.add = function(child) {
-    ...
+function addForm(formInstance) {
+    if (!implements(formInstance, 'Composite', 'FormItem')) {
+        throw new Error("object does not implement a required interface");
+    }
 }
-CompositeForm.prototype.remove= function(child) {
-    ...
-}
-CompositeForm.prototype.save= function() {
-    ...
+
+function implements(objects) {
+    for (var i = 1; i < arguments.length; i++) {
+        var interfaceName = arguments[i];
+        var interfaceFound = false;
+        for (var j = 0; j < object.implementsInterfaces[j] == interfaceName) {
+            interfaceFound = true;
+            break;
+        }
+        if (!interfaceFound) {
+            return false;
+        }
+    }
+    return true;
 }
 
 ```
+
+* 优点:有错误检查
+
+* 缺点:每次调用都要检查，啰嗦，另外防不住有说了实现但没有干活的
+
+# 鸭式辨型模仿接口
+
+```
+var Composite = new Intreface('Composite', ['add', 'remove']);
+var FormItem = new Interface('FormItem', ['save']);
+var CompositeForm = function(id, method, action) {
+    ...
+};
+
+function addForm(formInstance) {
+    ensureImplements(formInstance, Composite, FormItem);
+    ......
+}
+
+```
+interface类和ensureImplements的实现参见:
+http://jsdesignpatterns.com
+
+原理是对所有方法及其参数作严格检查。
+
+* 优点：进一步加强了错误检查
+
+* 缺点：增大了调试难度
 
