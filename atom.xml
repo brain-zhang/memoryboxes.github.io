@@ -4,7 +4,7 @@
   <title><![CDATA[memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-01-04T10:03:35+08:00</updated>
+  <updated>2015-01-05T08:59:12+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -275,6 +275,44 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>var Composite = new Intreface('Composite', ['add', 'remove']);
 </span><span class='line'>var FormItem = new Interface('FormItem', ['save']);
 </span><span class='line'>var CompositeForm = function(id, method, action) {
@@ -285,13 +323,46 @@
 </span><span class='line'>    ensureImplements(formInstance, Composite, FormItem);
 </span><span class='line'>    ......
 </span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>var Interface = function(name, methods) {
+</span><span class='line'>    if (arguments.length != 2) {
+</span><span class='line'>        throw new Error("Interface constructor called with " + arguments.length + "arguments, but expected exactly 2.");
+</span><span class='line'>    }
+</span><span class='line'>    this.name = name;
+</span><span class='line'>    this.methods = [];
+</span><span class='line'>    for (var i = 0; len = methods.length; i &lt; len; i++) {
+</span><span class='line'>        if (typeof methods[i] !== 'string')  {
+</span><span class='line'>            throw new Error("Interface contructor expects method names to be " +
+</span><span class='line'>                            "passed in as string");
+</span><span class='line'>        }
+</span><span class='line'>    }
+</span><span class='line'>    this.methods.push(methods[i]);
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>Interface.ensureImplements = function(object) {
+</span><span class='line'>    if (arguments.length &lt; 2) {
+</span><span class='line'>        throw Error("Functino Interface.ensureImplements called with " + arguments.length +
+</span><span class='line'>                    "arguments, but expected at leaset 2.");
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    for (var i = 1, len = arguments.length; i &lt; len; i++) {
+</span><span class='line'>        if (interface.constructor !== Interface) {
+</span><span class='line'>            throw new Error("Function Interface.ensureImplements expects arguments" +
+</span><span class='line'>                            "two and above to be instances of Interface.");
+</span><span class='line'>        } 
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    for (var j = 1, methodsLen = interface.methods.length; j &lt; methodsLen; j++) {
+</span><span class='line'>        var method = interface.methods[j];
+</span><span class='line'>        if(!object[method] || typeof object[method] !== 'function') {
+</span><span class='line'>            throw new Error("Function Interface.ensureImplements: object " +
+</span><span class='line'>                            "does not implement the " + interface.name)  +
+</span><span class='line'>                            "interface.Method " + method + " was not found.");
+</span><span class='line'>        }
+</span><span class='line'>    }
+</span><span class='line'>}
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p>interface类和ensureImplements的实现参见:
-<a href="http://jsdesignpatterns.com">http://jsdesignpatterns.com</a></p>
-
-<p>原理是对所有方法及其参数作严格检查。</p>
 
 <ul>
 <li>优点：进一步加强了错误检查</li>

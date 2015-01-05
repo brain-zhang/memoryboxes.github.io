@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: javascriptPattern | memoryboxes blog]]></title>
-  <link href="http://memoryboxes.github.io/blog/categories/javascriptpattern/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Javascript_pattern | memoryboxes blog]]></title>
+  <link href="http://memoryboxes.github.io/blog/categories/javascript-pattern/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-01-04T10:03:35+08:00</updated>
+  <updated>2015-01-05T08:59:12+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -251,11 +251,51 @@ var CompositeForm = function(id, method, action) {</p>
 
 <p>}</p>
 
-<p>```
-interface类和ensureImplements的实现参见:
-<a href="http://jsdesignpatterns.com">http://jsdesignpatterns.com</a></p>
+<p>var Interface = function(name, methods) {</p>
 
-<p>原理是对所有方法及其参数作严格检查。</p>
+<pre><code>if (arguments.length != 2) {
+    throw new Error("Interface constructor called with " + arguments.length + "arguments, but expected exactly 2.");
+}
+this.name = name;
+this.methods = [];
+for (var i = 0; len = methods.length; i &lt; len; i++) {
+    if (typeof methods[i] !== 'string')  {
+        throw new Error("Interface contructor expects method names to be " +
+                        "passed in as string");
+    }
+}
+this.methods.push(methods[i]);
+</code></pre>
+
+<p>}</p>
+
+<p>Interface.ensureImplements = function(object) {</p>
+
+<pre><code>if (arguments.length &lt; 2) {
+    throw Error("Functino Interface.ensureImplements called with " + arguments.length +
+                "arguments, but expected at leaset 2.");
+}
+
+for (var i = 1, len = arguments.length; i &lt; len; i++) {
+    if (interface.constructor !== Interface) {
+        throw new Error("Function Interface.ensureImplements expects arguments" +
+                        "two and above to be instances of Interface.");
+    } 
+}
+
+for (var j = 1, methodsLen = interface.methods.length; j &lt; methodsLen; j++) {
+    var method = interface.methods[j];
+    if(!object[method] || typeof object[method] !== 'function') {
+        throw new Error("Function Interface.ensureImplements: object " +
+                        "does not implement the " + interface.name)  +
+                        "interface.Method " + method + " was not found.");
+    }
+}
+</code></pre>
+
+<p>}</p>
+
+<p>```</p>
 
 <ul>
 <li>优点：进一步加强了错误检查</li>
