@@ -9,7 +9,24 @@
   <meta name="author" content="memoryboxes">
 
   
-  <meta name="description" content="富有表现力的javascript 弱类型语言 javascript中有三种原始类型:布尔型、数值型(不区分浮点数和整数)和字符串型。 此外，还有对象类型和包含可执行代码的函数类型。前者是一种复合类型(数组是一种特殊的对象)。 最后，还有空类型(null)和未定义类型(undefined)。 &hellip;">
+  <meta name="description" content="如何封装一个对象 门户大开型 最简单的办法就是按传统方法创建一个类，用一个函数来做其构造器。 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+var Book = function(isbn, title, author) { if (isbn === &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +82,101 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/05/javascriptshe-ji-mo-shi-2/">Javascript设计模式 - 笔记2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-05T09:05:16+08:00" pubdate data-updated="true">Jan 5<span>th</span>, 2015</time>
+        
+        
+           | <a href="/blog/2015/01/05/javascriptshe-ji-mo-shi-2/#comments">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>如何封装一个对象</h1>
+
+<h2>门户大开型</h2>
+
+<p>最简单的办法就是按传统方法创建一个类，用一个函数来做其构造器。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var Book = function(isbn, title, author) {
+</span><span class='line'>    if (isbn === undefined) {
+</span><span class='line'>        throw new Error('Book constructor requires an isbn.');
+</span><span class='line'>    }
+</span><span class='line'>    this.isbn = isbn;
+</span><span class='line'>    this.title = title || 'No title specified';
+</span><span class='line'>    this.author= author || 'No title specified';
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>//define by attr
+</span><span class='line'>Book.prototype.display = function() {...};
+</span><span class='line'>
+</span><span class='line'>//define by object literals
+</span><span class='line'>Book.prototype = {
+</span><span class='line'>    display: function(){...},
+</span><span class='line'>    checkisdn: function(){...}
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>优点：简单</li>
+<li>缺点：没有保护，需要加各种校验。但内部的成员还是有很大可能被修改的。</li>
+</ul>
+
+
+<h2>语法修饰增强型</h2>
+
+<p>用setattr,getattr等赋值取值方法及命名规范区别私有成员</p>
+
+<h2>闭包实现私有成员</h2>
+
+<h2>实现静态方法和属性</h2>
+
+<h2>实现常量</h2>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1317,151 +1429,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/10/31/uwsgibu-shu-djangocheng-xu/">Uwsgi部署django程序</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-10-31T08:39:26+08:00" pubdate data-updated="true">Oct 31<span>st</span>, 2014</time>
-        
-        
-           | <a href="/blog/2014/10/31/uwsgibu-shu-djangocheng-xu/#comments">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Python的web世界，部署首选uwsgi，既可独战，又可搭配Nginx等车轮战，实在是居家必备。</p>
-
-<p>但我每次都得搞都得去翻一遍手册，实在烦了，记一下简单粗暴的测试方案。</p>
-
-<h2>安装</h2>
-
-<pre><code>pip install uwsgi
-</code></pre>
-
-<h2>测试</h2>
-
-<p>写一个最简单的test.py:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># test.pydef application(env, start_response):
-</span><span class='line'>    start_response('200 OK', [('Content-Type','text/html')])
-</span><span class='line'>    return "Hello World"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>执行shell命令:</p>
-
-<pre><code>uwsgi --http :8000 --wsgi-file test.py
-</code></pre>
-
-<p>访问:</p>
-
-<p><a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></p>
-
-<p>因该能看到<code>Hello World</code>了</p>
-
-<h2>集成Django</h2>
-
-<pre><code>django-admin startproject testuwsgi
-</code></pre>
-
-<p>这样生成的项目，django版本不同，目录会有微小的差别，找manage.py就对了</p>
-
-<p>如果是>django1.6的话，会自动生成wsgi.py文件，没有的话编辑一个:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#!/usr/bin/env python
-</span><span class='line'># coding: utf-8
-</span><span class='line'>
-</span><span class='line'>import os
-</span><span class='line'>import sys
-</span><span class='line'>
-</span><span class='line'># 将系统的编码设置为UTF8
-</span><span class='line'>reload(sys)
-</span><span class='line'>sys.setdefaultencoding('utf8')
-</span><span class='line'>
-</span><span class='line'>os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
-</span><span class='line'>
-</span><span class='line'>from django.core.handlers.wsgi import WSGIHandler
-</span><span class='line'>application = WSGIHandler()</span></code></pre></td></tr></table></div></figure>
-
-
-<p>执行:</p>
-
-<pre><code>uwsgi --http :8000 --chdir xxxxx/testuwsgi --module testuwsgi.wsgi
-</code></pre>
-
-<p>访问:</p>
-
-<p><a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></p>
-
-<p>因该能看到Django的欢迎页面了</p>
-
-<h2>支持Https</h2>
-
-<p>uwsgi自1.3版本开始支持https</p>
-
-<p>分两步走:</p>
-
-<h4>生成证书</h4>
-
-<pre><code>openssl genrsa -out foobar.key 2048
-openssl req -new -key foobar.key -out foobar.csr
-openssl x509 -req -days 365 -in foobar.csr -signkey foobar.key -out foobar.crt
-</code></pre>
-
-<h4>走起</h4>
-
-<pre><code>uwsgi --master --https 0.0.0.0:8443,foobar.crt,foobar.key --chdir xxxxx/testuwsgi --module testuwsgi.wsgi
-</code></pre>
-
-<p>访问的时候要以:</p>
-
-<p><a href="https://127.0.0.1:8443/">https://127.0.0.1:8443/</a></p>
-
-<p>OK了</p>
-
-<p>至于怎么搭配Nginx，写配置文件，搭配Supervisor，还是老老实实翻手册吧，反正这个不是经常做。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1495,6 +1462,10 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/05/javascriptshe-ji-mo-shi-2/">Javascript设计模式 - 笔记2</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/04/javascriptshe-ji-mo-shi-bi-ji-1/">Javascript设计模式 - 笔记1</a>
       </li>
     
@@ -1508,10 +1479,6 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
     
       <li class="post">
         <a href="/blog/2014/12/25/libpcappacket-mmapnei-cun-fen-pei/">Libpcap PACKET_MMAP内存分配</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/08/dockerzhong-de-wang-luo/">Docker中的网络</a>
       </li>
     
   </ul>
@@ -1578,7 +1545,7 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
 <li class='category'><a href='/blog/categories/gcc/'>gcc (1)</a></li>
 <li class='category'><a href='/blog/categories/git/'>git (1)</a></li>
 <li class='category'><a href='/blog/categories/grunt/'>grunt (1)</a></li>
-<li class='category'><a href='/blog/categories/javascript-pattern/'>javascript_pattern (1)</a></li>
+<li class='category'><a href='/blog/categories/javascript-pattern/'>javascript_pattern (2)</a></li>
 <li class='category'><a href='/blog/categories/jenkins/'>jenkins (1)</a></li>
 <li class='category'><a href='/blog/categories/libpcap/'>libpcap (1)</a></li>
 <li class='category'><a href='/blog/categories/life/'>life (1)</a></li>

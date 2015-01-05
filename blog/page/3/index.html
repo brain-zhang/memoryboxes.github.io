@@ -9,8 +9,7 @@
   <meta name="author" content="memoryboxes">
 
   
-  <meta name="description" content="vim 使用:进入命令行后，除了直接敲命令外，一般会有两个操作: 1.查看历史指令并执行 2.复制寄存器中的内容
-1 查看历史指令需要在进入命令行之前使用q:,再选则就OK了。 2 使用寄存器，一般复制时使用&#8221; + [寄存器名称] + y，进入命令行后再输入ctrl R， &hellip;">
+  <meta name="description" content="vim可以很方便的用 %s/src/dst/g 批量替换。 但是我想对ctrl+v 块选择的内容做批量替换就麻烦一点了，每次都得打一串很长很长的脚本命令。 发现的一个插件做这个事,vis: https://github.com/vim-scripts/vis 支持两个命令模式:B 和 S B &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +65,69 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/17/vim-dui-xuan-zhong-fan-wei-nei-rong-pi-liang-ti-huan/">Vim 对选中范围内容批量替换</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-17T08:31:22+08:00" pubdate data-updated="true">Sep 17<span>th</span>, 2014</time>
+        
+        
+           | <a href="/blog/2014/09/17/vim-dui-xuan-zhong-fan-wei-nei-rong-pi-liang-ti-huan/#comments">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>vim可以很方便的用 %s/src/dst/g 批量替换。</p>
+
+<p>但是我想对ctrl+v 块选择的内容做批量替换就麻烦一点了，每次都得打一串很长很长的脚本命令。</p>
+
+<p>发现的一个插件做这个事,vis:</p>
+
+<p><a href="https://github.com/vim-scripts/vis">https://github.com/vim-scripts/vis</a></p>
+
+<p>支持两个命令模式:B 和 S</p>
+
+<p><code>B</code> 在选定区域内执行命令</p>
+
+<p>ctrl+v选中内容后，使用<code>:B cmd</code>，此时命令栏的状态应该是<code>:'&lt;,'&gt;B cmd</code>这样。</p>
+
+<p>例如替换内容, <code>ctrl-v</code>  <code>:B s/pattern/becomes/</code></p>
+
+<p>执行外部命令，<code>ctrl-v</code>  <code>:B !sort</code></p>
+
+<p><code>S</code> 在选定区域内查找内容</p>
+
+<p><code>ctrl+v</code>选中内容后，使用<code>:S pattern</code>，此时命令栏的状态应该是<code>:'&lt;,'&gt;S pattern</code>这样。</p>
+
+<p>解脱了….</p>
+
+<p>记一下免得又忘掉。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -788,50 +850,9 @@ rm -rf remove.js </code></pre></noscript></div>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/22/hello/">Hello</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-22T15:45:34+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2014</time>
-        
-        
-           | <a href="/blog/2014/02/22/hello/#comments">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Seashore washed by suds and foam,</p>
-
-<p>Been here so long got to calling it home．</p>
-
-<p>let&rsquo;s sail.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/4/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -864,6 +885,10 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/05/javascriptshe-ji-mo-shi-2/">Javascript设计模式 - 笔记2</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/04/javascriptshe-ji-mo-shi-bi-ji-1/">Javascript设计模式 - 笔记1</a>
       </li>
     
@@ -877,10 +902,6 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
     
       <li class="post">
         <a href="/blog/2014/12/25/libpcappacket-mmapnei-cun-fen-pei/">Libpcap PACKET_MMAP内存分配</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/08/dockerzhong-de-wang-luo/">Docker中的网络</a>
       </li>
     
   </ul>
@@ -947,7 +968,7 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
 <li class='category'><a href='/blog/categories/gcc/'>gcc (1)</a></li>
 <li class='category'><a href='/blog/categories/git/'>git (1)</a></li>
 <li class='category'><a href='/blog/categories/grunt/'>grunt (1)</a></li>
-<li class='category'><a href='/blog/categories/javascript-pattern/'>javascript_pattern (1)</a></li>
+<li class='category'><a href='/blog/categories/javascript-pattern/'>javascript_pattern (2)</a></li>
 <li class='category'><a href='/blog/categories/jenkins/'>jenkins (1)</a></li>
 <li class='category'><a href='/blog/categories/libpcap/'>libpcap (1)</a></li>
 <li class='category'><a href='/blog/categories/life/'>life (1)</a></li>

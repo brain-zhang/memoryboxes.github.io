@@ -4,7 +4,7 @@
   <title><![CDATA[memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-01-05T08:59:12+08:00</updated>
+  <updated>2015-01-05T09:31:05+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -12,6 +12,71 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript设计模式 - 笔记2]]></title>
+    <link href="http://memoryboxes.github.io/blog/2015/01/05/javascriptshe-ji-mo-shi-2/"/>
+    <updated>2015-01-05T09:05:16+08:00</updated>
+    <id>http://memoryboxes.github.io/blog/2015/01/05/javascriptshe-ji-mo-shi-2</id>
+    <content type="html"><![CDATA[<h1>如何封装一个对象</h1>
+
+<h2>门户大开型</h2>
+
+<p>最简单的办法就是按传统方法创建一个类，用一个函数来做其构造器。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var Book = function(isbn, title, author) {
+</span><span class='line'>    if (isbn === undefined) {
+</span><span class='line'>        throw new Error('Book constructor requires an isbn.');
+</span><span class='line'>    }
+</span><span class='line'>    this.isbn = isbn;
+</span><span class='line'>    this.title = title || 'No title specified';
+</span><span class='line'>    this.author= author || 'No title specified';
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>//define by attr
+</span><span class='line'>Book.prototype.display = function() {...};
+</span><span class='line'>
+</span><span class='line'>//define by object literals
+</span><span class='line'>Book.prototype = {
+</span><span class='line'>    display: function(){...},
+</span><span class='line'>    checkisdn: function(){...}
+</span><span class='line'>};</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>优点：简单</li>
+<li>缺点：没有保护，需要加各种校验。但内部的成员还是有很大可能被修改的。</li>
+</ul>
+
+
+<h2>语法修饰增强型</h2>
+
+<p>用setattr,getattr等赋值取值方法及命名规范区别私有成员</p>
+
+<h2>闭包实现私有成员</h2>
+
+<h2>实现静态方法和属性</h2>
+
+<h2>实现常量</h2>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Javascript设计模式 - 笔记1]]></title>
@@ -1557,39 +1622,6 @@ openssl x509 -req -days 365 -in foobar.csr -signkey foobar.key -out foobar.crt
 <p><a href="https://github.com/django-extensions/django-extensions">https://github.com/django-extensions/django-extensions</a></p>
 
 <p>装上好用不少，貌似还比较靠谱，推荐之。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Vim 对选中范围内容批量替换]]></title>
-    <link href="http://memoryboxes.github.io/blog/2014/09/17/vim-dui-xuan-zhong-fan-wei-nei-rong-pi-liang-ti-huan/"/>
-    <updated>2014-09-17T08:31:22+08:00</updated>
-    <id>http://memoryboxes.github.io/blog/2014/09/17/vim-dui-xuan-zhong-fan-wei-nei-rong-pi-liang-ti-huan</id>
-    <content type="html"><![CDATA[<p>vim可以很方便的用 %s/src/dst/g 批量替换。</p>
-
-<p>但是我想对ctrl+v 块选择的内容做批量替换就麻烦一点了，每次都得打一串很长很长的脚本命令。</p>
-
-<p>发现的一个插件做这个事,vis:</p>
-
-<p><a href="https://github.com/vim-scripts/vis">https://github.com/vim-scripts/vis</a></p>
-
-<p>支持两个命令模式:B 和 S</p>
-
-<p><code>B</code> 在选定区域内执行命令</p>
-
-<p>ctrl+v选中内容后，使用<code>:B cmd</code>，此时命令栏的状态应该是<code>:'&lt;,'&gt;B cmd</code>这样。</p>
-
-<p>例如替换内容, <code>ctrl-v</code>  <code>:B s/pattern/becomes/</code></p>
-
-<p>执行外部命令，<code>ctrl-v</code>  <code>:B !sort</code></p>
-
-<p><code>S</code> 在选定区域内查找内容</p>
-
-<p><code>ctrl+v</code>选中内容后，使用<code>:S pattern</code>，此时命令栏的状态应该是<code>:'&lt;,'&gt;S pattern</code>这样。</p>
-
-<p>解脱了….</p>
-
-<p>记一下免得又忘掉。</p>
 ]]></content>
   </entry>
   
