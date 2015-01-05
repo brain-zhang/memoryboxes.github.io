@@ -3,7 +3,7 @@ layout: post
 title: "javascript设计模式 - 笔记1"
 date: 2015-01-04 08:25:15 +0800
 comments: true
-categories: javascriptPattern
+categories: javascript_pattern
 ---
 # 富有表现力的javascript
 
@@ -169,11 +169,45 @@ function addForm(formInstance) {
     ......
 }
 
-```
-interface类和ensureImplements的实现参见:
-http://jsdesignpatterns.com
+var Interface = function(name, methods) {
+    if (arguments.length != 2) {
+        throw new Error("Interface constructor called with " + arguments.length + "arguments, but expected exactly 2.");
+    }
+    this.name = name;
+    this.methods = [];
+    for (var i = 0; len = methods.length; i < len; i++) {
+        if (typeof methods[i] !== 'string')  {
+            throw new Error("Interface contructor expects method names to be " +
+                            "passed in as string");
+        }
+    }
+    this.methods.push(methods[i]);
+}
 
-原理是对所有方法及其参数作严格检查。
+Interface.ensureImplements = function(object) {
+    if (arguments.length < 2) {
+        throw Error("Functino Interface.ensureImplements called with " + arguments.length +
+                    "arguments, but expected at leaset 2.");
+    }
+
+    for (var i = 1, len = arguments.length; i < len; i++) {
+        if (interface.constructor !== Interface) {
+            throw new Error("Function Interface.ensureImplements expects arguments" +
+                            "two and above to be instances of Interface.");
+        } 
+    }
+
+    for (var j = 1, methodsLen = interface.methods.length; j < methodsLen; j++) {
+        var method = interface.methods[j];
+        if(!object[method] || typeof object[method] !== 'function') {
+            throw new Error("Function Interface.ensureImplements: object " +
+                            "does not implement the " + interface.name)  +
+                            "interface.Method " + method + " was not found.");
+        }
+    }
+}
+
+```
 
 * 优点：进一步加强了错误检查
 * 缺点：增大了调试难度
