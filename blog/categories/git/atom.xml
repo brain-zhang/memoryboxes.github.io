@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-01-08T09:42:54+08:00</updated>
+  <updated>2015-01-17T12:05:57+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -12,6 +12,113 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Git Cheat]]></title>
+    <link href="http://memoryboxes.github.io/blog/2015/01/17/git-cheat/"/>
+    <updated>2015-01-17T11:45:03+08:00</updated>
+    <id>http://memoryboxes.github.io/blog/2015/01/17/git-cheat</id>
+    <content type="html"><![CDATA[<p>整理一下经常忘记的Git命令</p>
+
+<h1>remote 同步</h1>
+
+<p><code>
+$ git remote -v                                                     // 查看当前远程版本库
+$ git remote add cocos2d-x git://github.com/cocos2d/cocos2d-x.git   // 添加原始版本库
+$ git fetch cocos2d-x                                               // 获取原始版本库的更新
+$ git merge cocos2d-x/master                                        // 合并原始版本库的代码到当前版本库中，合并前确保当前分支是master
+</code></p>
+
+<h1>remote branch</h1>
+
+<p><code>
+$ git branch -a                                                     //查看所有分支
+$ git push origin --delete &lt;branchname&gt;                             //删除远程分支
+$ git push origin --delete tag &lt;tagname&gt;                            //删除远程tag
+$ git push origin :&lt;branchName&gt;                                     //推送一个空分支到远程分支，相当于删除分支
+$ git push origin :refs/tags/&lt;tagName&gt;                              //推送一个空tag到远程，相当于删除tag
+</code></p>
+
+<h2>删除不存在对应远程分支的本地分支</h2>
+
+<p>假设这样一种情况：</p>
+
+<ol>
+<li>我创建了本地分支b1并pull到远程分支 origin/b1；</li>
+<li>其他人在本地使用fetch或pull创建了本地的b1分支；</li>
+<li>我删除了 origin/b1 远程分支；</li>
+<li>其他人再次执行fetch或者pull并不会删除这个他们本地的 b1 分支，运行 git branch -a 也不能看出这个branch被删除了，如何处理？</li>
+</ol>
+
+
+<p><code>
+git fetch -p                                                        //在fetch之后删除掉没有与远程分支对应的本地分支
+</code></p>
+
+<h2>重命名远程分支</h2>
+
+<p>在git中重命名远程分支，其实就是先删除远程分支，然后重命名本地分支，再重新提交一个远程分支</p>
+
+<p><code>
+$ git push --delete origin devel                                    //删除远程分支
+$ git branch -m devel develop                                       //重命名本地分支
+$ git push origin develop                                           //推送本地分支
+</code></p>
+
+<h2>把本地tag推送到远程</h2>
+
+<p><code>
+$ git push --tags
+</code></p>
+
+<h2>获取远程tag</h2>
+
+<p><code>
+$ git fetch origin tag &lt;tagname&gt;
+</code></p>
+
+<h2>分支的衍合</h2>
+
+<p>参考:<a href="http://git-scm.com/docs/git-rebase">http://git-scm.com/docs/git-rebase</a></p>
+
+<h1>diff</h1>
+
+<p>只显示两个分支间的差异，如果你想找出‘master’,‘test’的共有 父分支和'test'分支之间的差异，你用3个‘.&lsquo;来取代前面的两个&rsquo;.&lsquo; 。</p>
+
+<p><code>
+$ git diff master..test
+</code></p>
+
+<p>显示你当前的索引和上次提交间的差异；这些内容在不带"-a"参数运行 &ldquo;git commit"命令时就会被提交。</p>
+
+<p><code>
+$ git diff --cached
+</code></p>
+
+<p>显示你工作目录与上次提交时之间的所有差别，这条命令所显示的 内容都会在执行"git commit -a"命令时被提交。</p>
+
+<p><code>
+$ git diff HEAD
+</code></p>
+
+<p>如果你要查看当前的工作目录与另外一个分支的差别，你可以用下面的命令执行:
+这会显示你当前工作目录与另外一个叫'test'分支的差别。你也以加上路径限定符，来只 比较某一个文件或目录。
+<code>
+$ git diff test
+</code></p>
+
+<p>显示你当前工作目录下的lib目录与上次提交之间的差别(或者更准确的 说是在当前分支)。
+<code>
+$ git diff HEAD -- ./lib
+</code></p>
+
+<p>如果不是查看每个文件的详细差别，而是统计一下有哪些文件被改动，有多少行被改 动，就可以使用‘&mdash;stat' 参数。</p>
+
+<p><code>
+$ git diff --stat
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[多个git账号之间的切换]]></title>
