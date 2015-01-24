@@ -81,16 +81,16 @@ var Book = function(iisbn, ititle, iauthor) {
 
     //private method
     function _checkIsbn(iisbn) {
-        ... 
+        ...
     }
 
     //privileged methods
     this.getIsbn = function() {
-        return isbn; 
+        return isbn;
     };
 
     this.setIsbn = function(iisbn) {
-        this._checkIsbn(iisbn) ... 
+        this._checkIsbn(iisbn) ...
         isbn = iisbn;
     }
 
@@ -117,4 +117,52 @@ Book.prototype = {
 
 ## 实现静态方法和属性
 
+```
+var Book = (function() {
+
+    //private static attributes
+    var numberOfBooks = 0;
+
+    //private static method
+    function checkIsbn(iisbn) {
+        ...
+    }
+
+    //return the contructor
+    return function(iisbn, ititle, iauthor) {
+        //private attributes
+        var isbn, title, author;
+
+        //privileged methods
+        this.getIsbn = function() {
+            return isbn;
+        };
+
+        this.setIsbn = function(iisbn) {
+            this._checkIsbn(iisbn) ...
+            isbn = iisbn;
+        }
+        .......
+
+        //contructor code
+        numOfBooks++;
+        this.setIsbn(iisbn);
+    }
+})();
+
+//public, static methods
+Book.converTotitleCase = function(){...};
+
+//public, non-privileged methods
+
+Book.prototype = {
+    display: fucntion(){},
+    ....
+}
+```
+
+这里和`闭包实现私有成员`的区别就在于构造函数变成了一个内嵌函数，这样就创建了一个闭包，可以把静态的私有成员声明在最顶层。
+
 ## 实现常量
+
+常量就设置为一个私有静态属性，用大写区分即可。我认为没有必要实现一个取值器去限制，用CONST前缀从代码风格上约束即可。
