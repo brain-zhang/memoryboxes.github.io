@@ -51,7 +51,7 @@ javascript中，每个对象都有一个原型对象，在创建一个对象时�
 这意味着，为了让一个类继承另一个类，只需将子类的prototype设置为基类的一个实例即可。
 
 第二行将prototype的constructor属性重新设置为Author。是因为:
-定义一个构造函数时，其默认的prototype对象是一个Object类型的实例，其contructor属性会被设置为构造函数本身。如果手工将prototype设置为另一个对象，就要重新设置其contrunctor属性。
+定义一个构造函数时，其默认的prototype对象是一个Object类型的实例，其contructor属性会被设置为构造函数本身。如果手工将prototype设置为另一个对象，就要重新设置其constructor属性。
 
 最后，为了简化类的声明，可以将这些工作封装在extend函数中:
 
