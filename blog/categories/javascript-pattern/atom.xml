@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Javascript_pattern | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/javascript-pattern/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-01-17T12:07:16+08:00</updated>
+  <updated>2015-01-24T11:13:33+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -109,16 +109,16 @@ var isbn, title, author;
 
 //private method
 function _checkIsbn(iisbn) {
-    ... 
+    ...
 }
 
 //privileged methods
 this.getIsbn = function() {
-    return isbn; 
+    return isbn;
 };
 
 this.setIsbn = function(iisbn) {
-    this._checkIsbn(iisbn) ... 
+    this._checkIsbn(iisbn) ...
     isbn = iisbn;
 }
 
@@ -153,7 +153,60 @@ this.setAuthor(iauthor);
 
 <h2>实现静态方法和属性</h2>
 
+<p>```
+var Book = (function() {</p>
+
+<pre><code>//private static attributes
+var numberOfBooks = 0;
+
+//private static method
+function checkIsbn(iisbn) {
+    ...
+}
+
+//return the contructor
+return function(iisbn, ititle, iauthor) {
+    //private attributes
+    var isbn, title, author;
+
+    //privileged methods
+    this.getIsbn = function() {
+        return isbn;
+    };
+
+    this.setIsbn = function(iisbn) {
+        this._checkIsbn(iisbn) ...
+        isbn = iisbn;
+    }
+    .......
+
+    //contructor code
+    numOfBooks++;
+    this.setIsbn(iisbn);
+}
+</code></pre>
+
+<p>})();</p>
+
+<p>//public, static methods
+Book.converTotitleCase = function(){&hellip;};</p>
+
+<p>//public, non-privileged methods</p>
+
+<p>Book.prototype = {</p>
+
+<pre><code>display: fucntion(){},
+....
+</code></pre>
+
+<p>}
+```</p>
+
+<p>这里和<code>闭包实现私有成员</code>的区别就在于构造函数变成了一个内嵌函数，这样就创建了一个闭包，可以把静态的私有成员声明在最顶层。</p>
+
 <h2>实现常量</h2>
+
+<p>常量就设置为一个私有静态属性，用大写区分即可。我认为没有必要实现一个取值器去限制，用CONST前缀从代码风格上约束即可。</p>
 ]]></content>
   </entry>
   

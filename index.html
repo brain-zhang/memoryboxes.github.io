@@ -410,16 +410,16 @@ $ git &hellip;">
 </span><span class='line'>
 </span><span class='line'>    //private method
 </span><span class='line'>    function _checkIsbn(iisbn) {
-</span><span class='line'>        ... 
+</span><span class='line'>        ...
 </span><span class='line'>    }
 </span><span class='line'>
 </span><span class='line'>    //privileged methods
 </span><span class='line'>    this.getIsbn = function() {
-</span><span class='line'>        return isbn; 
+</span><span class='line'>        return isbn;
 </span><span class='line'>    };
 </span><span class='line'>
 </span><span class='line'>    this.setIsbn = function(iisbn) {
-</span><span class='line'>        this._checkIsbn(iisbn) ... 
+</span><span class='line'>        this._checkIsbn(iisbn) ...
 </span><span class='line'>        isbn = iisbn;
 </span><span class='line'>    }
 </span><span class='line'>
@@ -449,7 +449,95 @@ $ git &hellip;">
 
 <h2>实现静态方法和属性</h2>
 
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var Book = (function() {
+</span><span class='line'>
+</span><span class='line'>    //private static attributes
+</span><span class='line'>    var numberOfBooks = 0;
+</span><span class='line'>
+</span><span class='line'>    //private static method
+</span><span class='line'>    function checkIsbn(iisbn) {
+</span><span class='line'>        ...
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    //return the contructor
+</span><span class='line'>    return function(iisbn, ititle, iauthor) {
+</span><span class='line'>        //private attributes
+</span><span class='line'>        var isbn, title, author;
+</span><span class='line'>
+</span><span class='line'>        //privileged methods
+</span><span class='line'>        this.getIsbn = function() {
+</span><span class='line'>            return isbn;
+</span><span class='line'>        };
+</span><span class='line'>
+</span><span class='line'>        this.setIsbn = function(iisbn) {
+</span><span class='line'>            this._checkIsbn(iisbn) ...
+</span><span class='line'>            isbn = iisbn;
+</span><span class='line'>        }
+</span><span class='line'>        .......
+</span><span class='line'>
+</span><span class='line'>        //contructor code
+</span><span class='line'>        numOfBooks++;
+</span><span class='line'>        this.setIsbn(iisbn);
+</span><span class='line'>    }
+</span><span class='line'>})();
+</span><span class='line'>
+</span><span class='line'>//public, static methods
+</span><span class='line'>Book.converTotitleCase = function(){...};
+</span><span class='line'>
+</span><span class='line'>//public, non-privileged methods
+</span><span class='line'>
+</span><span class='line'>Book.prototype = {
+</span><span class='line'>    display: fucntion(){},
+</span><span class='line'>    ....
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里和<code>闭包实现私有成员</code>的区别就在于构造函数变成了一个内嵌函数，这样就创建了一个闭包，可以把静态的私有成员声明在最顶层。</p>
+
 <h2>实现常量</h2>
+
+<p>常量就设置为一个私有静态属性，用大写区分即可。我认为没有必要实现一个取值器去限制，用CONST前缀从代码风格上约束即可。</p>
 </div>
   
   
