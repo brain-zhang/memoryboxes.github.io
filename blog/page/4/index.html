@@ -9,8 +9,8 @@
   <meta name="author" content="memoryboxes">
 
   
-  <meta name="description" content="在tmux(v1.6)默认配置下，vim的主题solarized, molokai等颜色设置都会失效 这是由于tmux term设置的问题。 需要在~/.bashrc中添加:
-alias tmux="TERM=screen-256color-bce tmux" 再在~/.tmux.conf中添加 &hellip;">
+  <meta name="description" content="mongodb没有批量删除collecton的命令，平常建立了很多a1,a2,a3的表删除有些麻烦，写个小脚本方便些。 mongorm.sh -d database -c a* 就很方便删除了。 #!/bin/bash
+# remove mongodb&#39;s collections with &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,116 @@ alias tmux="TERM=screen-256color-bce tmux" 再在~/.tmux.conf中添加 &hellip;"
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/27/pi-liang-shan-chu-mongo-collections/">批量删除mongo Collections</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-27T09:24:04+08:00" pubdate data-updated="true">Feb 27<span>th</span>, 2014</time>
+        
+        
+           | <a href="/blog/2014/02/27/pi-liang-shan-chu-mongo-collections/#comments">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>mongodb没有批量删除collecton的命令，平常建立了很多a1,a2,a3的表删除有些麻烦，写个小脚本方便些。</p>
+
+<pre><code>mongorm.sh -d database -c a*
+</code></pre>
+
+<p>就很方便删除了。</p>
+
+<div><script src='https://gist.github.com/9242308.js'></script>
+<noscript><pre><code>#!/bin/bash
+# remove mongodb&#39;s collections with command &quot;mongn rm app*&quot;
+# Usage `mongorm &lt;-c collections*&gt; &lt;-d dababase&gt;`
+
+E_BADARGS=85
+E_NOFILE=86
+
+DATABASE=&#39;&#39;
+COLLECTIONS=&#39;&#39;
+
+while getopts &quot;c:d:h&quot; arg
+do
+        case $arg in
+             c)
+                echo &quot;-c $OPTARG&quot;
+                COLLECTIONS=$OPTARG
+                ;;
+             d)
+                echo &quot;-d $OPTARG&quot;
+                DATABASE=$OPTARG
+                ;;
+             h)
+                 echo &quot;mongorm &lt;-d database&gt; &lt;-c collections&gt;&quot;
+                 echo &quot;for exp:&quot;
+                 echo &quot;        mongorm -d bpc -c app*&quot;
+                 ;;
+             ?)
+                echo &quot;unkonw argument&quot;
+        exit 1
+        ;;
+        esac
+done
+
+if [[ -z &quot;$DATABASE&quot; ]]
+    # Correct number of arguments passed to script?
+then
+    echo &#39;Usage: -d database&#39;
+    echo &#39;please do mongorm.sh -h to get more info&#39;
+    exit $E_BADARGS
+fi
+
+if [[ -z &quot;$COLLECTIONS&quot; ]]
+    # Correct number of arguments passed to script?
+then
+    echo &#39;Usage: -c collections&#39;
+    echo &#39;please do mongorm.sh -h to get more info&#39;
+    exit $E_BADARGS
+fi
+
+mongojs_rm_function=`cat &lt;&lt; EOF
+db.getCollectionNames().forEach(function(c) {
+    if(c.match(&quot;$COLLECTIONS&quot;)) {
+                db.getCollection(c).drop();
+                    }
+                  });
+EOF
+`
+echo $mongojs_rm_function&gt;remove.js
+
+mongo 127.0.0.1:27017/$DATABASE remove.js
+rm -rf remove.js </code></pre></noscript></div>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -251,6 +361,10 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/03/03/huarongdao/">第一个AndroidApp,华容道</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/01/24/javascriptshe-ji-mo-shi-bi-ji-3/">Javascript设计模式 - 笔记3</a>
       </li>
     
@@ -264,10 +378,6 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
     
       <li class="post">
         <a href="/blog/2015/01/04/javascriptshe-ji-mo-shi-bi-ji-1/">Javascript设计模式 - 笔记1</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/12/31/macvtap-ethernet-support-tcpdump/">Macvtap Ethernet Support Tcpdump</a>
       </li>
     
   </ul>
@@ -305,7 +415,8 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
 <section>
   <h1>Categories</h1>
   <ul id="categories">
-    <li class='category'><a href='/blog/categories/array/'>Array (1)</a></li>
+    <li class='category'><a href='/blog/categories/android-/'>Android, (1)</a></li>
+<li class='category'><a href='/blog/categories/array/'>Array (1)</a></li>
 <li class='category'><a href='/blog/categories/c/'>C (1)</a></li>
 <li class='category'><a href='/blog/categories/django/'>Django (3)</a></li>
 <li class='category'><a href='/blog/categories/docker/'>Docker (1)</a></li>
@@ -334,6 +445,7 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
 <li class='category'><a href='/blog/categories/gcc/'>gcc (1)</a></li>
 <li class='category'><a href='/blog/categories/git/'>git (2)</a></li>
 <li class='category'><a href='/blog/categories/grunt/'>grunt (1)</a></li>
+<li class='category'><a href='/blog/categories/huarongdao/'>huarongdao (1)</a></li>
 <li class='category'><a href='/blog/categories/javascript-pattern/'>javascript_pattern (3)</a></li>
 <li class='category'><a href='/blog/categories/jenkins/'>jenkins (1)</a></li>
 <li class='category'><a href='/blog/categories/libpcap/'>libpcap (1)</a></li>
