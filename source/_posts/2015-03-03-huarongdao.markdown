@@ -14,7 +14,7 @@ categories: Android, huarongdao
 
 过年空出来一个周，Python党也要写Android App了。
 
-找了本<HeadFirst Java>，一天的时间扫了一遍Java的语法，写了几个小例子练练手。之后直接对着Android官方文档开干了。
+找了本 `HeadFirst Java` ，一天的时间扫了一遍Java的语法，写了几个小例子练练手。之后直接对着Android官方文档开干了。
 
 流程就是 google->坑-->继续google ....，如此循环不已......
 
