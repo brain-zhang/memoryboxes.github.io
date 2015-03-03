@@ -24,4 +24,4 @@ categories: Android, huarongdao
 
 http://fayaa.com/
 
-
+因为我的defy+刷的MIUI2.3.2的系统，所以先发布到小米商店去测试下，审核完毕后会附上链接。
