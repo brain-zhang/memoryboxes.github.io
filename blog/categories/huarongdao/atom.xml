@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Huarongdao | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/huarongdao/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-03-03T08:31:25+08:00</updated>
+  <updated>2015-03-03T08:35:17+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -26,7 +26,7 @@
 
 <p>过年空出来一个周，Python党也要写Android App了。</p>
 
-<p>找了本<HeadFirst Java>，一天的时间扫了一遍Java的语法，写了几个小例子练练手。之后直接对着Android官方文档开干了。</p>
+<p>找了本 <code>HeadFirst Java</code> ，一天的时间扫了一遍Java的语法，写了几个小例子练练手。之后直接对着Android官方文档开干了。</p>
 
 <p>流程就是 google->坑&mdash;>继续google &hellip;.，如此循环不已&hellip;&hellip;</p>
 
