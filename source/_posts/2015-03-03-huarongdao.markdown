@@ -6,6 +6,11 @@ comments: true
 categories: Android 华容道
 ---
 
+## 第一个Android APP上线，很简单的一个小游戏：智取华容道
+
+http://shouji.baidu.com/game/item?docid=7547918
+
+
 老是对自己说，要不断学习，跟上时代浪潮。但是悲哀的发现，自己是跟的越来越吃力了。
 
 早在大连搞电视机的时候，那时候Android刚出来，就对自己说，要好好看看。无奈之后各处辗转，这事就搁下了。
@@ -23,8 +28,6 @@ categories: Android 华容道
 图片和关卡都来自于代码发芽网，作者非常大度的授权我使用，非常感谢:
 
 http://fayaa.com/
-
-因为我的defy+刷的MIUI2.3.2的系统，所以先发布到小米商店去测试下，审核完毕后会附上链接。
 
 
 ## 开发日志:
