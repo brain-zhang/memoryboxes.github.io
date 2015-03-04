@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-03-04T09:21:32+08:00</updated>
+  <updated>2015-03-04T09:29:16+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -92,7 +92,7 @@
 <li><p>怎么PS出一个不那么生硬的背景，没错，我还同时开了Photoshop做美工，这个时候电脑已经处在超脱状态</p></li>
 <li><p>怎么在两个View直接传数据，怎么处理活动的生存周期</p></li>
 <li><p>怎么加背景音乐，怎么搞成服务，怎么能让程序退出的时候结束服务，怎么搞得好听一点，没错，这个时候我又客串DJ，研究了MP3各码率下音质和文件大小的关系，最后以专业乐评人的视角选择了一首古筝曲</p></li>
-<li><p>晕，现在位置还是只有一关呢，怎么办？我到 <code>代码发芽</code> 网上，写个Python脚本爬下来了所有关卡，同时邮件问作者申请授权</p></li>
+<li><p>晕，现在为止还是只有一关呢，怎么办？我到 <code>代码发芽</code> 网上，写个Python脚本爬下来了所有关卡，同时邮件问作者申请授权</p></li>
 <li><p>到底是拖动棋子效果好呢，还是点击移动棋子效果好呢？我又化身PM，反反复复走最简单的一关， <code>十八步</code> ，最后确定还是点击效果好。没错，到目前为止，这个游戏我只玩通了三关，我的智商就是这样。最后我爸还解决了 <code>横刀立马</code> ，我怎么也不行。</p></li>
 <li><p>发现一个重大问题，原来我一直以为只有五虎上将的，一共五横五竖十个长条棋子，突然发现有一关里面出现了魏延，我晕，再调吧</p></li>
 <li><p>又发现个问题，Android的默认sqlite模块好像没说怎么把已有的数据库集成进去，怎么办，Google吧</p></li>
