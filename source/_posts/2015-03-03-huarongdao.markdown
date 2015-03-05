@@ -8,7 +8,11 @@ categories: Android 华容道
 
 ## 第一个Android APP上线，很简单的一个小游戏：智取华容道
 
+百度应用下载地址:
 http://shouji.baidu.com/game/item?docid=7547918
+
+小米商店下载地址:
+http://app.mi.com/detail/87656
 
 
 老是对自己说，要不断学习，跟上时代浪潮。但是悲哀的发现，自己是跟的越来越吃力了。
