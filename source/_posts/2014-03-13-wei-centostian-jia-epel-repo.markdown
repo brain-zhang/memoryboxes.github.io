@@ -43,6 +43,10 @@ remi repository更新很快，如果你很需要htopxxx最新版本这样的话�
     gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi
     failovermethod=priority
 
+## 开发工具套装
+
+    yum groupinstall "Development Tools"
+
 ## 解决仓库安装失败的问题
 
 有时候某个软件可以Search，但安装一直报错:
