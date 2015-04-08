@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-03-29T10:24:07+08:00</updated>
+  <updated>2015-04-08T09:28:39+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -33,6 +33,7 @@ $ git merge cocos2d-x/master                                        // 合并原
 
 <p><code>
 $ git branch -a                                                     //查看所有分支
+$ git checkout -b branches/xxx origin/branches/xxx                  //chekcout远程分支
 $ git push origin --delete &lt;branchname&gt;                             //删除远程分支
 $ git push origin --delete tag &lt;tagname&gt;                            //删除远程tag
 $ git push origin :&lt;branchName&gt;                                     //推送一个空分支到远程分支，相当于删除分支
