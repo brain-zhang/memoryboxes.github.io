@@ -4,7 +4,7 @@
   <title><![CDATA[memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-04-08T09:28:39+08:00</updated>
+  <updated>2015-04-08T09:55:53+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -1945,12 +1945,82 @@ openssl x509 -req -days 365 -in foobar.csr -signkey foobar.key -out foobar.crt
     <link href="http://memoryboxes.github.io/blog/2014/09/18/docker-cheat-sheet/"/>
     <updated>2014-09-18T09:09:52+08:00</updated>
     <id>http://memoryboxes.github.io/blog/2014/09/18/docker-cheat-sheet</id>
-    <content type="html"><![CDATA[<h4>Container</h4>
+    <content type="html"><![CDATA[<h1>container相关</h1>
 
-<pre><code>* `docker run` creates a container
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ docker run -it xxx /bin/bash                                      // 启动一个container
+</span><span class='line'>$ docker rm -f xxx                                                  // 结束一个container，加-f表示删除掉，这样比较干净
+</span><span class='line'>$ docker run -it --add-host host:ip xxx /bin/bash                   // 启动一个container,增加/etc/hosts设定
+</span><span class='line'>$ docker run -d -p 127.0.0.1:5000:5000 webapp python app.py         // 启动一个container,映射本地的5000端口</span></code></pre></td></tr></table></div></figure>
 
-* 待续
+
+<h1>image 相关</h1>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ docker rmi -f xxx                                                 // 删除一个image，以下情况下不能删除:
+</span><span class='line'>                                                                    // * 有其他image依赖于这个image
+</span><span class='line'>                                                                    // * 有已创建的container依赖于这个image
+</span><span class='line'>                                                                    // build的过程会出现很多&lt;none&gt;的临时image，最好不要去手工清除
+</span><span class='line'>$ docker build tag Dockerfile_dir                                   // build一个image</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>docker service 相关</h1>
+
+<h2>配置文件位置</h2>
+
+<ul>
+<li><p>ubuntu: /etc/default/docker</p></li>
+<li><p>centos: /etc/sysconfig/docker</p></li>
+</ul>
+
+
+<h3>配置参数</h3>
+
+<pre><code>DOCKER_OPTS
 </code></pre>
+
+<h4>增加docker 仓库验证</h4>
+
+<pre><code>--insecure-registry own-docker.com
+</code></pre>
+
+<h4>设置storage backend</h4>
+
+<pre><code>-s overlay
+</code></pre>
+
+<p>使用overlay极大提升性能和稳定性，建议开启。但是有两个问题:</p>
+
+<ul>
+<li><p>编译centos镜像时，调用yum会报checksum错误，所以基本上不能在overlay上面构建redhat系的镜像</p></li>
+<li><p>不支持 <code>inotify_add_watch</code> 调用，<code>tail -f</code> 类的命令会有问题，具体见:<a href="https://github.com/docker/docker/issues/11705">https://github.com/docker/docker/issues/11705</a></p></li>
+</ul>
+
+
+<h1>相关工具:</h1>
+
+<h4>docker镜像瘦身工具</h4>
+
+<p><a href="https://github.com/jwilder/docker-squash">https://github.com/jwilder/docker-squash</a></p>
+
+<h4>nsenter, docker inspect的增强版</h4>
+
+<p><a href="https://github.com/jpetazzo/nsenter">https://github.com/jpetazzo/nsenter</a></p>
+
+<h4>dockerfly，自己写的一个构建工具</h4>
+
+<p><a href="https://github.com/memoryboxes/dockerfly">https://github.com/memoryboxes/dockerfly</a></p>
+
+<h4>shipyard，还算是比较靠谱的监控工具</h4>
+
+<p><a href="https://github.com/shipyard/shipyard">https://github.com/shipyard/shipyard</a></p>
 ]]></content>
   </entry>
   
