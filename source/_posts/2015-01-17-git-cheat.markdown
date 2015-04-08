@@ -21,6 +21,7 @@ $ git merge cocos2d-x/master                                        // 合并原
 
 ```
 $ git branch -a                                                     //查看所有分支
+$ git checkout -b branches/xxx origin/branches/xxx                  //chekcout远程分支
 $ git push origin --delete <branchname>                             //删除远程分支
 $ git push origin --delete tag <tagname>                            //删除远程tag
 $ git push origin :<branchName>                                     //推送一个空分支到远程分支，相当于删除分支
