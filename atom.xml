@@ -4,7 +4,7 @@
   <title><![CDATA[memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-04-10T09:04:21+08:00</updated>
+  <updated>2015-04-10T09:11:02+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Multiline Comments in Docker File]]></title>
+    <link href="http://memoryboxes.github.io/blog/2015/04/10/multiline-comments-in-docker-file/"/>
+    <updated>2015-04-10T09:07:36+08:00</updated>
+    <id>http://memoryboxes.github.io/blog/2015/04/10/multiline-comments-in-docker-file</id>
+    <content type="html"><![CDATA[<p>为了减少Image的fs layout数目，Dockerfile中经常会把多个命令集中到一个 <code>RUN</code> 指令下。</p>
+
+<p>多行之后可读性就很差了。</p>
+
+<p>有个比较偏门的写注释的方法:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>RUN mkdir -p /home/build/npm3 && \
+</span><span class='line'>    mkdir -p /home/build/smartprobe && \
+</span><span class='line'>    mkdir -p /home/build/bpc3 && \
+</span><span class='line'>    `#====================================================` \
+</span><span class='line'>    `#=============checkout and install rpms==============` \
+</span><span class='line'>    svn export xxx && \
+</span><span class='line'>    rpm -ivh --force --nodeps *.rpm && \
+</span><span class='line'>    `#====================================================` \
+</span><span class='line'>    `#=============checkout and install python==============` \
+</span><span class='line'>    ... && \
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>比较实用，推荐之。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Different Users in Same Unix Group Can Not Run Mongod]]></title>
@@ -2085,81 +2123,6 @@ openssl x509 -req -days 365 -in foobar.csr -signkey foobar.key -out foobar.crt
 <h4>shipyard，还算是比较靠谱的监控工具</h4>
 
 <p><a href="https://github.com/shipyard/shipyard">https://github.com/shipyard/shipyard</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[python2.x：Error When Printing an Exception Containing a Unicode String]]></title>
-    <link href="http://memoryboxes.github.io/blog/2014/09/17/python2-dot-x%3Aerror-when-printing-an-exception-containing-a-unicode-string/"/>
-    <updated>2014-09-17T08:43:39+08:00</updated>
-    <id>http://memoryboxes.github.io/blog/2014/09/17/python2-dot-x:error-when-printing-an-exception-containing-a-unicode-string</id>
-    <content type="html"><![CDATA[<p>Python2.x中抛出Unicode的异常需要注意:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt;&gt;&gt; try:
-</span><span class='line'>...     raise Exception(u'Error when printing 中文异常')
-</span><span class='line'>... except Exception, e:
-</span><span class='line'>...     print e
-</span><span class='line'>...     print str(e)</span></code></pre></td></tr></table></div></figure>
-
-
-<p>会报UnicodeEncodeError: &lsquo;ascii&rsquo; codec can&rsquo;t encode character &hellip;</p>
-
-<p>同样，如果在log中直接输出，也会报错</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt;&gt;&gt; import logging
-</span><span class='line'>    logger = logging.getLogger('default')
-</span><span class='line'>    try:
-</span><span class='line'>...     raise Exception(u'Error when printing 中文异常')
-</span><span class='line'>... except Exception, e:
-</span><span class='line'>...     logger.error(e)
-</span><span class='line'>...     logger.error("%s", e)
-</span><span class='line'>...     logger.error("%s", str(e))</span></code></pre></td></tr></table></div></figure>
-
-
-<p>简单的解决办法就是用e.message</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt;&gt;&gt; try:
-</span><span class='line'>...     raise Exception(u'Error when printing 中文异常')
-</span><span class='line'>... except Exception, e:
-</span><span class='line'>...     print e.message
-</span><span class='line'>...     print "%s" % e.message</span></code></pre></td></tr></table></div></figure>
-
-
-<p>也可以详细的可以指定encoder</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt;&gt;&gt; try:
-</span><span class='line'>...     raise Exception(u'Error when printing 中文异常')
-</span><span class='line'>... except Exception, e:
-</span><span class='line'>...     print unicode(e.message).encode('utf-8')</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Python3就没这个事了，备忘一下。</p>
-
-<p>参考:</p>
-
-<p><a href="http://bugs.python.org/issue2517">http://bugs.python.org/issue2517</a></p>
 ]]></content>
   </entry>
   
