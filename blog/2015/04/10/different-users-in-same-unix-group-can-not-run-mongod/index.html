@@ -5,17 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Docker Cheat Sheet - memoryboxes blog</title>
+  <title>Different Users in Same Unix Group Can Not Run Mongod - memoryboxes blog</title>
   <meta name="author" content="memoryboxes">
 
   
-  <meta name="description" content="container相关 1
-2
-3
-4
-$ docker run -it xxx /bin/bash // 启动一个container
-$ docker rm -f xxx // 结束一个container，加-f表示删除掉，这样比较干净
-$ docker run -it --add-host &hellip;">
+  <meta name="description" content="事情的缘起是这样的&hellip;&hellip;. 想要在Dockerfile中启动一个MongoDB，之后编译为Docker image。(不要问我问什么要在docker image中存一个mongodb数据库，真实世界的需求你永远想不到) Docker build不支持 &mdash; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -24,7 +18,7 @@ $ docker run -it --add-host &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://memoryboxes.github.io/blog/2014/09/18/docker-cheat-sheet">
+  <link rel="canonical" href="http://memoryboxes.github.io/blog/2015/04/10/different-users-in-same-unix-group-can-not-run-mongod">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="memoryboxes blog" type="application/atom+xml">
@@ -75,7 +69,7 @@ $ docker run -it --add-host &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Docker Cheat Sheet</h1>
+      <h1 class="entry-title">Different Users in Same Unix Group Can Not Run Mongod</h1>
     
     
       <p class="meta">
@@ -91,7 +85,7 @@ $ docker run -it --add-host &hellip;">
   
 
 
-<time datetime="2014-09-18T09:09:52+08:00" pubdate data-updated="true">Sep 18<span>th</span>, 2014</time>
+<time datetime="2015-04-10T08:44:42+08:00" pubdate data-updated="true">Apr 10<span>th</span>, 2015</time>
         
         
            | <a href="#comments">Comments</a>
@@ -101,82 +95,62 @@ $ docker run -it --add-host &hellip;">
   </header>
 
 
-<div class="entry-content"><h1>container相关</h1>
+<div class="entry-content"><p>事情的缘起是这样的&hellip;&hellip;.</p>
+
+<p>想要在Dockerfile中启动一个MongoDB，之后编译为Docker image。(不要问我问什么要在docker image中存一个mongodb数据库，真实世界的需求你永远想不到)</p>
+
+<p>Docker build不支持 &mdash;privileged，所以默认的/etc/init.d/mongod  这个脚本中的</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>runuser -s /bin/bash mongod -c 'ulimit -S -c 0 &gt;/dev/null 2&gt;&1 ; numactl --interleave=all /usr/bin/mongod -f /etc/mongod.conf'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这种写法就死翘翘了。</p>
+
+<p>github上有这个Issue:</p>
+
+<p><a href="https://github.com/docker/docker/issues/1916">https://github.com/docker/docker/issues/1916</a></p>
+
+<p>大家讨论了1年多，对于怎么解决，还是没有个所以然。(话说要再吐槽一下github的issue了，一般大一点的项目，一个issue跨度以年来论，长篇大论读完也不同意呀)</p>
+
+<p>最后只好在Dockerfile中这么搞:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ docker run -it xxx /bin/bash                                      // 启动一个container
-</span><span class='line'>$ docker rm -f xxx                                                  // 结束一个container，加-f表示删除掉，这样比较干净
-</span><span class='line'>$ docker run -it --add-host host:ip xxx /bin/bash                   // 启动一个container,增加/etc/hosts设定
-</span><span class='line'>$ docker run -d -p 127.0.0.1:5000:5000 webapp python app.py         // 启动一个container,映射本地的5000端口</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mongod --fork -f /etc/mongod.conf && \
+</span><span class='line'>mongod --shutdown -f /etc/mongod.conf && \
+</span><span class='line'>chown mongod:mongod /opt/lib/mongodbpath -R
+</span></code></pre></td></tr></table></div></figure>
 
 
-<h1>image 相关</h1>
+<p>这样build就顺利完成了。</p>
+
+<p>可是启动这个image为container后，执行:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ docker rmi -f xxx                                                 // 删除一个image，以下情况下不能删除:
-</span><span class='line'>                                                                    // * 有其他image依赖于这个image
-</span><span class='line'>                                                                    // * 有已创建的container依赖于这个image
-</span><span class='line'>                                                                    // build的过程会出现很多&lt;none&gt;的临时image，最好不要去手工清除
-</span><span class='line'>$ docker build tag Dockerfile_dir                                   // build一个image</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/etc/init.d/mongod start</span></code></pre></td></tr></table></div></figure>
 
 
-<h1>docker service 相关</h1>
+<p>报错:</p>
 
-<h2>配置文件位置</h2>
-
-<ul>
-<li><p>ubuntu: /etc/default/docker</p></li>
-<li><p>centos: /etc/sysconfig/docker</p></li>
-</ul>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> [initandlisten] warning couldn't write to / rename file /datadir/journal/prealloc.0: couldn't open file /datadir/journal/prealloc.0 for writing errno:1 Operation not permitted</span></code></pre></td></tr></table></div></figure>
 
 
-<h3>配置参数</h3>
+<p>虾米，明明已经加了mongod的group了。而且errorno是1，不是 <code>"errno:13 Permission denied"</code>，有点奇怪。</p>
 
-<pre><code>DOCKER_OPTS
-</code></pre>
+<p>问题在这里:</p>
 
-<h4>增加docker 仓库验证</h4>
+<p><a href="https://jira.mongodb.org/browse/SERVER-7583">https://jira.mongodb.org/browse/SERVER-7583</a></p>
 
-<pre><code>--insecure-registry own-docker.com
-</code></pre>
+<p>要再加一个指令:</p>
 
-<h4>设置storage backend</h4>
-
-<pre><code>-s overlay
-</code></pre>
-
-<p>使用overlay极大提升性能和稳定性，建议开启。但是有两个问题:</p>
-
-<ul>
-<li><p>编译centos镜像时，调用yum会报checksum错误，所以基本上不能在overlay上面构建redhat系的镜像</p></li>
-<li><p>不支持 <code>inotify_add_watch</code> 调用，<code>tail -f</code> 类的命令会有问题，具体见:<a href="https://github.com/docker/docker/issues/11705">https://github.com/docker/docker/issues/11705</a></p></li>
-</ul>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>setcap cap_fowner+ep /opt/lib/mongod</span></code></pre></td></tr></table></div></figure>
 
 
-<h1>相关工具:</h1>
-
-<h4>docker镜像瘦身工具</h4>
-
-<p><a href="https://github.com/jwilder/docker-squash">https://github.com/jwilder/docker-squash</a></p>
-
-<h4>nsenter, docker inspect的增强版</h4>
-
-<p><a href="https://github.com/jpetazzo/nsenter">https://github.com/jpetazzo/nsenter</a></p>
-
-<h4>dockerfly，自己写的一个构建工具</h4>
-
-<p><a href="https://github.com/memoryboxes/dockerfly">https://github.com/memoryboxes/dockerfly</a></p>
-
-<h4>shipyard，还算是比较靠谱的监控工具</h4>
-
-<p><a href="https://github.com/shipyard/shipyard">https://github.com/shipyard/shipyard</a></p>
+<p>就是这么折腾。</p>
 </div>
 
 
@@ -199,12 +173,12 @@ $ docker run -it --add-host &hellip;">
   
 
 
-<time datetime="2014-09-18T09:09:52+08:00" pubdate data-updated="true">Sep 18<span>th</span>, 2014</time>
+<time datetime="2015-04-10T08:44:42+08:00" pubdate data-updated="true">Apr 10<span>th</span>, 2015</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/docker/'>Docker</a>
+    <a class='category' href='/blog/categories/docker/'>Docker</a>, <a class='category' href='/blog/categories/mongodb/'>Mongodb</a>
   
 </span>
 
@@ -220,10 +194,8 @@ $ docker run -it --add-host &hellip;">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/09/17/python2-dot-x%3Aerror-when-printing-an-exception-containing-a-unicode-string/" title="Previous Post: python2.x：Error When Printing an Exception Containing a Unicode String">&laquo; python2.x：Error When Printing an Exception Containing a Unicode String</a>
+        <a class="basic-alignment left" href="/blog/2015/03/03/huarongdao/" title="Previous Post: 第一个AndroidApp-华容道">&laquo; 第一个AndroidApp-华容道</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/09/18/markdown-raw-format/" title="Next Post: Markdown Raw Format">Markdown Raw Format &raquo;</a>
       
     </p>
   </footer>

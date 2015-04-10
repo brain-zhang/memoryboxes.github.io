@@ -4,7 +4,7 @@
   <title><![CDATA[memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-04-08T09:55:53+08:00</updated>
+  <updated>2015-04-10T08:57:45+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Different Users in Same Unix Group Can Not Run Mongod]]></title>
+    <link href="http://memoryboxes.github.io/blog/2015/04/10/different-users-in-same-unix-group-can-not-run-mongod/"/>
+    <updated>2015-04-10T08:44:42+08:00</updated>
+    <id>http://memoryboxes.github.io/blog/2015/04/10/different-users-in-same-unix-group-can-not-run-mongod</id>
+    <content type="html"><![CDATA[<p>事情的缘起是这样的&hellip;&hellip;.</p>
+
+<p>想要在Dockerfile中启动一个MongoDB，之后编译为Docker image。(不要问我问什么要在docker image中存一个mongodb数据库，真实世界的需求你永远想不到)</p>
+
+<p>Docker build不支持 &mdash;privileged，所以默认的/etc/init.d/mongod  这个脚本中的</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>runuser -s /bin/bash mongod -c 'ulimit -S -c 0 &gt;/dev/null 2&gt;&1 ; numactl --interleave=all /usr/bin/mongod -f /etc/mongod.conf'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这种写法就死翘翘了。</p>
+
+<p>github上有这个Issue:</p>
+
+<p><a href="https://github.com/docker/docker/issues/1916">https://github.com/docker/docker/issues/1916</a></p>
+
+<p>大家讨论了1年多，对于怎么解决，还是没有个所以然。(话说要再吐槽一下github的issue了，一般大一点的项目，一个issue跨度以年来论，长篇大论读完也不同意呀)</p>
+
+<p>最后只好在Dockerfile中这么搞:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mongod --fork -f /etc/mongod.conf && \
+</span><span class='line'>mongod --shutdown -f /etc/mongod.conf && \
+</span><span class='line'>chown mongod:mongod /opt/lib/mongodbpath -R
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样build就顺利完成了。</p>
+
+<p>可是启动这个image为container后，执行:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/etc/init.d/mongod start</span></code></pre></td></tr></table></div></figure>
+
+
+<p>报错:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> [initandlisten] warning couldn't write to / rename file /datadir/journal/prealloc.0: couldn't open file /datadir/journal/prealloc.0 for writing errno:1 Operation not permitted</span></code></pre></td></tr></table></div></figure>
+
+
+<p>虾米，明明已经加了mongod的group了。而且errorno是1，不是 <code>"errno:13 Permission denied"</code>，有点奇怪。</p>
+
+<p>问题在这里:</p>
+
+<p><a href="https://jira.mongodb.org/browse/SERVER-7583">https://jira.mongodb.org/browse/SERVER-7583</a></p>
+
+<p>要再加一个指令:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>setcap cap_fowner+ep /opt/lib/mongod</span></code></pre></td></tr></table></div></figure>
+
+
+<p>就是这么折腾。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[第一个AndroidApp-华容道]]></title>
@@ -2096,38 +2160,6 @@ openssl x509 -req -days 365 -in foobar.csr -signkey foobar.key -out foobar.crt
 <p>参考:</p>
 
 <p><a href="http://bugs.python.org/issue2517">http://bugs.python.org/issue2517</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[C:dynamic Array in Stack]]></title>
-    <link href="http://memoryboxes.github.io/blog/2014/09/17/c-dynamic-array-in-stack/"/>
-    <updated>2014-09-17T08:42:25+08:00</updated>
-    <id>http://memoryboxes.github.io/blog/2014/09/17/c-dynamic-array-in-stack</id>
-    <content type="html"><![CDATA[<p>以前一直认为C99 只支持const int 定义数组，今天才学到C99里面是支持动态数组的。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>int main()
-</span><span class='line'>{
-</span><span class='line'>    int x = 12;
-</span><span class='line'>    char pz[x];
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>C99是支持的。在gcc4+以上的版本里测试OK。</p>
-
-<p>另外stackoverflow上提到C++不支持动态数组，在g++4.4.7里面试了一下，也是可以的。</p>
-
-<p>不是我不明白，这世界变化快。</p>
-
-<p>Out好多好多年了…….</p>
-
-<p>参考:
-<a href="http://stackoverflow.com/questions/1204521/dynamic-array-in-stack">http://stackoverflow.com/questions/1204521/dynamic-array-in-stack</a> <a href="http://stackoverflow.com/questions/737240/c-c-array-size-at-run-time-w-o-dynamic-allocation-is-allowed">http://stackoverflow.com/questions/737240/c-c-array-size-at-run-time-w-o-dynamic-allocation-is-allowed</a></p>
 ]]></content>
   </entry>
   
