@@ -22,7 +22,7 @@ github上有这个Issue:
 
 https://github.com/docker/docker/issues/1916
 
-大家讨论了1年多，对于怎么解决，还是没有个所以然。(话说要再吐槽一下github的issue了，一般大一点的项目，一个issue跨度以年来论，长篇大论读完也不同意呀)
+大家讨论了1年多，对于怎么解决，还是没有个所以然。(话说要再吐槽一下github的issue了，一般大一点的项目，一个issue跨度以年来论，长篇大论读完也不容易呀)
 
 最后只好在Dockerfile中这么搞:
 
