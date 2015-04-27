@@ -4,7 +4,7 @@
   <title><![CDATA[Category: DesignPattern | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/designpattern/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-04-27T09:30:18+08:00</updated>
+  <updated>2015-04-27T09:33:20+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -108,14 +108,12 @@ class Singleton(Borg):
 <ul>
 <li><p>几个新的decorator:</p>
 
-<p>  <code>
-  @functools_wraps
- </code></p>
-
-<p>  <code>
-  @statically_typed
- </code></p></li>
-<li>另外<code>@ensure</code>类修饰符可以用来简化设置property的代码</li>
+<ul>
+<li><p><code>@functools_wraps</code> : 装饰器工厂</p></li>
+<li><p><code>@statically_typed</code> : 类型检查</p></li>
+</ul>
+</li>
+<li><p>另外<code>@ensure</code>类修饰符可以用来简化设置property的代码</p></li>
 </ul>
 
 
