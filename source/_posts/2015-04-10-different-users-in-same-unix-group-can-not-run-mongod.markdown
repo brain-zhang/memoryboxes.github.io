@@ -57,7 +57,7 @@ https://jira.mongodb.org/browse/SERVER-7583
 要再加一个指令:
 
 ```
-setcap cap_fowner+ep /opt/lib/mongod
+setcap cap_fowner+ep /usr/bin/mongod
 ```
 
 
