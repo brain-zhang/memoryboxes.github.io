@@ -65,13 +65,10 @@ categories: Python DesignPattern
 
 * 几个新的decorator:
 
-    ```
-    @functools_wraps
-    ```
+    * `@functools_wraps` : 装饰器工厂
 
-    ```
-    @statically_typed
-    ```
+    * `@statically_typed` : 类型检查
+
 * 另外`@ensure`类修饰符可以用来简化设置property的代码
 
 #### Facade
