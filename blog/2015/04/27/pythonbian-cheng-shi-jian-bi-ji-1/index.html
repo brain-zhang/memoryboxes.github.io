@@ -84,16 +84,22 @@
 
 <h4>Composite</h4>
 
+<ul>
+<li>Python里面有一种省一点内存的写法，可以直接用CompositeItem和Item两个类来实现，不过我觉得不直观</li>
+</ul>
+
+
 <h4>decorator</h4>
 
 <ul>
 <li><p>几个新的decorator:</p>
 
-<p>  <code>
-  functools_wraps
-  statically_typed
- </code></p></li>
-<li>另外ensure类修饰符可以用来简化设置property的代码</li>
+<p>  &#8220;`
+  @functools_wraps</p>
+
+<p>  @statically_typed
+  &#8220;`</p></li>
+<li>另外<code>@ensure</code>类修饰符可以用来简化设置property的代码</li>
 </ul>
 
 
@@ -109,7 +115,7 @@
 
 <ul>
 <li>管理许多小对象的时候用引用</li>
-<li>Python用<strong>slot</strong> Attribute来做最方便</li>
+<li>Python用<code>__slot__</code> Attribute来做最方便</li>
 <li>里面关于用shelve对象存储class attribute的思路挺实用的</li>
 </ul>
 
