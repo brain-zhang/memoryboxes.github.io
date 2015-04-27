@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>svn1.7+ Zsh报错 - memoryboxes blog</title>
+  <title>Category: DesignPattern - memoryboxes blog</title>
   <meta name="author" content="memoryboxes">
 
   
-  <meta name="description" content="更新svn(subversion)>1.7后 zsh 的svn自动完成会报错。 _arguments:comparguments:312: invalid argument: [--cl]:arg: 修改方法: 打开文件：/usr/share/zsh/4.3.11/functions/ &hellip;">
+  <meta name="description" content="Category: DesignPattern">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://memoryboxes.github.io/blog/2014/09/17/svn1-dot-7-plus-zshbao-cuo">
+  <link rel="canonical" href="http://memoryboxes.github.ioblog/categories/designpattern">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="memoryboxes blog" type="application/atom+xml">
@@ -66,124 +66,37 @@
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">svn1.7+ Zsh报错</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-09-17T08:40:14+08:00" pubdate data-updated="true">Sep 17<span>th</span>, 2014</time>
-        
-        
-           | <a href="#comments">Comments</a>
-        
-      </p>
+    <h1 class="entry-title">Category: DesignPattern</h1>
     
   </header>
-
-
-<div class="entry-content"><p>更新svn(subversion)>1.7后 zsh 的svn自动完成会报错。</p>
-
-<p><code>_arguments:comparguments:312: invalid argument: [--cl]:arg:</code></p>
-
-<p>修改方法:</p>
-
-<p>打开文件：/usr/share/zsh/4.3.11/functions/_subversion</p>
-
-<p>找到35行左右</p>
-
-<p><code>${=${${${(M)${(f)"$(LC_ALL=C _call_program options svn help $cmd)"#(*Valid options:|(#e))}:#* :*}%% #:*}/ (arg|ARG)/:arg:}/(#b)-([[:alpha:]]) \[--([a-z-]##)\](:arg:)#/(--$match[2])-    $match[1]$match[3] (-$match[1])--$match[2]$match[3]}</code>
-改为</p>
-
-<p><code>${=${${${(M)${(f)"$(LC_ALL=C _call_program options svn help $cmd)"#(*Valid options:|(#e))}:#* :*}%% #:*}/ (arg|ARG)/:arg:}/(#b)(-##)([[:alpha:]]##) \[--([a-z-]##)\](:arg:)#/(--$match[3])$match[1]$match[2]$match[4] ($match[1]$match[2])--$match[3]$match[4]}</code></p>
-
-<p>参考资料：
-<a href="http://www.zsh.org/mla/workers/2011/msg01448.html">http://www.zsh.org/mla/workers/2011/msg01448.html</a></p>
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">memoryboxes</span></span>
-
-      
-
-
-
-
-
+  <div id="blog-archives" class="category">
 
 
 
   
+  <h2>2015</h2>
 
-
-<time datetime="2014-09-17T08:40:14+08:00" pubdate data-updated="true">Sep 17<span>th</span>, 2014</time>
-      
-
-<span class="categories">
+<article>
   
-    <a class='category' href='/blog/categories/svn/'>SVN</a>, <a class='category' href='/blog/categories/zsh/'>Zsh</a>
-  
-</span>
+<h1><a href="/blog/2015/04/27/pythonbian-cheng-shi-jian-bi-ji-1/">Python编程实战 - 笔记1</a></h1>
+<time datetime="2015-04-27T08:17:45+08:00" pubdate><span class='month'>Apr</span> <span class='day'>27</span> <span class='year'>2015</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/designpattern/'>DesignPattern</a>, <a class='category' href='/blog/categories/python/'>Python</a></span>
+</footer>
 
 
-    </p>
-    
-      <div class="sharing">
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2014/09/17/zi-ding-yi-djangode-mi-ma-ce-lue/" title="Previous Post: 自定义Django的密码策略">&laquo; 自定义Django的密码策略</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2014/09/17/c-dynamic-array-in-stack/" title="Next Post: C:dynamic Array in Stack">C:dynamic Array in Stack &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
-
-  <section>
-    <h1>Comments</h1>
-    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
-<div class="ds-thread"></div>
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"memoryboxes-github"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = 'http://static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script>
-<!-- Duoshuo Comment END -->
 </div>
-  </section>
+
+  
+</article>
+
 
 </div>
 
