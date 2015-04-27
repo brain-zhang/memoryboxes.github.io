@@ -72,3 +72,9 @@ https://github.com/shipyard/shipyard
 
 
 
+# 一些坑:
+
+* centos 在4.0.0-1.el6.elrepo.x86_64内核下，启动xfs+overlay，删除文件夹会有问题
+* overlay下，tail命令会有问题
+* overlay下，docker build，yum的checksum会有问题
+* devicemapper效率巨慢无比，不要用
