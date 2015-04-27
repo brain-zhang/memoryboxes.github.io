@@ -3,7 +3,7 @@ layout: post
 title: "Python编程实战 - 笔记1"
 date: 2015-04-27 08:17:45 +0800
 comments: true
-categories:Python DesignPattern
+categories: Python DesignPattern
 ---
 
 这本书讲的挺实在的，设计模式的部分又复习了一遍。另外又学了几个Python3的新decorator。
@@ -67,7 +67,9 @@ categories:Python DesignPattern
 
     ```
     @functools_wraps
+    ```
 
+    ```
     @statically_typed
     ```
 * 另外`@ensure`类修饰符可以用来简化设置property的代码
