@@ -73,6 +73,53 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/07/03/wei-cexport-json-by-mongoexport/">Export Json by Mongoexport</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-03T08:46:23+08:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2014</time>
+        
+        
+           | <a href="/blog/2014/07/03/wei-cexport-json-by-mongoexport/#comments">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Exp:</p>
+
+<pre><code>mongoexport -d foo -c exp -o exp.json -q '{"ts":{"$gte":0}}'
+</code></pre>
+
+<p>Notice:</p>
+
+<pre><code>You should use `"`  not  `'` in query string
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/03/26/freeze-svn-externals-for-tags/">Freeze Svn:externals for Tags/branch</a></h1>
     
     
@@ -539,6 +586,10 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/04/27/pythonbian-cheng-shi-jian-bi-ji-1/">Python编程实战 - 笔记1</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/04/10/multiline-comments-in-docker-file/">Multiline Comments in Docker File</a>
       </li>
     
@@ -552,10 +603,6 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
     
       <li class="post">
         <a href="/blog/2015/01/24/javascriptshe-ji-mo-shi-bi-ji-3/">Javascript设计模式 - 笔记3</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/17/git-cheat/">Git Cheat</a>
       </li>
     
   </ul>
