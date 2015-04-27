@@ -178,6 +178,16 @@ $ docker run -it --add-host &hellip;">
 <h4>shipyard，还算是比较靠谱的监控工具</h4>
 
 <p><a href="https://github.com/shipyard/shipyard">https://github.com/shipyard/shipyard</a></p>
+
+<h1>一些坑:</h1>
+
+<ul>
+<li>centos 在4.0.0-1.el6.elrepo.x86_64内核下，启动xfs+overlay，删除文件夹会有问题</li>
+<li>overlay下，tail命令会有问题</li>
+<li>overlay下，docker build，yum的checksum会有问题</li>
+<li>devicemapper效率巨慢无比，不要用</li>
+</ul>
+
 </div>
 
 
