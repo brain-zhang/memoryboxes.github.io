@@ -59,15 +59,18 @@ categories:Python DesignPattern
 
 #### Composite
 
+* Python里面有一种省一点内存的写法，可以直接用CompositeItem和Item两个类来实现，不过我觉得不直观
+
 #### decorator
 
 * 几个新的decorator:
 
     ```
-    functools_wraps
-    statically_typed
+    @functools_wraps
+
+    @statically_typed
     ```
-* 另外ensure类修饰符可以用来简化设置property的代码
+* 另外`@ensure`类修饰符可以用来简化设置property的代码
 
 #### Facade
 
@@ -77,5 +80,5 @@ categories:Python DesignPattern
 #### Flyweight
 
 * 管理许多小对象的时候用引用
-* Python用__slot__ Attribute来做最方便
+* Python用`__slot__` Attribute来做最方便
 * 里面关于用shelve对象存储class attribute的思路挺实用的
