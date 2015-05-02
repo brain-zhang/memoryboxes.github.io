@@ -7,6 +7,8 @@ categories: Android 华容道
 ---
 
 ## 第一个Android APP上线，很简单的一个小游戏：智取华容道
+GooglePlay:
+https://play.google.com/store/apps/details?id=me.happy123.aklotski
 
 百度应用下载地址:
 http://shouji.baidu.com/game/item?docid=7547918
