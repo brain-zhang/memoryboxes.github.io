@@ -190,4 +190,8 @@
         <loc>http://memoryboxes.github.io/robots.txt</loc>
         <lastmod>2014-09-17T08:29:40+08:00</lastmod>
     </url>
+    <url>
+        <loc>http://memoryboxes.github.io/privacy/</loc>
+        <lastmod>2015-05-02T11:56:11+08:00</lastmod>
+    </url>
 </urlset>
