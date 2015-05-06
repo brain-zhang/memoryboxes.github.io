@@ -42,7 +42,8 @@ categories: Python DesignPattern
         def __init__(self, arg):
             Borg.__init__(self)
             self.val = arg
-        def __str__(self): return self.val
+        def __str__(self):
+            return self.val
 ```
 
 ## 结构型设计
