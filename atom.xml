@@ -4,7 +4,7 @@
   <title><![CDATA[memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-05-06T08:12:58+08:00</updated>
+  <updated>2015-05-06T08:16:49+08:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -92,6 +92,7 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
+<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>class Borg:
 </span><span class='line'>    _shared_state = {}
 </span><span class='line'>    def __init__(self):
@@ -101,7 +102,8 @@
 </span><span class='line'>    def __init__(self, arg):
 </span><span class='line'>        Borg.__init__(self)
 </span><span class='line'>        self.val = arg
-</span><span class='line'>    def __str__(self): return self.val</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>    def __str__(self):
+</span><span class='line'>        return self.val</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>结构型设计</h2>
