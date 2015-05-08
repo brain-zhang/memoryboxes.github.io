@@ -4,7 +4,7 @@
   <title><![CDATA[Category: TokuMx | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/tokumx/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-05-06T08:16:49+08:00</updated>
+  <updated>2015-05-08T12:16:22+00:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[从MongoDB迁移到TokuMx]]></title>
     <link href="http://memoryboxes.github.io/blog/2014/09/16/cong-mongodbqian-yi-dao-tokumx/"/>
-    <updated>2014-09-16T08:36:30+08:00</updated>
+    <updated>2014-09-16T00:36:30+00:00</updated>
     <id>http://memoryboxes.github.io/blog/2014/09/16/cong-mongodbqian-yi-dao-tokumx</id>
     <content type="html"><![CDATA[<h2>WHY:</h2>
 

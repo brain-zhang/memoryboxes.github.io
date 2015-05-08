@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Django | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/django/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-05-06T08:16:49+08:00</updated>
+  <updated>2015-05-08T12:16:22+00:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Uwsgi部署django程序]]></title>
     <link href="http://memoryboxes.github.io/blog/2014/10/31/uwsgibu-shu-djangocheng-xu/"/>
-    <updated>2014-10-31T08:39:26+08:00</updated>
+    <updated>2014-10-31T00:39:26+00:00</updated>
     <id>http://memoryboxes.github.io/blog/2014/10/31/uwsgibu-shu-djangocheng-xu</id>
     <content type="html"><![CDATA[<p>Python的web世界，部署首选uwsgi，既可独战，又可搭配Nginx等车轮战，实在是居家必备。</p>
 
@@ -123,7 +123,7 @@ openssl x509 -req -days 365 -in foobar.csr -signkey foobar.key -out foobar.crt
   <entry>
     <title type="html"><![CDATA[自定义Django的密码策略]]></title>
     <link href="http://memoryboxes.github.io/blog/2014/09/17/zi-ding-yi-djangode-mi-ma-ce-lue/"/>
-    <updated>2014-09-17T08:38:03+08:00</updated>
+    <updated>2014-09-17T00:38:03+00:00</updated>
     <id>http://memoryboxes.github.io/blog/2014/09/17/zi-ding-yi-djangode-mi-ma-ce-lue</id>
     <content type="html"><![CDATA[<p>Django 从1.4 版本开始，包含了一些安全方面的重要提升。其中一个是使用 PBKDF2 密码加密算法代替了 SHA1 。另外一个特性是你可以添加自己的密码加密方法。</p>
 
@@ -212,7 +212,7 @@ PASSWORD_HASHERS = (</p>
   <entry>
     <title type="html"><![CDATA[Auto Reload Modules in Django Shell]]></title>
     <link href="http://memoryboxes.github.io/blog/2014/09/17/auto-reload-modules-in-django-shell/"/>
-    <updated>2014-09-17T08:36:01+08:00</updated>
+    <updated>2014-09-17T00:36:01+00:00</updated>
     <id>http://memoryboxes.github.io/blog/2014/09/17/auto-reload-modules-in-django-shell</id>
     <content type="html"><![CDATA[<p><code>python manage.py shell</code></p>
 

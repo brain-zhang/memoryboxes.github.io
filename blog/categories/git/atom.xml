@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-05-06T08:16:49+08:00</updated>
+  <updated>2015-05-08T12:16:22+00:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Git Cheat]]></title>
     <link href="http://memoryboxes.github.io/blog/2015/01/17/git-cheat/"/>
-    <updated>2015-01-17T11:45:03+08:00</updated>
+    <updated>2015-01-17T03:45:03+00:00</updated>
     <id>http://memoryboxes.github.io/blog/2015/01/17/git-cheat</id>
     <content type="html"><![CDATA[<p>整理一下经常忘记的Git命令</p>
 
@@ -124,7 +124,7 @@ $ git diff --stat
   <entry>
     <title type="html"><![CDATA[多个git账号之间的切换]]></title>
     <link href="http://memoryboxes.github.io/blog/2014/12/07/duo-ge-gitzhang-hao-zhi-jian-de-qie-huan/"/>
-    <updated>2014-12-07T15:00:34+08:00</updated>
+    <updated>2014-12-07T07:00:34+00:00</updated>
     <id>http://memoryboxes.github.io/blog/2014/12/07/duo-ge-gitzhang-hao-zhi-jian-de-qie-huan</id>
     <content type="html"><![CDATA[<p>做过很多遍了，却总是记不住，这回从头来描述一下。</p>
 
