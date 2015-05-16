@@ -61,3 +61,8 @@ remi repository更新很快，如果你很需要htopxxx最新版本这样的话�
     yum update
 
 90%的情况会奏效
+
+## yum只下载安装包
+
+    yum -y install yum-downloadonly
+    yum install mongodb-org --downloadonly
