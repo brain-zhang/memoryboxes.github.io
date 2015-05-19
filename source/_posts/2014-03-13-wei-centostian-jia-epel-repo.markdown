@@ -66,3 +66,8 @@ remi repository更新很快，如果你很需要htopxxx最新版本这样的话�
 
     yum -y install yum-downloadonly
     yum install mongodb-org --downloadonly
+
+##  elrepo url
+
+    http://elrepo.org/tiki/tiki-index.php
+    http://elrepo.org/linux/kernel/
