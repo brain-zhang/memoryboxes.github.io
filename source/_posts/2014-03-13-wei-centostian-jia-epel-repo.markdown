@@ -72,3 +72,5 @@ remi repository更新很快，如果你很需要htopxxx最新版本这样的话�
 http://elrepo.org/tiki/tiki-index.php
 
 http://elrepo.org/linux/kernel/
+
+http://mirrors.sohu.com/centos/6.6/xen4/x86_64/Packages/
