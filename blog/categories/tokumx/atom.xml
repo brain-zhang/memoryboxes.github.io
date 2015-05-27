@@ -4,7 +4,7 @@
   <title><![CDATA[Category: TokuMx | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/tokumx/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-05-19T06:19:16+00:00</updated>
+  <updated>2015-05-27T01:23:03+00:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -168,6 +168,8 @@
 <p>这个数字会根据插入记录的离散度有所变化，但大概比例应该就是这样的。</p>
 
 <h4>总的来说，Tokumx还是只适合单机用啊，机器一多，各种毛病都来了~~~，大家如果分布式，等mongodb 2.8版本更靠谱一些。</h4>
+
+<h4>2015-05 更新:升级到 mongodb3.0.3，切换到 WiredTiger存储引擎 ，各方面工作良好，建议升级 。</h4>
 ]]></content>
   </entry>
   
