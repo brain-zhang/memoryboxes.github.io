@@ -150,3 +150,4 @@ Tokumx宣称了很多很好的[特性](http://www.tokutek.com/products/tokumx-fo
 #### 总的来说，Tokumx还是只适合单机用啊，机器一多，各种毛病都来了~~~，大家如果分布式，等mongodb 2.8版本更靠谱一些。
 
 
+#### 2015-05 更新:升级到 mongodb3.0.3，切换到 WiredTiger存储引擎 ，各方面工作良好，建议升级 。
