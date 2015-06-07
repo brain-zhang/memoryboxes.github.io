@@ -62,6 +62,8 @@ http://people.redhat.com/harald/dracut-rhel6.html#lsinitrd
 
 https://fedoraproject.org/wiki/How_to_debug_Dracut_problems
 
+### 最后的最后，实在不知道为啥了，而且你很闲，可以考虑启动时加串口设备调试
+
 #### 一些tooltip
 
 * 编译kernel的时候，make menuconfig，3.10以后的内核支持搜索某个开关后按数字键直接跳到那个开关的设置项中，这个很有用
