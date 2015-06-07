@@ -76,6 +76,6 @@ https://fedoraproject.org/wiki/How_to_debug_Dracut_problems
 
 http://free-electrons.com/blog/find-root-device/
 
-参考资料:
+其它参考资料:
 
 http://www.tuxradar.com/content/how-fix-linux-boot-problems
