@@ -37,7 +37,7 @@ kernel panic很让人心烦，启动时的panic更让人烦，没有挂上硬盘
 
 
 
-下面针对 step8，step8级别的panic提供一些瞎搞手段
+下面针对 step7，step8级别的panic提供一些瞎搞手段
 
 #### 在kernel 参数中加入调试开关，关闭ACPI，selinux
 
