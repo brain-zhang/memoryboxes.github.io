@@ -3,7 +3,7 @@ layout: post
 title: "debug kernel panic in centos"
 date: 2015-06-07 01:22:34 +0000
 comments: true
-categories: kernel panic
+categories: linux kernel panic
 ---
 
 当你面对一台新机器，出于某些原因(不是闲的慌)不得不自己编译一个内核时，会碰上kernel panic。
@@ -70,6 +70,10 @@ https://fedoraproject.org/wiki/How_to_debug_Dracut_problems
 
 * redhat系用dracut构建initrd，配置文件默认在 /usr/share/dracut/ ，如果你懒得改 initramfs，可以直接修改里面的配置文件，然后重新make install即可
 
-参考:
+* 有时候你不好确认根文件系统挂载到哪里了，可以参考这里:
+
+http://free-electrons.com/blog/find-root-device/
+
+参考资料:
 
 http://www.tuxradar.com/content/how-fix-linux-boot-problems
