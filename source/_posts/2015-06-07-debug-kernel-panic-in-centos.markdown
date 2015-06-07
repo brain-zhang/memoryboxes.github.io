@@ -62,6 +62,8 @@ http://people.redhat.com/harald/dracut-rhel6.html#lsinitrd
 
 https://fedoraproject.org/wiki/How_to_debug_Dracut_problems
 
+你可以设定rdshell，在panic之后跳入dracut提供的shell，打dmesg看看log信息。
+
 ### 最后的最后，实在不知道为啥了，而且你很闲，可以考虑启动时加串口设备调试
 
 #### 一些tooltip
