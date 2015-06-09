@@ -64,8 +64,18 @@ remi repository更新很快，如果你很需要htopxxx最新版本这样的话�
 
 ## yum只下载安装包
 
+    [RHEL5]
     yum -y install yum-downloadonly
     yum install mongodb-org --downloadonly
+    
+    [RHEL6]
+    yum install yum-plugin-downloadonly
+    yum install mongodb-org --downloadonly
+
+## yum提取已经安装的rpm包 
+
+    yum install yum-utils
+    yumdownloader <package>
 
 ##  elrepo url
 
