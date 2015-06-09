@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Yum | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/yum/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-06-07T02:26:48+00:00</updated>
+  <updated>2015-06-09T00:51:08+00:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -84,8 +84,19 @@ yum update
 
 <h2>yum只下载安装包</h2>
 
-<pre><code>yum -y install yum-downloadonly
+<pre><code>[RHEL5]
+yum -y install yum-downloadonly
 yum install mongodb-org --downloadonly
+
+[RHEL6]
+yum install yum-plugin-downloadonly
+yum install mongodb-org --downloadonly
+</code></pre>
+
+<h2>yum提取已经安装的rpm包</h2>
+
+<pre><code>yum install yum-utils
+yumdownloader &lt;package&gt;
 </code></pre>
 
 <h2>elrepo url</h2>
