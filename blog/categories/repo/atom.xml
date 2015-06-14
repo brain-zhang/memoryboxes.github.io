@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Repo | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/repo/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-06-09T00:57:36+00:00</updated>
+  <updated>2015-06-14T00:44:41+00:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -99,6 +99,10 @@ yum install mongodb-org --downloadonly
 yumdownloader &lt;package&gt;
 yumdownloader &lt;package&gt; --resolve
 </code></pre>
+
+<h2>yum升级kernel</h2>
+
+<p><a href="http://elrepo.org/tiki/kernel-ml">http://elrepo.org/tiki/kernel-ml</a></p>
 
 <h2>elrepo url</h2>
 
