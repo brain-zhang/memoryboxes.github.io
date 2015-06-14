@@ -77,7 +77,10 @@ remi repository更新很快，如果你很需要htopxxx最新版本这样的话�
     yum install yum-utils
     yumdownloader <package>
     yumdownloader <package> --resolve
+    
+## yum升级kernel
 
+http://elrepo.org/tiki/kernel-ml
 
 ##  elrepo url
 
