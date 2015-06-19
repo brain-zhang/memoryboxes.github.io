@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-06-19T02:06:44+00:00</updated>
+  <updated>2015-06-19T02:09:03+00:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -72,6 +72,15 @@ ZONE="Asia/Shanghai"
 <p><code>
 timedatectl list-timezones | grep Asia
 timedatectl set-timezone Asia/Shanghai
+</code></p>
+
+<ul>
+<li>设置系统时间</li>
+</ul>
+
+
+<p><code>
+date +"%Y%m%d%H%M%S"
 </code></p>
 
 <h2>系统状态</h2>
