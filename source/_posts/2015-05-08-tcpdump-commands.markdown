@@ -46,3 +46,18 @@ tcpdump -i eth1 pppoes -w /tmp/xxx.cap
 ```
 tcpdump -i eth1 -w /tmp/xxx.cap  -C 100m
 ```
+
+* 把后两个数据包并到一个数据包merge.pcap
+```
+mergecap -w merge.pcap 1.pcap 2.pcap
+```
+
+* 按照radius条件过滤数据包
+```
+tshark -r 1.pcap radius -w radius.pcap
+```
+
+* 按照数据包数分割一个大的数据
+```
+editcap -c 1000000 merge.pcap split01.pcap
+```
