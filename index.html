@@ -288,6 +288,33 @@
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>tcpdump -i eth1 -w /tmp/xxx.cap  -C 100m</span></code></pre></td></tr></table></div></figure>
 
+
+<ul>
+<li>把后两个数据包并到一个数据包merge.pcap</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mergecap -w merge.pcap 1.pcap 2.pcap</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>按照radius条件过滤数据包</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>tshark -r 1.pcap radius -w radius.pcap</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>按照数据包数分割一个大的数据</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>editcap -c 1000000 merge.pcap split01.pcap</span></code></pre></td></tr></table></div></figure>
+
 </div>
   
   
