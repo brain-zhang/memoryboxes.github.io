@@ -47,6 +47,12 @@ timedatectl list-timezones | grep Asia
 timedatectl set-timezone Asia/Shanghai
 ```
 
+* 设置系统时间
+
+```
+date +"%Y%m%d%H%M%S"
+```
+
 ## 系统状态
 
 * 查看系统占用句柄数
