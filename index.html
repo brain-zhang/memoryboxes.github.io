@@ -139,8 +139,46 @@
 </ul>
 
 
-<p><code>
-</code></p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</span><span class='line'>vim /etc/sysconfig/clock
+</span><span class='line'>ZONE="Asia/Shanghai"</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>centos7系列修改时区</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>timedatectl list-timezones | grep Asia
+</span><span class='line'>timedatectl set-timezone Asia/Shanghai</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>系统状态</h2>
+
+<ul>
+<li>查看系统占用句柄数</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>lsof -n|awk '{print $2}'|sort|uniq -c|sort -nr|more</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>程序</h2>
+
+<ul>
+<li>mongo导出</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mongoexport  -u crossflow -p '0701!1523#SH' -authenticationDatabase admin -d bpc -c main_app_datapath -o main_app_datapath.json</span></code></pre></td></tr></table></div></figure>
+
 </div>
   
   
@@ -394,6 +432,15 @@
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>editcap -c 1000000 merge.pcap split01.pcap</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>split pcap</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>editcap -c 100000 in.pcap out.pcap</span></code></pre></td></tr></table></div></figure>
 
 </div>
   

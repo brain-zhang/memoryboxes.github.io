@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-06-19T01:49:53+00:00</updated>
+  <updated>2015-06-19T02:06:44+00:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -59,6 +59,41 @@ curl -H "Content-Type: application/json"-d '{"username":"xyz","password":"xyz"}'
 
 
 <p><code>
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+vim /etc/sysconfig/clock
+ZONE="Asia/Shanghai"
+</code></p>
+
+<ul>
+<li>centos7系列修改时区</li>
+</ul>
+
+
+<p><code>
+timedatectl list-timezones | grep Asia
+timedatectl set-timezone Asia/Shanghai
+</code></p>
+
+<h2>系统状态</h2>
+
+<ul>
+<li>查看系统占用句柄数</li>
+</ul>
+
+
+<p><code>
+lsof -n|awk '{print $2}'|sort|uniq -c|sort -nr|more
+</code></p>
+
+<h2>程序</h2>
+
+<ul>
+<li>mongo导出</li>
+</ul>
+
+
+<p><code>
+mongoexport  -u crossflow -p '0701!1523#SH' -authenticationDatabase admin -d bpc -c main_app_datapath -o main_app_datapath.json
 </code></p>
 ]]></content>
   </entry>

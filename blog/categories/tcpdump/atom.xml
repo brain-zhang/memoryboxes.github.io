@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tcpdump | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/tcpdump/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-06-19T01:49:53+00:00</updated>
+  <updated>2015-06-19T02:06:44+00:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -64,6 +64,10 @@ tshark -r 1.pcap radius -w radius.pcap
 <li><p>按照数据包数分割一个大的数据
 <code>
 editcap -c 1000000 merge.pcap split01.pcap
+</code></p></li>
+<li><p>split pcap
+<code>
+editcap -c 100000 in.pcap out.pcap
 </code></p></li>
 </ul>
 
