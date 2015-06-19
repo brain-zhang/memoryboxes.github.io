@@ -62,3 +62,8 @@ tshark -r 1.pcap radius -w radius.pcap
 ```
 editcap -c 1000000 merge.pcap split01.pcap
 ```
+
+* split pcap
+```
+editcap -c 100000 in.pcap out.pcap
+```

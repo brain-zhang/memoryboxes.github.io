@@ -35,4 +35,30 @@ curl -H "Content-Type: application/json"-d '{"username":"xyz","password":"xyz"}'
 * centos6系列修改时区
 
 ```
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+vim /etc/sysconfig/clock
+ZONE="Asia/Shanghai"
+```
+
+* centos7系列修改时区
+
+```
+timedatectl list-timezones | grep Asia
+timedatectl set-timezone Asia/Shanghai
+```
+
+## 系统状态
+
+* 查看系统占用句柄数
+
+```
+lsof -n|awk '{print $2}'|sort|uniq -c|sort -nr|more
+```
+
+## 程序
+
+* mongo导出
+
+```
+mongoexport  -u crossflow -p '0701!1523#SH' -authenticationDatabase admin -d bpc -c main_app_datapath -o main_app_datapath.json
 ```
