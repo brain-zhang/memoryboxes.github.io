@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Repo | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/repo/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-06-22T03:19:45+00:00</updated>
+  <updated>2015-06-23T05:20:21+00:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -64,6 +64,10 @@ failovermethod=priority
 
 <pre><code>yum groupinstall "Development Tools"
 </code></pre>
+
+<h2>SCL源</h2>
+
+<p><a href="http://wiki.centos.org/AdditionalResources/Repositories/SCL">http://wiki.centos.org/AdditionalResources/Repositories/SCL</a></p>
 
 <h2>解决仓库安装失败的问题</h2>
 
