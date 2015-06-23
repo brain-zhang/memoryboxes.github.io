@@ -46,6 +46,10 @@ remi repository更新很快，如果你很需要htopxxx最新版本这样的话�
 ## 开发工具套装
 
     yum groupinstall "Development Tools"
+    
+## SCL源
+
+http://wiki.centos.org/AdditionalResources/Repositories/SCL
 
 ## 解决仓库安装失败的问题
 
