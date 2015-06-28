@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-06-23T05:20:21+00:00</updated>
+  <updated>2015-06-28T09:10:13+00:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -12,6 +12,56 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Linux Profile and Debug Tools of Performance]]></title>
+    <link href="http://memoryboxes.github.io/blog/2015/06/28/linux-profile-and-debug-tools-of-performance/"/>
+    <updated>2015-06-28T08:52:15+00:00</updated>
+    <id>http://memoryboxes.github.io/blog/2015/06/28/linux-profile-and-debug-tools-of-performance</id>
+    <content type="html"><![CDATA[<h4>用perf工具统计系统调用</h4>
+
+<p><code>
+perf top
+</code></p>
+
+<p>或者统计一段时间内的调用</p>
+
+<p><code>
+perf record -a -g -F 1000 sleep 30
+perf report -g
+</code></p>
+
+<h4>用strace 追踪某个进程的调用</h4>
+
+<p><code>
+strace -c ls
+</code></p>
+
+<p>或者attach一个进程</p>
+
+<p><code>
+strace -c -p pid
+</code></p>
+
+<h4>查看磁盘调用</h4>
+
+<p><code>
+lsof -p pid
+</code></p>
+
+<h4>磁盘负载</h4>
+
+<p><code>
+iostat -x 5 -m
+</code></p>
+
+<p>整体负载</p>
+
+<p><code>
+vmstat 5
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Linux Cheat Sheet]]></title>

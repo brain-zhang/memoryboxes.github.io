@@ -5,16 +5,17 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>About - memoryboxes blog</title>
+  <title>Linux Profile and Debug Tools of Performance - memoryboxes blog</title>
   <meta name="author" content="memoryboxes">
 
   
-  <meta name="description" content="About Apr 12th, 2015 基本信息: 姓名: 张斌
-来自： 山东淄博
-现暂居: 上海 爱好: 骑车瞎晃 教育经历: 2005 &mdash; 2009: 山东科技大学， 计算机科学与技术 专业技能 C/C++
-嵌入式开发，简单的PCB设计
-Python
-会一点 web前端(CSS &hellip;">
+  <meta name="description" content="用perf工具统计系统调用 1
+perf top 或者统计一段时间内的调用 1
+2
+perf record -a -g -F 1000 sleep 30
+perf report -g 用strace 追踪某个进程的调用 1
+strace -c ls 或者attach一个进程 1
+strace -c &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -23,7 +24,7 @@ Python
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://memoryboxes.github.io/about">
+  <link rel="canonical" href="http://memoryboxes.github.io/blog/2015/06/28/linux-profile-and-debug-tools-of-performance">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="memoryboxes blog" type="application/atom+xml">
@@ -71,94 +72,15 @@ Python
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">About</h1>
-    <p class="meta">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-04-12T11:29:00+00:00" pubdate data-updated="true">Apr 12<span>th</span>, 2015</time></p>
-  </header>
-  
-  <h2>基本信息:</h2>
-
-<hr />
-
-<ul>
-<li>姓名:     张斌</li>
-<li>来自：    山东淄博</li>
-<li>现暂居:   上海</li>
-</ul>
-
-
-<h2>爱好:</h2>
-
-<hr />
-
-<ul>
-<li>骑车瞎晃</li>
-</ul>
-
-
-<h2>教育经历:</h2>
-
-<hr />
-
-<ul>
-<li>2005 &mdash; 2009:  山东科技大学， 计算机科学与技术</li>
-</ul>
-
-
-<h2>专业技能</h2>
-
-<hr />
-
-<ul>
-<li>C/C++</li>
-<li>嵌入式开发，简单的PCB设计</li>
-<li>Python</li>
-<li>会一点 web前端(CSS/JS)技能</li>
-<li>矿山压力监测</li>
-<li>修自行车</li>
-</ul>
-
-
-<h2>workflow</h2>
-
-<hr />
-
-<ul>
-<li>Linux</li>
-<li>Vim</li>
-<li>Portel</li>
-</ul>
-
-
-<h2>职业经历</h2>
-
-<ul>
-<li>2012 &ndash; 现在: 上海， 网络数据分析软件开发</li>
-<li>2012       : 山东、内蒙古，无业，帮朋友做点事情</li>
-<li>2010 &ndash; 2011: 大连， 智能电视嵌入式开发</li>
-<li>2008 &ndash; 2010: 山东， 车间工人实习，煤矿压力监测，井下设备维护</li>
-</ul>
-
-
-  
-    <footer>
+    
+      <h1 class="entry-title">Linux Profile and Debug Tools of Performance</h1>
+    
+    
       <p class="meta">
         
-        
 
 
 
@@ -170,19 +92,107 @@ Python
   
 
 
-<time datetime="2015-04-12T11:29:00+00:00" pubdate data-updated="true">Apr 12<span>th</span>, 2015</time>
+<time datetime="2015-06-28T08:52:15+00:00" pubdate data-updated="true">Jun 28<span>th</span>, 2015</time>
+        
+        
+           | <a href="#comments">Comments</a>
         
       </p>
+    
+  </header>
+
+
+<div class="entry-content"><h4>用perf工具统计系统调用</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>perf top</span></code></pre></td></tr></table></div></figure>
+
+
+<p>或者统计一段时间内的调用</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>perf record -a -g -F 1000 sleep 30
+</span><span class='line'>perf report -g</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>用strace 追踪某个进程的调用</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>strace -c ls</span></code></pre></td></tr></table></div></figure>
+
+
+<p>或者attach一个进程</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>strace -c -p pid</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>查看磁盘调用</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>lsof -p pid</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>磁盘负载</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>iostat -x 5 -m</span></code></pre></td></tr></table></div></figure>
+
+
+<p>整体负载</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vmstat 5 </span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
       
-        <div class="sharing">
+  
+
+<span class="byline author vcard">Posted by <span class="fn">memoryboxes</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-06-28T08:52:15+00:00" pubdate data-updated="true">Jun 28<span>th</span>, 2015</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/linux/'>linux</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
   
   
   
 </div>
 
+    
+    <p class="meta">
       
-    </footer>
-  
+        <a class="basic-alignment left" href="/blog/2015/06/19/linux-cheat-sheet/" title="Previous Post: linux cheat sheet">&laquo; linux cheat sheet</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 

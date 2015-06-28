@@ -191,8 +191,14 @@
         <lastmod>2015-06-19T02:08:55+00:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://memoryboxes.github.io/blog/2015/06/28/linux-profile-and-debug-tools-of-performance/
+        </loc>
+        <lastmod>2015-06-28T09:09:49+00:00</lastmod>
+    </url>
+    <url>
         <loc>http://memoryboxes.github.io/blog/archives/</loc>
-        <lastmod>2015-06-23T05:20:06+00:00</lastmod>
+        <lastmod>2015-06-28T09:09:49+00:00</lastmod>
     </url>
     <url>
         <loc>http://memoryboxes.github.io/robots.txt</loc>
@@ -200,7 +206,7 @@
     </url>
     <url>
         <loc>http://memoryboxes.github.io/</loc>
-        <lastmod>2015-06-23T05:20:06+00:00</lastmod>
+        <lastmod>2015-06-28T09:09:49+00:00</lastmod>
     </url>
     <url>
         <loc>http://memoryboxes.github.io/about/</loc>
