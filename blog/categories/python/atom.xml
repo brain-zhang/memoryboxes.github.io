@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-06-28T09:10:13+00:00</updated>
+  <updated>2015-07-07T01:02:26+00:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -201,6 +201,10 @@ class Singleton(Borg):
 <p>  3、能提供组件级的识别，比如某个button，某个搜索框等等，一张截图里面如果所有指定的组件都OK，我们就认为是OK的。</p></li>
 </ul>
 
+
+<p>PS:已经出现了类似的开源项目:</p>
+
+<p><a href="https://github.com/Huddle/PhantomCSS">https://github.com/Huddle/PhantomCSS</a></p>
 
 <p>最后感概下，Pycon一年比一年进步，志愿者们功不可没。对于他们的工作，怎么赞誉都不过分。非常感谢!</p>
 ]]></content>
