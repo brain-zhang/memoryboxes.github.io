@@ -93,3 +93,7 @@ http://elrepo.org/tiki/tiki-index.php
 http://elrepo.org/linux/kernel/
 
 http://mirrors.sohu.com/centos/6.6/xen4/x86_64/Packages/
+
+## mongodb RPM repo
+
+https://repo.mongodb.org/yum/redhat
