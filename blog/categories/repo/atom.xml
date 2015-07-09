@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Repo | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/repo/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-07-07T01:02:26+00:00</updated>
+  <updated>2015-07-09T01:53:27+00:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -115,6 +115,10 @@ yumdownloader &lt;package&gt; --resolve
 <p><a href="http://elrepo.org/linux/kernel/">http://elrepo.org/linux/kernel/</a></p>
 
 <p><a href="http://mirrors.sohu.com/centos/6.6/xen4/x86_64/Packages/">http://mirrors.sohu.com/centos/6.6/xen4/x86_64/Packages/</a></p>
+
+<h2>mongodb RPM repo</h2>
+
+<p><a href="https://repo.mongodb.org/yum/redhat">https://repo.mongodb.org/yum/redhat</a></p>
 ]]></content>
   </entry>
   
