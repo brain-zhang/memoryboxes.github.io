@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Collections | memoryboxes blog]]></title>
   <link href="http://memoryboxes.github.io/blog/categories/collections/atom.xml" rel="self"/>
   <link href="http://memoryboxes.github.io/"/>
-  <updated>2015-07-09T01:53:27+00:00</updated>
+  <updated>2015-07-12T07:02:21+00:00</updated>
   <id>http://memoryboxes.github.io/</id>
   <author>
     <name><![CDATA[memoryboxes]]></name>
@@ -25,69 +25,7 @@
 
 <p>就很方便删除了。</p>
 
-<p><div><script src='https://gist.github.com/9242308.js'></script>
-<noscript><pre><code>#!/bin/bash
-# remove mongodb&#39;s collections with command &quot;mongn rm app*&quot;
-# Usage `mongorm &lt;-c collections*&gt; &lt;-d dababase&gt;`
-
-E_BADARGS=85
-E_NOFILE=86
-
-DATABASE=&#39;&#39;
-COLLECTIONS=&#39;&#39;
-
-while getopts &quot;c:d:h&quot; arg
-do
-        case $arg in
-             c)
-                echo &quot;-c $OPTARG&quot;
-                COLLECTIONS=$OPTARG
-                ;;
-             d)
-                echo &quot;-d $OPTARG&quot;
-                DATABASE=$OPTARG
-                ;;
-             h)
-                 echo &quot;mongorm &lt;-d database&gt; &lt;-c collections&gt;&quot;
-                 echo &quot;for exp:&quot;
-                 echo &quot;        mongorm -d bpc -c app*&quot;
-                 ;;
-             ?)
-                echo &quot;unkonw argument&quot;
-        exit 1
-        ;;
-        esac
-done
-
-if [[ -z &quot;$DATABASE&quot; ]]
-    # Correct number of arguments passed to script?
-then
-    echo &#39;Usage: -d database&#39;
-    echo &#39;please do mongorm.sh -h to get more info&#39;
-    exit $E_BADARGS
-fi
-
-if [[ -z &quot;$COLLECTIONS&quot; ]]
-    # Correct number of arguments passed to script?
-then
-    echo &#39;Usage: -c collections&#39;
-    echo &#39;please do mongorm.sh -h to get more info&#39;
-    exit $E_BADARGS
-fi
-
-mongojs_rm_function=`cat &lt;&lt; EOF
-db.getCollectionNames().forEach(function(c) {
-    if(c.match(&quot;$COLLECTIONS&quot;)) {
-                db.getCollection(c).drop();
-                    }
-                  });
-EOF
-`
-echo $mongojs_rm_function&gt;remove.js
-
-mongo 127.0.0.1:27017/$DATABASE remove.js
-rm -rf remove.js </code></pre></noscript></div>
-</p>
+<p>{% gist 9242308 %}</p>
 ]]></content>
   </entry>
   
