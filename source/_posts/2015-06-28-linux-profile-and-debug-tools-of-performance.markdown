@@ -43,7 +43,7 @@ lsof -p pid
 iostat -x 5 -m
 ```
 
-整体负载
+整体负载统计
 
 ```
 vmstat 5 
