@@ -78,3 +78,7 @@ redhat系的的安装界面 一代比一代漂亮，也一代比一代依赖鼠�
 * centos7 界面比较花哨了，都做到一个安装界面里，鼠标操作很方便，键盘操作很痛苦，我曾经在没有鼠标的环境下，硬是花了半个小时装了个centos7.1U
 
 孰是孰非，让后来人评说。
+
+#### xfs resize blocksize
+
+* xfs做文件系统的时候，试图mkfs.xfs -b --size=xxx ，不生效，默认redhat系的page_size设置的就是4K，xfs的blocksize必须不大于这个size，如果要设大，只能重新编译kernel
