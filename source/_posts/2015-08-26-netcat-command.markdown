@@ -121,7 +121,32 @@ tar -cvf – dir_name| bzip2 -z | nc -l 1234
 ```
 通过bzip2压缩
 
-Client
+SERVER B:
 
-$nc -n 172.31.100.7 1567 | bzip2 -d |tar -xvf -
+```
+nc -n 192.168.100.100 1234 | bzip2 -d |tar -xvf -
+```
 使用bzip2解压
+
+
+#### 加密你通过网络发送的数据
+
+如果你担心你在网络上发送数据的安全，你可以在发送你的数据之前用如mcrypt的工具加密。
+
+SERVER A:
+
+```
+nc 192.168.100.101 1234 | mcrypt –flush –bare -F -q -d -m ecb > file.txt
+```
+使用mcrypt工具加密数据。
+
+SERVER B:
+
+```
+mcrypt –flush –bare -F -q -m ecb < file.txt | nc -l 1234
+```
+使用mcrypt工具解密数据。
+
+以上两个命令会提示需要密码，确保两端使用相同的密码。
+
+这里我们是使用mcrypt用来加密，使用其它任意加密工具都可以。
