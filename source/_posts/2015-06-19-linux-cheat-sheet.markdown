@@ -68,3 +68,18 @@ lsof -n|awk '{print $2}'|sort|uniq -c|sort -nr|more
 ```
 mongoexport  -u crossflow -p '0701!1523#SH' -authenticationDatabase admin -d bpc -c main_app_datapath -o main_app_datapath.json
 ```
+
+## shell 处理
+
+* 获取当前路径
+
+```
+export CURRENT_PATH=$(cd "$(dirname "$0")"; pwd)
+```
+
+* 检查CPU load
+
+```
+CURRENT_LOAD=`top -b -n 1|grep 'load average'|awk '{print $12}'|sed 's/,//'`
+declare -i current_load=${CURRENT_LOAD%.*}
+```
