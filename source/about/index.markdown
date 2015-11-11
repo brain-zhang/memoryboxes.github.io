@@ -44,7 +44,7 @@ footer: true
 
 * Linux
 * Vim
-* Portel
+* Windows & Portel
 
 
 ## 职业经历
