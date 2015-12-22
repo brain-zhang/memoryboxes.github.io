@@ -34,7 +34,7 @@ Q: 为什么网卡名字这么奇怪，我要原来的简单明了的办法!!!
 
 A: 呃，好吧，我觉得虽然有一堆理由，但是网卡名字这个改变可能真的是没有产品经理的弊端。你想回到从前，很简单:
 
-* i在 grub 加入 net.ifnames=0 and biosdevname=0 作为内核参数
+* 在 grub 加入 net.ifnames=0 and biosdevname=0 作为内核参数
 
 * 在 /etc/sysconfig/network-scripts/ 内把你的网络卡配置文件换名为 ifcfg-ethX
 
