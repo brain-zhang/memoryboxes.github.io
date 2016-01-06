@@ -63,6 +63,21 @@ $ git push --tags
 $ git fetch origin tag <tagname>
 ```
 
+## 合并branch上的指定文件
+
+branches/A 上修改了一个文件A.h，新增了一个文件B.h，删除了一个文件C.h。
+
+```
+$ git checkout master                                               //首先切换到master分支
+
+$ git checkout -p branches/A A.h                                    //不切换branch，把RemLanbranches/A上的A.h更新到当前分支
+
+$ git checkout branches/A B.h                                       //去掉-p参数，新增该B.h文件
+
+$ rm C.h                                                            //删除文件目前还没找到其他办法，但效果是一样的
+```
+
+
 ## 分支的衍合
 
 参考:http://git-scm.com/docs/git-rebase
