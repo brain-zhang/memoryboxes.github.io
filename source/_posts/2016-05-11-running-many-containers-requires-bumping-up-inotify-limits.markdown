@@ -10,5 +10,5 @@ when we see `Too many open files - failed to inotify_init`, we could either bump
 
 just exec:
 
-    fs.file-max=64000
+    sysctl -w fs.file-max=64000
     sysctl -w fs.inotify.max_user_instances=8192
