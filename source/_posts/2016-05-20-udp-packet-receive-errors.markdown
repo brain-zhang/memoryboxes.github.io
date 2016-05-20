@@ -7,9 +7,11 @@ categories: network
 ---
 ## Issue
 
-    netstat -s output shows high number of Udp: packet receive errors
-    Getting high number of UDP packet drops or loss
-    SNMP trap issue :- SNMP trap seems to be fluctuating on my RHEL server.
+* netstat -s output shows high number of Udp: packet receive errors
+
+* Getting high number of UDP packet drops or loss
+
+* SNMP trap issue :- SNMP trap seems to be fluctuating on my RHEL server.
 
 ## Resolution
 
@@ -62,7 +64,7 @@ Note this means the application is not receiving from the buffer fast enough. It
 
 The statistic Udp: packet receive errors is reporting the SNMP MIB called UDP_MIB_INERRORS.
 
-## commands
+## Commands
 
 * run udp server
 
