@@ -7,11 +7,11 @@ categories: network
 ---
 ## Issue
 
-* netstat -s output shows high number of Udp: packet receive errors
+netstat -s output shows high number of Udp: packet receive errors
 
-* Getting high number of UDP packet drops or loss
+Getting high number of UDP packet drops or loss
 
-* SNMP trap issue :- SNMP trap seems to be fluctuating on my RHEL server.
+SNMP trap issue :- SNMP trap seems to be fluctuating on my RHEL server.
 
 ## Resolution
 
