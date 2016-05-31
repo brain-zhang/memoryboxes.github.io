@@ -15,8 +15,6 @@ categories: crontab linux
     * 脚本中涉及文件路径时写全局路径；
     * 脚本执行要用到java或其他环境变量时，通过source命令引入环境变量，如：
 
-        cat start_cbp.sh
-
         #!/bin/sh
         source /etc/profile
         export RUN_CONF=/home/xxxx/boss.conf
@@ -28,11 +26,7 @@ categories: crontab linux
 
 * 新创建的cron job，不会马上执行，至少要过2分钟才执行。如果重启cron则马上执行。
 
-* 每条 JOB 执行完毕之后，系统会自动将输出发送邮件给当前系统用户。日积月累，非常的多，甚至会撑爆整个系统。所以每条 JOB 命令后面进行重定向处理是非常必要的
-
-    >/dev/null 2>&1
-
-前提是对 Job 中的命令需要正常输出已经作了一定的处理, 比如追加到某个特定日志文件。
+* 每条 JOB 执行完毕之后，系统会自动将输出发送邮件给当前系统用户。日积月累，非常的多，甚至会撑爆整个系统。所以每条 JOB 命令后面进行重定向处理是非常必要的: `>/dev/null 2>&1`, 前提是对 Job 中的命令需要正常输出已经作了一定的处理, 比如追加到某个特定日志文件。
 
 * 当crontab突然失效时，可以尝试`/etc/init.d/crond restart`解决问题。或者查看日志看某个job有没有执行/报错 `tail -f /var/log/cron`。
 
