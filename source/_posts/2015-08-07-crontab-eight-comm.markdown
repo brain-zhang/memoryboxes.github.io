@@ -15,10 +15,10 @@ categories: crontab linux
     * 脚本中涉及文件路径时写全局路径；
     * 脚本执行要用到java或其他环境变量时，通过source命令引入环境变量，如：
 
-        #!/bin/sh
-        source /etc/profile
-        export RUN_CONF=/home/xxxx/boss.conf
-        /usr/local/jboss-4.0.5/bin/run.sh -c mev &
+            #!/bin/sh
+            source /etc/profile
+            export RUN_CONF=/home/xxxx/boss.conf
+            /usr/local/jboss-4.0.5/bin/run.sh -c mev &
 
 * 当手动执行脚本OK，但是crontab死活不执行时。这时必须大胆怀疑是环境变量惹的祸，并可以尝试在crontab中直接引入环境变量解决问题。如：
 
