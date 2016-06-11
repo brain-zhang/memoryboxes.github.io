@@ -26,10 +26,10 @@ categories: TCP/IP
 
 一个简单的路由表
 
-Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-default         192.168.159.2   0.0.0.0         UG    0      0        0 eth0
-192.168.159.0   *               255.255.255.0   U     0      0        0 eth0
-192.168.159.0   *               255.255.255.0   U     0      0        0 eth1
+    Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+    default         192.168.159.2   0.0.0.0         UG    0      0        0 eth0
+    192.168.159.0   *               255.255.255.0   U     0      0        0 eth0
+    192.168.159.0   *               255.255.255.0   U     0      0        0 eth1
 
 注意Flags一列，它有5种不同的标志:
 
