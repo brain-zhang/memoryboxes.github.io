@@ -13,6 +13,11 @@ tcpdump 的抓包保存到文件的命令参数是-w xxx.cap
 tcpdump -i eth1 -w /tmp/xxx.pcap
 ```
 
+* 抓eth1的包，用ip+port的形式显示通信对
+```
+tcpdump -i eth1 -nn -w /tmp/xxx.pcap
+```
+
 * 抓 192.168.1.123的包
 ```
 tcpdump -i eth1 host 192.168.1.123 -w /tmp/xxx.cap
