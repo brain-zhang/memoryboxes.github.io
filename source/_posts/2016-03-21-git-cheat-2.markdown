@@ -330,6 +330,9 @@ http://git-scm.com/docs/git-rebase
     # 如果不是查看每个文件的详细差别，而是统计一下有哪些文件被改动，有多少行被改 动，就可以使用‘--stat' 参数。
     git diff --stat
 
+    # 显示两次更改之间所有的文件名
+    git diff-tree -r --no-commit-id --name-only --diff-filter=ACMRTD HEAD HEAD^
+
 ## 其他
 
     # 生成一个可供发布的压缩包
