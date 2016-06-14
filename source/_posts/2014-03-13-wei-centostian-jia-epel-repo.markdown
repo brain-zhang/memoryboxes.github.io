@@ -46,7 +46,7 @@ remi repository更新很快，如果你很需要htopxxx最新版本这样的话�
 ## 开发工具套装
 
     yum groupinstall "Development Tools"
-    
+
 ## SCL源
 
 http://wiki.centos.org/AdditionalResources/Repositories/SCL
@@ -71,17 +71,17 @@ http://wiki.centos.org/AdditionalResources/Repositories/SCL
     [RHEL5]
     yum -y install yum-downloadonly
     yum install mongodb-org --downloadonly
-    
+
     [RHEL6]
     yum install yum-plugin-downloadonly
-    yum install mongodb-org --downloadonly
+    yum install --downloadonly --downloaddir=. mongodb-org
 
-## yum提取已经安装的rpm包 
+## yum提取已经安装的rpm包
 
     yum install yum-utils
     yumdownloader <package>
     yumdownloader <package> --resolve
-    
+
 ## yum升级kernel
 
 http://elrepo.org/tiki/kernel-ml
