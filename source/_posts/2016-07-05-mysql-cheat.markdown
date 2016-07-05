@@ -22,6 +22,6 @@ $ mysql -u root -p
 ```
 $ mysqld --skip-grant-tables
 $ mysql -u root mysql
-$mysql> UPDATE user SET Password=PASSWORD('my_password') where USER='root';
-$mysql> FLUSH PRIVILEGES;
+$ mysql> UPDATE user SET Password=PASSWORD('my_password') where USER='root';
+$ mysql> FLUSH PRIVILEGES;
 ```
