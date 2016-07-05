@@ -14,6 +14,11 @@ categories: mysql
 $ mysql -u root -p
 ```
 
+# list
+```
+$ show DATABASES;
+$ show TABLES;
+```
 
 # Error
 
