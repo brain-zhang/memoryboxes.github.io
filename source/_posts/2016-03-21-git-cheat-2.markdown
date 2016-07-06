@@ -81,6 +81,12 @@ Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置�
     # 列出所有本地分支
     git branch
 
+    # 克隆并在本地建立所有分支
+
+    for branch in `git branch -a | grep remotes | grep -v HEAD | grep -v master`; do
+        git branch --track ${branch##*/} $branch
+    done
+
     # 列出所有远程分支
     git branch -r
 
