@@ -83,3 +83,9 @@ export CURRENT_PATH=$(cd "$(dirname "$0")"; pwd)
 CURRENT_LOAD=`top -b -n 1|grep 'load average'|awk '{print $12}'|sed 's/,//'`
 declare -i current_load=${CURRENT_LOAD%.*}
 ```
+
+* find 匹配多个pattern
+
+```
+find /usr/lib64 -name '*.so' -o -name '*.so.1'
+```
