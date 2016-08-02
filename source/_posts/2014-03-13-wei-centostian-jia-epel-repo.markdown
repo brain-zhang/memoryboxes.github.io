@@ -97,3 +97,45 @@ http://mirrors.sohu.com/centos/6.6/xen4/x86_64/Packages/
 ## mongodb RPM repo
 
 https://repo.mongodb.org/yum/redhat
+
+
+## rpm 常用命令
+
+* 重装某个包
+
+```
+rpm -ivh --replacepkgs xxx.rpm
+```
+
+* 修改prefix
+
+```
+rpm -qp --queryformat "%{defaultprefix}\n" <packagefile>
+rpm -ivh --prefix <packagefile>
+```
+
+* 查询某个包包含的文件
+
+```
+rpm -ql <packagefile>
+rpm -qs <packagefile>
+```
+
+* 查询某个包包含的配置文件
+
+```
+rpm -qc <packagefile>
+```
+
+* 查询某个包安装时要执行的脚本文件
+
+```
+rpm -q --scripts <packagefile>
+```
+
+
+* 查询某个文件属于哪个包
+
+```
+rpm -qf <filepath>
+```
