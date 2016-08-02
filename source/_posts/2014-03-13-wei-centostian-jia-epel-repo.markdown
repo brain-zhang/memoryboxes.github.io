@@ -139,3 +139,20 @@ rpm -q --scripts <packagefile>
 ```
 rpm -qf <filepath>
 ```
+
+* 查询某个可执行文件的配置文件和log文件
+
+```
+rpm -qcf <filepath>
+```
+
+* 寻找最近安装的包
+```
+find /bin -type f -mtime -14 | rpm -qF
+rpm -qa --queryformat '%{installtime} %{name}-%{version}-%{release} %{installtime:date}\n' | sort -nr +1 | sed -e 's/^[^ ]* //'
+```
+
+* 寻找最大的安装包
+```
+rpm -qa --queryformat '%{name-%{version}-%{release} %{size}\n' | sort -nr +1}'
+```
