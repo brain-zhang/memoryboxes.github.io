@@ -156,3 +156,8 @@ rpm -qa --queryformat '%{installtime} %{name}-%{version}-%{release} %{installtim
 ```
 rpm -qa --queryformat '%{name-%{version}-%{release} %{size}\n' | sort -nr +1}'
 ```
+
+* 解压一个rpm文件
+```
+rpm2cpio xxx.rpm | cpio -div
+```
