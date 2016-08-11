@@ -98,6 +98,10 @@ http://mirrors.sohu.com/centos/6.6/xen4/x86_64/Packages/
 
 https://repo.mongodb.org/yum/redhat
 
+## 163镜像源
+
+http://mirrors.163.com/.help/centos.html
+
 
 ## rpm 常用命令
 
