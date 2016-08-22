@@ -10,25 +10,25 @@ categories: linux
 ```
 #!/bin/bash
 
-# sdpmclient - Startup script for sdpmclient
+# testclient - Startup script for testclient
 
 # chkconfig: 35 85 15
-# description: sdpmclient is your openstack VMS monitor and ovs auto config bot.
-# processname: sdpmclient
-# config: /etc/sdpmclient.conf
+# description: testclient is your openstack VMS monitor and ovs auto config bot.
+# processname: testclient
+# config: /etc/testclient.conf
 
 . /etc/rc.d/init.d/functions
 
 # NOTE: if you change any OPTIONS here, you get what you pay for:
 # this script assumes all options are in the config file.
-CONFIGFILE="/etc/sdpmclient.conf"
+CONFIGFILE="/etc/testclient.conf"
 
-SDPMCLIENT=/usr/local/bin/sdpmclient
+testCLIENT=/usr/local/bin/testclient
 
-SDPMCLIENT_USER=netissdpm
-SDPMCLIENT_GROUP=netissdpm
+testCLIENT_USER=helloworldtest
+testCLIENT_GROUP=helloworldtest
 
-# things from sdpmclient.conf get there by sdpmclient reading it
+# things from testclient.conf get there by testclient reading it
 PIDFILEPATH=`awk -F'[:=]' -v IGNORECASE=1 '/^[[:blank:]]*(processManagement\.)?pidFilePath[[:blank:]]*[:=][[:blank:]]*/{print $2}' "$CONFIGFILE" | tr -d "[:blank:]\"'" | aw
 PIDDIR=`dirname $PIDFILEPATH`
 LOGFILEPATH=`awk -F'[:=]' -v IGNORECASE=1 '/^[[:blank:]]*(processManagement\.)?logFilePath[[:blank:]]*[:=][[:blank:]]*/{print $2}' "$CONFIGFILE" | tr -d "[:blank:]\"'" | aw
@@ -40,33 +40,33 @@ start()
 {
   # Make sure the default pidfile directory exists
   if [ ! -d $PIDDIR ]; then
-    install -d -m 0755 -o $SDPMCLIENT_USER -g $SDPMCLIENT_GROUP $PIDDIR
+    install -d -m 0755 -o $testCLIENT_USER -g $testCLIENT_GROUP $PIDDIR
   fi
   if [ ! -d $LOGDIR ]; then
-    install -d -m 0755 -o $SDPMCLIENT_USER -g $SDPMCLIENT_GROUP $LOGDIR
+    install -d -m 0755 -o $testCLIENT_USER -g $testCLIENT_GROUP $LOGDIR
   fi
 
-  echo -n $"Starting sdpmclient: "
-  daemon --pidfile "$PIDFILEPATH" --user "$SDPMCLIENT_USER" --check $SDPMCLIENT "$SDPMCLIENT $OPTIONS >$LOGFILEPATH 2>&1 &"
+  echo -n $"Starting testclient: "
+  daemon --pidfile "$PIDFILEPATH" --user "$testCLIENT_USER" --check $testCLIENT "$testCLIENT $OPTIONS >$LOGFILEPATH 2>&1 &"
 
   RETVAL=$?
-  pid=`ps -A x | grep $SDPMCLIENT | grep -v grep | cut -d" " -f1 | head -n 1`
+  pid=`ps -A x | grep $testCLIENT | grep -v grep | cut -d" " -f1 | head -n 1`
   if [ -n "$pid" ]; then
           echo $pid > $PIDFILEPATH
   fi
 
-  [ $RETVAL -eq 0 ] && touch /var/lock/subsys/sdpmclient
+  [ $RETVAL -eq 0 ] && touch /var/lock/subsys/testclient
   echo
   return $RETVAL
 }
 
 stop()
 {
-  echo -n $"Stopping sdpmclient: "
-  sdpmclient_killproc "$PIDFILEPATH" $SDPMCLIENT
+  echo -n $"Stopping testclient: "
+  testclient_killproc "$PIDFILEPATH" $testCLIENT
   RETVAL=$?
   echo
-  [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/sdpmclient
+  [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/testclient
 }
 
 restart () {
@@ -79,7 +79,7 @@ restart () {
 # Built-in killproc() (found in /etc/init.d/functions) is on certain versions of Linux
 # where it sleeps for the full $delay seconds if process does not respond fast enough to
 # the initial TERM signal.
-sdpmclient_killproc()
+testclient_killproc()
 {
   local pid_file=$1
   local procname=$2
@@ -121,7 +121,7 @@ case "$1" in
     [ -f $PIDFILEPATH] && restart || :
     ;;
   status)
-    status $SDPMCLIENT
+    status $testCLIENT
     RETVAL=$?
     ;;
   *)
@@ -141,10 +141,10 @@ node = 1
 heartbeat_period = 5
 port_sync_period = 10
 config_period = 60
-ovslog_filepath = /var/lib/netissdpm/log/sdpmovs.log
+ovslog_filepath = /var/lib/helloworldtest/log/testovs.log
 ovslog_maxbytes = 10485760
 
 [system]
-pidFilePath=/var/lib/netissdpm/run/sdpmclient.pid
-logFilePath=/var/lib/netissdpm/log/sdpmclient.log
+pidFilePath=/var/lib/helloworldtest/run/testclient.pid
+logFilePath=/var/lib/helloworldtest/log/testclient.log
 ```
