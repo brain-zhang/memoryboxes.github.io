@@ -133,7 +133,7 @@ exit $RETVAL
 ```
 
 
-## systemd startup script
+## systemd startup script template
 ```
 [config]
 server = tcp://localhost:35555
