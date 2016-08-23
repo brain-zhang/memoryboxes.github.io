@@ -89,3 +89,11 @@ declare -i current_load=${CURRENT_LOAD%.*}
 ```
 find /usr/lib64 -name '*.so' -o -name '*.so.1'
 ```
+
+## 文本处理
+
+* 根据某个字段做uniq
+
+```
+sort -u -t, -k1 file
+```
