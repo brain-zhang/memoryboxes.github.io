@@ -57,9 +57,9 @@ categories: cisco
 
 * 查看现有配置
 
-``
+```
     show running-config
-``
+```
 
 * 批量修改vlan：端口37-39改成vlan15。端口41-46改成trunk
 
