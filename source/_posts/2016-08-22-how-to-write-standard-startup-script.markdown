@@ -5,8 +5,7 @@ date: 2016-08-22 09:09:06 +0800
 comments: true
 categories: linux
 ---
-
-centos6中的init.d systemV script升级为systemd startup script，让我们有个easy setup的模板
+centos6中的init.d systemV script升级为systemd startup script，让我们有个easy setup的模板...
 
 模板实例:
 <!-- more -->

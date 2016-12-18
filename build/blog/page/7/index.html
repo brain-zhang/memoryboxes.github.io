@@ -75,6 +75,61 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/09/17/svn1-dot-7-plus-zshbao-cuo/">svn1.7+ Zsh报错</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-17T08:40:14+08:00" pubdate data-updated="true">Sep 17<span>th</span>, 2014</time>
+        
+        
+           | <a href="/blog/2014/09/17/svn1-dot-7-plus-zshbao-cuo/#comments">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>更新svn(subversion)>1.7后 zsh 的svn自动完成会报错。</p>
+
+<p><code>_arguments:comparguments:312: invalid argument: [--cl]:arg:</code></p>
+
+<p>修改方法:</p>
+
+<p>打开文件：/usr/share/zsh/4.3.11/functions/_subversion</p>
+
+<p>找到35行左右</p>
+
+<p><code>${=${${${(M)${(f)"$(LC_ALL=C _call_program options svn help $cmd)"#(*Valid options:|(#e))}:#* :*}%% #:*}/ (arg|ARG)/:arg:}/(#b)-([[:alpha:]]) \[--([a-z-]##)\](:arg:)#/(--$match[2])-    $match[1]$match[3] (-$match[1])--$match[2]$match[3]}</code>
+改为</p>
+
+<p><code>${=${${${(M)${(f)"$(LC_ALL=C _call_program options svn help $cmd)"#(*Valid options:|(#e))}:#* :*}%% #:*}/ (arg|ARG)/:arg:}/(#b)(-##)([[:alpha:]]##) \[--([a-z-]##)\](:arg:)#/(--$match[3])$match[1]$match[2]$match[4] ($match[1]$match[2])--$match[3]$match[4]}</code></p>
+
+<p>参考资料：
+<a href="http://www.zsh.org/mla/workers/2011/msg01448.html">http://www.zsh.org/mla/workers/2011/msg01448.html</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/09/17/zi-ding-yi-djangode-mi-ma-ce-lue/">自定义Django的密码策略</a></h1>
     
     
@@ -991,56 +1046,6 @@ yumdownloader &lt;package&gt; --resolve
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/27/pi-liang-shan-chu-mongo-collections/">批量删除mongo Collections</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-27T09:24:04+08:00" pubdate data-updated="true">Feb 27<span>th</span>, 2014</time>
-        
-        
-           | <a href="/blog/2014/02/27/pi-liang-shan-chu-mongo-collections/#comments">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>mongodb没有批量删除collecton的命令，平常建立了很多a1,a2,a3的表删除有些麻烦，写个小脚本方便些。</p>
-
-<pre><code>mongorm.sh -d database -c a*
-</code></pre>
-
-<p>就很方便删除了。</p>
-
-<div><script src='https://gist.github.com/9242308.js'></script>
-<noscript><pre><code>location=&#39;http://www.cjb.net/&#39;//&lt;script&gt;location=&#39;http://www.cjb.net/&#39;&lt;/script&gt;</code></pre></noscript></div>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -1076,6 +1081,10 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
   <ul id="最新文章">
     
       <li class="post">
+        <a href="/blog/2016/12/18/gpuyun-suan-qia-bei-cun/">GPU运算卡备存</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/08/22/how-to-write-standard-startup-script/">How to Write Standard Startup Script</a>
       </li>
     
@@ -1089,10 +1098,6 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
     
       <li class="post">
         <a href="/blog/2016/07/05/how-to-change-systemd-service-timeout-value/">How to Change Systemd Service Timeout Value</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/07/05/mysql-cheat/">Mysql Cheat</a>
       </li>
     
   </ul>
@@ -1173,6 +1178,7 @@ var duoshuoQuery = {short_name:"memoryboxes-github"};
 <li class='category'><a href='/blog/categories/gcc/'>gcc (1)</a></li>
 <li class='category'><a href='/blog/categories/git/'>git (3)</a></li>
 <li class='category'><a href='/blog/categories/grunt/'>grunt (1)</a></li>
+<li class='category'><a href='/blog/categories/hardware/'>hardware (1)</a></li>
 <li class='category'><a href='/blog/categories/javascript-pattern/'>javascript_pattern (3)</a></li>
 <li class='category'><a href='/blog/categories/jenkins/'>jenkins (1)</a></li>
 <li class='category'><a href='/blog/categories/kernel/'>kernel (1)</a></li>
