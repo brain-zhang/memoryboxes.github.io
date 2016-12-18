@@ -6,6 +6,12 @@ comments: true
 categories: linux
 ---
 
+centos6中的init.d systemV script升级为systemd startup script，让我们有个easy setup的模板
+{:.info}
+
+模板实例:
+<!-- more -->
+
 ## systemV init script template
 ```
 #!/bin/bash
