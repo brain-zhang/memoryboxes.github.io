@@ -8,6 +8,8 @@ categories: Linux
 
 做Raid，用到了megacli，又学了一套命令.
 
+<!-- more -->
+
 * 显示Rebuid进度
 
 ```
