@@ -209,6 +209,6 @@ http://mli.github.io/gpu/2016/01/17/build-gpu-clusters/
 
 持续关注能耗比最小的hash算法手段~~~~
 
-最后，付一个硬件天梯排行榜测评网站:
+最后，附一个硬件天梯排行榜测评网站:
 
 http://www.passmark.com/
