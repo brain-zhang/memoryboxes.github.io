@@ -1,7 +1,7 @@
 function getNav() {
   var mainNav = $('ul.main-navigation, ul[role=main-navigation]').before('<fieldset class="mobile-nav">')
   var mobileNav = $('fieldset.mobile-nav').append('<select>');
-  mobileNav.find('select').append('<option value="">Navigate&hellip;</option>');
+  mobileNav.find('select').append('<option value="">网站导航&hellip;</option>');
   var addOption = function(i, option) {
     mobileNav.find('select').append('<option value="' + this.href + '">&raquo; ' + $(this).text() + '</option>');
   }
@@ -17,11 +17,7 @@ function addSidebarToggler() {
     $('#content').append('<span class="toggle-sidebar"></span>');
     $('.toggle-sidebar').bind('click', function(e) {
       e.preventDefault();
-      if ($('body').hasClass('collapse-sidebar')) {
-        $('body').removeClass('collapse-sidebar');
-      } else {
-        $('body').addClass('collapse-sidebar');
-      }
+      $('body').toggleClass('collapse-sidebar');
     });
   }
   var sections = $('aside.sidebar > section');
