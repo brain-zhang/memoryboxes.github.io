@@ -87,7 +87,7 @@ Alice要安全的给Bob钥匙，就得放在加锁的盒子里，但是要打开
 
 当然，世上的无奈，除了马云不能灌篮这类事情外，大部分都是能解决的。
 
-在我们想出解决办法外，先放一张拽拽的图片镇楼:
+在我们想出解决办法之前，先放一张拽拽的图片镇楼:
 
 ![非对称加密发明人](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/201612/bg1.jpg)
 
