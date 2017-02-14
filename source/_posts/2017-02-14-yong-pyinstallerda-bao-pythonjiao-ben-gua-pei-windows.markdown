@@ -19,5 +19,5 @@ categories: windows
     python pyinstaller.py -c -F <xxxx.py> -o <sdk>
 
 * <xxxx.py> 为脚本名称
-* <sdk>为三方包目录
+* <sdk> 为三方包目录
 
