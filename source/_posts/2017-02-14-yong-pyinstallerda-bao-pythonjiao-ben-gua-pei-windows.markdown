@@ -16,7 +16,7 @@ categories: windows
 
 然后执行:
 
-    python pyinstaller.py -c -F <xxxx.py> -o <sdk>
+    python pyinstaller.py -c -F <xxxx.py> -p <sdk>
 
 * <xxxx.py> 为脚本名称
 * <sdk> 为三方包目录
