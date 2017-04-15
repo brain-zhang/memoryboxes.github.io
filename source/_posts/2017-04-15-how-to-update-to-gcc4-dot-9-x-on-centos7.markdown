@@ -21,9 +21,11 @@ CentOS下升级gcc版本有两个途径，一个是添加其他源进行自动�
     gpgcheck=1
     gpgkey=https://getfedora.org/static/34EC9CBA.txt
 
-然后使用 yum install gcc gcc-c++ -y 进行安装，注意，如果你要用这种方法安装gcc，那在第1步就干脆不要安装gcc和gcc-c++包了。
+然后执行
 
-### 使用Devtoolset-4升级，详细方法见这里
+    yum update gcc gcc-c++
+
+### 使用Devtoolset-4升级
 
     yum install centos-release-scl
     yum install devtoolset-4-gcc*
