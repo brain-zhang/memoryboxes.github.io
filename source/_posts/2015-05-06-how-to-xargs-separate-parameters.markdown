@@ -8,9 +8,7 @@ categories: shell
 
 做过很多遍了，每次还是得现查，记一下:
 
-```
-echo "'param 1' 'param 2'" | xargs -n1 | xargs -I@ echo \[@\] \[@\]
-```
+    echo "'param 1' 'param 2'" | xargs -n1 | xargs -I@ echo \[@\] \[@\]
 
 output:
 
@@ -18,4 +16,9 @@ output:
 [param 1] [param 1]
 [param 2] [param 2]
 ```
+
+## xargs里面替换字符串
+
+    ls|xargs -I @  echo "mv @ @.pack"|sed 's/.json.pack.pack/.pack/g'|bash
+
 
