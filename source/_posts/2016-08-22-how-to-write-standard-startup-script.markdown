@@ -142,13 +142,7 @@ exit $RETVAL
 #### helloworld.conf
 
 ```
-server = tcp://localhost:35555
 node = 1
-heartbeat_period = 5
-port_sync_period = 10
-config_period = 60
-ovslog_filepath = /var/lib/helloworldtest/log/hello.log
-ovslog_maxbytes = 10485760
 
 [system]
 pidFilePath=/var/lib/helloworldtest/run/hello.pid
