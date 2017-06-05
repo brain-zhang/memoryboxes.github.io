@@ -138,17 +138,38 @@ exit $RETVAL
 
 
 ## systemd startup script template
+
+#### helloworld.conf
+
 ```
-[config]
 server = tcp://localhost:35555
 node = 1
 heartbeat_period = 5
 port_sync_period = 10
 config_period = 60
-ovslog_filepath = /var/lib/helloworldtest/log/testovs.log
+ovslog_filepath = /var/lib/helloworldtest/log/hello.log
 ovslog_maxbytes = 10485760
 
 [system]
-pidFilePath=/var/lib/helloworldtest/run/testclient.pid
-logFilePath=/var/lib/helloworldtest/log/testclient.log
+pidFilePath=/var/lib/helloworldtest/run/hello.pid
+logFilePath=/var/lib/helloworldtest/log/hello.log
+```
+
+
+####service
+```
+[Unit]
+Description=helloworld
+
+[Service]
+Type=forking
+EnvironmentFile=/etc/helloworld.conf
+ExecStartPre=/bin/sh -c '/bin/install -d -m 0755 -o root -g root $( /usr/bin/dirname ${logFilePath} )'
+ExecStartPre=/bin/sh -c '/bin/install -d -m 0755 -o root -g root $( /usr/bin/dirname ${pidFilePath} )'
+ExecStart=/usr/local/sbin/daemonize -p ${pidFilePath} -a -o ${logFilePath} -e ${logFilePath} /usr/local/bin/helloworld -c /etc/helloworld.conf
+ExecStopPost=/bin/kill $MAINPID
+Restart=always
+
+[Install]
+WantedBy=default.target
 ```
