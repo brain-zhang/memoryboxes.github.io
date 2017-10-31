@@ -27,7 +27,7 @@ HTTP的图片防盗链技术基本上人民群众喜闻乐见了。 今天突然
 
 比如大家常见的微信公众号文章，如果引用过来，一般就是防盗链了，这个时候可以用下面的通用代码解决：
 
-* 需要引用jquery和 [ReferrerKiller.js](https://github.com/jpgerek/referrer-killer) 这两个库:
+* 需要引用jquery和  [ReferrerKiller.js](https://github.com/jpgerek/referrer-killer) 这两个库:
 
     ```
     jQuery(function() {
