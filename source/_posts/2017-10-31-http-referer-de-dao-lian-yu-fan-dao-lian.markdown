@@ -29,25 +29,23 @@ HTTP的图片防盗链技术基本上人民群众喜闻乐见了。 今天突然
 
 * 需要引用jquery和 [ReferrerKiller.js](https://github.com/jpgerek/referrer-killer) 这两个库:
 
-    ```
-    jQuery(function() {
-        //遍历所有的img元素，凡是QQ和微信引用的统统放到iframe里面
-        jQuery("div").find("img").each(function() {
-            var img = jQuery(this);
-            var img_src = img.attr("src");
-            if (img_src != undefined && img_src != '') {
-                img_src = decodeURI(img_src);
-                img_src = img_src.split("?")[0];
-                if (img_src.indexOf("qpic.cn") > 0 || img_src.indexOf("qlogo.cn") > 0 || img_src.indexOf("qq.com") > 0) {
-                    var frameid = 'frameimg' + Math.random();
-                    img.parent().append('<span id="' + frameid + '"></span>')
-                    img.remove();
-                    document.getElementById(frameid).innerHTML = ReferrerKiller.imageHtml(img_src);
+        jQuery(function() {
+            //遍历所有的img元素，凡是QQ和微信引用的统统放到iframe里面
+            jQuery("div").find("img").each(function() {
+                var img = jQuery(this);
+                var img_src = img.attr("src");
+                if (img_src != undefined && img_src != '') {
+                    img_src = decodeURI(img_src);
+                    img_src = img_src.split("?")[0];
+                    if (img_src.indexOf("qpic.cn") > 0 || img_src.indexOf("qlogo.cn") > 0 || img_src.indexOf("qq.com") > 0) {
+                        var frameid = 'frameimg' + Math.random();
+                        img.parent().append('<span id="' + frameid + '"></span>')
+                        img.remove();
+                        document.getElementById(frameid).innerHTML = ReferrerKiller.imageHtml(img_src);
+                    }
                 }
-            }
+            })
         })
-    })
-    ```
 
 这样看出来的效果就是原来引用微信的图片:
 
