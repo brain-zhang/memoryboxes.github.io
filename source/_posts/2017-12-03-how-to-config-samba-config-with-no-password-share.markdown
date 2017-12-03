@@ -23,11 +23,14 @@ categories: samba
 
 
     [share_name]
+    public = yes
     browseable = yes
-    path = the_complete_path_to_the_shared_folder
+    path = /home
     guest ok = yes
     read only = no
-    create mask = 777
+    writeable = yes
+    create mask = 0644
+    directory mask = 2777
 
 ## 重启
 
