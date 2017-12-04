@@ -40,7 +40,7 @@ For more command line options, refer to the [shadowsocks documentation](https://
 
 Client is the machine you want to bypass the GFW.
 
-Download the client package [Shadowsocks-win-latest-release]9https://github.com/shadowsocks/shadowsocks-windows/releases0, extract it, and run.
+Download the client package [Shadowsocks-win-latest-release](https://github.com/shadowsocks/shadowsocks-windows/releases), extract it, and run.
 
 You can check its “System Proxy” option, which is convenient for all browsers and terminal.
 
