@@ -15,6 +15,8 @@ categories: iptables, linux
 
     yum install iptables-services
 
+<!-- more -->
+
 ## 配置 iptables
 
     #!/bin/bash
