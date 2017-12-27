@@ -3,7 +3,7 @@ layout: post
 title: "加密技术发展"
 date: 2016-12-25 16:54:47 +0800
 comments: true
-categories: bitcoin
+categories: bitcoin blockchain
 ---
 
 比特币是建立在区块链基础上的，区块链的基本技术支撑有三个:
