@@ -34,8 +34,8 @@ plugins: plugins
 code_dir: downloads/code
 category_title_prefix: "分类：" # 修改分类前缀
 markdown: kramdown
-#pygments: false # default python pygments have been replaced by pygments.rb
-highlighter: pygments # default python pygments have been replaced by pygments.rb
+pygments: false # default python pygments have been replaced by pygments.rb
+#highlighter: pygments # default python pygments have been replaced by pygments.rb
 
 paginate: 10          # Posts per page on the blog index
 pagination_dir: blog  # Directory base for pagination URLs eg. /blog/page/2/
