@@ -1,3 +1,3 @@
 #!/bin/bash
 
-bundle exec rake new_post\['rake gen deploy rejected in octopress'\]
+bundle exec rake new_post[$1]
