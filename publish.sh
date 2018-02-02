@@ -3,5 +3,5 @@ bundle exec rake generate
 cp _deploy/CNAME  public/CNAME
 bundle exec rake deploy
 git add .
-git commit -a -m $1
+git commit  -m $1
 git push origin source
