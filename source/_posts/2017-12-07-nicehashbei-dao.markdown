@@ -3,7 +3,7 @@ layout: post
 title: "NiceHash被盗"
 date: 2017-12-07 13:13:52 +0800
 comments: true
-categories: history
+categories: blockchain
 ---
 
 Nicehash 被盗 4700+币

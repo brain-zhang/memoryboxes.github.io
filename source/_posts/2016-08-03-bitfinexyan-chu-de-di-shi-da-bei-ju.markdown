@@ -3,7 +3,7 @@ layout: post
 title: "Bitfinex演出的第十大悲剧"
 date: 2016-08-03 07:52:17 +0800
 comments: true
-categories: history
+categories: blockchain
 ---
 
 比特币扩容争论貌似刚刚出现曙光，但Bitfinex不甘寂寞，倾情出演比特币史上的又一出悲剧。
