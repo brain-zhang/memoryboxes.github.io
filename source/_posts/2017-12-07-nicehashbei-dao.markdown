@@ -7,7 +7,6 @@ categories: blockchain
 ---
 
 Nicehash 被盗 4700+币
-{:.info}
 
 比 bitfinex 要幸运一点，这次发现的比较早，但是按照现在的币价大涨来算，损失也超过了 6000w USD，上次 bitfinex 11w 币不过折合 7000w USD 而已。
 

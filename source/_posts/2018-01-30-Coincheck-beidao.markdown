@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Coincheck 被盗 5 亿个 XEM"
+title: "Coincheck被盗5亿个XEM"
 date: 2018-01-30 20:34:47 +0800
 comments: true
 categories: blockchain
