@@ -1,10 +1,11 @@
 ---
 layout: post
-title: "Coincheck 被盗 5 亿个 XEM"
+title: "Coincheck被盗5亿个XEM"
 date: 2018-02-02 21:16:43 +0800
 comments: true
 categories: blockchain
 ---
+
 2018-01-26,Coincheck 被盗 5 亿个 XEM, 这个数目估计是史上最大了，hacker 的账户地址是这里:
 
 http://explorer.ournem.com/#/s_account?account=NC4C6PSUW5CLTDT5SXAGJDQJGZNESKFK5MCN77OG
