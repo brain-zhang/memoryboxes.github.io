@@ -1,3 +1,3 @@
 #!/bin/bash
 
-bundle exec rake new_post[$1]
+bundle exec rake new_post\["$1"\]
