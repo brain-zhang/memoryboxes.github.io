@@ -33,7 +33,14 @@ destination: public
 plugins: plugins
 code_dir: downloads/code
 category_title_prefix: "分类：" # 修改分类前缀
-markdown: kramdown
+#markdown: kramdown
+markdown: rdiscount
+rdiscount:
+  extensions:
+    - autolink
+    - footnotes
+    - smart
+
 pygments: false # default python pygments have been replaced by pygments.rb
 #highlighter: pygments # default python pygments have been replaced by pygments.rb
 
