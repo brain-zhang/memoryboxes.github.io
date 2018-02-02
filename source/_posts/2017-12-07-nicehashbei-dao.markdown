@@ -13,6 +13,7 @@ Nicehash 被盗 4700+币
 
 https://www.reddit.com/r/NiceHash/comments/7i0s6o/official_press_release_statement_by_nicehash/
 
+
 这个是 hacker 的转入地址:
 
 https://btc.com/1EnJHhq8Jq8vDuZA5ahVh6H4t6jh1mB4rq
