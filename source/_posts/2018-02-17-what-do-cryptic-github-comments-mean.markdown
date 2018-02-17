@@ -3,7 +3,7 @@ layout: post
 title: "What do cryptic Github comments mean?"
 date: 2018-02-17 16:35:55 +0800
 comments: true
-categories: Linux, blockchain
+categories: Linux blockchain
 ---
 
 在Github的Issue里面经常见到一堆`ACK`，原来知道肯定不是TCP的ACK，估计是acknowledge之类的缩写，但是一直不求甚解。
