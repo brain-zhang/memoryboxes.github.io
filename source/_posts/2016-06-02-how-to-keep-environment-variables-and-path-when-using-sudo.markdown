@@ -3,7 +3,7 @@ layout: post
 title: "How to keep Environment Variables and PATH when Using SUDO"
 date: 2016-06-02 09:15:19 +0800
 comments: true
-categories: linux
+categories: tools
 ---
 
 ## sudo tips

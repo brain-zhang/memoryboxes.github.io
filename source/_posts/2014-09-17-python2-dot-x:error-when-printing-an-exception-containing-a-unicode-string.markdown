@@ -3,7 +3,7 @@ layout: post
 title: "python2.x：Error When Printing an Exception Containing a Unicode String"
 date: 2014-09-17 08:43:39 +0800
 comments: true
-categories: Python Unicode
+categories: develop Unicode
 ---
 Python2.x中抛出Unicode的异常需要注意:
 

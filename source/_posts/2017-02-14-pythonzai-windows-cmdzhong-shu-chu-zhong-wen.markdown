@@ -3,7 +3,7 @@ layout: post
 title: "Python在windows CMD中输出中文"
 date: 2017-02-14 16:06:12 +0800
 comments: true
-categories: Python
+categories: develop
 ---
 
 在windows CMD中输出中文是比较烦的事情，最简单的就是增加一个windows.py，用的时候import一下:

@@ -3,7 +3,7 @@ layout: post
 title: "linux cheat sheet"
 date: 2015-06-19 01:43:07 +0000
 comments: true
-categories: linux
+categories: tools
 ---
 
 收集linux下需要多次google的命令

@@ -3,7 +3,7 @@ layout: post
 title: "Linux多网卡多路由设置"
 date: 2014-12-30 09:40:53 +0800
 comments: true
-categories: linux network
+categories: tools network
 ---
 
 折腾了半天，原始出处不知道了，转记一下。

@@ -3,7 +3,7 @@ layout: post
 title: "debug kernel panic in centos"
 date: 2015-06-07 01:22:34 +0000
 comments: true
-categories: linux kernel panic
+categories: tools kernel panic
 ---
 
 当你面对一台新机器，出于某些原因(不是闲的慌)不得不自己编译一个内核时，会碰上kernel panic。

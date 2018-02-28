@@ -3,7 +3,7 @@ layout: post
 title: "how to write standard startup script"
 date: 2016-08-22 09:09:06 +0800
 comments: true
-categories: linux
+categories: tools
 ---
 centos6中的init.d systemV script升级为systemd startup script，让我们有个easy setup的模板...
 

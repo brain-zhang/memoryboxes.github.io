@@ -3,7 +3,7 @@ layout: post
 title: "Pycon2014 in Shanghai"
 date: 2014-11-16 12:19:21 +0800
 comments: true
-categories: Python
+categories: develop
 ---
 
 今年又去打酱油了。在上海有这点好处，可以很方便的找到各种组织~~~

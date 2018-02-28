@@ -3,7 +3,7 @@ layout: post
 title: "Python编程实战 - 笔记1"
 date: 2015-04-27 08:17:45 +0800
 comments: true
-categories: Python DesignPattern
+categories: develop DesignPattern
 ---
 
 这本书讲的挺实在的，设计模式的部分又复习了一遍。另外又学了几个Python3的新decorator。

@@ -3,7 +3,7 @@ layout: post
 title: "linux profile and debug  tools of performance"
 date: 2015-06-28 08:52:15 +0000
 comments: true
-categories: linux
+categories: tools
 ---
 
 #### 用perf工具统计系统调用
