@@ -15,6 +15,9 @@ categories: blockchain
 
 https://www.coindesk.com/satoshi-craig-wright-sued-10-billion/
 
+另外我对这篇[blog url](http://happy123.me/blog/2018/04/22/satoshi-craig-wright-is-being-sued-for-10-dollars-billion/)用press.one进行了[签名:](http://press.one/file/v?s=0cd1af1ef6f50108c33827d0142c99a0a5753f092aa7e2c36be8309a7f60a798d5eafbb2e475c28773140820a1669e51b4071138a902e8298bc42a33911e7ed50&h=5e6cb71489b2e43988df214ce1bef1ba52d057ae90147fb2ae9cc7a146352f13&a=7e32e3deba87efcd35bc6d1ab355d85c50aa60bd&v=2&f=P1)
+
+<!-- more -->
 
 #### PS:附一下之前的总结
 
