@@ -3,7 +3,7 @@ layout: post
 title: "uwsgi部署django程序"
 date: 2014-10-31 08:39:26 +0800
 comments: true
-categories: uwsgi Django
+categories: develop Django
 ---
 
 Python的web世界，部署首选uwsgi，既可独战，又可搭配Nginx等车轮战，实在是居家必备。
@@ -19,9 +19,19 @@ Python的web世界，部署首选uwsgi，既可独战，又可搭配Nginx等车�
 写一个最简单的test.py:
 
 ```
-# test.pydef application(env, start_response):
+# test.py
+def application(env, start_response):
     start_response('200 OK', [('Content-Type','text/html')])
     return "Hello World"
+```
+
+python3的话需要返回一个binary
+
+```
+# test.py
+def application(env, start_response):
+    start_response('200 OK', [('Content-Type','text/html')])
+    return [b"Hello World"]
 ```
 
 
