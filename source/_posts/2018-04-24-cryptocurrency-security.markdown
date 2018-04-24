@@ -29,6 +29,8 @@ categories: blockchain
 
 http://www.8btc.com/satoshis-genius-unexpected-ways-in-which-bitcoin-dodged-some-cryptographic-bullet
 
+<!-- more -->
+
 
 #### 那么是不是我们就此可以高枕无忧了呢?
 
