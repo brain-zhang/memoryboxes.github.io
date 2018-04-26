@@ -8,7 +8,7 @@ categories: develop
 
 有时候gitignore没做好，一不小心就又进来一个二进制文件
 
-再重复了N次Google之后，还是记一下吧
+在重复了N次Google之后，还是记一下吧
 
 <!-- more -->
 
