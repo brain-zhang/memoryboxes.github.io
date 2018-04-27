@@ -26,31 +26,31 @@ categories: blockchain
 
 #### 2017-09-04 16:54:48 UTC
 
+* private key:0x180788e47e326c.
+
 * hash160:2f4870ef54fa4b048c1365d42594cc7d3d269551
 
 * address:15K1YKJMiJ4fpesTVUcByoz334rHmknxmT
-
-* private:0x180788e47e326c.
 
 * balance: 0.53 BTC
 
 #### 2017-04-21 12:50:55 UTC
 
+* private key:0xefae164cb9e3c.
+
 * hash160: 36af659edbe94453f6344e920d143f1778653ae7
 
 * address:15z9c9sVpu6fwNiK7dMAFgMYSK4GqsGZim
-
-* private key:0xefae164cb9e3c.
 
 * balance:0.052 BTC
 
 #### 2017-04-05 02:23:00 UTC
 
+* private key:0x75070a1a009d4.
+
 * hash160:ef6419cffd7fad7027994354eb8efae223c2dbe7
 
 * address:1NpnQyZ7x24ud82b7WiRNvPm6N8bqGQnaS
-
-* private key:0x75070a1a009d4.
 
 * balance:0.051 BTC
 
@@ -63,8 +63,7 @@ categories: blockchain
 
 一番追踪之后，我们发现了下面这笔交易:
 
-https://blockchain.info/tx/08389f34c98c606322740c0be6a7125d9860bb8d5cb182c02f98461e5fa6cd15
-
+https://btc.com/08389f34c98c606322740c0be6a7125d9860bb8d5cb182c02f98461e5fa6cd15
 
 在2015年初的时候就有人对于比特币的安全模型提出过一个严肃的检验，他构造了以上这笔交易。
 
@@ -107,7 +106,4 @@ https://blockchain.info/tx/08389f34c98c606322740c0be6a7125d9860bb8d5cb182c02f984
 这似乎是经过深思熟虑的~~也许是一个实验，看看在产出被拿走之前的时间。我这确实是个有趣的实验，比特币世界总不乏一些有趣的人。
 
 少年，拿起你手中的显卡算力，2^55级别的碰撞似乎不是那么遥不可及，让我们看看第55个幸运儿什么时候诞生。
-
-
-
 
