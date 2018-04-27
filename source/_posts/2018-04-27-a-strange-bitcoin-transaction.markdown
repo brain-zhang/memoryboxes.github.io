@@ -107,3 +107,7 @@ https://btc.com/08389f34c98c606322740c0be6a7125d9860bb8d5cb182c02f98461e5fa6cd15
 
 少年，拿起你手中的显卡算力，2^55级别的碰撞似乎不是那么遥不可及，让我们看看第55个幸运儿什么时候诞生。
 
+
+* 引用资料:
+
+https://rya.nc/forensic-bitcoin-cracking.html
