@@ -22,7 +22,7 @@ categories: blockchain
 
 * address:1KYUv7nSvXx4642TKeuC2SNdTk326uUpFy
 
-* balance:0.54 BTC
+* balance:0.054 BTC
 
 #### 2017-09-04 16:54:48 UTC
 
@@ -32,7 +32,7 @@ categories: blockchain
 
 * address:15K1YKJMiJ4fpesTVUcByoz334rHmknxmT
 
-* balance: 0.53 BTC
+* balance: 0.053 BTC
 
 #### 2017-04-21 12:50:55 UTC
 
@@ -55,10 +55,10 @@ categories: blockchain
 * balance:0.051 BTC
 
 
-### 账户的余额依次递增，分别为0.51 -> 0.52 -> 0.53 -> 0.54
+### 账户的余额依次递增，分别为0.051 -> 0.052 -> 0.053 -> 0.054
 
 
-### 这也太凑巧了吧，为什么LBC的网站上没有小于0.51之前的数额呢
+### 这也太凑巧了吧，为什么LBC的网站上没有小于0.051之前的数额呢
 
 
 一番追踪之后，我们发现了下面这笔交易:
