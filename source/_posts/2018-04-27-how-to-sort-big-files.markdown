@@ -11,7 +11,7 @@ categories: tools
 并行解决之:
 
 ```
-    sort --parallel=2 -uo list-sorted.txt list.txt
+    sort -S 50% --parallel=2 -uo list-sorted.txt list.txt
 ```
 
 注意这一招在管道里面行不通，所以要用管道的话一定要先重定向到一个文件里面中转一下。
