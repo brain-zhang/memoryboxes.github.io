@@ -22,4 +22,4 @@ sort -uo 一个1T的文件，让最高配的google cloud崩溃了~~~，可惜了
 
 2. for X in small-chunk*; do sort -u < $X > sorted-$X; done
 
-3. sort -u -m sorted-small-chunk* > sorted-huge-file && rm -rf huge-file
+3. sort -u -m sorted-small-chunk* > sorted-huge-file && rm -rf small-chunk* sorted-small-chunk*
