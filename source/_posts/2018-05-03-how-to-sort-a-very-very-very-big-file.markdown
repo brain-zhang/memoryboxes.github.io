@@ -6,7 +6,7 @@ comments: true
 categories: tools
 ---
 
-sort -uo 一个1T的文件，让最高配的google cloud崩溃了~~~，可惜了我的$30，白白跑了那么长时间~~~
+sort -uo 一个1T的文件，让最高配的google cloud instance (48 core/512G)崩溃了~~~，可惜了我的$30，白白跑了那么长时间~~~
 
 网上搜索都是how to sort a big file，那我这个属于very very very big big big file了~~
 
@@ -33,3 +33,7 @@ sort -uo 一个1T的文件，让最高配的google cloud崩溃了~~~，可惜了
 ```
 cat xxxxx zzz | awk '{ if (!seen[$0]++) { print $0; } }' > xxx_zzz.uniq.txt
 ```
+
+### PS:
+
+我后来又看了一下GNU Sort的实现描述，它说已经用了外排了，但是实际使用还是不给力，暂时迷惑中
