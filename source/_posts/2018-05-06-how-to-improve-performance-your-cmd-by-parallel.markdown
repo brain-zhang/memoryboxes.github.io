@@ -178,7 +178,7 @@ cat bigfile.txt| parallel --no-notice --pipe python pinyinconv.py > pinyin.resul
 
 * 这个命令很好，但是语法好像啰嗦了一些，还有其它的替代命令吗？
 
-嗯~ o(*￣▽￣*)o，还是有的，xargs有个-P的参数，类似的效果，不过功能弱化很多，基本上是鸡肋
+嗯~ o(*￣▽￣*)o，还是有的，xargs有个-Pn参数，类似的效果，不过功能弱化很多，基本上是鸡肋
 
 
 ## 参考:
