@@ -169,13 +169,12 @@ cat bigfile.txt| parallel --no-notice --pipe python pinyinconv.py > pinyin.resul
 
 嗯，虽然这个作者非常非常好，但是他总是在命令前面输出一些慈善提示；当然我并不是讨厌这种做法，但看多了总有些疲劳，你懂的~~
 
-* 这些命令都是pipeline读取stdin，怎么直接从文件流里面读?
-
-看手册
 
 * 我有一些参数想传给程序，怎么办？
 
-看手册
+```
+ seq 3|parallel --no-notice -q echo seq{}
+```
 
 * 这个命令很好，但是语法好像啰嗦了一些，还有其它的替代命令吗？
 
