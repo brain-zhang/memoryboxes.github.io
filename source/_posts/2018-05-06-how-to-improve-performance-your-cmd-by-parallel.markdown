@@ -191,3 +191,4 @@ https://www.gnu.org/software/parallel/parallel_tutorial.html
 
 http://www.freeoa.net/osuport/sysadmin/use-gnu-parallel-multi-core-speed-up-cmd_2343.html
 
+我的博客即将搬运同步至腾讯云+社区，邀请大家一同入驻：https://cloud.tencent.com/developer/support-plan?invite_code=1bnzu1pmog27t
