@@ -70,4 +70,6 @@ for user in User.select().where(User.username.contains(username)):
 
 ## 关闭
 
+```
 >>> db.close()
+```
