@@ -34,8 +34,6 @@ xxxx
 
 然后执行:
 
-```
-grep -G -f user.txt emailinfo.dict
-```
+    grep -G -f user.txt emailinfo.dict
 
 这个`-G`参数又花了我半个小时去读文档，我都不知道第几次做这种事情了。人年纪大了果然只能靠笔记。
