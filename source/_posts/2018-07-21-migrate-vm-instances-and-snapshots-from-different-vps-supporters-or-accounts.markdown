@@ -53,7 +53,7 @@ https://discuss.vultr.com/discussion/104/snapshot-image-downloads/p2
 
 1. 先去clonezilla.org 官网，找到下载地址，好吧，我已经帮你找好了:
 
-http://onet.dl.osdn.jp/clonezilla/69273/clonezilla-live-2.5.5-38-amd64.iso
+    http://onet.dl.osdn.jp/clonezilla/69273/clonezilla-live-2.5.5-38-amd64.iso
 
 2. vultr很贴心的提供了从url上传镜像的功能，我们到下面这个功能项中把iso镜像的url填进去，添加clonezilla镜像文件到vultr:
 
