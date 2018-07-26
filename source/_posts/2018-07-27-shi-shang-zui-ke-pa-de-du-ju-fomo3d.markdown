@@ -119,5 +119,4 @@ https://exitscam.me/go
 
 ## 规则细节
 
-
 ~~~ 待续~~~
