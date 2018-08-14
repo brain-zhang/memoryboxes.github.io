@@ -36,7 +36,7 @@ https://pan.baidu.com/s/1MLVlbasNe7ADHqSOKKtOlg
 
 中文版翻译每年一个pdf文件
 
-4. em 文件夹
+4. en 文件夹
 
 英文版整理:
 
