@@ -49,4 +49,4 @@ https://bellard.org/jslinux/index.html
 
 我只能根据有限的经验来预言：任何一种号称"大一统方案"的方案最后总是失败。
 
-让我们再大声诵读Frederick Phillips先知的名言：没有银弹，没有银弹，没有银弹~~~
+让我们再大声诵读伟大的Fred Brooks先知的名言：没有银弹，没有银弹，没有银弹~~~
