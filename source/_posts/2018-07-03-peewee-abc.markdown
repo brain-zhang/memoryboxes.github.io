@@ -3,7 +3,7 @@ layout: post
 title: "Peewee ABC"
 date: 2018-07-03 11:10:09 +0800
 comments: true
-categories: develop, python
+categories: develop python
 ---
 
 在我用了又一个小时的时间去温习sqlchemy丰富的文档后，我放弃治疗了。
