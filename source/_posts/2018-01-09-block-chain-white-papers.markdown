@@ -26,4 +26,4 @@ http://ethfans.org/wikis/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%99%BD%E7%9A%AE%E4%B9%A6
 
 #### 英文版
 
-https://github.com/ethereum/wiki/blob/master/drafts/%5Benglish%5D-old-ethereum-whitepaper.md
+https://github.com/ethereum/wiki/wiki/White-Paper
