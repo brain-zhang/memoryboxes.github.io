@@ -6,7 +6,7 @@ comments: true
 categories: network
 ---
 
-在知乎看到了这个问题，MAC地址48Bit, IP地址32Bit，完全可以用MAC划分出一个段来作为IP的映射，活着干脆不用IP了，有啥不可以呢？
+在知乎看到了这个问题，MAC地址48Bit, IP地址32Bit，完全可以用MAC划分出一个段来作为IP的映射，或者干脆不用IP了，有啥不可以呢？
 
 我觉得问题挺有意思的。我推测了一下。
 
