@@ -3,7 +3,7 @@ layout: post
 title: "Migrate Centos7 from Centos6"
 date: 2015-12-22 11:58:43 +0800
 comments: true
-categories: Linux
+categories: tools linux
 ---
 
 工作环境切换到Centos7 半年有余，epel仓库里的软件版本比el6更新了不少，非常方便。

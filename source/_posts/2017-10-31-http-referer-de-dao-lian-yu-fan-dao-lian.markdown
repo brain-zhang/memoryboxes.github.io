@@ -3,7 +3,7 @@ layout: post
 title: "http referer 的盗链与反盗链"
 date: 2017-10-31 21:47:27 +0800
 comments: true
-categories: http
+categories: develop
 ---
 
 HTTP的图片防盗链技术基本上人民群众喜闻乐见了。 今天突然发现一种比较通用的隐藏referer来反盗链的hack手段，记录之。

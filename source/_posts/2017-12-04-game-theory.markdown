@@ -3,7 +3,7 @@ layout: post
 title: "Game Theory"
 date: 2017-12-04 17:39:24 +0800
 comments: true
-categories: theory
+categories: life
 ---
 
 看网易公开课的博弈论，很有意思，记下笔记:

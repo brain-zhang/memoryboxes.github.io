@@ -3,7 +3,7 @@ layout: post
 title: "migrate firewalld to iptables on centos7"
 date: 2017-12-06 16:23:22 +0800
 comments: true
-categories: iptables linux
+categories: tools iptables linux
 ---
 
 ## 关闭 FireWall

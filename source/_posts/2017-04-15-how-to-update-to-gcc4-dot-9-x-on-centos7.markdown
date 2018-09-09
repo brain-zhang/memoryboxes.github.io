@@ -3,7 +3,7 @@ layout: post
 title: "how to update to gcc4.9.x on centos7"
 date: 2017-04-15 15:50:53 +0800
 comments: true
-categories: gcc centos
+categories: tools gcc centos
 ---
 
 现在很多软件包默认编译要求GLIBCXX >=3.4.20，碰到这种事redhat系又哭了，目前Centos7.x默认仓库里的gcc还是4.8.5的，所以需要一个办法升级gcc相关组件>=4.9.1。

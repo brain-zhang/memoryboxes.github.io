@@ -3,7 +3,7 @@ layout: post
 title: "deploy local ntp server on centos7"
 date: 2017-06-06 21:20:35 +0800
 comments: true
-categories: centos7 ntp
+categories: tools
 ---
 
 有时候需要内网环境搭建一个ntp服务器同步内网的几台机器。

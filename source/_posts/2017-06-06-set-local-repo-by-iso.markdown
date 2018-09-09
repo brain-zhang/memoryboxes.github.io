@@ -3,7 +3,7 @@ layout: post
 title: "set local repo by iso"
 date: 2017-06-06 22:15:22 +0800
 comments: true
-categories: centos
+categories: tools
 ---
 
 想要挂载一个iso安装镜像作为本地repo
