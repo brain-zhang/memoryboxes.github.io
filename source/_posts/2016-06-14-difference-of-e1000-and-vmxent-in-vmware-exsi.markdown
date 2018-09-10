@@ -3,7 +3,7 @@ layout: post
 title: "difference of E1000 and VMXENT in Vmware Exsi"
 date: 2016-06-14 15:18:55 +0800
 comments: true
-categories: vmware
+categories: vmware tools
 ---
 Exsi中新建虚拟机网卡，可以选择四种网卡：E1000; 可变; VMXNET 2(增加型)；VMXENT 3
 

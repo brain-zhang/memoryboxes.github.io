@@ -3,7 +3,7 @@ layout: post
 title: "用Pyinstaller打包python脚本适配windows"
 date: 2017-02-14 16:13:52 +0800
 comments: true
-categories: windows
+categories: windows develop
 ---
 
 一行命令的事，纯python脚本打包出来一般5Mb左右，大小还可以接收。

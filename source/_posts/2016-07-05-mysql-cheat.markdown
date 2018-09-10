@@ -3,7 +3,7 @@ layout: post
 title: "mysql cheat"
 date: 2016-07-05 08:23:00 +0800
 comments: true
-categories: mysql
+categories: mysql tools
 ---
 
 整理一下经常忘记的mysql命令

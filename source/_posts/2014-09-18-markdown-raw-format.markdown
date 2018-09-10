@@ -3,7 +3,7 @@ layout: post
 title: "Markdown Raw Format"
 date: 2014-09-18 14:21:04 +0800
 comments: true
-categories: Markdown
+categories: markdown tools
 ---
 
 有时候想要在Markdwon里面画ASCII画，会被Format掉，例如:

@@ -3,7 +3,7 @@ layout: post
 title: "multiline comments in docker file"
 date: 2015-04-10 09:07:36 +0800
 comments: true
-categories: Docker
+categories: docker tools
 ---
 
 为了减少Image的fs layout数目，Dockerfile中经常会把多个命令集中到一个 `RUN` 指令下。

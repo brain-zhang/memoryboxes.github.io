@@ -3,7 +3,7 @@ layout: post
 title: "TCP/IP Illustrated Note1"
 date: 2016-06-05 21:59:52 +0800
 comments: true
-categories: TCP/IP
+categories: TCP/IP network
 ---
 
 又开始重读<TCP/IP详解>。发现真的是年纪大了....T_T，看了就忘，做笔记也用处不大。

@@ -3,7 +3,7 @@ layout: post
 title: "hello"
 date: 2014-02-21 23:45:34 -0800
 comments: true
-categories: 生活
+categories: life
 ---
 
 let's sail.

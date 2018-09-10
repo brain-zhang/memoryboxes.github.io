@@ -3,7 +3,7 @@ layout: post
 title: "从MongoDB迁移到TokuMx"
 date: 2014-09-16 08:36:30 +0800
 comments: true
-categories: MongoDB TokuMx
+categories: MongoDB TokuMx tools
 ---
 
 ## WHY:

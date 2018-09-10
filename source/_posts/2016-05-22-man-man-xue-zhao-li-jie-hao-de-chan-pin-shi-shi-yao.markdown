@@ -3,7 +3,7 @@ layout: post
 title: "慢慢学着理解好的产品是什么"
 date: 2016-05-22 18:02:19 +0800
 comments: true
-categories: product
+categories: product tools
 ---
 
 从很久很久之前，我就不是很在意技术细节了。

@@ -3,7 +3,7 @@ layout: post
 title: "enable ldap on centos"
 date: 2016-05-25 08:24:04 +0800
 comments: true
-categories: centos ldap
+categories: centos ldap tools
 ---
 
 ## Dockerfile

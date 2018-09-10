@@ -3,7 +3,7 @@ layout: post
 title: "Javascript设计模式 - 笔记3"
 date: 2015-01-24 11:30:02 +0800
 comments: true
-categories: javascript_pattern
+categories: javascript_pattern develop
 ---
 javascript 里面的继承是个非常复杂的话题，一言蔽之，就是你要替解释器干点活。另外，javascript属于使用原型式继承的语言，这个比较少见，所以直觉上不好拐弯。
 

@@ -3,7 +3,7 @@ layout: post
 title: "crontab eight comm"
 date: 2015-08-07 10:11:11 +0000
 comments: true
-categories: crontab linux
+categories: crontab linux tools
 ---
 
 网上收集，多次踩坑，立此存照

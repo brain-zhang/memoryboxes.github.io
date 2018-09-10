@@ -3,7 +3,7 @@ layout: post
 title: "C:dynamic Array in Stack"
 date: 2014-09-17 08:42:25 +0800
 comments: true
-categories: C Array
+categories: C Array develop
 ---
 以前一直认为C99 只支持const int 定义数组，今天才学到C99里面是支持动态数组的。
 

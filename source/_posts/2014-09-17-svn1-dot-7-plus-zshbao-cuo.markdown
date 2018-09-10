@@ -3,7 +3,7 @@ layout: post
 title: "svn1.7+ Zsh报错"
 date: 2014-09-17 08:40:14 +0800
 comments: true
-categories: SVN Zsh
+categories: SVN Zsh tools
 ---
 更新svn(subversion)>1.7后 zsh 的svn自动完成会报错。
 

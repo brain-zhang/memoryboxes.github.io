@@ -3,7 +3,7 @@ layout: post
 title: "Cisco 3560X config cheat"
 date: 2016-07-28 10:02:06 +0800
 comments: true
-categories: cisco
+categories: cisco tools
 ---
 工作需要，学习了Cisco的路由器配置，记一下:
 

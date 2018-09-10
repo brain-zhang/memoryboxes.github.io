@@ -3,7 +3,7 @@ layout: post
 title: "用TCP/IP进行网际互连 (笔记)"
 date: 2014-11-05 08:19:18 +0800
 comments: true
-categories: TCP/IP 读书摘录
+categories: TCP/IP 读书摘录 network
 ---
 
 还是要补习基础知识啊。

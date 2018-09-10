@@ -3,7 +3,7 @@ layout: post
 title: "Macvtap Ethernet support tcpdump"
 date: 2014-12-31 17:05:01 +0800
 comments: true
-categories: Macvtap
+categories: macvtap network
 ---
 
 用macvtap模拟网卡时，用tcpdump抓包是抓不到的，后来发现3.14版本以上的内核修正了这一点。

@@ -3,7 +3,7 @@ layout: post
 title: "学了点财会知识"
 date: 2016-05-22 18:17:32 +0800
 comments: true
-categories: finance
+categories: finance life
 ---
 
 周末又复习了一点财会方面的知识，顺便又重温了复式记账，要想办法用起来啊。

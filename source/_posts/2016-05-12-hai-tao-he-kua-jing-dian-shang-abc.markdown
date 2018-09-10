@@ -3,7 +3,7 @@ layout: post
 title: "海淘和跨境电商ABC"
 date: 2016-05-12 17:41:56 +0800
 comments: true
-categories: C2C
+categories: C2C life
 ---
 
 补习了一下海淘和跨境电商的一些基本知识。

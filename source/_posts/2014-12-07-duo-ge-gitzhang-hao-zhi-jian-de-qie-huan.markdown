@@ -3,7 +3,7 @@ layout: post
 title: "多个git账号之间的切换"
 date: 2014-12-07 15:00:34 +0800
 comments: true
-categories: git
+categories: git tools
 ---
 
 做过很多遍了，却总是记不住，这回从头来描述一下。

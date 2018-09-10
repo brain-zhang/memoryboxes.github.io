@@ -3,7 +3,7 @@ layout: post
 title: "Different users in same unix group can not run mongod"
 date: 2015-04-10 08:44:42 +0800
 comments: true
-categories: Docker Mongodb
+categories: docker mongodb tools
 ---
 
 事情的缘起是这样的.......

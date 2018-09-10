@@ -3,7 +3,7 @@ layout: post
 title: "Is Craig Wright real Satoshi Nakamoto?"
 date: 2016-05-02 19:41:48 +0800
 comments: true
-categories: satoshi bitcoin
+categories: satoshi bitcoin blockchain
 ---
 
 Craig Wright 又在声明他是"中本聪"了.

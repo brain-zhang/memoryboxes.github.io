@@ -3,7 +3,7 @@ layout: post
 title: "How to change systemd service timeout value"
 date: 2016-07-05 17:56:04 +0800
 comments: true
-categories: Linux
+categories: linux tools
 ---
 
 # show value

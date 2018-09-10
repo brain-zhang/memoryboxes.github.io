@@ -3,7 +3,7 @@ layout: post
 title: "双梦记"
 date: 2014-02-22 00:45:16 -0800
 comments: true
-categories: 读书摘录
+categories: tools
 ---
 阿拉伯历史学家艾尔一伊萨基叙说了下面的故事：
 

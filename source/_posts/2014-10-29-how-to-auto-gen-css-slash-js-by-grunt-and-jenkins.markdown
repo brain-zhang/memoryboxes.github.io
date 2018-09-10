@@ -3,7 +3,7 @@ layout: post
 title: "how to auto gen css/js by grunt and jenkins"
 date: 2014-10-29 12:16:15 +0800
 comments: true
-categories: grunt jenkins
+categories: grunt jenkins tools
 ---
 
 虽然有[grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch)的存在，但多个人编辑同一份css/js代码时，还要操心编译这个事，实在是多余。

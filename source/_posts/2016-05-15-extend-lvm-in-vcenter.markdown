@@ -3,7 +3,7 @@ layout: post
 title: "extend lvm in vCenter"
 date: 2016-05-15 09:56:59 +0800
 comments: true
-categories: lvm
+categories: lvm tools
 ---
 
 ## 如何在vCenter上LVM分区扩容

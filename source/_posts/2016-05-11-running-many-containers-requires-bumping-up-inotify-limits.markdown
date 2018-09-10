@@ -3,7 +3,7 @@ layout: post
 title: "Running many containers requires bumping up inotify limits"
 date: 2016-05-11 15:11:19 +0800
 comments: true
-categories: Docker
+categories: docker tools
 ---
 
 when we see `Too many open files - failed to inotify_init`, we could either bump up the limit automatically, or tell the user.

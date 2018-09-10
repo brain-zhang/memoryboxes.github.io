@@ -3,7 +3,7 @@ layout: post
 title: "Vim 命令行操作小技巧"
 date: 2014-09-17 08:30:15 +0800
 comments: true
-categories: Vim
+categories: vim tools
 ---
 
 ## vim 使用:进入命令行后，除了直接敲命令外，一般会有两个操作:

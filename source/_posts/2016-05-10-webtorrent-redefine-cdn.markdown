@@ -3,7 +3,7 @@ layout: post
 title: "Webtorrent redefine CDN?"
 date: 2016-05-10 10:00:19 +0800
 comments: true
-categories: torrent CDN
+categories: torrent CDN tools
 ---
 
 最近发现了一个开源的JS东东，webtorrent:

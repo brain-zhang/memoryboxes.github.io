@@ -3,7 +3,7 @@ layout: post
 title: "Git Cheat 2"
 date: 2016-03-21 09:49:54 +0800
 comments: true
-categories: git
+categories: git tools
 ---
 
 # 整理一下经常忘记的Git命令 (版本v2)

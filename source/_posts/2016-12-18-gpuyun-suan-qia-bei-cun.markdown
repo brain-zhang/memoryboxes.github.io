@@ -3,7 +3,7 @@ layout: post
 title: "GPU运算卡备存"
 date: 2016-12-18 15:38:18 +0800
 comments: true
-categories: hardware
+categories: hardware tools
 ---
 
 科技产品的命名一很高冷，就是老发烧友，过了几年再来看新产品的名儿，仍有可能一头雾水。

@@ -3,7 +3,7 @@ layout: post
 title: "Auto Reload Modules in Django Shell"
 date: 2014-09-17 08:36:01 +0800
 comments: true
-categories: Django
+categories: django develop
 ---
 `python manage.py shell`
 

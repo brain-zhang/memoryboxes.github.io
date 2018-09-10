@@ -3,7 +3,7 @@ layout: post
 title: "freeze svn:externals for tags/branch"
 date: 2014-03-26 10:12:23 +0000
 comments: true
-categories: svn branch tag externals freeze
+categories: svn tools
 ---
 
 svn的external link在多个项目互相引用时很有用。

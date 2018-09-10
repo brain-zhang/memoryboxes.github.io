@@ -3,7 +3,7 @@ layout: post
 title: "自定义Django的密码策略"
 date: 2014-09-17 08:38:03 +0800
 comments: true
-categories: Django
+categories: django develop
 ---
 Django 从1.4 版本开始，包含了一些安全方面的重要提升。其中一个是使用 PBKDF2 密码加密算法代替了 SHA1 。另外一个特性是你可以添加自己的密码加密方法。
 

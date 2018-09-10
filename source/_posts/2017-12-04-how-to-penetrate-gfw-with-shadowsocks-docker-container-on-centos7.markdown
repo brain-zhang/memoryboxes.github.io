@@ -3,7 +3,7 @@ layout: post
 title: "How to Penetrate GFW With ShadowSocks  Docker Container On Centos7"
 date: 2017-12-04 20:23:40 +0800
 comments: true
-categories: GFW
+categories: GFW tools
 ---
 
 The quickest way to Penetrate GFW With ShadowSocks(Docker Container) On Centos7.

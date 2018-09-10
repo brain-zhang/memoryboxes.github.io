@@ -3,7 +3,7 @@ layout: post
 title: "比较实惠的二手机器"
 date: 2016-06-15 17:42:12 +0800
 comments: true
-categories: server
+categories: server tools
 ---
 
 公司里采购了一批二手服务器，用了一段时间很实惠，记录之:

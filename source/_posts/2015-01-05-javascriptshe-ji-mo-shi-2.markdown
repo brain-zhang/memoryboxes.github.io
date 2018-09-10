@@ -3,7 +3,7 @@ layout: post
 title: "Javascript设计模式 - 笔记2"
 date: 2015-01-05 09:05:16 +0800
 comments: true
-categories: javascript_pattern
+categories: javascript_pattern develop
 ---
 # 如何封装一个对象
 

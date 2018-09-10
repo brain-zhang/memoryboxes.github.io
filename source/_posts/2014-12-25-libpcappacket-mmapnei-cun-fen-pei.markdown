@@ -3,7 +3,7 @@ layout: post
 title: "libpcap PACKET_MMAP内存分配"
 date: 2014-12-25 10:03:49 +0800
 comments: true
-categories: libpcap PACKET_MMAP
+categories: libpcap PACKET_MMAP network
 ---
 libpcap为了提高效率，调用`setsockopt(handle->fd, SOL_PACKET, PACKET_RX_RING,(void *) &req, sizeof(req))`时采用kmalloc分配内存。
 

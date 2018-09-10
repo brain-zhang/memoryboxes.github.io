@@ -3,7 +3,7 @@ layout: post
 title: "megacli cheat"
 date: 2016-08-05 03:21:49 +0800
 comments: true
-categories: Linux
+categories: linux tools
 ---
 
 做Raid，用到了megacli，又学了一套命令.

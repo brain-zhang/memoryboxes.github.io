@@ -3,7 +3,7 @@ layout: post
 title: "有关于云计算及SDN"
 date: 2016-05-10 08:25:16 +0800
 comments: true
-categories: 云计算  SDN
+categories: 云计算  SDN network
 ---
 
 云计算和SDN这两个名词总是被许多人挂在嘴边，他们给人的印象就是在Qcon大会上念PPT的一拨人。

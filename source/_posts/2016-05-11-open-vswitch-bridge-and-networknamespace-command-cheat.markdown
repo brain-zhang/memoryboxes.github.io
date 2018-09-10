@@ -3,7 +3,7 @@ layout: post
 title: "Open vSwitch bridge and NetworkNameSpace command cheat"
 date: 2016-05-11 15:41:02 +0800
 comments: true
-categories: openvswitch
+categories: openvswitch network
 ---
 
 * 启动

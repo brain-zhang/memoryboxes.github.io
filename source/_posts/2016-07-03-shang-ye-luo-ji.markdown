@@ -3,7 +3,7 @@ layout: post
 title: "商业逻辑"
 date: 2016-07-03 16:50:41 +0800
 comments: true
-categories: business
+categories: business tools
 ---
 
 如何识别战略点

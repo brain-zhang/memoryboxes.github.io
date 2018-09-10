@@ -3,7 +3,7 @@ layout: post
 title: "Vim 对选中范围内容批量替换"
 date: 2014-09-17 08:31:22 +0800
 comments: true
-categories: Vim
+categories: vim tools
 ---
 vim可以很方便的用 %s/src/dst/g 批量替换。
 

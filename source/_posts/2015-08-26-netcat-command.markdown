@@ -3,7 +3,7 @@ layout: post
 title: "Netcat Command"
 date: 2015-08-26 01:07:48 +0000
 comments: true
-categories: netcat
+categories: netcat network
 ---
 
 Netcat能做到的事情太多了，但和tcpdump一个流派，参数多的令人发指，拣常用的几个命令记录一下
