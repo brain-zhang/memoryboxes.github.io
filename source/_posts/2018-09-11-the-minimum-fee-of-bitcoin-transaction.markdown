@@ -87,12 +87,13 @@ https://www.blockchain.com/btc/pushtx
 
 https://live.blockcypher.com/btc/pushtx/
 
-统统失败，还测试出blockcypher有个500，它的后台没处理好。悲剧了
+统统失败，悲剧了；还测试出blockcypher有个500，它的后台没处理好，直接就挂掉了；btc.com是个鬼精灵，把所有的异常一把抓，就不告诉你出了啥错；值得表扬的是blockchain.info，完美显示了bitcoin core抛出的错误，嗯嗯嗯，记住，以后可以用极小值的手续费广播来测试这几个网站的后台bitcoind 实现版本，不要干坏事哦~~
+
 
 7.万般无奈之下我将手续费用继续提高为0.000002，然后得到下面的报错:
 
 ```
-dust transction
+dust transaction
 ```
 
 一顿google之下发现0.15版本以后，bitcoin core的[dust判定标准是546 satoshins](https://bitcoin.stackexchange.com/questions/10986/what-is-meant-by-bitcoin-dust)，这笔交易的金额正好处于这么一个微妙的位置。
@@ -102,14 +103,13 @@ dust transction
 
 #### 结局
 
-昨晚有个土豪加上另外一个vout提走了，额，为了提0.00000555BTC，土豪动用了88BTC的vout作为陪练，并留下了0.00000400 的矿工费，交易记录在此:
+昨晚有个土豪加上另外一个vout提走了，额，为了提0.00000555BTC，土豪动用了88BTC的vout作为陪练，并留下了0.00000400(高达90%) 的矿工费，交易记录在此:
 
 https://btc.com/d6d59802eb987fe96b9e827c07a1acff5e80ba5e9dae3f6f56f9ea427d98e585
 
-
 土豪，是在下输了。
 
-这件事情挺有意思的，真是一通操作猛如虎，回头一看啥没有。作为傻逼的记录，我老老实实记一下。
+这件事情挺有意思的，真是`一通操作猛如虎，回头一看啥没有`。而且中间还有一笔流入，我放过了；作为傻逼的记录，我老老实实记一下。
 
 现在minimum fee的行情是0.00001/KB，下次我得记好了，方便抽奖。
 
