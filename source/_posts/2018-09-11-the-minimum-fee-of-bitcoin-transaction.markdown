@@ -15,7 +15,7 @@ categories: blockchain bitcoin
 1.先看一下vout和txid:
 
 ```
-bitcoin-cli listunspent
+bitcoin-cli listunspent 0 9999999 "[\"12AKRNHpFhDSBDD9rSn74VAzZSL3774PxQ\"]"
 ```
 输出里面找到 `12AKRNHpFhDSBDD9rSn74VAzZSL3774PxQ`的vout为0， txid是`b9a6f0b287646c30bdafa08cc997d7af93ca20eb7b2d09084ddf7a7a075394b2`
 
