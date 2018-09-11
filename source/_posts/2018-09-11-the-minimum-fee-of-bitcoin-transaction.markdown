@@ -10,14 +10,16 @@ categories: blockchain bitcoin
 
 默认Bitcoin Core 0.15之后的客户端貌似都不能调节transaction fee大小了，老实说，自从Segwit升级完毕之后，我很少用core钱包了。这次没办法，为了构造一笔最小手续费用的交易，采取如下动作:
 
-1. 先看一下vout和txid:
+<!-- more -->
+
+1.先看一下vout和txid:
 
 ```
 bitcoin-cli listunspent
 ```
 输出里面找到 `12AKRNHpFhDSBDD9rSn74VAzZSL3774PxQ`的vout为0， txid是`b9a6f0b287646c30bdafa08cc997d7af93ca20eb7b2d09084ddf7a7a075394b2`
 
-2. 创建转账交易
+2.创建转账交易
 
 ```
 bitcoin-cli createrawtransaction "[{\"txid\":\"b9a6f0b287646c30bdafa08cc997d7af93ca20eb7b2d09084ddf7a7a075394b2\",\"vout\":0}]" "{\"1HB1Efu8RkEpxzTHYd1E7NgdimL1ddDhkR\":0.0000055}"
@@ -29,7 +31,7 @@ bitcoin-cli createrawtransaction "[{\"txid\":\"b9a6f0b287646c30bdafa08cc997d7af9
 0200000001b29453077a7adf4d08092d7beb20ca93afd797c98ca0afbd306c6487b2f0a6b90000000000ffffffff0126020000000000001976a914b1665e71006dbfbabb69cbcdc5717b11abdb89e888ac00000000
 ```
 
-3. 签名之
+3.签名之
 
 ```
 bitcoin-cli signrawtransaction  "0200000001b29453077a7adf4d08092d7beb20ca93afd797c98ca0afbd306c6487b2f0a6b90000000000ffffffff0126020000000000001976a914b1665e71006dbfbabb69cbcdc5717b11abdb89e888ac00000000"
@@ -44,7 +46,7 @@ bitcoin-cli signrawtransaction  "0200000001b29453077a7adf4d08092d7beb20ca93afd79
 }
 ```
 
-4. 激动人心的时刻来了，广播之:
+4.激动人心的时刻来了，广播之:
 
 ```
 bitcoin-cli sendrawtransaction  "0200000001b29453077a7adf4d08092d7beb20ca93afd797c98ca0afbd306c6487b2f0a6b9000000008a47304402202a51aa8eb0593a4b48880712c3ee70b7d6ca74ed313ef93e9c92489616587a2c022048c87fde75761e2a9cc9fef7dc8d0d9961ef1df89e22f88e5e3902567ec956f8014104fdf4907810a9f5d9462a1ae09feee5ab205d32798b0ffcc379442021f84c5bbfc891eb16b0faef4bef99ba6d522fb85470a20df730808e583778aa35c7af98f5ffffffff0126020000000000001976a914b1665e71006dbfbabb69cbcdc5717b11abdb89e888ac00000000"
@@ -59,9 +61,9 @@ error message:
 
 喵喵喵，怎么回事，我记得2016年的时候还是允许0.00000001的手续费的，比如下面这笔交易:
 
-	https://blockchain.info/tx/d36a18d1fa4c6ccc4b90ab8a13dd3e55b396ac07bf7fbbee281c1025da2b86fc
+https://blockchain.info/tx/d36a18d1fa4c6ccc4b90ab8a13dd3e55b396ac07bf7fbbee281c1025da2b86fc
 
-5. 没办法，我只能在createrawtransaction的时候手工指定手续费为0.000001，心痛啊，手续费是转账金额的20%~
+5.没办法，我只能在createrawtransaction的时候手工指定手续费为0.000001，心痛啊，手续费是转账金额的20%~
 
 然后又得到了这个错:
 
@@ -77,7 +79,7 @@ bitcoin-cli getmempoolinfo
 
 现在是够的啊，搞不明白了；不行，再等别人就转走了，得争分夺秒啊2333
 
-6. 只能去找几个大矿池在线广播了，我无奈的先后使用了:
+6.只能去找几个大矿池在线广播了，我无奈的先后使用了:
 
 https://btc.com/tools/tx/publish
 
@@ -87,7 +89,7 @@ https://live.blockcypher.com/btc/pushtx/
 
 统统失败，还测试出blockcypher有个500，它的后台没处理好。悲剧了
 
-7. 万般无奈之下我将手续费用继续提高为0.000002，然后得到下面的报错:
+7.万般无奈之下我将手续费用继续提高为0.000002，然后得到下面的报错:
 
 ```
 dust transction
@@ -95,7 +97,7 @@ dust transction
 
 一顿google之下发现0.15版本以后，bitcoin core的[dust判定标准是546 satoshins](https://bitcoin.stackexchange.com/questions/10986/what-is-meant-by-bitcoin-dust)，这笔交易的金额正好处于这么一个微妙的位置。
 
-8. 一通操作之后，发现这笔钱是无论如何不能立即拿出来了；于是写个脚本暴力广播之，总有mempool size下来的时候吧，我幻想着，说不定能中奖呢23333
+8.一通操作之后，发现这笔钱是无论如何不能立即拿出来了；于是写个脚本暴力广播之，总有mempool size下来的时候吧，我幻想着，说不定能中奖呢23333
 
 
 #### 结局
