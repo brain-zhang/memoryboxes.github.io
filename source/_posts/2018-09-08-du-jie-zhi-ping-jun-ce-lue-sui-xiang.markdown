@@ -6,7 +6,7 @@ comments: true
 categories: life 
 ---
 
-周末读了[《价值平均策略》](source/_posts/2018-09-08-du-jie-zhi-ping-jun-ce-lue-sui-xiang.markdown) 这本书，又生出一些无厘头的想法，记录一下。
+周末读了[《价值平均策略》](https://book.douban.com/subject/2991567/) 这本书，又生出一些无厘头的想法，记录一下。
 
 这本书短小精悍，通篇探讨比较了三种定投策略，并用1926-1990年的美股市场数据进行了回测。
 
