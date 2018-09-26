@@ -23,7 +23,7 @@ https://www.youtube.com/watch?v=oe4Jo4i3w_w
 
 素数如此特别，数学家们试图搞清楚如何判断一个数是素数。给你一个小的数，例如7，你很容易判断它是素数。但是当给你一个很大的数字时，判断一个数是否为素数，是需要方法的。由此产生了素数判定的算法。
 
-为了更好地理解素数，数学家们在 19 世纪便不再尝试预测素数的精确位置，转而将素数的现象视为一个整体。这个预测素数分布规律的挑战吸引了众多大佬，包括我们的数学王子gauss，独行侠Selberg等等，最著名的还是Riemann hypothesis提出的黎曼猜想。这段历史可以参考[这里](https://www.changhai.org/articles/science/mathematics/riemann_hypothesis/index.php)。
+为了更好地理解素数，数学家们在 19 世纪便不再尝试预测素数的精确位置，转而将素数的现象视为一个整体。这个预测素数分布规律的挑战吸引了众多大佬，包括我们的数学王子gauss，独行侠Selberg等等，最著名的还是Riemann hypothesis提出的黎曼猜想。这段历史可以参考卢昌海老师的[科普文](https://www.changhai.org/articles/science/mathematics/riemann_hypothesis/index.php)。
 
 黎曼1859年在他的论文《论小于已知数的素数个数》提出了这个著名的猜想，但它并非该论文的中心目的，他也没有试图给出证明。这个猜想描述如下:
 
@@ -38,7 +38,7 @@ https://www.youtube.com/watch?v=oe4Jo4i3w_w
 
 ### 如果猜想被证明，对安全界有什么影响
 
-这又得从我们码农熟知的非对称加密算法开始说起了。众所周知，SSL/TLS(https)等一系列安全协议都是建立在RSA算法之上的，而RSA作为非对称加密算法的典型代表，又是建立在大素数分解的基础上的。这部分可以参考阮一峰先生的[科普文](http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html)。
+这又得从我们码农熟知的非对称加密算法开始说起了。众所周知，SSL/TLS(https)等一系列安全协议都是建立在RSA算法之上的，而RSA作为非对称加密算法的典型代表，又是建立在大素数分解的基础上的。这部分可以参考阮一峰老师的[科普文](http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html)。
 
 那么黎曼猜想如果被证明，是不是意味着RSA算法就不再安全了呢？作为吃瓜群众，大可不必去跟风娱乐媒体，不需要多高深的数学知识就能自己来判断:
 
