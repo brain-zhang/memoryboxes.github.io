@@ -12,6 +12,8 @@ categories: blockchain
 
 在之前我们的一篇文章[加密技术发展](https://happy123.me/blog/2016/12/25/jia-mi-ji-zhu-fa-zhan/) 中提到了一个经典的问题:
 
+<!-- more -->
+
 *  Alice和Bob是朋友，他们的住处离得比较远，Alice想要发送一则隐私消息给Bob
 
 * Eve想要窃听Alice和Bob的通信，Alice和Bob无法防止Eve的偷看
