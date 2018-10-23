@@ -161,12 +161,12 @@ Alice 想要给Bob发信，必须拿到Bob的y值，除非是热恋的情人，�
 11. 复杂的情况出现了。Eve想欺骗Alice，他偷偷使用了Alice的电脑，用自己的公钥换走了鲍勃的公钥。此时，Alice实际拥有的是Eve的公钥，但是还以为这是Bob的公钥。因此，Eve就可以冒充Bob，用自己的私钥做成"数字签名"，写信给Alice，让Alice用假的Bob公钥进行解密。
 12. 后来，Alice感觉不对劲，发现自己无法确定公钥是否真的属于Bob。每次都去寻找Bob的个人网页去比对也很麻烦；她想到了一个办法，要求Bob去找"证书中心"（certificate authority，简称CA），为公钥做认证。证书中心用自己的私钥，对Bob的公钥和一些相关信息一起加密，生成"数字证书"（Digital Certificate）。
 13. Bob拿到数字证书以后，就可以放心了。以后再给Alice写信，只要在签名的同时，再附上数字证书就行了。
-14. 苏Alice信后，用CA的公钥解开数字证书，就可以拿到Bob真实的公钥了，然后就能证明"数字签名"是否真的是Bob签的。
+14. Alice收到信后，用CA的公钥解开数字证书，就可以拿到Bob真实的公钥了，然后就能证明"数字签名"是否真的是Bob签的。
 15. 以上过程涉及了`非对称加密`，`HASH`，`签名`,`Digest`，`CA`等等名词，没错，我们说的就是HTTPS
 
 完整的资料参看这里：
 
-http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html
+http://www.youdzone.com/signature.html
 
 ## 椭圆曲线ECC加密算法（Elliptic Curve Cryptography）
 
