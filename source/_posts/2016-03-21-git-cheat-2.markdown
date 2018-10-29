@@ -339,6 +339,9 @@ http://git-scm.com/docs/git-rebase
     # 显示两次更改之间所有的文件名
     git diff-tree -r --no-commit-id --name-only --diff-filter=ACMRTD HEAD HEAD^
 
+    # diff两个分支
+    git diff master branch/1.1 --
+
 ## 其他
 
     # 生成一个可供发布的压缩包
