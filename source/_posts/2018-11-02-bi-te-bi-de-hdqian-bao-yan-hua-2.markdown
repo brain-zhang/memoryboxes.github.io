@@ -16,13 +16,13 @@ styles: data-table
 一般来说，私钥是个256bit的随机字符。为了演示方便，我们用一个人民大众喜闻乐见的地址生成为例子，私钥选取为 sha256("satoshi")
 
 ```
->printf "satoshi"|sha256sum
+> printf "satoshi"|sha256sum
 da2876b3eb31edb4436fa4650673fc6f01f90de2f1793c4ec332b2387b09726f  -
 ```
 
 得到私钥为`da2876b3eb31edb4436fa4650673fc6f01f90de2f1793c4ec332b2387b09726f`
 
-## 用WIF表示私钥
+## 用WIF (Wallet Import Format)表示私钥
 
 我们看到私钥本质上是256bit的数字，他可以用二进制表示，也可以用16进制字符串表示，也可以用Base58Check来表示；为了在不同的钱包中方便的导入导出私钥，也为了方便二维码的生成，比特币采用了名为`WIF`的表示方法，下面列一个表格来说明:
 
@@ -148,7 +148,7 @@ WIF格式和比特币地址都是用Base58Check编码表示的，Base58是Base64
 
 ![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181102/bg1.jpg)
 
-引入Python代码计算一下 `satoshi`作为seed的地址
+`satoshi`作为seed计算出私钥，进而计算出公钥K之后，最终进一步生成地址
 
 ```
 def genaddress_from_pubk(compressed=True)
@@ -159,12 +159,12 @@ def genaddress_from_pubk(compressed=True)
     return addr
 ```
 
-因为公钥由压缩形式和非压缩两种形式，所以完整的结果是:
+因为公钥存在压缩形式和非压缩两种形式，所以完整的结果是:
 
 
 ```
 seed: satoshi
-sha256: da2876b3eb31edb4436fa4650673fc6f01f90de2f1793c4ec332b2387b09726f
+sha256 private key: da2876b3eb31edb4436fa4650673fc6f01f90de2f1793c4ec332b2387b09726f
 
 compress address
 WIF: L4XnHhvLC1b4ag9L2PM9kRicQxUoYT1Q36PQ21YtLNkrAdWZNos6
