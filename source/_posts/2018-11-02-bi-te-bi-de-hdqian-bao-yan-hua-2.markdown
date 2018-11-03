@@ -611,8 +611,84 @@ word:hello:private:1c8aff950685c2ed4bc3174f3472287b56d9517b9c948127319a09a7a36de
 
 不过我们就不要讲故事了，总之Bitcoin Cash分叉诞生后，为了和传统的Bitcoin地址相区别，自己又做了一下改动。
 
+快速看看BCH新老地址的对比：
+
+1. 新地址是和老地址一一对应的，它们对应了同一个私钥，只是换了种写法
+
+2. 新地址可以发送余额给老地址，老地址可以发送余额到新地址
+
+3. 新地址是大小写不敏感的，可以全部转成大写，也可以全部转成小写，优先小写格式，同一地址不能大小写混用
+
+4. 新地址的前缀可写可不写，老地址没有前缀，通过首字符来标识类型
+
+5. 新地址用base32编码，老地址用base58编码
+
+官方文档描述参见[这里](https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/cashaddr.md)，让我们从seed `satoshi` 生成一个bitcoin cash 地址演示一遍。
+
+#### 规范
+
+新的bitcoin cash地址是由：
+
+* 能够表示该地址有效的网络的前缀，一般为主网(bitcoincash)、测试网(bchtest)、回归测试网(bchreg)三种。
+* 一个分隔符：`:`
+* 一个base32编码的payload，表示这个地址的目的地和包含的checksum（校验和）。
+
+#### Payload
+
+payload是base32编码的数据流，由三个元素组成:
+
+* 指示地址字节的版本类型
+
+共8bits, 1bit(0) + 4bits (地址类型：Type bits) + 3bits (hash长度：Size bits)
 
 
+Type bits (二进制) | 地址类型 
+---|---
+0000 | P2PKH
+1000 | P2SH
+0000 | P2PKH-TESTNET
+1000 | P2SH-TESTNET
+
+
+Size bits (二进制) | 代表hash长度
+---|---
+000 | 160
+001 | 192
+010 | 224
+011 | 256
+100 | 320
+101 | 384
+110 | 448
+111 | 512
+
+
+* 一个hash值
+
+hash含义取决于版本字段。它是表示数据的hash，即P2KH的pubkey hash和P2SH的reedemScript哈希。这个需要我们在比特币交易格式解析的时候才能讲到。 
+
+* 一个40字节的校验和
+
+校验和根据以下代码计算：
+
+```
+uint64_t PolyMod(const data &v) {
+    uint64_t c = 1;
+    for (uint8_t d : v) {
+        uint8_t c0 = c >> 35;
+        c = ((c & 0x07ffffffff) << 5) ^ d;
+        
+        if (c0 & 0x01) c ^= 0x98f2bc8e61;
+        if (c0 & 0x02) c ^= 0x79b76d99e2;
+        if (c0 & 0x04) c ^= 0xf33e5fb3c4;
+        if (c0 & 0x08) c ^= 0xae2eabe2a8;
+        if (c0 & 0x10) c ^= 0x1e4f43e470;
+    }
+    
+    return c ^ 1;
+}
+```
+
+待续~~~
 
 ## 总结
 
