@@ -664,11 +664,11 @@ Size bits (二进制) | 代表hash长度
 
 * 一个hash值
 
-hash含义取决于版本字段。它是表示数据的hash，即P2KH的pubkey hash和P2SH的reedemScript哈希。这个需要我们在比特币交易格式解析的时候才能讲到。 
+hash含义取决于版本字段。它是表示数据的hash，即P2KH的pubkey hash和P2SH的reedemScript哈希。这个可以直接从BTC地址里面推出，这个hash值导出后需要用40Bits的BCH码来表示，这样做之后，地址大小写不敏感。
 
 * 一个40字节的校验和
 
-校验和根据以下代码计算：
+这个校验和的计算比较繁琐，它是在GF（2 ^ 5）上定义的40bits的BCH码，校验和根据以下代码计算：
 
 ```
 uint64_t PolyMod(const data &v) {
@@ -687,8 +687,26 @@ uint64_t PolyMod(const data &v) {
     return c ^ 1;
 }
 ```
+具体的规则可以详细参考[这里](https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/cashaddr.md)。
 
-待续~~~
+
+#### 地址转换生成
+
+1. 取`satoshi` 生成的非压缩地址`1ADJqstUMBB5zFquWg19UqZ7Zc6ePCpzLE`
+2. 这个地址是一个主网地址，前缀为`bitcoincash:xxxxx`
+3. 这个地址类型为`P2PKH`，version_bits为0000
+4. `1ADJqstUMBB5zFquWg19UqZ7Zc6ePCpzLE`进行base58 Decode，去掉末尾的4字节checksum，得到的hash值用list表示`[101, 13, 4, 151, 224, 20, 230, 13, 70, 128, 252, 230, 153, 125, 64, 93, 226, 100, 240, 66]`
+5. 加入version前缀，`payload = [0, 101, 13, 4, 151, 224, 20, 230, 13, 70, 128, 252, 230, 153, 125, 64, 93, 226, 100, 240, 66]`
+6. 将hash进行8bits->5bits BCH码的转换，`payload = [0, 1, 18, 16, 26, 1, 4, 23, 28, 0, 10, 14, 12, 3, 10, 6, 16, 3, 30, 14, 13, 6, 11, 29, 8, 1, 14, 30, 4, 25, 7, 16, 8, 8]`
+7. 计算校验和:`checksum=[24, 25, 19, 1, 12, 3, 18, 8]`
+8. 对payload + checksum进行base32编码，得到`qpjs6pyhuq2wvr2xsr7wdxtagpw7ye8sggcenpvrjg`
+9. 加入前缀`bitcoincash:`，组合得到最后地址`bitcoincash:qpjs6pyhuq2wvr2xsr7wdxtagpw7ye8sggcenpvrjg`
+
+有许多在线转换工具可以验证，比如:
+
+https://bch.btc.com/tools/address-converter
+
+
 
 ## 总结
 
@@ -706,7 +724,7 @@ mtgox是比特币历史上巨大的迷雾，他不光牵扯到许多比特币的
 
 * 不需要给每个用户的账户都建立一个钱包文件，我希望能有一个总的账户管理方案
 * 可能交易所有1000个大户，你希望他们的钱包是冷存储的，提币的时候他们可以耐心等一段时间，但是剩下的100000个普通用户的账户就要存放到一个热钱包上，只留有部分资产来应付流动性
-* 有很多部门需要批准获取一些资金，比如研发要用啦做测试，市场部门要用来搞活动等等
+* 有很多部门需要批准获取一些资金，比如研发要用来做测试，市场部门要用来搞活动等等
 * 最后，私钥最好只能由少数人，最好只有我本人来掌握，不然私钥的传播过程中，随便一个人就能让你万劫不复
 * 我如果有一些合伙人的话，肯定也希望能掌管一部分资金
 * 如果有突发情况，我能迅速把公司账上所有的币都转移到另外一个安全的账户上，这有可能是要迅速完成上万笔的交易转移
