@@ -692,27 +692,27 @@ uint64_t PolyMod(const data &v) {
 
 #### 地址转换生成
 
-1. 取`satoshi` 生成的非压缩地址`1ADJqstUMBB5zFquWg19UqZ7Zc6ePCpzLE`
-2. 这个地址是一个主网地址，前缀为`bitcoincash:xxxxx`
-3. 这个地址类型为`P2PKH`，version_bits为0000
-4. `1ADJqstUMBB5zFquWg19UqZ7Zc6ePCpzLE`进行base58 Decode，去掉末尾的4字节checksum，得到的hash值用list表示
+* 1.取`satoshi` 生成的非压缩地址`1ADJqstUMBB5zFquWg19UqZ7Zc6ePCpzLE`
+* 2.这个地址是一个主网地址，前缀为`bitcoincash:xxxxx`
+* 3.这个地址类型为`P2PKH`，version_bits为0000
+* 4.`1ADJqstUMBB5zFquWg19UqZ7Zc6ePCpzLE`进行base58 Decode，去掉末尾的4字节checksum，得到的hash值用list表示
 ```
 payload = [101, 13, 4, 151, 224, 20, 230, 13, 70, 128, 252, 230, 153, 125, 64, 93, 226, 100, 240, 66]
 ```
-5. 加入version前缀
+* 5.加入version前缀
 ```
 payload = [0, 101, 13, 4, 151, 224, 20, 230, 13, 70, 128, 252, 230, 153, 125, 64, 93, 226, 100, 240, 66]
 ```
-6. 将hash进行8bits->5bits BCH码的转换
+* 6.将hash进行8bits->5bits BCH码的转换
 ```
 payload = [0, 1, 18, 16, 26, 1, 4, 23, 28, 0, 10, 14, 12, 3, 10, 6, 16, 3, 30, 14, 13, 6, 11, 29, 8, 1, 14, 30, 4, 25, 7, 16, 8, 8]
 ```
-7. 计算校验和
+* 7.计算校验和
 ```
 checksum=[24, 25, 19, 1, 12, 3, 18, 8]
 ```
-8. 对payload + checksum进行base32编码，得到`qpjs6pyhuq2wvr2xsr7wdxtagpw7ye8sggcenpvrjg`
-9. 加入前缀`bitcoincash:`，组合得到最后地址`bitcoincash:qpjs6pyhuq2wvr2xsr7wdxtagpw7ye8sggcenpvrjg`
+* 8.对payload + checksum进行base32编码，得到`qpjs6pyhuq2wvr2xsr7wdxtagpw7ye8sggcenpvrjg`
+* 9.加入前缀`bitcoincash:`，组合得到最后地址`bitcoincash:qpjs6pyhuq2wvr2xsr7wdxtagpw7ye8sggcenpvrjg`
 
 有许多在线转换工具可以验证，比如:
 
