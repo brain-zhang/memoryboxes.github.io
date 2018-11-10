@@ -4,6 +4,7 @@ title: "比特币的HD钱包演化-3"
 date: 2018-11-07 19:59:04 +0800
 comments: true
 categories: blockchain
+styles: data-table
 ---
 
 通过前面两篇文章，我们认识到比特币的所有权是通过私钥来确定的。
@@ -51,6 +52,99 @@ categories: blockchain
 
 ![img](http://upload-images.jianshu.io/upload_images/1785959-7ce3000da8239b74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+分层钱包说白了，就是将`seed->私钥`的过程变成了，`助记词->seed->一级私钥->二级私钥->三级私钥....`，即多层树状私钥生成的方案。HD钱包包含以树状结构衍生的密钥，使得父密钥可以衍生一系列子密钥，每个子密钥又可以衍生出一系列孙密钥，以此类推，无限衍生。HD钱包有两个主要的优势。
+
+1. 树状结构可以被用来表达额外的组织含义。比如当一个特定分支的子密钥被用来接收交易收入并且有另一个分支的子密钥用来负责支付花费。不同分支的密钥都可以被用在企业环境中，这就可以支配不同的分支部门、子公司、具体功能以及会计类别。
+
+2. 是它可以允许让使用者去建立一个公共密钥的序列而不需要访问相对应的私钥。这可允许HD钱包在不安全的服务器中使用或者在每笔交易中发行不同的公共钥匙。公共钥匙不需要被预先加载或者提前衍生，而在服务器中不需要可用来支付的私钥。
 
 
-~~待续
+再来一个在线工具用于验证:
+
+https://iancoleman.io/bip39/
+
+
+最初的私钥seed来源于一个助记词（又称为Mnemonic Code），为了便于在不同的钱包中转移、导出和导入，社区对助记词的长度，范围，变换标准等等做了详尽的描述，最终形成了[BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)规范。这个规范由Trezor硬件钱包背后的公司提出，已经成为事实上的行业标准。
+
+BIP-39定义了助记符码和种子的创建，我们在这里描述了九个步骤。 为了清楚起见，该过程分为两部分：
+
+1-6步是创建助记词，7-9步是从助记词到种子。下面我们从一个`ffffffffffffffffffffffffffffffff` 的128bits 熵开始，演示HD钱包是如何生成、管理私钥的。让我们一步一步解释。
+
+#### 先看看创建助记词的部分
+
+1、创建一个128到256位的随机序列（熵）。我们取`ffffffffffffffffffffffffffffffff`，称之为原始熵。
+
+2、用SHA256 HASH原始熵，就可以创造一个随机序列的校验和。代码如下
+
+```
+from binascii import unhexlify
+from hashlib import sha256
+data = 'f' * 32
+data_unhexlify = unhexlify(data)
+h = hashlib.sha256(data_unhexlify)
+checksum = bin(int(h, 16))[2:].zfill(256)[:len(data) * 8 // 32]
+```
+
+得到checksum为`0101`
+
+3、首先求得原始熵的二进制表示，然后将校验和添加到随机序列的末尾。代码如下:
+
+```
+from binascii import unhexlify, hexlify
+data = 'f' * 32
+data_unhexlify = unhexlify(data)
+body = bin(int(hexlify(data), 16))[2:].zfill(len(data) * 8)
+final_result = body + checksum
+```
+得出的结果为
+
+```
+111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110101
+```
+
+4、将序列划分为包含11位的不同部分。
+
+```
+11111111111 11111111111 11111111111 11111111111 11111111111 11111111111 11111111111 11111111111 11111111111 11111111111 11111111111 11111110101
+```
+
+5、将每个包含11位部分的值作为下标索引，与一个已经预先定义2048个单词的字典做对应。BIP39中对应的字典文件可以参考这里:
+
+https://github.com/trezor/python-mnemonic/tree/master/mnemonic/wordlist
+
+以上二进制表示的下标值为:
+
+```
+2047, 2047, 2047, 2047, 2047, 2047, 2047, 2047, 2047, 2047, 2047, 2037
+```
+
+6、生成的有顺序的单词组，就是助记码(Mnemonic Code)。在咱们的例子中如果采用英文字典，对应的结果为:
+
+```
+zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo wrong
+```
+
+
+一张图展示熵如何生成助记词:
+
+![img](http://upload-images.jianshu.io/upload_images/1785959-bed496243dd75389.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+在上面这个例子中，我们选取了128Bits 原始熵，BIP39规范中，用户有128bits, 160bits, 192bits, 224bits, 256bits多个选择;下面的表格说明了熵数据的大小和助记词的长度之间的关系:
+
+
+Entropy(bits) | Checksum(bits)| Entropy + checksum(bits) | Mnemonic length(words)
+---|---|---|---
+128|4|132|12
+160|5|165|15
+192|6|198|18
+224|7|231|21
+256|8|264|24
+
+目前最流行的实现还是跟我们上面的例子一样，选取128bits->12words 的Mnemonic code生成。
+
+#### 从助记词生成种子
+
+现在我们已经从`ffffffffffffffffffffffffffffffff`随机熵得到了助记码`zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo wrong`，现在需要从助记码再生成种子。
+
+这里我们需要先介绍一个函数:PBKDF2，它被称之为密钥延伸函数。作用是 ~~ 待续
