@@ -50,13 +50,13 @@ styles: data-table
 
 首先用一张经典的图来描述HD钱包的私钥生成:
 
-![img](http://upload-images.jianshu.io/upload_images/1785959-7ce3000da8239b74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181113/bg1.jpg)
 
 分层钱包说白了，就是将`seed->私钥`的过程变成了，`助记词->seed->一级私钥->二级私钥->三级私钥....`，即多层树状私钥生成的方案。HD钱包包含以树状结构衍生的密钥，使得父密钥可以衍生一系列子密钥，每个子密钥又可以衍生出一系列孙密钥，以此类推，无限衍生。HD钱包有两个主要的优势。
 
 1. 树状结构可以被用来表达额外的组织含义。比如当一个特定分支的子密钥被用来接收交易收入并且有另一个分支的子密钥用来负责支付花费。不同分支的密钥都可以被用在企业环境中，这就可以支配不同的分支部门、子公司、具体功能以及会计类别。
 
-2. 是它可以允许让使用者去建立一个公共密钥的序列而不需要访问相对应的私钥。这可允许HD钱包在不安全的服务器中使用或者在每笔交易中发行不同的公共钥匙。公共钥匙不需要被预先加载或者提前衍生，而在服务器中不需要可用来支付的私钥。
+2. 它可以允许使用者去建立一个公共密钥的序列而不需要访问相对应的私钥。这可允许HD钱包在不安全的服务器中使用或者在每笔交易中发行不同的公钥。公钥不需要被预先加载或者提前衍生，而在服务器中不需要存储私钥。
 
 
 再来一个在线工具用于验证:
@@ -66,9 +66,9 @@ https://iancoleman.io/bip39/
 
 最初的私钥seed来源于一个助记词（又称为Mnemonic Code），为了便于在不同的钱包中转移、导出和导入，社区对助记词的长度，范围，变换标准等等做了详尽的描述，最终形成了[BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)规范。这个规范由Trezor硬件钱包背后的公司提出，已经成为事实上的行业标准。
 
-BIP-39定义了助记符码和种子的创建，我们在这里描述了九个步骤。 为了清楚起见，该过程分为两部分：
+BIP-39定义了助记符码和种子的创建， 为了清楚起见，该过程分为两部分：
 
-1-6步是创建助记词，7-9步是从助记词到种子。下面我们从一个`ffffffffffffffffffffffffffffffff` 的128bits 熵开始，演示HD钱包是如何生成、管理私钥的。让我们一步一步解释。
+先是创建助记词，然后是从助记词到种子。下面我们从一个`ffffffffffffffffffffffffffffffff` 的128bits 熵开始，演示HD钱包是如何生成、管理私钥的。让我们一步一步解释。
 
 ### 先看看创建助记词的部分
 
@@ -120,9 +120,9 @@ https://github.com/trezor/python-mnemonic/tree/master/mnemonic/wordlist
 2047, 2047, 2047, 2047, 2047, 2047, 2047, 2047, 2047, 2047, 2047, 2037
 ```
 
-为什么单词数目是2048呢？ 其实seed可以有12-24个单词，所有的组合可能性为 2048^12 -- 2018^24；
+为什么单词数目是2048呢？ 其实seed可以有12-24个单词，所有的组合可能性为 2048^12 -- 20418^24；
 
-还记得我们之前的文章吗？比特币公钥->地址的最后一步是RIPEMD160，他一共有2^160可能性，上面seed的生成空间覆盖了RIPEMD160的生成空间。
+还记得我们之前的文章吗？比特币公钥->地址的倒数第二步是RIPEMD160，他一共有2^160可能性，上面seed的生成空间覆盖了RIPEMD160的生成空间。
 
 * 6、生成的有顺序的单词组，就是助记码(Mnemonic Code)。在咱们的例子中如果采用英文字典，对应的结果为:
 
@@ -133,7 +133,7 @@ zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo wrong
 
 一张图展示熵如何生成助记词:
 
-![img](http://upload-images.jianshu.io/upload_images/1785959-bed496243dd75389.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181113/bg2.jpg)
 
 
 在上面这个例子中，我们选取了128Bits 原始熵，BIP39规范中，用户有128bits, 160bits, 192bits, 224bits, 256bits多个选择;下面的表格说明了熵数据的大小和助记词的长度之间的关系:
@@ -227,7 +227,7 @@ https://pypi.org/project/bip32utils/
 
 * 3、 这个512bits的`I`可以分为两个部分，左边的256bits用作Master Private Key，右边的256bits用作Master Chain Code。Master Private Key又可以推导出Master Public Key。整个表示如下:
 
-![img](http://upload-images.jianshu.io/upload_images/1785959-838fb4445a1d179c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181113/bg3.jpg)
 
 * 4、 这样我们从一个512bits的输出里面分成了两个变量: Master Pirvate Key以及Master  Chain Code；下面分别说说他们的作用
 
@@ -284,10 +284,9 @@ xprv9s21ZrQH143K35KaAEjp6RjB4LoeCR3prWBv6vmX7HuGnPFygragV39uDC24D3UZvMnWbhame5ny
 
 这种方案的常见应用是安装扩展公钥电商的网络服务器上。网络服务器可以使用这个公钥衍生函数去给每一笔交易（比如客户的购物车）创造一个新的比特币地址。但为了避免被偷，网络服务商不会有任何私钥。没有HD钱包的话，唯一的方法就是在不同的安全服务器上创造成千上万个比特币地址，之后就提前上传到电商服务器上。这种方法比较繁琐而且要求持续的维护来确保电商服务器不“用光”公钥。
 
-这种解决方案的另一种常见的应用是冷藏或者硬件钱包。在这种情况下，扩展的私钥可以被储存在纸质钱包中或者硬件设备中（比如 Trezor 硬件钱包），与此同时扩展公钥可以在线保存。使用者可以根据意愿创造“接收”地址而私钥可以安全地在线下被保存。为了支付资金，使用者可以使用扩展的私钥离线签署比特币客户或者通过硬件钱包设备（比如 Trezor）签署交易。图5-11阐述了扩展母公钥来衍生子公钥的传递机制。
+这种解决方案的另一种常见的应用是冷藏或者硬件钱包。在这种情况下，扩展的私钥可以被储存在纸质钱包中或者硬件设备中（比如 Trezor 硬件钱包），与此同时扩展公钥可以在线保存。使用者可以根据意愿创造“接收”地址而私钥可以安全地在线下被保存。为了支付资金，使用者可以使用扩展的私钥离线签署比特币客户或者通过硬件钱包设备（比如 Trezor）签署交易。下图阐述了扩展母公钥来衍生子公钥的传递机制。
 
-![img](http://upload-images.jianshu.io/upload_images/1785959-1224f8f1acd381d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181113/bg4.jpg)
 
 #### 硬化子密钥的衍生
 
@@ -295,7 +294,7 @@ xprv9s21ZrQH143K35KaAEjp6RjB4LoeCR3prWBv6vmX7HuGnPFygragV39uDC24D3UZvMnWbhame5ny
 
 为了应对这种风险，HD钱包使用一种叫做硬化衍生(hardened derivation）的替代衍生函数。这就“打破”了母公钥以及子链码之间的关系。这个硬化衍生函数使用了母私钥去推导子链码，而不是母公钥。这就在母/子顺序中创造了一道“防火墙”——有链码但并不能够用来推算子链码或者姊妹私钥。强化衍生函数看起来几乎与一般的衍生的子私钥相同，不同的是母私钥被用来输入散列函数中而不是母公钥，如图所示。
 
-![img](http://upload-images.jianshu.io/upload_images/1785959-da0636d43b3579ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181113/bg5.jpg)
 
 当强化私钥衍生函数被使用时，得到的子私钥以及链码与使用一般衍生函数所得到的结果完全不同。得到的密钥“分支”可以被用来生产不易被攻击的扩展公钥，因为它所含的链码不能被用来开发或者暴露任何私钥。强化衍生也因此被用在上一层级，使用扩展公钥的密钥树中创造“间隙”。
 
@@ -324,7 +323,7 @@ xprv9s21ZrQH143K35KaAEjp6RjB4LoeCR3prWBv6vmX7HuGnPFygragV39uDC24D3UZvMnWbhame5ny
 
 #### HD钱包树状结构的导航
 
-HD钱包树状结构提供了极大的灵活性。每一个母扩展密钥有40亿个子密钥：20亿个常规子密钥和20亿个强化子密钥。 而每个子密钥又会有40亿个子密钥并且以此类推。只要你愿意，这个树结构可以无限类推到无穷代。但是，又由于有了这个灵活性，对无限的树状结构进行导航就变得异常困难。尤其是对于在不同的HD钱包之间进行转移交易，因为内部组织到内部分支以及亚分支的可能性是无穷的。
+HD钱包树状结构提供了极大的灵活性。每一个母扩展密钥有40亿个子密钥：20亿个常规子密钥和20亿个强化子密钥。 而每个子密钥又会有40亿个子密钥并且以此类推。只要你愿意，这个树结构可以无限类推到无穷代。但是，又由于有了这个灵活性，对无限的树状结构进行导航就变得异常困难。尤其是对于在不同的HD钱包之间进行转移交易，因为内部组织到内部分支以及子分支的可能性是无穷的。
 
 两个比特币改进建议（BIPs）提供了这个复杂问题的解决办法——通过创建几个HD钱包树的提议标准。BIP-43提出使用第一个强化子索引作为特殊的标识符表示树状结构的“purpose”。基于BIP-43，HD钱包应该使用且只用第一层级的树的分支，而且有索引号码去识别结构并且有命名空间来定义剩余的树的目的地。举个例子，HD钱包只使用分支m/i'/是 为了表明那个被索引号“i”定义的特殊为目地。
 
@@ -351,7 +350,7 @@ m / purpose' / coin_type' / account' / change / address_index
 
 1. 生成一个随机序列作为原始熵
 2. 通过一系列变换操作得到了一个Mnemonic Code，这些操作需要大量的HASH过程，抵御了暴力碰撞。同时，生成的Mnemonic Code作为人类易读的助记词，可以轻易的抄写备份，导入导出，这个Mnemonic  Code代表着钱包的完全控制权
-3. 从Mnemonic得到了一个 BIP32 Root Key，这可以构造一棵私钥树的根节点
+3. 从Mnemonic得到了一个root seed，进而转化为 BIP32 Root Key，这可以构造一棵私钥树的根节点
 4. 从BIP32 Root Key开始，可以构造更多的公共子密钥，或者公共密钥；根据使用场景的不同，可以构造出完全控制的HD钱包，或者离线签署的只读钱包。
 
 这上面一系列的操作细节，被社区总结到了几个BIP规范当中。
@@ -373,7 +372,7 @@ m / purpose' / coin_type' / account' / change / address_index
 
 #### BIP44
 
-基于 BIP32和BIP43 的系统，赋予树状结构中的各层特殊的意义。让同一个 seed 可以支援多币种、多帐户等。各层定义如下：
+基于 BIP32和BIP43 的定义，赋予树状结构中的各层特殊的意义。让同一个 seed 可以支持多币种、多帐户等。各层定义如下：
 
 ```
 m / purpose' / coin_type' / account' / change / address_index
