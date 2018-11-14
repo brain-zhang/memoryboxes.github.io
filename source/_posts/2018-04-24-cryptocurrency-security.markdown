@@ -101,3 +101,8 @@ LBC这个项目遭受了很多人的误解和攻击。有的人认为这是一�
 #### 数字货币世界还是处于蛮荒狂野时代，不是那么多事情都是理所当然的;乔帮主的训诫要时时温习:饥渴求知，虚怀若愚(Stay Hungry, Stay Foolish)
 
 #### 少年，祝你好运
+
+
+#### 参考:
+
+https://en.bitcoin.it/wiki/User_talk:Ryanc#Warpwallet_security_analysis
