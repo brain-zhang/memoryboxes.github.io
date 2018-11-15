@@ -35,7 +35,7 @@ https://github.com/bitcoin-sv/bitcoin-sv/commit/a8ab90a375db85b192057aa11f56bfa0
 
 曾经，像Bitcoin Gold之流，改个POW算法就出来割韭菜了，大家还愤愤不平；
 
-Litcoin和Dogcoin还是改了改币数上限和出块时间的，这是在早期，咱们也忍了~~
+Litecoin和Dogcoin还是改了改币数上限和出块时间的，这是在早期，咱们也忍了~~
 
 如今Bitcoin SV的代码库让我见识了什么叫任性！
 
