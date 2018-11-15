@@ -23,7 +23,7 @@ Bitcoin Cash 将于UNIX时间1542300000 (即北京时间2018年11月16日00：40
 699 files changed, 11634 insertions(+), 197401 deletions(-)
 ```
 
-看起来改了不少，但是从头review一遍，他们从2018-08-22搞到现在，啥实质改动都没有，就开了几个操作码，改了几个测试；原本MAXBLOCKSIZE就变成可配置的了，他们不过是稍稍改了一下判断条件而已，改动最大的反而是README文件，最值得吐槽的就是这个提交：
+看起来改了不少，但是从头review一遍，他们从2018-08-22搞到现在，啥实质改动都没有，就开了几个操作码，改了几个测试；原本MAXBLOCKSIZE就变成可配置的了，他们不过是稍稍改了一下判断条件而已，改动最大的反而是README和release notes文件，最值得吐槽的就是这个提交：
 
 https://github.com/bitcoin-sv/bitcoin-sv/commit/db8190ab5fb5262a6d3701017d733f106308fd0d
 
@@ -37,7 +37,7 @@ https://github.com/bitcoin-sv/bitcoin-sv/commit/a8ab90a375db85b192057aa11f56bfa0
 
 Litcoin和Dogcoin还是改了改币数上限和出块时间的，这是在早期，咱们也忍了~~
 
-如今Bitcoin SV的代码库让我见识了什么叫任性！我觉得这种代码出来分叉真的是对开发人员赤裸裸的打脸。
+如今Bitcoin SV的代码库让我见识了什么叫任性！
 
 如果不赞成升级，原版代码运行就是；现在哥们，你们倒是放开了操作码！但是操作码执行实现的部分好好测试过了吗，对应的测试在哪里？就两天时间开放出来不怕出BUG吗？
 
