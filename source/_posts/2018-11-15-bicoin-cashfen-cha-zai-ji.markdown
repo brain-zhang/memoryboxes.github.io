@@ -41,4 +41,8 @@ Litcoin和Dogcoin还是改了改币数上限和出块时间的，这是在早期
 
 如果不赞成升级，原版代码运行就是；现在哥们，你们倒是放开了操作码！但是操作码执行实现的部分好好测试过了吗，对应的测试在哪里？就两天时间开放出来不怕出BUG吗？
 
+同样的一个[重要BUG处理](https://bitcoincore.org/en/2018/09/20/notice/):
+
+Bitcoin ABC的[重构+修正](https://github.com/Bitcoin-ABC/bitcoin-abc/commit/7e20479893089b2b80f81cc2e7e5712a2d4158ba)，BitcoinSV的[修正](https://github.com/bitcoin-sv/bitcoin-sv/commit/a8ab90a375db85b192057aa11f56bfa0612d7e86); 态度啊~~
+
 我觉得数字货币这个场子没啥正义公理可言，就是中本聪重现人间，相信说话也没多大分量了；但是代码质量是没办法靠嘴炮提升的；Bitcoin SV这个代码质量得不到码农的信赖。
