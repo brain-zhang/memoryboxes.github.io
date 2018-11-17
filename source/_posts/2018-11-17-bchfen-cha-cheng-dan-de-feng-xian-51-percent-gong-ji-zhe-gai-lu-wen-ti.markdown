@@ -62,13 +62,14 @@ https://www.8btc.com/wiki/bitcoin-a-peer-to-peer-electronic-cash-system/
 答案肯定不会是简单的 1/3。那不如先来看看酒鬼最初的几步会发生什么。下图是对这个酒鬼最初几步所有可能的轨迹的枚举。
 
 
-![img](https://1-im.guokr.com/gkimage/lm/xf/tr/lmxftr.png)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg1.png)
+
 
 从图中可以看到，达到`0` 即意味着跌落悬崖。所以在 `0` 的那些概率的和便是酒鬼前六步掉下悬崖的概率。这个图可以无限推演下去。
 
 所以让我们把这个场景放到数轴上，换一种方式来看。如此一来醉鬼悬崖边漫步就相当于质点沿轴心运动这类问题了。酒鬼在这个数轴上随意地左右走动， 走到 x = 0 的位置意味着被吸收 ，也就是摔下了悬崖。
 
-![img](https://2-im.guokr.com/gkimage/jh/p3/fs/jhp3fs.png)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg2.png)
 
 假设他向右一步的概率为 `p`，向左的概率为 `1－p`。当他在 `x = n（n>0）` 的位置的时候，不是向右就是向左。记 `P（n）`为从 `x = n` 的位置出发，最后到达 `x = 0` 被吸收的概率。酒鬼一开始在 `x = 1` 的位置，我们要求的就是他到 0 的概率。
 
@@ -104,7 +105,7 @@ P(1) = 1 - p + p* P(1)²
 
 而如果 p 在 （1/2 , 1） 这个区间里，这时候酒鬼摔落悬崖的概率实际上是一个关于 p 的连续函数。我们可以做出 P(1) 的图像如下
 
-![img](https://3-im.guokr.com/gkimage/9q/cv/97/9qcv97.png)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg3.png)
 
 现在让我们回答最初的问题，当酒鬼向后走的概率为2/3时，他摔下悬崖的概率为 1/2 。 很违背直觉的结果，保持一半清醒是不够的，最少要2/3的清醒。
 
@@ -137,7 +138,7 @@ p(n+1) - p(n) = p(n) - p(n-1)
 
 又因为`p(n) ≥ 0`，所以对于任意的 n，必定有 `p(1) ≥ 1 - 1／n`。因此 `p(1) = 1`。那么对于所有的 n，则有 `p(n) = 1`。这意味着，在无限次的赌博中，赌徒在某一次赌博中输光的概率是 1。
 
-这个发现其实和经典的赌徒谬误异曲同工。
+这个发现其实和经典的赌徒谬误异曲同工。上帝创造这个世界的一些规则真是意味深长啊，当你要赌的时候，50%的胜率是不够的，一定要有>50%的把握!
 
 
 ## 从赌徒破产到算力攻击
@@ -167,8 +168,7 @@ p(n+1) - p(n) = p(n) - p(n-1)
 首先研究k，假定诚实矿工以均匀的速度出块，则k近似服从泊松分布：`P(k, λ)`；
 
 就是“在一个指定长度的固定区间内有k个点（事件）”的概率。诚实矿工出z块的时间即“指定长度的固定区间”，攻击矿工出块次数k即“事件”，每种k出现的概率是:
-
-![img](https://www.zhihu.com/equation?tex=%7B%5Cfrac%7B%5Clambda%5Eke%5E%7B-%5Clambda%7D%7D%7Bk%21%7D%7D)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg4.svg)
 
 其中λ是攻击矿工出块的期望，假设比特币的算力简化计算为:
 
@@ -180,18 +180,17 @@ z是防御者的工作量，p是防御者的速度，z/p是防御者消耗的时
 
 
 根据赌徒破产问题，在落后了z-k个块之后仍旧能追上的概率是:
-![img](https://www.zhihu.com/equation?tex=%28%5Cfrac%7Bq%7D%7Bp%7D%29%5E%7B%28z-k%29%7D)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg5.svg)
 
 追不上的概率为:
-![img](https://www.zhihu.com/equation?tex=1-%28%5Cfrac%7Bq%7D%7Bp%7D%29%5E%7B%28z-k%29%7D)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg6.svg)
 
 每种k (k<=z)出现的概率，乘以它追不上的概率，就是这个k的失败率:
-![img](https://www.zhihu.com/equation?tex=%7B%5Cfrac%7B%5Clambda%5Eke%5E%7B-%5Clambda%7D%7D%7Bk%21%7D%7D%5Ccdot%281-%28%5Cfrac%7Bq%7D%7Bp%7D%29%5E%7B%28z-k%29%7D%29)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg7.svg)
 
 
 1-所有攻击失败情况的概率之和，就是攻击成功的概率:
-![img](https://www.zhihu.com/equation?tex=1-%5Csum_%7Bk%3D0%7D%5E%7Bz%7D%7B%5Cfrac%7B%5Clambda%5Eke%5E%7B-%5Clambda%7D%7D%7Bk%21%7D%7D%5Ccdot%281-%28%5Cfrac%7Bq%7D%7Bp%7D%29%5E%7B%28z-k%29%7D%29)
-
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg7.svg)
 
 ## 总结
 
@@ -203,9 +202,9 @@ z是防御者的工作量，p是防御者的速度，z/p是防御者消耗的时
 
 当然，这是一个模拟，真实情况是，发生危机时，bitmain会不断的从BTC那边调集算力过来；这其实是BCH在吸血BTC的算力；
 
-目前来看，BTC的算力有46EH，目前市场上所有的SHA256算力可能总共>60EH；如果算力占再升级，都可以看成是BCH链对BTC链的攻击了。而且只要Bitcoin SV一天不加重放保护，那么交易所就不太可能开放冲提币，这样BCH 链上的交易就会继续停滞，表面上来看是Bitcoin SV一方在烧钱，其实是BCH整条连都在烧钱。现在真正是考验信仰的时候，短期来看，输家会一无所有。赢家也未必能赚到什么。
+目前来看，BTC的算力有46EH，目前市场上所有的SHA256算力可能总共>60EH；如果算力占再升级，都可以看成是BCH链对BTC链的攻击了。而且只要Bitcoin SV一天不加重放保护，那么交易所就不太可能开放冲提币，这样BCH 链上的交易就会继续停滞，表面上来看是Bitcoin SV一方在烧钱，其实是BCH整条链都在烧钱。现在真正是考验信仰的时候，短期来看，输家会一无所有。赢家也未必能赚到什么。非常残酷的算力战。这真是难得一见，再过10年，真的像中本聪预测的那样，比特币广泛应用后，这种算力战出现的概率极小。某种意义上来说，这个热闹真好看啊:
 
-每天投入$200W的豪赌!
+每天投入$200W的豪赌! 
 
 这也进一步验证了，同一个POW算法，最多只能存在一条链，因为即使加了重放保护分叉，还是无法逃脱算力威胁；BCH是一条非常非常特殊的链，它是由bitmain大算力保证的小算力链；这么说可能有点绕口，可以看成BTC和BCH的战争会持续下去，我认为一定会有一方死亡！至于持续多长时间就不好说了，但是我认为这种平衡不可能无限保持下去，必然会发生黑天鹅事件。
 
