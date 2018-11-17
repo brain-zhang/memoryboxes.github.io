@@ -168,7 +168,7 @@ p(n+1) - p(n) = p(n) - p(n-1)
 首先研究k，假定诚实矿工以均匀的速度出块，则k近似服从泊松分布：`P(k, λ)`；
 
 就是“在一个指定长度的固定区间内有k个点（事件）”的概率。诚实矿工出z块的时间即“指定长度的固定区间”，攻击矿工出块次数k即“事件”，每种k出现的概率是:
-![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg4.svg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg4.png)
 
 其中λ是攻击矿工出块的期望，假设比特币的算力简化计算为:
 
@@ -180,17 +180,17 @@ z是防御者的工作量，p是防御者的速度，z/p是防御者消耗的时
 
 
 根据赌徒破产问题，在落后了z-k个块之后仍旧能追上的概率是:
-![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg5.svg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg5.png)
 
 追不上的概率为:
-![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg6.svg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg6.png)
 
 每种k (k<=z)出现的概率，乘以它追不上的概率，就是这个k的失败率:
-![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg7.svg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg7.png)
 
 
 1-所有攻击失败情况的概率之和，就是攻击成功的概率:
-![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg7.svg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181117/bg8.png)
 
 ## 总结
 
