@@ -4,6 +4,7 @@ title: "比特币的交易-1"
 date: 2018-11-23 18:48:39 +0800
 comments: true
 categories: blockchain
+styles: data-table
 ---
 
 在我们前面的文章中，我们提到，从建设银行转账到工商银行10w元，过程其实是这样的:
