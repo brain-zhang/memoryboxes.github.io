@@ -35,7 +35,7 @@ https://github.com/bitpay/copay/pull/9348
 
 这个人的github账号叫做[right9ctrl](https://github.com/right9ctrl)，他应该是精心分析了COPAY引用的所有模块，发现event-stream有机可乘。于是给event-stream的创始人-`dominictarr`发去了邮件，承诺会自愿维护这个项目。
 
-`dominictarr`是一个高产的开发者，他维护着近400个NPM包，有人能自愿分担他的工作，他自然是高兴之至，于是将这个模块的仓库控制权移交给了`right9ctl`。
+`dominictarr`是一个高产的开发者，他维护着多个NPM包，有人能自愿分担他的工作，他自然是高兴之至，于是将这个模块的仓库控制权移交给了`right9ctl`。
 
 刚开始的时候，`right9ctl`非常小心的进行着常规的维护。一段时间后，即在 3 个月前，黑客在 GitHub 上新建了一个 flatmap-stream 仓库（内含恶意代码），并在这个项目中引用了自己的仓库。
 
