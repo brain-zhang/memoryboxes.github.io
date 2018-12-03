@@ -385,6 +385,9 @@ m / purpose' / coin_type' / account' / change / address_index
 
 加入隔离验证后的账户方案
 
+## 安全性
+
+关于安全性，reddit上面的[一个帖子](https://www.reddit.com/r/Bitcoin/comments/6twuj1/are_12word_seeds_for_bitcoin_private_keys_secure/)做了比较全面的计算，可以参考。
 
 ## 总结
 
