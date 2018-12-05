@@ -202,7 +202,7 @@ BIP-32 Encrypted public Key | 0x0488B21E | xpub
 * 以`2`、`m`或`n`开头的地址非常罕见，仅仅被用于比特币的测试网络。
 * 首字符是`5`、`K`或`L`的不是地址，而是WIF（Wallet Import Format）格式的私钥，务必要妥善保管，不可泄漏。
 
-除了我们已经提到的WIF和Bitcoin Address，我们还发现了奇怪的BIP-38和BIP-32，这个需要到解释比特币原始交易编码的时候来讲解。
+除了我们已经提到的WIF和Bitcoin Address，我们还发现了奇怪的BIP-38和BIP-32，这个需要到解释比特币分层子钱包时候来讲解。
 
 ## Segwit
 
