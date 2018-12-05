@@ -206,7 +206,7 @@ BIP-32 Encrypted public Key | 0x0488B21E | xpub
 
 ## Segwit
 
-比特币的地址规范定义之后，一直平稳运行了8年；直到2017-08-24，[第一个Segwit block](https://www.reddit.com/r/Bitcoin/comments/6vnqi2/btccom_mines_the_481823rd_block_segwit_is_on_stage/)被挖出；事情有了新变化。
+比特币的地址规范定义之后，平稳运行了很长时间；直到2017-08-24，[第一个Segwit block](https://www.reddit.com/r/Bitcoin/comments/6vnqi2/btccom_mines_the_481823rd_block_segwit_is_on_stage/)被挖出；事情有了新变化。
 
 比特币进行Segwit升级之后，地址需要做区分，因为Segwit也可以归类为简单的合约交易，所以在早期钱包还没有足够兼容的时候，Segwit地址都用`3`打头的合约地址。
 
