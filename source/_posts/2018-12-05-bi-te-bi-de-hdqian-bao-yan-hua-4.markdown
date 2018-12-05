@@ -8,7 +8,7 @@ categories: blockchain
 
 之前我们学习了比特币的HD钱包的技术部分，写着写着我都觉得太无聊了，其实我觉得比特币归根结底还是一个很Geek的东西，初期被它吸引的人估计心底里都有一个独立自由的梦，甚至很多人都想要独立建国；它的技术发展史上也出现过很多有意思的事情，于是增加一篇娱乐性文章；
 
-### 让我们好好八卦一下比特币历史上那些有意思的地址
+我们知道比特币的交易是匿名的，但是有很多公共业务，比如交易所，以及公众人物--会公开他们的地址，那么让我们好好八卦一下比特币历史上那些有意思的地址
 
 <!-- more -->
 
@@ -212,6 +212,32 @@ https://www.cryptoground.com/mtgox-cold-wallet-monitor/
 
 嗯哼，应该是继中本聪之后最大的壕。
 
+
+#### 伊朗恶意网络行动者
+
+前几天，美国财政部通过美国外国资产控制办公室(Office of Foreign Assets Control，简称OFAC)，在被制裁方名单上增加了两个比特币地址:
+
+[149w62rY42aZBox8fGcmqNsXUzSStKeq8C](https://www.blockchain.com/btc/address/149w62rY42aZBox8fGcmqNsXUzSStKeq8C)
+[1AjZPMsnmpdK2Rv9KQNfMurTXinscVro9V](https://www.blockchain.com/btc/address/1AjZPMsnmpdK2Rv9KQNfMurTXinscVro9V)
+
+这些特殊的地址被挑选出来是因为其所有者被认为是伊朗人，而伊朗目前正面临来自美国的严厉经济制裁。可笑的是，美国政府将此地址列入黑名单的理由是这些地址跟勒索软件有关。
+
+这两个地址自 2013 年以来已进行了 7,000 多笔交易，并收到近 6,000 枚 BTC。截至 2018年 11 月 28 日，任何与这些地址进行互动的人，在技术上都可能被美国政府追究责任并以某种方式受到惩罚。
+
+但实际上，这些威胁不过只是空话。任何人，甚至包括美国政府及其执行官和执法人员，都无法阻止特定地址发送或接收比特币。
+
+这不，美国财政部话音刚落，立即有人给这两个地址发币，并使用了嘲弄性质的地址 `3FUCKdZ89fxsk6KVKMTWvCWshsfL8xgmM4`发送交易并附言:
+
+```
+The U.S. government cannot ban Bitcoin addresses
+
+Chancellor on brink of second bailout for banks
+```
+
+赤裸裸的打脸一个国家政府的行为是Geek们的最爱，你可以把它理解为小孩子的淘气行为，我真的很好奇，美国政府该如何去寻找这些发币者并惩罚他们呢？
+
+难道是去求助魔法师的水晶球吗23333?
+
 ......
 
-#### 好像一篇文章列举下去远远不够哈，实在是写累了，我们以后心情好的时候继续更新
+待续
