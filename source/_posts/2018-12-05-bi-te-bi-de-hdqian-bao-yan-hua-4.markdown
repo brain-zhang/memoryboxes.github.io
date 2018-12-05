@@ -218,6 +218,7 @@ https://www.cryptoground.com/mtgox-cold-wallet-monitor/
 前几天，美国财政部通过美国外国资产控制办公室(Office of Foreign Assets Control，简称OFAC)，在被制裁方名单上增加了两个比特币地址:
 
 [149w62rY42aZBox8fGcmqNsXUzSStKeq8C](https://www.blockchain.com/btc/address/149w62rY42aZBox8fGcmqNsXUzSStKeq8C)
+
 [1AjZPMsnmpdK2Rv9KQNfMurTXinscVro9V](https://www.blockchain.com/btc/address/1AjZPMsnmpdK2Rv9KQNfMurTXinscVro9V)
 
 这些特殊的地址被挑选出来是因为其所有者被认为是伊朗人，而伊朗目前正面临来自美国的严厉经济制裁。可笑的是，美国政府将此地址列入黑名单的理由是这些地址跟勒索软件有关。
@@ -237,6 +238,7 @@ Chancellor on brink of second bailout for banks
 赤裸裸的打脸一个国家政府的行为是Geek们的最爱，你可以把它理解为小孩子的淘气行为，我真的很好奇，美国政府该如何去寻找这些发币者并惩罚他们呢？
 
 难道是去求助魔法师的水晶球吗23333?
+
 
 ......
 
