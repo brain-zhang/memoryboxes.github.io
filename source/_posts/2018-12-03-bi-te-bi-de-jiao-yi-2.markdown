@@ -59,7 +59,7 @@ PS:Coinbase作为一个很经典的技术名词，其`coinbase.com`域名被现�
 
 简单来看，一笔完整的P2PKH交易包含有两个部分:输入UTXO -> 输出UTXO，而每一个输入UTXO其实是上一笔交易的输出UTXO，这么说可能有点绕口，来张图解释一下：
 
-![img](https://0dayzh.gitbooks.io/bitcoin_developer_guide/content/en-tx-overview.svg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181203/bg1.jpg)
 
 首先最前面的字段是版本号，每一个交易具有一个四字节的交易版本号，它告知比特币节点和矿工应使用哪一套规则来验证它。这使得开发者在为未来的交易创建新规则时可以不验证之前的交易。
 
@@ -80,7 +80,7 @@ PS:Coinbase作为一个很经典的技术名词，其`coinbase.com`域名被现�
 
 一笔完整的P2PKH 交易是这样的：
 
-![img](https://0dayzh.gitbooks.io/bitcoin_developer_guide/content/en-tx-overview-spending.svg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181203/bg2.jpg)
 
 
 我们用之前文章中，利用`satoshi`生成的地址(`1ADJqstUMBB5zFquWg19UqZ7Zc6ePCpzLE`)做例子，来研究它花费的[一笔交易](https://www.blockchain.com/btc/tx/3a295e4d385f4074f6a7bb28f6103b7235cf48f8177b7153b0609161458ac517)。
@@ -236,11 +236,11 @@ spec规范在[这里](https://en.bitcoin.it/wiki/Protocol_documentation#tx)
 
 ##### 最后一张表格说明问题：
 
-![img](https://ws1.sinaimg.cn/large/893d6e9dly1fxtq1vq3b1j20pc0e3gma.jpg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181203/bg3.jpg)
 
 ##### 再来一张交易的总体示意图:
 
-![img](https://davidederosa.com/s/f/basic-blockchain-programming/scripts-transaction-propagation.svg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181203/bg4.jpg)
 
 
 好了，到这里；我们对于一笔最简单的比特币的交易结构已经详细分析了一遍；但是在全网中，交易是怎样验证的呢？一笔资金从A转移到B，全节点怎么验证这次转移的合法性呢？
