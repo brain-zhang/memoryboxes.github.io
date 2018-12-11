@@ -7,8 +7,7 @@ categories: blockchain
 styles: data-table
 ---
 
-
-## scriptSig与scriptPubKey
+## scriptSig与scriptPubKey概览
 
 继续解析我们上篇文章的交易(`b0a0afb65ac08f453b26fa03a40215be653b6d173510d366321019ab8248ea3b`)
 
@@ -90,7 +89,7 @@ https://davidederosa.com/basic-blockchain-programming/bitcoin-script-language-pa
 
 ### 一个最小脚本集
 
-现在想象我们有一台非常简单的计算器，它的CPU只有一个16位的寄存器，以及非常小的内存(1KB)；我们需要设计一种语言，实现一些最简单的计算，比如：
+现在想象我们有一台非常简单的计算器，它的CPU只有一个16位的寄存器，以及非常小的内存(520B)；我们需要设计一种语言，实现一些最简单的计算，比如：
 
 ```
 x = 0x23
@@ -166,9 +165,11 @@ int foo() {
 
 ### Script Language
 
-机器码设计了指令的表示方法，栈设计规定了数据的存储方法；将机器码与栈设计结合起来，就是Bitcoin Script Language。它有两个明显的特点：
+机器码设计了指令的表示方法，栈设计规定了数据的存储方法；将机器码与栈设计结合起来，就是Bitcoin Script Language。它有几个明显的特点：
 
 * 脚本没有循环:这意味着脚本不能无限运行
+* 栈空间只有520字节
+* 整形常量4字节
 * 脚本的内存访问是基于栈的:这意味着脚本中不存在命名变量这种东西，所有的操作码和操作数都表示为栈上的运算；通常，推入的栈项将成为后续操作码的操作数。在脚本的末尾，最上面的堆栈项是返回值。
 
 举个最简单的例子，bitcoin script language支持下面两个操作码：
@@ -180,13 +181,15 @@ opcode | encoding | explained
 OP_0 | 0x00 | 将0x00压入栈中
 OP_1 -- OP_16 | 0x51 -- 0x60 | 将0x01 -- 0x10 压入栈中
 
+
+
 > PS: OP_0, OP_1还代表着布尔值False,True
 
 
 然后下面一段示例脚本代码：
 
 ```
-0x54 0x57 0x00 0x60
+54 57 00 60
 ```
 或者直接翻译为:
 
@@ -198,16 +201,16 @@ OP_4 OP_7 OP_0 OP_16
 
 ```
 []
-[0x04]
-[0x04, 0x07]
-[0x04, 0x07, 0x00]
-[0x04, 0x07, 0x00, 0x10]
+[04]
+[04, 07]
+[04, 07, 00]
+[04, 07, 00, 10]
 ```
 
 此时栈顶元素值为0x10，前面我们说了，栈顶元素即返回值，所以这个脚本的返回值为0x10。当然，这个脚本现在就是将四个值压栈，并没有什么实际作用。
 
 
-#### PUSHDATA操作码
+#### PUSH DATA操作码
 
 简单的压栈操作码只能压入1个字节的数据，如果我们想以此压入多个字节的数据，需要用到 `PUSH DATA`操作码。
 
@@ -219,7 +222,7 @@ OP_PUSHDATA2 | `0x4d` L D | 16bits| L bytes
 OP_PUSHDATA3 | `0x4e` L D | 32bits| L bytes
 
 
-* L 代表需要压入的字节长度，它可以有8bits, 16bits，或者32bits，这三个操作码可以最大压入2^8-1=255字节、2^16-1=65535字节、2^32字节
+* L 代表需要压入的字节长度，它可以有8bits, 16bits，或者32bits，这三个操作码可以最大压入2^8 - 1 = 255字节、2^16 - 1 = 65535字节、2^32字节
 * D 代表实际的数据
 
 举个例子:
@@ -240,4 +243,307 @@ OP_PUSHDATA3 | `0x4e` L D | 32bits| L bytes
  6c 95 20 30]
 ```
 
-~~ 待续
+另外，为了节省空间，还有一个非常取巧的设计:
+对于非常短的数据有一种特殊的编码。如果一个操作码位于01到4b之间(包括在内)，它就是一个push数据操作，其中操作码本身就是字节长度:
+
+opcode | encoding | L (length) | D (data)
+---|---|---|---
+L | L D | 8bits (0x01-0x4b) | L bytes
+
+比如下面的例子:
+
+```
+07 8f 49 b2 e2 ec 7c 44
+```
+
+最前面的`07`代表着直接将后面7个字节压栈
+
+```
+[8f 49 b2 e2 ec 7c 44]
+```
+
+
+#### 算术操作码
+
+算术操作码都是基于栈元素操作的，所以他没有显式的传入参数。
+
+
+opcode | encoding
+---|---
+OP_ADD | 0x93
+OP_SUB | 0x94
+
+这两个操作符都需要从栈顶一次弹出两个元素作为操作数。
+
+例如:
+
+```
+55 59 93 56 94
+```
+
+或者直接翻译为:
+
+```
+OP_5 OP_9 OP_ADD OP_6 OP_SUB
+```
+
+每一步操作的栈状态:
+
+```
+[]              # 初始化
+[5]             # OP_5
+[5, 9]          # OP_9
+[14]            # POP; POP; OP_ADD(5, 9)
+[14, 6]         # OP_6
+[8]             # POP; POP; OP_SUB(14, 6)
+```
+
+最后的结果是8
+
+#### 比较操作码
+
+比较用于判断语句，作用比较简单。同样的，它需要从栈顶弹出两个元素来比较。
+
+opcode | encoding
+---|---
+OP_EQUAL | 0x87
+OP_EQUALVERIFY | 0x88
+
+OP_EQUALVERIFY跟OP_EQUAL作用相同，但是比较之后还要执行一个 OP_VERIFY操作。OP_VERIFY检查栈顶元素，如果栈顶元素不为真，就出栈并标记交易无效。
+
+跟之前的算术操作码结合起来的一个例子:
+
+```
+02 c3 72 02 03 72 01 c0 93 87
+```
+
+翻译为
+
+```
+[c3 72] [03 72] [c0] OP_ADD OP_EQUAL
+```
+
+执行起来是这样子的：
+
+```
+[]                      # 栈初始化
+[c3 72]                 # `02 c3 72`代表c3 72两个字节直接入栈
+[c3 72, 03 72]          # `02 03 72`代表03 72两个字节直接入栈
+[c3 72, 03 72, c0]      # `01 c0`代表c0直接入栈
+[c3 72, c3 72]          # 栈顶弹出c000, 0372, 相加得 c3 72
+[1]                     # 栈顶弹出c372，c372，比较为真
+```
+
+最后这个表达式结果为1。
+
+
+#### 栈操作码
+
+这个操作码比较特殊，它得作用是直接将栈顶元素复制一份，然后入栈。
+
+
+opcode | encoding
+---|---
+OP_DUP | 0x76
+
+例子:
+
+```
+04 b9 0c a2 fe 76 87
+```
+
+翻译为:
+
+```
+[b9 0c a2 fe] OP_DUP OP_EQUAL
+```
+
+执行起来是这样子的：
+
+```
+[]                          # 栈初始化
+[b9 0c a2 fe]               # 04代表后面4个字节压栈
+[b9 0c a2 fe, b9 0c a2 fe]  # 复制栈顶4字节然后压栈
+[1]                         # 弹出栈顶8字节，比较结果为真
+```
+
+可以看出来，如果OP_DUP后面跟着OP_EQUAL，执行结果永远为真。
+
+
+#### 加解密操作码
+
+这几个操作码是比特币交易验证得核心操作码，也是做事情最多的：
+
+
+opcode | encoding
+---|---
+OP_HASH160 | 0xa9
+OP_CHECKSIG | 0xac
+
+OP_HASH160 弹出顶部堆栈项，在其上执行sha256=>hash160，然后返回结果。
+
+OP_CHECKSIG 弹出前两个堆栈项，第一个是ECDSA公钥，第二个是der编码的ECDSA签名。之后，如果签名对该公钥有效，则推送OP_TRUE，否则推送OP_FALSE。它是OpenSSL的ECDSA_verify的脚本实现。
+
+
+##### 有了以上的知识，我们就能深入解析比特币交易加锁解锁的细节啦
+
+
+## 深入解析scriptPubkey与scripSig
+
+
+#### 首先然我们来解析一下TransA的 scritPubkey 加锁脚本
+
+```
+76a914650d0497e014e60d4680fce6997d405de264f04288ac
+```
+			
+翻译为
+
+1. 0x76代表OP_DUP
+2. 0xa9代笔OP_HASH160
+3. 0x14代表后面20个字节`650d0497e014e60d4680fce6997d405de264f042`直接入栈，这20个字节其实是转账地址的pubKeyHash
+4. 0x88代表OP
+5. 0xac代表OP_EQUALVERIFY
+
+最后翻译为:
+
+```
+OP_DUP OP_HASH160 650d0497e014e60d4680fce6997d405de264f042 OP_EQUALVERIFY OP_CHECKSIG
+```
+
+再简化一下
+
+```
+OP_DUP OP_HASH160 <PubkeyHash> OP_EQUALVERIFY OP_CHECKSIG
+```
+
+这段脚本代表 TransA的发起者把一笔钱转入到保险箱后，用这个脚本设置了一把锁，谁能提供另外一个脚本，跟此脚本合并运算后，栈元素全部出栈，并且最后出栈元素为真，那么就视为解锁成功，可以花费这笔钱。
+
+仔细看看，解开这把锁需要我们提供什么信息呢？
+
+1. 首先我们要提供一个公钥，确保这个公钥执行 OP_HASH160操作后，与PubKeyHASH相匹配，其意义就是证明你拥有这个转账地址的公钥
+2. 光证明拥有公钥不安全，毕竟如果这个地址之前花费过，公钥就明晃晃暴漏了；所以你还要提供一个对这个脚本的签名，并通过OP_CHECKSIG验证，证明你还拥有和公钥相对的私钥；而私钥只有拥有人才知道，它是永远不会暴露的
+3. 同时进行公钥、私钥的验证保证了比特币的安全性，毕竟，即使量子计算机成真，它也需要同时攻破三重保险：
+
+    - 逆向sha256
+    - 逆向ripemd160
+    - 逆向ECDSA
+    
+如果能做到这个，那么，全世界的银行、金融、所有的信息系统都不安全了。如果真的到了那个时候，比特币的安全就不值一提了。
+
+
+#### 那么我们提供的解锁脚本TransB的scriptSig 同样解析一遍看一下
+
+```
+47304402204f1eeeb46dbd896a4d421a14b156ad541afb4062a9076d601e8661c952b32fbf022018f01408dc85d503776946e71d942578ab551029b6bee7d3c30a8ce39f2f7ac0014104c4f00a8aa87f595b60b1e390f17fc64d12c1a1f505354a7eea5f2ee353e427b7fc0ac3f520dfd4946ab28ac5fa3173050f90c6b2d186333e998d7777fdaa52d5
+```
+
+解析为:
+
+1.0x47代表后面71个字节入栈，这其实就是签名`Sig`:
+
+```
+304402204f1eeeb46dbd896a4d421a14b156ad541afb4062a9076d601e8661c952b32fbf022018f01408dc85d503776946e71d942578ab551029b6bee7d3c30a8ce39f2f7ac001
+```
+
+2.0x41后面代表65个字节入栈，这是`Pubkey`:
+
+```
+04c4f00a8aa87f595b60b1e390f17fc64d12c1a1f505354a7eea5f2ee353e427b7fc0ac3f520dfd4946ab28ac5fa3173050f90c6b2d186333e998d7777fdaa52d5
+```
+
+最终简化为
+
+```
+<Sig> <PubKey>
+```
+
+这就是我们开锁的钥匙！
+
+
+#### 合并运算
+
+我们把两个脚本来合并运算(把钥匙插进锁孔里)
+
+* scriptPubKey (锁):
+
+`OP_DUP OP_HASH160 <PubkeyHash> OP_EQUALVERIFY OP_CHECKSIG`
+
+* scriptSig (钥匙):
+
+`<Sig> <PubKey>`
+
+
+```
+[]                                                              # 初始化
+[Sig]                                                           # 将scriptSig中的sig信息入栈
+[Sig, PubKey]                                                   # 将scriptSig中的Pubkey入栈
+[Sig, PubKey, OP_DUP]                                           # 将scriptPubKey中的 OP_DUP入栈
+[Sig, Pubkey, Pubkey]                                           # 执行OP_DUP，复制栈顶元素PubKey
+[Sig, Pubkey, Pubkey, OP_HASH160]                               # 将scriptPubKey中的 OP_HASH160入栈
+[Sig, Pubkey, hash160(Pubkey)]                                  # 执行OP_HASH160
+[Sig, Pubkey, hash160(Pubkey), PubkeyHash]                      # 将scriptPubKey中的 PubKeyHash入栈
+[Sig, Pubkey, hash160(Pubkey), PubkeyHash, OP_EQUALVERIFY]      # 将scriptPubKey中的 OP_QUEALVERIFY入栈
+[Sig, Pubkey]                                                   # 检查公钥是否有效，如果有效，出栈
+[Sig, Pubkey, OP_CHECKSIG]                                      # 将scriptPubKey中的 OP_CHECKSIG入栈
+[1]                                                             # 执行OP_CHECKSIG，用Pubkey检查Sig的有效性；检查通过
+[]                                                              # Gooooooooood!! 钥匙合法，开锁成功
+```
+
+最后合并运算的结果返回为True。解锁成功。
+
+然后我们用一张语法树解析图再现整个过程：
+
+![img](https://0dayzh.gitbooks.io/bitcoin_developer_guide/content/en-p2pkh-stack.png)
+
+
+##### 这就是一笔标准的P2PKH(Pay to Public Key Hash)交易的全解析。
+
+
+#### Pay to PubKey
+
+既然已经开锁，我们就可以像TransA的scriptPubKey一样，再构造TransB的scriptPubkey，将资金转到新的保险箱中，并重新加锁。
+
+TransB的scriptPubkey 构造为:
+
+```
+03db3c3977c5165058bf38c46f72d32f4e872112dbafc13083a948676165cd1603 OP_CHECKSIG
+```
+
+?? 这怎么跟我们上一笔TransA的scriptPubkey长的不一样？
+
+没错，这笔交易的输出小任性了一把，我们说标准的输出是要求提供一个公钥来验证 Public Key hash值的，但是这笔交易的转移者非常有自信，他说，你直接提供私钥签名就可以花费了，不用那么麻烦了。
+
+这种交易称之为Pay to Pubkey，安全性肯定不如Pay to Public Key Hash交易的；但是因为比较方便，早期有一些交易采用了这种形式，但是现在已经越来越少了；
+
+要解开这把锁，只需要提供签名就好了，更简单。
+
+总结一下这种交易的scriptPubkey加锁脚本以及scriptSig解锁脚本：
+
+```
+scriptPubkey: <pubkey> OP_CHECKSIG
+scriptSig: <sig>
+```
+
+如果你感兴趣的话，自己去找找这笔交易对应的scriptSig吧。
+
+## 小结
+
+这篇文章中我们从最基本的栈脚本操作码讲起，然后一步一步说明了比特币的脚本系统是如何设计、运作的。
+
+最后，我们详细解析了一笔完整的标准Pay to Public Key Hash 交易；看到这里，你已经完全理解了比特币运作的基础；你已经是货真价实的`专家`啦；撒花庆祝~~~
+
+但是，正如我们前一篇文章介绍的，除了Pay to public key Hash交易，还有其它比较复杂的交易类型，用于更丰富的金融场景中（比如合约、公证等等），另外，还有挖矿奖励是怎么来的？这个还没说来。
+
+那么，我们下篇文章再见。
+
+
+#### 引用资料:
+
+https://en.bitcoin.it/wiki/Script
+
+https://davidederosa.com/basic-blockchain-programming/bitcoin-script-language-part-two/
+
+http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.htlm
+
+https://github.com/petertodd/python-bitcoinlib/blob/master/bitcoin/core/script.py
