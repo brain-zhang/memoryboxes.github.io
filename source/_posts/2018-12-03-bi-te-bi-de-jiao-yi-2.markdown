@@ -5,6 +5,7 @@ date: 2018-12-03 18:06:46 +0800
 comments: true
 categories: blockchain
 ---
+
 之前的文章我们说过，比特币的所有交易抽象成了UTXO的转移。所谓转移，可以这么理解：
 
 * 有M个UTXO作为输入 (M >= 0)
@@ -208,7 +209,7 @@ spec规范在[这里](https://en.bitcoin.it/wiki/Protocol_documentation#tx)
     
 3. script length (var_int变长，代表script的长度): 这里是`0x8a`，表示script长度为138字节
     
-4. criptSig (整个解密脚本)： 这个结构我们之后会具体分析
+4. scriptSig (整个解密脚本)： 这个结构我们之后会具体分析
 ```
 47304402204f1eeeb46dbd896a4d421a14b156ad541afb4062a9076d601e8661c952b32fbf022018f01408dc85d503776946e71d942578ab551029b6bee7d3c30a8ce39f2f7ac0014104c4f00a8aa87f595b60b1e390f17fc64d12c1a1f505354a7eea5f2ee353e427b7fc0ac3f520dfd4946ab28ac5fa3173050f90c6b2d186333e998d7777fdaa52d5
 ```
@@ -242,6 +243,17 @@ spec规范在[这里](https://en.bitcoin.it/wiki/Protocol_documentation#tx)
 
 ![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181203/bg4.jpg)
 
+
+1. TX0， input0即 vin0，里面有一笔100K satoshis比特币(1btc=10^8 satoshi)
+2. TX1、TX2 花费了 TX0-vin0，分成了TX1-vin0(40k satoshi)，以及TX2-vin0(50k satoshi)，还有10k satoshi作为交易费给矿工
+3. TX3花费了TX1-vin0 (30k satoshi)，付出了10k satoshi 交易费
+4. TX4、TX5 花费了 TX2-vin0，分成了TX4-vin0(20k satoshi)，以及TX5-vin0(20k satohsi)，付出了10k satoshi交易费
+5. TX6花费了TX4-vin0 + TX-5-vin0，共20K(satoshi)，其余的20k satoshi为交易费
+6. 最后又花费了TX3-vin0中的20k satoshi, 10k satoshi作为交易费
+7. 最后又花费了TX6-vin0，TX6-vin1中的10k satoshi, 10k satoshi作为交易费
+
+
+## 小结
 
 好了，到这里；我们对于一笔最简单的比特币的交易结构已经详细分析了一遍；但是在全网中，交易是怎样验证的呢？一笔资金从A转移到B，全节点怎么验证这次转移的合法性呢？
 
