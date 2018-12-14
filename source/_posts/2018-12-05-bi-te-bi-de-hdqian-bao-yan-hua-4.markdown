@@ -5,7 +5,6 @@ date: 2018-12-05 16:04:29 +0800
 comments: true
 categories: blockchain
 ---
-
 之前我们学习了比特币的HD钱包的技术部分，写着写着我都觉得太无聊了，其实我觉得比特币归根结底还是一个很Geek的东西，初期被它吸引的人估计心底里都有一个独立自由的梦，甚至很多人都想要独立建国；它的技术发展史上也出现过很多有意思的事情，于是增加一篇娱乐性文章；
 
 我们知道比特币的交易是匿名的，但是有很多公共业务，比如交易所，以及公众人物--会公开他们的地址，那么让我们好好八卦一下比特币历史上那些有意思的地址
@@ -30,9 +29,9 @@ categories: blockchain
 
 比特币历史上第一笔交易发生在[f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16](https://www.blockchain.com/btc/tx/f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16)；是中本聪发送给我们熟知的[Hal Finney](https://en.wikipedia.org/wiki/Hal_Finney_(computer_scientist))先生的。这笔交易发送了10个BTC，被收录在第[170 Block](https://www.blockchain.com/zh/btc/block-height/170)中。
 
-可以肯定，第170 block之前所有的地址都是中本聪本人的钱包地址，如果有人再跳出来说自己是中本聪的话，我们什么都不相信，只会问他两个问题：
+Hal曾经在论坛上说自己时第二个运行比特币软件的人，他挖到的第一个区块大概是第70 Block，可以肯定，第70 block之前所有的地址都是中本聪本人的钱包地址，如果有人再跳出来说自己是中本聪的话，我们什么都不相信，只会问他两个问题：
 
-* 您能花费一笔第170 block之前的比特币吗？
+* 您能花费一笔第70 block之前的比特币吗？
 * 或者您能出示 `I am xxx, happy bitcoiner guys, and today is 2xxx/xx/xx, i prove i am satoshi` 这句话的签名，并让我们用早期的公钥来验证一下吗？
 
 
@@ -128,7 +127,7 @@ Andreas M. Antonopoulos对比特币布道激励了非常多的人，但是作为
 
 该地址发生了一笔历史上最大额的交易，一次性转移了500,000 BTC，创历史之最，虽然是发生在2011年的事情，但是按币本位算，估计这个数额很难打破了。
 
-这个地址2017年还被使用过，观看它的交易记录，我严重怀疑这是国内某一个大佬的地址，并且与Mt.Gox有牵连。
+这个地址2017年还被使用过，观看它的交易记录，我严重怀疑这个地址与Mt.Gox有牵连。
 
 
 #### wiki的地址
@@ -162,7 +161,7 @@ Bitstamp遭窃的热钱包地址，黑客在2015年1月5日时陆续从该地址
 
 https://www.reddit.com/r/Bitcoin/comments/3bpdb4/bitstamp_incident_report_22015/
 
-这个地址非常奇怪，之后还陆陆续续有交易发生；并且在2017年，有人考证一币Tether的hack事件和Bitstamp被盗事件是同一个黑客：
+这个地址非常奇怪，之后还陆陆续续有交易发生；并且在2017年，有人考证一起Tether的hack事件和Bitstamp被盗事件是同一个黑客：
 
 https://www.reddit.com/r/CryptoCurrency/comments/7eho5y/tether_was_hacked_by_the_same_person_who_hacked/
 
