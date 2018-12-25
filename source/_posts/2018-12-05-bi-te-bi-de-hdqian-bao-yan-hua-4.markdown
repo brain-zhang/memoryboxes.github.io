@@ -29,7 +29,7 @@ categories: blockchain
 
 比特币历史上第一笔交易发生在[f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16](https://www.blockchain.com/btc/tx/f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16)；是中本聪发送给我们熟知的[Hal Finney](https://en.wikipedia.org/wiki/Hal_Finney_(computer_scientist))先生的。这笔交易发送了10个BTC，被收录在第[170 Block](https://www.blockchain.com/zh/btc/block-height/170)中。
 
-Hal曾经在论坛上说自己时第二个运行比特币软件的人，他挖到的第一个区块大概是第70 Block，可以肯定，第70 block之前所有的地址都是中本聪本人的钱包地址，如果有人再跳出来说自己是中本聪的话，我们什么都不相信，只会问他两个问题：
+Hal曾经在论坛上说自己是第二个运行比特币软件的人，他挖到的第一个区块大概是第70 Block，可以肯定，第70 block之前所有的地址都是中本聪本人的钱包地址，如果有人再跳出来说自己是中本聪的话，我们什么都不相信，只会问他两个问题：
 
 * 您能花费一笔第70 block之前的比特币吗？
 * 或者您能出示 `I am xxx, happy bitcoiner guys, and today is 2xxx/xx/xx, i prove i am satoshi` 这句话的签名，并让我们用早期的公钥来验证一下吗？
@@ -241,6 +241,59 @@ Chancellor on brink of second bailout for banks
 
 ......
 
+
+#### 虚荣地址(Vanity Address)
+
+有时候我们会见到一个很有型的地址，比如这个:
+
+1LoveYoURwCeQu6dURqTQ7hrhYXDA4eJyn 
+
+这是神鱼结婚，想要送给老婆比特币作为爱的永恒证明，特意生成了这么一个地址，同样还有一笔虐狗交易:
+
+[e250c6d7ea4c5037fb96de1a2cb169850be792474401bae140fce784940f1dd3](https://www.blockchain.com/zh-cn/btc/tx/e250c6d7ea4c5037fb96de1a2cb169850be792474401bae140fce784940f1dd3?show_adv=true)
+
+区块链中刻字的办法我们后面会介绍，不过这个虚荣地址(Vanity Address)是怎么生成的呢？
+
+
+其实道理很简单，还记得我们之前的钱包系列教程吗？
+
+比特币的地址编码最终是base58的字符集合。所以最简单的办法就是暴力穷举碰撞。
+
+在这方面最好用的软件是[Vanitygen](https://en.bitcoin.it/wiki/Vanitygen)，在一块GTX 750 Ti上，速率能达到15M/s，也就是一秒钟碰撞1500w次。
+
+而1LoveYou 开头八位，大概需要碰撞58^8次，需要半年左右吧。当然你有100台机器一起来算就提速100倍。
+
+
+#### 虚荣地址在线生成服务
+
+如果你要生成一个八位字母开头的虚荣地址，个人是很难拥有100台机器的算力的，因此网上有人提供了此方面服务，允许你付款生成一个虚荣地址。
+
+但是生成地址的人肯定私钥也知道了，这样的地址是没人要的，该怎么办呢？
+
+又得复习我们之前的文章了。我们说比特币的地址来源于椭圆曲线算法生成的`私钥--公钥`对，而这个算法的`私钥--公钥`对是满足`加法、乘法律`的;
+
+对于私钥-公钥对(R1,U1)和(R2,U2)来说，如果
+
+```
+U3=U1+U2
+R3=R1+R2
+```
+那么U3、R3是一对（也就是说，私钥R3的公钥是U3），乘运算同理。
+
+于是有人拍脑袋想出了一种虚荣地址的在线安全生成方法，描述如下：
+
+1. 客户首先自己生成一个 `私钥~公钥对`: (R1,U1)
+2. 客户给生成方发送U1
+3. 生成方在U1的基础上暴力碰撞jjjjjjjj，最后得到一个(R2,U2)，确保`U1+U2 -> vanity address`
+4. 客户验证U2，确保符合要求
+5. 客户最后用`(R1+R2, U1+u2)`作为公私钥
+6. 因为生成方是没有R1的，所以没法得到最终私钥，所以这个地址是可以安全使用的。
+
+
+这个服务名字叫做[split-key vanity address generator](https://en.bitcoin.it/wiki/Split-key_vanity_address#Address_generation)，好一个商业模式，我认为将来电子货币系统极大繁荣的时候，这个业务可以长期做，其实跟银行的个性信用卡是一样的。
+
+
+#### 一些YY
 
 说了这么多，我又开始YY未来的钱包形态了。
 
