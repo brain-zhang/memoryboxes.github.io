@@ -5,7 +5,6 @@ date: 2018-12-03 18:06:46 +0800
 comments: true
 categories: blockchain
 ---
-
 之前的文章我们说过，比特币的所有交易抽象成了UTXO的转移。所谓转移，可以这么理解：
 
 * 有M个UTXO作为输入 (M >= 0)
@@ -228,8 +227,8 @@ spec规范在[这里](https://en.bitcoin.it/wiki/Protocol_documentation#tx)
 简单说下vout中一笔tx内部结构:
 
 1. value (8字节): 转账到这个地址上的金额， 这里是`581b000000000000`小端排序，十六进制为`00000000000000581b`，即转账7000 satoshis
-2. scriptPubKey length (>=1, var_int类型): 输出脚本的长度，这里是`0x21`，代表33字节长度
-3. scriptPubKey: 输出脚本，其实就是包含转账地址的脚本，这里是`03db3c3977c5165058bf38c46f72d32f4e872112dbafc13083a948676165cd1603ac`
+2. scriptPubKey length (>=1, var_int类型): 输出脚本的长度，这里是`0x23`，代表35字节长度
+3. scriptPubKey: 输出脚本，其实就是包含转账地址的脚本，这里是`2103db3c3977c5165058bf38c46f72d32f4e872112dbafc13083a948676165cd1603ac`
     
 ##### locktime: 最后4个字节是locktime，这笔交易设置为0；就是立即打包
 

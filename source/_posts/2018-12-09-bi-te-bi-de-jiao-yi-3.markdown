@@ -388,7 +388,7 @@ OP_CHECKSIG 弹出前两个堆栈项，第一个是ECDSA公钥，第二个是der
 ##### 有了以上的知识，我们就能深入解析比特币交易加锁解锁的细节啦
 
 
-## 深入解析scriptPubkey与scripSig
+## 深入解析scriptPubkey与scriptSig
 
 
 #### 首先然我们来解析一下TransA的 scritPubkey 加锁脚本
