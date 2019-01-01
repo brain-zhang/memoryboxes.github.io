@@ -550,6 +550,14 @@ https://bitcointalk.org/index.php?topic=195.5
 那么，我们下篇文章再见。
 
 
+## 工具
+
+最后再增加几个在线调试bitcoin script的工具:
+
+https://webbtc.com/script
+
+https://siminchen.github.io/bitcoinIDE/build/editor.html
+
 #### 引用资料:
 
 https://en.bitcoin.it/wiki/Script
