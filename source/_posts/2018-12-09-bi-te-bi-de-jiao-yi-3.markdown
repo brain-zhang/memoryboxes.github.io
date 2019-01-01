@@ -550,6 +550,23 @@ https://bitcointalk.org/index.php?topic=195.5
 那么，我们下篇文章再见。
 
 
+## 一些神奇的操作符
+
+#### OP_CHECKLOCKTIMEVERIFY
+
+也有人把这个操作符称之为OP_CLTV，或者昵称为OP_HODL；什么意思呢？就是这个操作符允许你发送一笔钱给一个地址，并且用OP_HODL指定一个时间，只有过了这个时间之后，才能花费这笔资金！
+
+这个操作符在[BIP65](https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki)中定义，2015-11-30在Bitcoin Core 0.11.2版本中激活。
+
+之前我们介绍过交易中有个locktime字段，功能是类似的；区别在于，locktime交易在指定到达交易时间之前，是不入区块链的，所以如果设置了RBF的话，可以随时取消；
+
+但是OP_HODL是入块的，真正落子无悔!
+
+这个操作符最大的作用，让我来看就是让真正的比特币死忠实现`屯币不动`。死忠们经常说一币一别墅，一币$250K，但是稍微有个风吹草动就卖掉了；如果你对比特币的信心无可匹敌的话，就用`OP_HODL`操作符将自己的币锁定10年吧。
+
+持币10年之后再看比特币兴衰，才是真死忠。
+
+
 ## 工具
 
 最后再增加几个在线调试bitcoin script的工具:
@@ -567,3 +584,7 @@ https://davidederosa.com/basic-blockchain-programming/bitcoin-script-language-pa
 http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.htlm
 
 https://github.com/petertodd/python-bitcoinlib/blob/master/bitcoin/core/script.py
+
+https://medium.com/@thomasmccabe/hodling-bitcoins-with-op-checklocktimeverify-a-step-by-step-guide-to-manually-building-a-bitcoin-ce9476725de8
+
+https://bitcointalk.org/index.php?topic=1250409.0
