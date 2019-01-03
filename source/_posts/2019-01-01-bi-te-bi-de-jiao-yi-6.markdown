@@ -442,10 +442,21 @@ block weight <= 4M
 
 #### 四份有关隔离见证的比特币改善方案: 
 
-1. 隔离见证软分叉 https://github.com/CodeShark/bips/blob/segwit/bip-codeshark-jl2012-segwit.mediawiki 
-2. 隔离见证通信层 https://github.com/CodeShark/bips/blob/segwit_peer_services/bip-codeshark-segwit-peer-services.mediawiki 
-3. 隔离见证交易地址 https://github.com/jl2012/bips/blob/segwit-address/bip-segwitaddress.mediawiki 
-4. 隔离见证签署检查 https://github.com/jl2012/bips/blob/segwit-checksig/bip-segwit-checksig.mediawiki
+* 隔离见证软分叉
+
+https://github.com/CodeShark/bips/blob/segwit/bip-codeshark-jl2012-segwit.mediawiki 
+
+* 隔离见证通信层
+
+https://github.com/CodeShark/bips/blob/segwit_peer_services/bip-codeshark-segwit-peer-services.mediawiki 
+
+* 隔离见证交易地址
+
+https://github.com/jl2012/bips/blob/segwit-address/bip-segwitaddress.mediawiki 
+
+* 隔离见证签署检查
+
+https://github.com/jl2012/bips/blob/segwit-checksig/bip-segwit-checksig.mediawiki
 
 
 #### 系统扩展常见问题解答:
