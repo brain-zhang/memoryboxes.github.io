@@ -32,7 +32,7 @@ categories: blockchain
 2. sig是由两个值组成的，Sig=(R,S)
 3. sig是嵌入在scriptSig中，用一种名为` DER-encoded ASN.1 octet representation`的编码方式编码的。OpenSSL并没有强制要求每个签名编码结果只能有一个值。
 4. 对于每一个 ECDSA `signature(R,S)`，还存在相同消息的另外一个有效签名: `signature(R,-S(mod N))` 
-5. 一个恶意攻击者得到Sig之后，可以手工构造另外一个signature(R,-S(mod N))嵌入到scriptSig中，这和之前的scriptSig不一样，所以TX ID也会发生变化
+5. 一个恶意攻击者得到Sig之后，可以手工构造另外一个`signature(R,-S(mod N))`嵌入到scriptSig中，这和之前的scriptSig不一样，所以TX ID也会发生变化
 6. 这笔新的交易输入输出跟原来的交易完全一样，也是合法的，但是TX ID不同了。
 
 #### 危害
@@ -83,7 +83,6 @@ https://github.com/bitcoin/bips/blob/master/bip-0062.mediawiki
 
 https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki
 
-https://bbs.huaweicloud.com/blogs/710256bf476611e89fc57ca23e93a89f
 
 ## 原理
 
@@ -281,7 +280,7 @@ std::vector<unsigned char> GenerateCoinbaseCommitment(CBlock& block, const CBloc
 
 而隔离验证是个软分叉，为啥不能顺便再搞一点优化呢？毕竟软分叉的机会不多啊。于是开发者们顺便修改了四个签名验证函数（CHECKSIG，CHECKSIGVERIFY，CHECKMULTISIG和CHECKMULTISIGVERIFY）的语义，改变了交易承诺散列的计算方式。
 
-下面的说明引用自<Master Bitcoin>:
+下面的说明引用自 Master Bitcoin:
 
 > 比特币交易中的签名应用于交易哈希，交易数据计算，锁定数据的特定部分，表明签名者对这些值的承诺。例如，在简单的SIGHASH_ALL类型签名中，承诺哈希包括所有的输入和输出。
 
@@ -344,7 +343,6 @@ Bitcoin这个东西，实在不能以常理来琢磨啊。
 
 ## 优点
 
-https://github.com/tianmingyun/MasterBitcoin2CN/blob/master/appdx-segwit.md
 
 说了这么多，当然Segwit的升级还是又非常多的好处的~~~
 
@@ -385,7 +383,7 @@ Total size是包含了witness数据的总大小
 
 #### 为闪电网络的实施铺平了道路
 
-闪电网络应该是继中本聪创造比特币之后最重量级的创新，支持者和反对者为其炒了一个天翻地覆，这个值得我们后面写文章大书特书，还是那句话，后文再见吧。
+闪电网络应该是继中本聪创造比特币之后最重量级的创新，支持者和反对者为其吵了一个天翻地覆，这个值得我们后面写文章大书特书，还是那句话，后文再见吧。
 
 
 ## 副作用
@@ -433,6 +431,13 @@ block weight <= 4M
 老实说，这个论据仔细读读还是蛮有道理的，但是实在说的太深刻太哲理了，码农对这种东西天生无感，我就不啰嗦了，大家感兴趣可以自己去搜索这方面资料。
 
 
+##  小结
+
+以上就是对隔离见证这个东东最简单的描述，我尽力做到简洁中立；但是实际上我觉得整个过程写一本书也不为过；
+
+那么，隔离见证实施之后；就是闪电网络的崛起了，我们下篇文章再见。
+
+
 ## 参考
 
 #### 四份有关隔离见证的比特币改善方案: 
@@ -451,9 +456,8 @@ https://bitcoin.org/zh_CN/bitcoin-core/capacity-increases-faq
 
 https://blockchain.info/tx/bb41a757f405890fb0f5856228e23b715702d714d59bf2b1feb70d8b2b4e3e08
 
+#### 其它资料
 
-##  小结
+https://github.com/tianmingyun/MasterBitcoin2CN/blob/master/appdx-segwit.md
 
-以上就是对隔离见证这个东东最简单的描述，我尽力做到简洁中立；但是实际上我觉得整个过程写一本书也不为过；
 
-那么，隔离见证实施之后；就是闪电网络的崛起了，我们下篇文章再见。
