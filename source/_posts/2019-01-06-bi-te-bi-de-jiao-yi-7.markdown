@@ -214,3 +214,5 @@ https://www.8btc.com/article/92887
 https://www.youtube.com/watch?v=pOZaLbUUZUs&feature=youtu.be
 
 https://blog.bitmex.com/zh_cn-the-lightning-network/
+
+https://en.bitcoin.it/wiki/Payment_channels
