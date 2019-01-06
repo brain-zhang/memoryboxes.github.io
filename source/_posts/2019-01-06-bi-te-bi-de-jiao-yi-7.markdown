@@ -5,6 +5,7 @@ date: 2019-01-06 17:34:55 +0800
 comments: true
 categories: blockchain
 ---
+
 比特币的交易网络最为人诟病的一点便是交易性能：全网每秒 7 笔左右的交易速度，远低于传统的金融交易系统；同时，等待 6 个块的可信确认将导致约 1 个小时的最终确认时间。
 
 为了提升性能，社区提出了闪电网络等创新的设计。
@@ -202,6 +203,12 @@ RSMC 保障了两个人之间的直接交易可以在链下完成，HTLC保障�
 最后附赠一个技术讲解比较好但是旗帜鲜明反对闪电网络的视频教程：
 
 https://www.youtube.com/watch?v=pOZaLbUUZUs&feature=youtu.be
+
+当然再为闪电网络声援一下，闪电网络的思想发源于微支付通道，Satoshi实际上早期对微支付通道已经有了基本的设想：
+
+https://en.bitcoin.it/wiki/Payment_channels
+
+孰对孰错，是非只能自己判断。
 
 ## 参考资料:
 
