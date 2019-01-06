@@ -5,7 +5,6 @@ date: 2019-01-06 17:34:55 +0800
 comments: true
 categories: blockchain
 ---
-
 比特币的交易网络最为人诟病的一点便是交易性能：全网每秒 7 笔左右的交易速度，远低于传统的金融交易系统；同时，等待 6 个块的可信确认将导致约 1 个小时的最终确认时间。
 
 为了提升性能，社区提出了闪电网络等创新的设计。
@@ -13,9 +12,13 @@ categories: blockchain
 闪电网络的主要思路十分简单——将大量交易放到比特币区块链之外进行，只把关键环节放到链上进行确认。该设计最早于 2015 年 2 月在论文《The Bitcoin Lightning Network: Scalable Off-Chain Instant Payments》中提出。
 
 
-闪电网络需要单独部署，没有包含在bitcoin core实现里面。目前闪电通道官方的实现在:
+闪电网络需要单独部署，没有包含在bitcoin core实现里面。闪电网络是一个开放的协议，任何人都能自由的实现它，目前比较流行的版本有:
 
 https://github.com/lightningnetwork/
+
+https://github.com/mit-dci/lit
+
+https://github.com/ElementsProject/lightning
 
 <!-- more -->
 
@@ -223,3 +226,5 @@ https://www.youtube.com/watch?v=pOZaLbUUZUs&feature=youtu.be
 https://blog.bitmex.com/zh_cn-the-lightning-network/
 
 https://en.bitcoin.it/wiki/Payment_channels
+
+https://bitcoinmagazine.com/articles/history-lightning-brainstorm-beta/
