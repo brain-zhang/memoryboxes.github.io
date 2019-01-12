@@ -5,6 +5,7 @@ date: 2019-01-06 17:34:55 +0800
 comments: true
 categories: blockchain
 ---
+
 比特币的交易网络最为人诟病的一点便是交易性能：全网每秒 7 笔左右的交易速度，远低于传统的金融交易系统；同时，等待 6 个块的可信确认将导致约 1 个小时的最终确认时间。
 
 为了提升性能，社区提出了闪电网络等创新的设计。
@@ -212,6 +213,165 @@ https://www.youtube.com/watch?v=pOZaLbUUZUs&feature=youtu.be
 https://en.bitcoin.it/wiki/Payment_channels
 
 孰对孰错，是非只能自己判断。
+
+
+## 架设一个闪电网络节点，完成一笔交易
+
+光说不练假把式，增加一把实战
+
+#### 运行一个bitcoind全节点
+
+我们选用bitcoind运行一个testnet模式的全节点，配置文件如下:
+
+bitcoin.conf:
+
+```
+rpcuser=xxxx
+rpcpassword=xxxx
+rpcallowip=192.168.2.1/16
+rpcport=8332
+test.rpcport=18332
+rpcthreads=10
+server=1
+rest=1
+testnet=1
+
+# for lnd
+server=1
+#daemon=1
+zmqpubrawblock=tcp://192.168.2.1:28332
+zmqpubrawtx=tcp://192.168.2.1:28333
+```
+
+启动bitcoind:
+
+```
+bitcoind --conf=/opt/blockdata/testnet3/bitcoin.conf --datadir=/opt//blockdata/ --deprecatedrpc=signrawtransaction >> test.log 2>&1
+```
+
+#### 建立闪电网络节点
+
+我们采用lightningnetwork这个Go版本的实现(全程需要翻墙)：
+
+https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md
+
+* 安装go环境
+
+```
+sudo apt-get install golang-1.11-go
+```
+
+* 设置环境变量
+
+```
+export GOPATH=~/gocode
+export PATH=$PATH:$GOPATH/bin
+```
+
+* Clone && 编译
+
+```
+go get -d github.com/lightningnetwork/lnd
+cd $GOPATH/src/github.com/lightningnetwork/lnd
+make && make install
+```
+
+* 启动lnd
+
+```
+lnd --bitcoin.active --bitcoin.testnet --debuglevel=debug --bitcoin.node=bitcoind --bitcoind.rpcuser=xxxx --bitcoind.rpcpass=xxxx --bitcoind.zmqpubrawblock=tcp://192.168.2.1:28332 --bitcoind.zmqpubrawtx=tcp://192.168.2.1:28333
+```
+
+
+#### 建立一个新钱包，充值
+
+```
+lncli --network=testnet create
+```
+之后按照提示一路回车下去，建立一个新钱包，然后执行下列命令得到一个新地址
+
+```
+lncli --network=testnet newaddress np2wkh
+```
+
+* 去下面这几个网址列表领取一些免费的TestNet Bitcoin:
+ 
+https://lnroute.com/testnet-faucets/
+
+* 执行下面命令看看余额
+ 
+```
+lncli --network=testnet walletbalance
+```
+
+
+#### 连接通道
+
+* 首先执行下面命令确认我们的节点的同步状态
+
+```
+lncli --network=testnet getinfo
+```
+确认`synced_to_chain`字段已经变成true，代表区块头同步完毕。
+
+* 然后去下面的网址找一个可用的闪电节点:
+
+https://explorer.acinq.co/
+
+* 我们选一个channel数比较多的然后连接这个节点：cosmicApotheosis
+
+```
+lncli --network=testnet connect 03a8334aba5660e241468e2f0deb2526bfd50d0e3fe808d882913e39094dc1a028@138.229.205.237:9735
+```
+
+* 下一步建立通道，这里我们存0.1btc到通道里:
+
+```
+lncli --network=testnet openchannel --node_key=03a8334aba5660e241468e2f0deb2526bfd50d0e3fe808d882913e39094dc1a028 --local_amt=10000000
+```
+
+* 查看节点连接状态：
+
+```
+lncli --network=testnet listpeers
+```
+
+这里我们还需要等待3次确认，通道才能建立成功，记住刚才建立完的transaction id，去网上查询等待3次确认。
+
+* 检查通道的状态：
+
+```
+lncli --network=testnet listchannels
+```
+当通道打开的时候，就可以用闪电网络支付啦！
+
+#### 支付
+
+* 我们去[satoshi.place](https://testnet.satoshis.place/) 随便来几笔涂鸦，得到一个支付地址:
+
+```
+lntb25480n1pwrn3czpp5em4jyjp85rfq5l3489wepp8vu49a2ezly7hc65jmp4crgdymen0sdzy2pshjmt9de6zqen0wgsrydf58qs8q6tcv4k8xgrpwss8xct5daeks6tn9ecxcctrv5hqxqzjccqp2pg8zne6q7f6vsxyd30ja23e49ysmuy8qp3z9wxl400l64x0958qzn90e02dfdglp5e3c3s8me0tdnk33uakp269fl5j7enmzxhnkgncqacr95d
+```
+
+* 在命令行里支付：
+
+```
+lncli  --network=testnet sendpayment --pay_req  lntb25480n1pwrn3czpp5em4jyjp85rfq5l3489wepp8vu49a2ezly7hc65jmp4crgdymen0sdzy2pshjmt9de6zqen0wgsrydf58qs8q6tcv4k8xgrpwss8xct5daeks6tn9ecxcctrv5hqxqzjccqp2pg8zne6q7f6vsxyd30ja23e49ysmuy8qp3z9wxl400l64x0958qzn90e02dfdglp5e3c3s8me0tdnk33uakp269fl5j7enmzxhnkgncqacr95d
+```
+
+顺利的话，瞬间支付成功。
+
+#### 小结
+
+看起来是不是很麻烦，相信我，实际做一遍的话坑也不少。
+
+目前有小部分钱包实现了闪电网络支付；但是拍脑袋想想就知道钱包里面无法包含闪电节点的全部功能：因为收款需要时时刻刻的监控，所以不可避免的需要一个类似于`瞭望塔`式的服务，最合理的办法就是将这个功能的实现剥离出来，单独部署到一台服务器上。
+
+electrum轻钱包在[这里](https://github.com/spesmilo/electrum/issues/2557)讨论了典型的实现方式。
+
+可以预见到将来，实现闪电网络的钱包除了要自建全节点之外，还需要建立稳定的闪电网络节点实现类似`瞭望塔`的功能，当闪电网络极大繁荣的时候，钱包服务商实际上会占据及其有利的地位，闪电网络的发展，需要比特币钱包软件的进化，这是一个非常大的商机。
+
+
 
 ## 参考资料:
 
