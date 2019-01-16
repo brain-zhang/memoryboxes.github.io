@@ -6,7 +6,7 @@ comments: true
 categories: tools
 ---
 
-WSL用了一年，感觉还不错。尤其是在我的机器上pypy3.5版本的计算性能竟然超越了原生Linux和Windows。成为Python运行效率最高的平台，实在是匪夷所思的事情。
+WSL用了一年，感觉还不错。尤其是在我的机器上pypy3.5版本的`SHA512 pbkdf`计算性能竟然超越了原生Linux和Windows。成为Python运行效率最高的平台，实在是匪夷所思的事情。
 
 WSL最让我满意的，是命令行里面可以结合Windows和Linux的命令行工具来管道处理，这个实在是太赞了。纯粹计算类的程序，Windows上面有很多现成的命令行工具，现在终于能:
 
@@ -15,7 +15,7 @@ WSL最让我满意的，是命令行里面可以结合Windows和Linux的命令�
 ping.exe -t xxx.xxx.xxx.xxx|grep xxxx|echo -I xxx ~~~
 ```
 
-这样来搞了，事实上，我自己写了很多Python脚本来处理Powershell自带的很多工具输出的内容，能直接重定向到Linux上面实在太好了。
+这样来搞了，事实上，我自己写了很多Python脚本来处理Powershell自带的很多工具输出的内容，还有不少GPU运算程序大多数跑在Windows上面，能直接重定向到Linux上面实在太好了。
 
 另外，WSL网络协议栈和Windows是共享的，倒是直接省了一个事，我直接把http_proxy配置成本地的shadowsock服务就很安逸的翻墙了；方便。
 
