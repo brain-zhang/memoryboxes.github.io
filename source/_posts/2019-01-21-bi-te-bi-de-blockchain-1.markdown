@@ -4,6 +4,7 @@ title: "比特币的blockchain-1"
 date: 2019-01-21 17:44:54 +0800
 comments: true
 categories: blockchain
+styles: data-table
 ---
 blockchain是个新造词，至少在2008年之前网上是搜索不到这个词的；
 
