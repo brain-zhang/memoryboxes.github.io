@@ -18,6 +18,10 @@ categories: blockchain
 那么，接下来就从2008年，比特币尚未诞生前说起，这个侧链的技术究竟是如果诞生、演化的。
 
 
+~~ 填坑中
+
+<!-- more -->
+
 ## 参考资料:
 
 http://www.blockstream.com/sidechains.pdf
