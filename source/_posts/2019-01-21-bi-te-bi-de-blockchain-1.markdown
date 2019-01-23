@@ -6,7 +6,6 @@ comments: true
 categories: blockchain
 styles: data-table
 ---
-
 blockchain是个新造词，至少在2008年之前网上是搜索不到这个词的；
 
 比特币的白皮书里面出现过`chain of blocks`的描述，但是没有直接用`block chain`的句子;
@@ -173,7 +172,7 @@ https://github.com/memoryboxes/bitcoin_satoshi/blob/v0.01/main.cpp#L1439
 
 关于创世块，之前我们提到一个有趣的事情：创世块的50BTC奖励是不能花的，这是为什么呢？
 
-这需要我们好好研究以下中本聪发布的v0.01版本的比特币源码：
+这需要我们好好研究下中本聪发布的v0.01版本的比特币源码：
 
 https://github.com/memoryboxes/bitcoin_satoshi/tree/v0.01
 
@@ -210,7 +209,7 @@ https://github.com/memoryboxes/bitcoin_satoshi/tree/v0.01
 
 最后所有区块组成了blockchain:
 
-![img](http://upload-images.jianshu.io/upload_images/1785959-778f551c409faeba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190123/bg1.jpg)
 
 ## Merkle树
 
@@ -240,7 +239,7 @@ blockchain作为比特币的基本技术支撑之一，毫无疑问是一项前�
 比特币的链为我们提供了两项能力:
 
 1. 不可伪造的电子时间戳证明；任何依赖于有序时间的处理程序(博彩、公证、法律等等)都可以上链
-2. 提供了一个构造发行自定义资产(证券、股票、)的基础手段，货币只是一个基本应用，任何人都可以以比特币主链为基础，构造一条侧链，并在其之上实现自己的资产发行、定价、转移功能
+2. 提供了一个构造发行自定义资产(证券、股票)的基础手段，货币只是一个基本应用，任何人都可以以比特币主链为基础，构造一条侧链，并在其之上实现自己的资产发行、定价、转移功能
 
 在未来的世界里，关于这方面的应用和创新简直层出不穷，例如预言机的实现，微支付通道，原子交换等等；我所读过的最好的关于blockchain的一些设想是这个：
 
