@@ -6,7 +6,6 @@ comments: true
 categories: life
 ---
 
-
 ## GDP是什么
 
 国内生产总值 (gross domestic product， GDP) 是在某一既定时期一个国家内生产的所有最终物品与劳务的市场价值。
@@ -90,7 +89,7 @@ https://zhuanlan.zhihu.com/p/34944269
 
 ## 中国历年GDP 计算
 
-[wiki](https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E5%8E%86%E5%8F%B2%E4%B8%8A%E7%9A%84%E5%9B%BD%E5%86%85%E7%94%9F%E4%BA%A7%E6%80%BB%E5%80%BC%E5%88%97%E8%A1%A8_(%E5%9B%BD%E9%99%85%E6%B1%87%E7%8E%87))
+[wiki](https://dwz.cn/gXrciFJw)
 
 
 ## 神奇的官方预计与统计
