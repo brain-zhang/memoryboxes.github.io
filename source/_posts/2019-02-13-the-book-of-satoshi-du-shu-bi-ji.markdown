@@ -6,8 +6,7 @@ comments: true
 categories: blockchain
 ---
 
-
-[The Book Of Satoshi](https://book.douban.com/subject/26802686/) 这本书我反复读了不下十遍，深深着迷，安利一下。
+《The Book Of Satoshi》 这本书我反复读了不下十遍，深深着迷，安利一下。
 
 <!-- more -->
 
@@ -64,5 +63,3 @@ categories: blockchain
 4. 像OP_HODL等操作符，还有Locktime的交易，还是应用太少，将来他们应该大放异彩
 
 最后的最后，这是一本非常有趣、科技含量非常高的科普读物；可能会在遥远的未来(100年，还是1000年，谁知道呢？)， 里面的许多句子会广为人知，并记载在史书上；
-
-
