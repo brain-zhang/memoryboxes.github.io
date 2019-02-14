@@ -241,6 +241,9 @@ https://en.wikipedia.org/wiki/Merkle_tree
 
 再回忆一下我们前面提到的block header里面的所有字段：
 
+
+长度 | 字段名 | 作用
+---|---|---
 4 bytes | version | 当前协议版本 |
 32 bytes | Previous Block Hash | 当前Chain上，前一个block的HASH值 |
 32 bytes | Merkle Root | 这个block中所有交易的Merkle root key |
@@ -265,11 +268,13 @@ SHA256(SHA256(Blockherder)) < F(nBits)
 
 为了节约区块链存储空间，将256位的目标值通过一定变换无损压缩保存在32位的nBits字段里。具体变换方法为拆分利用nBits的4个字节，第1个字节代表右移的位数，用V1表示，后3个字节记录值，用V3表示，则有：
 
-F(nBits)=V_3 * 2^(8*(V_1-3) )
+F(nBits)=V3 * 2^(8*(V1-3) )
 
 此外难度有最低限制，也就是说 F(nBits) 有个最大值，比特币最低难度取值nBits=0x1d00ffff，对应的最大目标值为：0x00000000FFFF0000000000000000000000000000000000000000000000000000
 
 因此挖矿可以形象的类比抛硬币，好比有256枚硬币，给定编号1,2,3……256，每进行一次Hash运算，就像抛一次硬币，256枚硬币同时抛出，落地后要求编号前n的所有硬币全部正面向上。
+
+这里的详细计算可以参考我们之前的一篇[文章](https://happy123.me/blog/2018/02/12/bi-te-bi-pownan-du-diao-jie-fen-xi/)
 
 #### CPU挖矿时代
 
