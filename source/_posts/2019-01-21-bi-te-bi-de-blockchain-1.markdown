@@ -6,6 +6,7 @@ comments: true
 categories: blockchain
 styles: data-table
 ---
+
 blockchain是个新造词，至少在2008年之前网上是搜索不到这个词的；
 
 比特币的白皮书里面出现过`chain of blocks`的描述，但是没有直接用`block chain`的句子;
@@ -112,12 +113,12 @@ https://github.com/alecalve/python-bitcoin-blockchain-parser
 
 Size | Field | Description
 ---|---|---
-4 bytes | version | 当前协议版本 |
-32 bytes | Previous Block Hash | 当前Chain上，前一个block的HASH值 |
-32 bytes | Merkle Root | 这个block中所有交易的Merkle root key |
-4 bytes | Timestamp | 当前block的创建时间 |
-4 bytes | nbits | 当前block的POW难度值 |
-4 bytes | Nonce | 这就是我们前面说的那个`毫无意义的随机数`，耗费巨大能源就是为了找到满足条件的Nonce |
+4 bytes | version | 当前协议版本 
+32 bytes | Previous Block Hash | 当前Chain上，前一个block的HASH值 
+32 bytes | Merkle Root | 这个block中所有交易的Merkle root key 
+4 bytes | Timestamp | 当前block的创建时间 
+4 bytes | nbits | 当前block的POW难度值 
+4 bytes | Nonce | 这就是我们前面说的那个`毫无意义的随机数`，耗费巨大能源就是为了找到满足条件的Nonce 
 
 PS:比特币客户端除了bitcoin core之外，任何团队都可以根据当前的协议开发自己的比特币软件，事实上当前也有不少其他的实现，而各个团队之间开发的不同客户端需要遵循同样的协议标准，这个协议的版本管理就是依靠开头的version字段，规则请参照[BIP009](https://github.com/bitcoin/bips/blob/master/bip-0009.mediawiki)
 
@@ -375,11 +376,13 @@ Stratum协议采用主动分配任务的方式，也就是说，矿池任何时�
 Stratum协议巧妙解决了这个问题，成功实现既可以给矿工增加足够的搜索空间，又只需要交互很少的数据量，这也是Stratum协议最具创新的地方。
 
 ![img](https://cdn.8btc.com/wp-content/uploads/2016/11/p5.png)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190123/bg2.png)
 
 再来回顾一下区块头的6个字段80字节，这个很关键，nVersion，nBits，hashPrevBlock这3个字段是固定的，nNonce，nTime这两个字段是矿工现在就可以改变的。增加搜索空间只能从hashMerkleroot下手，这个绕不过去。Stratum协议让矿工自己构造coinbase交易，coinbase的scriptSig字段有很多字节可以让矿工自由填充，而coinbase的改动意味着hashMerkleroot的改变。从coinbase构造hashMerkleroot无需全部交易，如上图所示，假如区块将包含13笔交易，矿池先对这13笔交易进行处理，最后只要把图中的4个黑点（Hash值）交付给矿工，同时将构造coinbase需要的信息交付给矿工，矿工就可以自己构造hashMerkleroot（图中的绿点都是矿工自行计算获得，两两合并Hash时，规定下一个黑点代表的hash值总是放在右边）。按照这种方式，假如区块包含N笔交易，矿池可以浓缩成log2(N)个hash值交付给矿工，这大大降低了矿池和矿工交互的数据量。
 
 在getblocktemplate协议和Stratum协议的配合下，矿池终于进化为完全体，可以接纳近乎无限的矿工和算力，至此比特币全网算力进入了爆炸增长的时代；
 
+#### 最终，普通交易、conbase交易、nNonce、nTime定义了一个Block Header的 Double SHA256 值是否符合nBits代表的难度值，而这些数据的组合共同造就了一组毫无意义的随机数字;包含这组数字的block一旦产生并广播出去，就极难伪造；正是这组数字，决定了哪个节点有记账的权力，保证了整个账本是唯一且不可篡改的。
 
 ## 区块链接成为区块链
 
