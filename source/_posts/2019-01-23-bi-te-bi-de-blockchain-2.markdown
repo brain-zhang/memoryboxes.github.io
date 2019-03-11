@@ -135,9 +135,41 @@ POW算力链，只有一份保障就够了，没有必要开启其他的同样�
 ![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190311/bg3.png)
 
 
-~~ 填坑中
+AuxPOW协议对两条链都有一些数据结构方面的规定，对于父链，要求必须在区块的coinbase的scriptSig字段中插入如下格式的44字节数据：
 
-<!-- more -->
+![img](https://cdn.8btc.com/wp-content/uploads/2016/11/Snip20161108_2.png)
+
+对于辅链，对原区块结构改动比较大，在nNonce字段和txn_count之间插入了5个字段，这种区块取名AuxPOW区块。
+
+![img](https://cdn.8btc.com/wp-content/uploads/2016/11/Snip20161108_3.png)
+
+
+> 混合挖矿要求父链和辅链的算法一致，是否支持混合挖矿是矿池的决定，矿工不知道是否在混合挖矿。矿池如果支持混合挖矿，需要对接所有辅链的节点。
+
+> 将辅链区块hash值内置在父链的Coinbase，意味着矿工在构造父链Coinbase之前，必先构造辅链的AuxPOW 区块并计算hash值。如果只挖一条辅链，情况较为简单，如果同时挖多条辅链，则先对所有辅链在挖区块构造Merkleroot。矿池可以将特定的44字节信息内置于上文Stratum协议中提到的Coinb1中，交给矿工挖矿。对矿工返回的shares重构父链区块和所有辅链区块，并检测难度，如果符合辅链难度要求，则将整个AuxPOW区块广播到辅链。
+
+辅链节点验证AuxPOW区块逻辑过程如下：
+
+1. 依靠父链区块头（parent_block）和区块Hash值（block_hash，本字段其实没必要，因为节点可以自行计算），验证父链区块头是否符合辅链难度要求。
+2. 依靠Coinbase交易（coinbase_txn）、其所在的分支（coinbase_branch）以及父链区块头（parent_block），验证Coinbase交易是否真的被包含在父链区块中。
+3. 依靠辅链分支（blockchain_branch），以及Coinbase中放Hash值的地方（aux_block_hash），验证辅链区块Hash是否内置于父链区块的Coinbase交易中。
+
+通过以上3点验证，则视为合格的辅链区块。
+
+需要注意的一个字段是主链上的merkle_nonce； 因为一个矿工可能同时挖多条辅链，而每开采主链上一个合法的block，可能会带有数目不定的多条辅链，为了区分每条辅链的`链接位置`，即通过辅链的id确定这条辅链链接的索引号(也称为slot num)，引入了一个nonce，算法如下：
+
+```
+unsigned int rand = merkle_nonce;
+rand = rand * 1103515245 + 12345;
+rand += chain_id;
+rand = rand * 1103515245 + 12345;
+slot_num = rand % merkle_size
+```
+
+##### 以上就是初代侧链的实现技术!
+
+
+~~~ 填坑中
 
 ## 参考资料:
 
