@@ -6,7 +6,6 @@ comments: true
 categories: life
 styles: data-table
 ---
-
 在[死读书一年](https://www.douban.com/doulist/112721741/)之后，对这个问题自我感觉颇有心得，谬论如下：
 
 > 道理已在书单中，只记录我的思考结果
@@ -36,7 +35,7 @@ styles: data-table
 
 其中80%选取流动性好、配置稳健的债基、其20%选取两个ETF(沪深300和中证500)做二八轮动；
 
-80%的债和20%的股没过半年做动态再平衡；
+80%的债和20%的股半年做动态再平衡；
 
 且慢有个[安心动盈](https://qieman.com/portfolios/ZH006358)的策略，跟我不谋而合。
 
