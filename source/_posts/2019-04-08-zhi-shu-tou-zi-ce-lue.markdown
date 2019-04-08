@@ -4,6 +4,7 @@ title: "指数投资策略"
 date: 2019-04-08 17:55:22 +0800
 comments: true
 categories: life
+styles: data-table
 ---
 
 #### 降龙四式之亢龙有悔
