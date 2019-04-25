@@ -168,6 +168,76 @@ slot_num = rand % merkle_size
 
 ##### 以上就是初代侧链的实现技术!
 
+#### 单向锚定 (one-way peg) 协议
+
+通过namecoin的讨论，我们看到了以比特币主链为锚定，发展无数条侧链的方案，这个方案仅仅依赖于coinbase交易中写入一点点信息而已；
+
+但是这个方案的严重局限就是，侧链币的生产也要依赖于比特币的挖矿活动，这样多少有些限制；有没有一种办法，可以脱离比特币的挖矿限制，但是又能复用比特币的工作量证明呢？
+
+有的，这就是2013年社区提出来的 `one-way peg`技术；
+
+这项技术与namcoin等侧链技术不同的地方在于，侧链的锚定信息不去写入到coinbase交易里面，而是由比特币链上创造一笔燃烧交易，在这笔交易的`OP_RETURN`段里面写入需要的信息，这个过程称之为 `proof-of-burn`；
+
+我们具体举一个例子：
+
+我们想要创造一个名为`MoonChain`的侧链以比特币主链为锚，想要在上面发行一种`MoonCoin`代币用来搞定月球土地流转交易等等；那么初始的铸币工作怎么来完成呢？
+
+作为创始人，我首先需要一个合法的比特币私钥，对应的控制地址为A，那么我现在构造一笔交易，发送1BTC至地址1111111111111111111114oLvT2，众所周知，这个地址是无主的，发送到这里就算是燃烧销毁了这个币，妙处在于，我们在这笔交易的`OP_RETURN`里面附上这样一段脚本，脚本的大意这么规定：
+
+`燃烧交易的源地址销毁1BTC，同时此地址铸币1MoonCoin`；
+
+这表交易通过几个区块确认后，就铭刻在区块链里面了；同样的，MoonCoin的转移也可以用类似燃烧交易种的`OP_RETURN`来表示；
+
+凡是遵守这套规则的交易，就可以完成MoonCoin的铸造和转移，甚至可以另外实现智能合约等等功能，这些交易携带的信息就组成了一条侧链，即MoonChain；
+
+把这些套路总结为规范，就可以用燃烧交易的方法来创造侧链啦；
+
+这个规范名为omni协议：
+
+https://www.omnilayer.org/
+
+遵循omni协议在bitcoin主链上发行的资产已经超过了400多种币，但只有一种币声名在外：USDT。
+
+后来BCH团队也在BCH链上发行了类似的资产，称为 Wormhole Cash（WHC），目的是在BCH链上实现智能合约。
+
+##### 因为整套技术是通过燃烧比特币来铸造新币，看起来好像是比特币从主链上转移到了侧链上(以新币的形态再生)，人们就把它俗称为单向锚定 (one-way peg) 技术
+
+单向锚定最大的问题在于比特币的主链不欢迎额外的无效信息，`OP_RETURN`被限制在80字节，承载的信息有限；BCH的态度更为激进，它在2018-05把`OP_RETURN`提升到233字节，并计划进一步提升。
+
+
+#### 双向锚定（Two-way Peg）协议
+
+有了单向锚定，自然会有人想：能不能不需要燃烧比特币，只是将比特币在主链和侧链之间来回移动:
+
+1. 铸币的时候，将比特币移动到侧链生产代币
+2. 代币销毁的时候，将比特币移回主链
+
+当然可以，2014-04，Adam Back (Blockstream创始人) 提出双向了锚定技术:
+
+https://letstalkbitcoin.com/e99-sidechain-innovation
+
+很快的，V神也在他的专栏上对此技术做了简单的剖析：
+
+https://bitcoinmagazine.com/articles/side-chains-challenges-potential/
+
+
+
+#### Blockstream Liquid协议
+
+
+#### 微支付通道
+
+https://pastebin.com/JF3USKFT
+
+https://www.ccvalue.cn/show/1495
+
+#### 闪电网络
+
+
+#### 原子交换
+
+
+#### 跨链交易
 
 ~~~ 填坑中
 
@@ -178,3 +248,5 @@ http://www.blockstream.com/sidechains.pdf
 https://en.bitcoin.it/wiki/Atomic_swap
 
 https://en.bitcoin.it/wiki/Merged_mining_specification
+
+https://en.bitcoin.it/wiki/Sidechain
