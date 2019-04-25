@@ -6,7 +6,6 @@ comments: true
 categories: blockchain
 ---
 
-
 比特币的发展史上，非常非常早期就出现了一种名为侧链(sideChains)的技术；
 
 这个技术早在2008年比特币代码尚未发布时，就在论坛上有所讨论，后来比特币网络开始运行，各种Geek点子层出不穷，从最初的namecoin(域名币)，到后来的（Counterparty）、万事达币（Mastercoin）和彩色币（ColoredCoin）等附生链；再到后来百链齐开，大家试图在完全不同的链上转移交换资产；以及最近到blockstream的[Liquid](https://blockstream.com/liquid/)，以及基于闪电网络的原子交换(Atomic Swap)，这个技术的发展一直不温不火，但毫无疑问，侧链技术绝对是blockchain技术的重要组成部分。
@@ -137,11 +136,11 @@ POW算力链，只有一份保障就够了，没有必要开启其他的同样�
 
 AuxPOW协议对两条链都有一些数据结构方面的规定，对于父链，要求必须在区块的coinbase的scriptSig字段中插入如下格式的44字节数据：
 
-![img](https://cdn.8btc.com/wp-content/uploads/2016/11/Snip20161108_2.png)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190311/bg3.png)
 
 对于辅链，对原区块结构改动比较大，在nNonce字段和txn_count之间插入了5个字段，这种区块取名AuxPOW区块。
 
-![img](https://cdn.8btc.com/wp-content/uploads/2016/11/Snip20161108_3.png)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190311/bg4.png)
 
 
 > 混合挖矿要求父链和辅链的算法一致，是否支持混合挖矿是矿池的决定，矿工不知道是否在混合挖矿。矿池如果支持混合挖矿，需要对接所有辅链的节点。
