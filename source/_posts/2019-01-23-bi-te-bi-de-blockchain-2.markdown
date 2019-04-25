@@ -136,11 +136,11 @@ POW算力链，只有一份保障就够了，没有必要开启其他的同样�
 
 AuxPOW协议对两条链都有一些数据结构方面的规定，对于父链，要求必须在区块的coinbase的scriptSig字段中插入如下格式的44字节数据：
 
-![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190311/bg3.png)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190311/bg4.png)
 
 对于辅链，对原区块结构改动比较大，在nNonce字段和txn_count之间插入了5个字段，这种区块取名AuxPOW区块。
 
-![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190311/bg4.png)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190311/bg5.png)
 
 
 > 混合挖矿要求父链和辅链的算法一致，是否支持混合挖矿是矿池的决定，矿工不知道是否在混合挖矿。矿池如果支持混合挖矿，需要对接所有辅链的节点。
