@@ -5,12 +5,13 @@ date: 2019-05-01 15:25:27 +0800
 comments: true
 categories: develop
 ---
-
 真的，Go的包管理工具之发展过程充分体现了什么叫`折腾`。 (叹气~~~)
 
 <!-- more -->
 
 从Go1.11版本发布Go MODULE之后，我希望这是最后一次折腾`包管理`这件事情，神呐，诚心诚意的祈祷中~~
+
+摘抄备忘下：
 
 ## GO111MODULE
 
@@ -60,7 +61,7 @@ replace (
 ```
 依赖库中的replace对你的主 go.mod 不起作用，比如github.com/memoryboxes/hello的 go.mod 已经增加了replace, 但是你的 go.mod 虽然require了rpcx的库，但是没有设置replace的话， go get还是会访问golang.org/x。
 
-所以如果想编译那个项目，就在哪个项目中增加replace。
+所以如果想编译哪个项目，就在哪个项目中增加replace。
 
 ## 包的版本控制
 
@@ -85,7 +86,6 @@ vX.Y.Z
 
 另外版本号是支持 query 表达式的，其求值算法是 “选择最接近于比较目标的版本 (tagged version)”，即上文中的 gopkg.in/yaml.v2 会找不高于 v2.2.1 的最高版本。
 
-对于复杂的包依赖场景，可以参考 Russ Cox 在 “Minimal Version Selection” 一文中给出的形象的算法解释 (注意：这个算法仅是便于人类理解，但是性能低下，真正的实现并非按照这个算法实现)。
 
 ## go get 升级
 
@@ -104,6 +104,8 @@ vX.Y.Z
 ## 参考:
 
 https://roberto.selbach.ca/intro-to-go-modules/
+
 https://github.com/golang/go/wiki/Modules
+
 https://windmt.com/2018/11/08/first-look-go-modules/
 
