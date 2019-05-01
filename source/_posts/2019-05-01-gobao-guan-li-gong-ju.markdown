@@ -9,6 +9,8 @@ categories: develop
 
 <!-- more -->
 
+想想Java的Maven， Nodejs的NPM，还有我们赞颂一万遍也不过分的Python包管理，为什么生命总要浪费在这些事情上面呢？ 陷入了深深的沉思~~
+
 从Go1.11版本发布Go MODULE之后，我希望这是最后一次折腾`包管理`这件事情，神呐，诚心诚意的祈祷中~~
 
 摘抄备忘下：
