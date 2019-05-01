@@ -457,15 +457,15 @@ F * 0.5 = 20%
 
 #### 时间段选取2004-01-01 至 2019-04-10
 
-![img](http://ww1.sinaimg.cn/large/893d6e9dly1g1z144xef1j20oh235n7e.jpg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190402/bg1.jpg)
 
 #### 时间段选取2009-01-01 至 2019-04-10
 
-![img](http://ww1.sinaimg.cn/large/893d6e9dly1g1z1459e25j20o922ptjx.jpg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190402/bg2.jpg)
 
 #### 时间段选取2011-01-01 至 2019-04-10
 
-![img](https://ws1.sinaimg.cn/large/893d6e9dly1g1z1n5rmkgj20p522pwq2.jpg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190402/bg3.jpg)
 
 
 从图上可以看出，A股市场的整个PE和PB中枢逐年降低；所以用最近5年或者最近8年的历史数据来判断估值百分位比较靠谱。
@@ -481,9 +481,9 @@ F * 0.5 = 20%
 
 一图抵千言：
 
-![img](https://ws1.sinaimg.cn/large/893d6e9dly1g213dclp9kj215s0kmdhf.jpg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190402/bg4.jpg)
 
-![img](https://ws1.sinaimg.cn/large/893d6e9dly1g213dcis38j20dw0oi75b.jpg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190402/bg5.jpg)
 
 整个过程中，我们买入了17份，然后2019-04-02开始逐步卖出，卖出策略我选取了简单的网格策略；
 
@@ -520,7 +520,7 @@ https://github.com/memoryboxes/kanglong
  
 好啦，我们还是以沪深300为基准，看看这个策略和原指数的对比：
  
-![img](https://ws1.sinaimg.cn/large/893d6e9dly1g228r1znjfj21cj0m3abz.jpg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190402/bg6.jpg)
  
 从这个画风上来看，这个策略确实是一个看后视镜开车的老司机，结果拟合相当完美；你可以把它看成是一个超级稳健、超级耐心的基金经理，这个经理的风格如下：
  
