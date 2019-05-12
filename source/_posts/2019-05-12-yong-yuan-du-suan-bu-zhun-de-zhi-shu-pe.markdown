@@ -7,7 +7,7 @@ categories: life
 ---
 看看一张2019-05-10的指数估值表:
 
-![img](https://xqimg.imedao.com/16aa44061486c553fe8bcc85.png)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190512/bg1.png)
 
 > 数据来源：https://xueqiu.com/u/8890498724
 
