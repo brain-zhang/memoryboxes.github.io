@@ -104,6 +104,10 @@ https://www.reddit.com/r/btc/comments/7cehzo/roger_ver_45000_bitcoin_moved_to_ex
 
 像所有的区块链项目以及牵涉其中的人一样， Craig Wright, Roger Ver， 所谓的`郁金香信托`， Mtgox， BCH, BSV 等等，他们之间充斥着谎言中的谎言，是迷宫中的迷宫；
 
+我觉得所谓的`区块链行业`有个铁律：
+
+## 有区块链的地方一定会有骗子。
+
 这再一次提醒我们，在区块链世界中，任何人都不值得信任，唯一可以依靠的只有自己的知识和判断：
 
 ## Don't Trust. Verify.
