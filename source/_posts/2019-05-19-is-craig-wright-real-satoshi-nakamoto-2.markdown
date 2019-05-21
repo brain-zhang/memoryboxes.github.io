@@ -7,9 +7,9 @@ categories: blockchain
 ---
 之前我们写过两篇文章来八卦所谓的`澳本聪`的故事:
 
-[Is Craig Wright Real Satoshi Nakamoto?](!https://happy123.me/blog/2016/05/02/is-craig-wright-real-satoshi-nakamoto/)
+[Is Craig Wright Real Satoshi Nakamoto?](https://happy123.me/blog/2016/05/02/is-craig-wright-real-satoshi-nakamoto/)
 
-[Satoshi Craig Wright Is Being Sued for $10 Billion](!https://happy123.me/blog/2018/04/22/satoshi-craig-wright-is-being-sued-for-10-dollars-billion/)
+[Satoshi Craig Wright Is Being Sued for $10 Billion](https://happy123.me/blog/2018/04/22/satoshi-craig-wright-is-being-sued-for-10-dollars-billion/)
 
 最近这个故事又有了新的神转折，实在是太有意思了。现实生活中，有时候我觉得八卦那些明星太无聊了，但是在cyberspace中，偶的八卦之心熊熊燃烧，都让我有点体会那些狗崽队的心情了~~~
 
@@ -25,13 +25,13 @@ categories: blockchain
 
 之后的剧情就是 David Kleiman的亲属起诉Craig Wright，声称他窃取了 本该属于  David Kleiman 的100w bitcoin；其起诉文书中公布了大量的由 Craig Wright声称其属于他和Kleiman成立的名为`郁金香信托`基金的bitcoin address;
 
-参见[这里](!https://www.coindesk.com/satoshi-craig-wright-sued-10-billion)， [这里](!https://www.reddit.com/r/Bitcoin/comments/80e2l9/10_billion_lawsuit_filed_against_craig_wright/)
+参见[这里](https://www.coindesk.com/satoshi-craig-wright-sued-10-billion)， [这里](https://www.reddit.com/r/Bitcoin/comments/80e2l9/10_billion_lawsuit_filed_against_craig_wright/)
 
 很快，就有人对其文件中所列出的地址做了详细分析；认为其地址根本就是 Craig Wright 随便在bitcoin blockchain找的大额未动币的地址，根本和他没关系；当然，跟David Kleiman也没关系；两拨人马完全是在为`一笔完全不存在的财富`纠缠不清；
 
 甚至，这些地址中，有一个地址是Mtgox小偷的地址！ 如果这份文件是真的，那么岂不是说Craig Wright自己承认是Mtgox的窃贼！
 
-参考[这里](!https://blog.wizsec.jp/2018/02/kleiman-v-craig-wright-bitcoins.html)；
+参考[这里](https://blog.wizsec.jp/2018/02/kleiman-v-craig-wright-bitcoins.html)；
 
 地址分析：
 
@@ -106,7 +106,7 @@ https://www.reddit.com/r/btc/comments/7cehzo/roger_ver_45000_bitcoin_moved_to_ex
 
 我觉得所谓的`区块链行业`有个铁律：
 
-## 有区块链的地方一定会有骗子。
+#### 有区块链的地方一定会有骗子。
 
 这再一次提醒我们，在区块链世界中，任何人都不值得信任，唯一可以依靠的只有自己的知识和判断：
 
