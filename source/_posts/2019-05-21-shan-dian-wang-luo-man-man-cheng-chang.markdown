@@ -42,7 +42,7 @@ bitcoin/bin/bitcoind --conf=~/bitcoin.conf --datadir=/opt/bitcoin/blockdata/
 bitcoin-cli listaddressgroupings
 ```
 
-* 发送一笔转账到此地址，也可以直接去[bitcoinfaucet](!https://bitcoinfaucet.uo1.net/send.php)领一些测试币
+* 发送一笔转账到此地址，也可以直接去[bitcoinfaucet](https://bitcoinfaucet.uo1.net/send.php)领一些测试币
 
 * 确认钱包余额
 ```
@@ -51,7 +51,7 @@ bitcoin-cli getwalletinfo
 
 #### 3.运行一个LND Daemon
 
-这方面有几个主流选择，lightning labs的[lnd](!https://github.com/lightningnetwork/lnd)，或者[c-lightning](!https://github.com/ElementsProject/lightning)，或者[lit](!https://github.com/mit-dci/lit)
+这方面有几个主流选择，lightning labs的[lnd](https://github.com/lightningnetwork/lnd)，或者[c-lightning](https://github.com/ElementsProject/lightning)，或者[lit](https://github.com/mit-dci/lit)
 
 lnd支持比较广泛，我们用其0.6beta版本搭建；
 
@@ -82,7 +82,7 @@ lncli --no-macaroons --network=testnet walletbalance
 
 #### 4. 建立通道
 
-* 直接到[1ml.com](!https://1ml.com/testnet/)找最近连接数最多的节点, 比如[Node: aranguren.org](!https://1ml.com/testnet/node/038863cf8ab91046230f561cd5b386cbff8309fa02e3f0c3ed161a3aeb64a643b9):
+* 直接到[1ml.com](https://1ml.com/testnet/)找最近连接数最多的节点, 比如[Node: aranguren.org](https://1ml.com/testnet/node/038863cf8ab91046230f561cd5b386cbff8309fa02e3f0c3ed161a3aeb64a643b9):
 ```
 node ID:038863cf8ab91046230f561cd5b386cbff8309fa02e3f0c3ed161a3aeb64a643b9@203.132.95.10:9735
 ```
@@ -105,7 +105,7 @@ lncli --network=testnet listchannels
 
 #### 5. 支付 
 
-* 首先到[testnet.satoshis.place](!https://testnet.satoshis.place/)涂鸦两笔，得到一个支付地址:
+* 首先到[testnet.satoshis.place](https://testnet.satoshis.place/)涂鸦两笔，得到一个支付地址:
 ```
 lntb1pwwykwhpp5jw4tekxmsqjwepw4070em7xe7gw3v8mxtenexmsp2np3pcc40jwqdqqxqruyqrzjqfcxsh9gr28y6ngphmk90q05ejfydpq89tjjc5rl36lfmtcv424hk9e8sgqqqvsqqqqqqqlgqqqqqeqqjqjpfnq26e2flenp79ywpyyftg3najf3wtpvkwuuw2h9y3dzdn7kc3342h6uzgf69ms8sx6fxsh5j2jcwzulr3dufryn9ljadm0wuj9fcpm86fax
 ```
@@ -117,9 +117,9 @@ lncli  sendpayment --pay_req lntb1pwwykwhpp5jw4tekxmsqjwepw4070em7xe7gw3v8mxtene
 
 #### 6. 收款
 
-lnd构建一个收款节点比较麻烦，我们可以借助一个实现了lnd hub全功能的钱包来体验，推荐 [elcair](!https://github.com/ACINQ/eclair)；
+lnd构建一个收款节点比较麻烦，我们可以借助一个实现了lnd hub全功能的钱包来体验，推荐 [elcair](https://github.com/ACINQ/eclair)；
 
-[BlueWallet](!https://bluewallet.io/)也是一个非常受欢迎的闪电网络钱包，不过他并没有实现完整的lightning hub的功能，作为想要完全掌控一切的玩家不太合适，当然对于普通用户来说，BlueWallet更易用：
+[BlueWallet](https://bluewallet.io/)也是一个非常受欢迎的闪电网络钱包，不过他并没有实现完整的lightning hub的功能，作为想要完全掌控一切的玩家不太合适，当然对于普通用户来说，BlueWallet更易用：
 
 https://medium.com/bluewallet/bluewallet-brings-zero-configuration-lightning-payments-to-ios-and-android-30137a69f071
 
@@ -144,7 +144,7 @@ https://medium.com/@ACINQ/enabling-receive-on-eclair-mobile-2e1b87bd1e3a
 然后我们看一下现在闪电网络面临的一些技术和实务上的挑战：
 
 1. 目前还没有完全靠谱的，敢于宣称可安全用于生产的基础软件实现，大家都在beta版
-2. 目前运行一个lnd，需要配置一个bitcoin fullnode，而且是一对一的，成本比较高，虽然运行一个全节点可以取得一些手续费，但是其风险和收益不成对比；bitmex有[一篇文章](!https://blog.bitmex.com/the-lightning-network-part-2-routing-fee-economics/)详细分析了现在运行一个闪电网络节点的收益情况；
+2. 目前运行一个lnd，需要配置一个bitcoin fullnode，而且是一对一的，成本比较高，虽然运行一个全节点可以取得一些手续费，但是其风险和收益不成对比；bitmex有[一篇文章](https://blog.bitmex.com/the-lightning-network-part-2-routing-fee-economics/)详细分析了现在运行一个闪电网络节点的收益情况；
 3. 现在lit项目和Neutrino项目都朝着`运行一个支持闪电节点的SPV节点`这个方向努力，但距离完成还有很长时间；
 4. 在我们之前的文章分析中，每一个钱包，都需要一个类似`瞭望塔`的模块，来监控通道的状态；围绕这个实现，目前有两大流派：一类就是elcair 钱包自己继承这个功能，这就要求用户的钱包不能脱离网络超过两周；第二类就是BlueWallet的实现，让用户放弃掌控一切，由钱包服务商托管；这两种方案各有优劣，之后还要看市场和众多黑客们的测试结果；
 5. Electrum目前也在进行闪电网络的实现，他们采用了改造ElectrumX server端，增加一个和lnd连接的中间通讯层的方法，并且ElectrumX是可以复用的，以后如果lnd实现了Neutrino，可以完成`ElectrumX+Lnd+Neutrino`的部署，估计这样成本低，运营的好的话，能赚点小钱；
