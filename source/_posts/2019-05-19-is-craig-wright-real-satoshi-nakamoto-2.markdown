@@ -5,11 +5,14 @@ date: 2019-05-19 10:15:27 +0800
 comments: true
 categories: blockchain
 ---
+
 之前我们写过两篇文章来八卦所谓的`澳本聪`的故事:
 
 [Is Craig Wright Real Satoshi Nakamoto?](https://happy123.me/blog/2016/05/02/is-craig-wright-real-satoshi-nakamoto/)
 
 [Satoshi Craig Wright Is Being Sued for $10 Billion](https://happy123.me/blog/2018/04/22/satoshi-craig-wright-is-being-sued-for-10-dollars-billion/)
+
+PS: 学术界普遍怀疑其实 [Nick Szabo](https://www.blogger.com/profile/16820399856274245684)才是中本聪；偶也50%认同；
 
 最近这个故事又有了新的神转折，实在是太有意思了。现实生活中，有时候我觉得八卦那些明星太无聊了，但是在cyberspace中，偶的八卦之心熊熊燃烧，都让我有点体会那些狗崽队的心情了~~~
 
