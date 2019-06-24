@@ -6,7 +6,7 @@ comments: true
 categories: develop
 ---
 
-摘自- <Python cookbook>
+摘自 - Python cookbook
 
 老生常谈了，但是在Fyflake检查出E722错误时有时候又犯老毛病。人年纪大了越来越有老年痴呆倾向  -_- .....
 
