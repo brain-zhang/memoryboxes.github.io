@@ -5,6 +5,7 @@ date: 2019-01-01 20:10:54 +0800
 comments: true
 categories: blockchain
 ---
+
 好啦，这篇文章中，我们要来探讨大名鼎鼎的Segwit(Segregated Witness)。
 
 这个词一说起来就头疼啊，他牵扯到旷日持久的扩容大战，无穷尽的争论以及分裂。我们的立场就是不去站队任何组织，单纯从技术的角度去理解这个东西。
@@ -403,25 +404,28 @@ Total size是包含了witness数据的总大小
 
 再说一遍：关于隔离见证，网上一个很大的误解就是：认为witness被隔离走了，witness数据不在Block里，所以一个Block能装更多的Transaction。
 
-其实不是，witness数据仍然在Block里面。并且对于1个Transaction来说，如果把witness数据也算上的话，其raw byte size其实是变大了，而不是变小了！！！ 
-既然Transaction还变大了，那为什么1个Block可以装更多的Transaction呢？？
+其实不是，witness数据仍然在Block里面。并且对于1个Transaction来说，如果把witness数据也算上的话，其raw byte size其实是变大了，而不是变小了。
+既然Transaction还变大了，那为什么1个Block可以装更多的Transaction呢？
 
 因为隔离见证是软分叉，不是硬分叉。下面就分别来分析一下，为什么对于老版本节点、新版本节点，1个Block都可以装更多的Transaction呢？
 
 对于老版本节点： 
 Block Limit Size = 1M，但由于你把witness数据移到了所有Transaction的外面，放在了整个Block的尾部。老版本在计算一个Block大小的时候，只计算了 
-Block Header + 所有Transaction的数据（witness数据，老版本看不见！！！相当于老版本被欺骗了。）
+Block Header + 所有Transaction的数据（witness数据，老版本看不见，相当于老版本被欺骗了。）
 
 所以呢，其实整个Block的物理大小(raw block size)已经超过了1M，但老版本的节点不认识尾部的witness数据，所以认为总大小还是 < 1M。
 
 对于新版本节点： 
 Block的size的计算方式做了调整，引入了Block weight的概念。 
+
+```
 block weight = base_size * 4 + witness_size 
 block weight <= 4M
+```
 
 其中，base_size就是block的前2部分数据（header + 没有witness的所有交易数据）
 
-通过上面的分析，我们会发现，数据还是那么多数据，没有减少，只是重新排布了一下，却变相的把区块链扩容了！！！
+通过上面的分析，我们会发现，数据还是那么多数据，没有减少，只是重新排布了一下，却变相的把区块链扩容了。
 
 
 #### 安全性
@@ -470,5 +474,4 @@ https://blockchain.info/tx/bb41a757f405890fb0f5856228e23b715702d714d59bf2b1feb70
 #### 其它资料
 
 https://github.com/tianmingyun/MasterBitcoin2CN/blob/master/appdx-segwit.md
-
 
