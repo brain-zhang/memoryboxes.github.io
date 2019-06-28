@@ -6,6 +6,7 @@ comments: true
 categories: blockchain
 ---
 
+
 比特币的发展史上，非常非常早期就出现了一种名为侧链(sideChains)的技术；
 
 这个技术早在2008年比特币代码尚未发布时，就在论坛上有所讨论，后来比特币网络开始运行，各种Geek点子层出不穷，从最初的namecoin(域名币)，到后来的（Counterparty）、万事达币（Mastercoin）和彩色币（ColoredCoin）等附生链；再到后来百链齐开，大家试图在完全不同的链上转移交换资产；以及最近到blockstream的[Liquid](https://blockstream.com/liquid/)，以及基于闪电网络的原子交换(Atomic Swap)，这个技术的发展一直不温不火，但毫无疑问，侧链技术绝对是blockchain技术的重要组成部分。
@@ -323,7 +324,7 @@ https://pastebin.com/JF3USKFT
 
 那么有没有一种办法，可以实现已经完全运行的区块链间的互通呢？ 比如比特币和以太坊之间的无需三方信任的兑换？
 
-这是可以的，这个即使名为原子交换(Atomic Swap)：
+这是可以的，这个技术名为原子交换(Atomic Swap)：
 
 ### 缘起
 
