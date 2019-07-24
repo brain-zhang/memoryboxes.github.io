@@ -5,6 +5,7 @@ date: 2019-07-24 10:17:05 +0800
 comments: true
 categories: develop
 ---
+
 elasticsearch升级到7.x；改动不小，命令从头再捋一遍；
 
 <!-- more -->
@@ -155,6 +156,23 @@ GET /website/_analyze
         ],
         "minimum_should_match": 1
     }
+}
+```
+
+精确查询
+
+```
+GET /website/_search
+{
+  "query": {
+    "constant_score" : {
+      "filter":{
+        "term": {
+          "title": "helloworld"
+        }
+      }
+    }
+  }
 }
 ```
 
