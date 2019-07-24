@@ -5,8 +5,9 @@ date: 2019-07-24 10:17:05 +0800
 comments: true
 categories: develop
 ---
-
 elasticsearch升级到7.x；改动不小，命令从头再捋一遍；
+
+PS:感叹elasticsearch在搜索和大数据聚合上面做的了不起的工作！ 细致入微，基本上在工程层面解决了数不清的细节问题，了不起的产品设计和再创造，了不起的工作量！ 就像docker重新唤醒LXC技术一样，elasticsearch在Lucene之上的构建为个人数据分析和企业数据梳理开创新时代。 如果有条件，我是极为愿意买入他们的股票的。
 
 <!-- more -->
 
@@ -117,9 +118,11 @@ GET /website/_analyze
 
 #### 内部对象数组会丢失一部分相关信息，我们需要用嵌套对象(nested object)来处理
 
+## 查询
+
 #### 查询语句的结构
 
-一个查询语句 的典型结构：
+* 一个查询语句 的典型结构：
 ```
 {
     QUERY_NAME: {
@@ -129,7 +132,7 @@ GET /website/_analyze
 }
 ``` 
 
-如果是针对某个字段，那么它的结构如下：
+* 如果是针对某个字段，那么它的结构如下：
 ```
 {
     QUERY_NAME: {
@@ -141,8 +144,7 @@ GET /website/_analyze
 }
 ```
 
-一条复合语句
-
+* 一条复合语句
 ```
 {
     "bool": {
@@ -159,8 +161,9 @@ GET /website/_analyze
 }
 ```
 
-精确查询
+#### 实战查询
 
+* 精确查询
 ```
 GET /website/_search
 {
@@ -176,6 +179,126 @@ GET /website/_search
 }
 ```
 
+* 多词组合
+```
+GET /website/_search
+{
+    "query": {
+        "match": {
+            "title": {      
+                "query":    "BROWN DOG!",
+                "operator": "and"
+            }
+        }
+    }
+}
+```
+
+* 短语匹配
+```
+GET /website/_search
+{
+    "query": {
+        "match_phrase": {
+            "title": "quick brown fox"
+        }
+    }
+}
+```
+
+* 混合短语匹配
+```
+GET /website/_search
+{
+    "query": {
+        "match_phrase": {
+            "title": {
+                "query": "quick fox",
+                "slop":  1
+            }
+        }
+    }
+}
+```
+
+* 正则查询 (性能慢)
+```
+GET /my_index/_search
+{
+    "query": {
+        "wildcard": {
+            "postcode": "W?F*HW" 
+        }
+    }
+}
+```
+
+* 智能匹配
+```
+GET /my_index/_search
+{
+    "query": {
+        "match_phrase_prefix" : {
+            "brand" : {
+                "query":          "johnnie walker bl",
+                "max_expansions": 50
+                }
+        }
+    }
+}
+```
+
+* 控制精度
+```
+GET /website/_search
+{
+  "query": {
+    "match": {
+      "title": {
+        "query":                "quick brown dog",
+        "minimum_should_match": "75%"
+      }
+    }
+  }
+}
+
+GET /website/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        { "match": { "title": "brown" }},
+        { "match": { "title": "fox"   }},
+        { "match": { "title": "dog"   }}
+      ],
+      "minimum_should_match": 2 
+    }
+  }
+}
+```
+
+* 按受欢迎度提升权重
+```
+GET /blogposts/post/_search
+{
+  "query": {
+    "function_score": { 
+      "query": { 
+        "multi_match": {
+          "query":    "popularity",
+          "fields": [ "title", "content" ]
+        }
+      },
+      "field_value_factor": { 
+        "field": "votes" 
+      }
+    }
+  }
+}
+
+微调:
+https://www.elastic.co/guide/cn/elasticsearch/guide/current/boosting-by-popularity.html
+```
 
 #### 排障
 ```
@@ -250,7 +373,7 @@ POST _reindex
 
 ```
 
-### 释放空间
+#### 释放空间
 ```
 POST /_all/_forcemerge?only_expunge_deletes=true
 ```
