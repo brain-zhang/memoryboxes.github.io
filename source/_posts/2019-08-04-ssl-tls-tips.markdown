@@ -109,7 +109,7 @@ apt-cache show libnss3
 
 原来，SSL&TSL的实现，不只是openssl一家独大，像Mozilla Firefox就用自家实现的Nss；
 
-Google Chrome之前也是用Nss的，后来赚到了openssl，再后来，2014年，openssl1.0.1出现了heartbeat 漏洞，Google干脆自己开了个分支，用自己定制的openssl了；
+Google Chrome之前也是用Nss的，后来迁移到了openssl，再后来，2014年，openssl1.0.1出现了heartbeat 漏洞，Google干脆自己开了个分支，用自己定制的openssl了；
 
 至于Windows平台的，还有C++阵营的，都有自己实现的ssl库，具体可参见:
 
@@ -196,7 +196,7 @@ libnss3.so
 那么这个包是谁提供的？输入如下命令：
 
 ```
-~ rpm -qf /usr/lib64/libnss3.so
+~ rpm -qf /usr/lib64/libnss3.so 
     nss-3.36.0-7.1.el7_6.x86_64
 ~ rpm -ql nss
 /etc/pki/nss-legacy
@@ -219,7 +219,7 @@ libnss3.so
 
 使用 curl-config 命令行工具，能够了解更多：
 ```
-~ curl-config --ca
+~ curl-config --ca                        
 /etc/pki/tls/certs/ca-bundle.crt
 ```
 
@@ -275,9 +275,9 @@ openssl
   Depends: libc6
   Depends: libssl1.0.0
   Suggests: ca-certificates
-
+  
 ~ apt-cache rdepends  libssl1.0.0 | grep curl
-  libcurl3
+  libcurl3  
 ```
 
 
