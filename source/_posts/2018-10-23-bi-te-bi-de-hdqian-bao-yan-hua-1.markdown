@@ -141,7 +141,7 @@ Alice 想要给Bob发信，必须拿到Bob的y值，除非是热恋的情人，�
 
 #### 那些个帅帅的大叔们
 
-![RSA加密发明人](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181023/bg1.jpg)
+![RSA加密发明人](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20181023/bg1.jpg)
 
 额，关于RSA算法，阮一峰老师的文章写的更清晰，我就不多废话了；童鞋们可以移步[这里](http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html)来探讨细节，当然，懒得去理解数学原理对于我们下面的探讨也没啥影响~~~~
 
@@ -188,7 +188,7 @@ y^2 = X^3 + ax + b
 
 取不同的a值和b值，这个函数在坐标轴上绘制出来的曲线大概是这样的:
 
-![椭圆曲线](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181023/bg2.jpg)
+![椭圆曲线](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20181023/bg2.jpg)
 
 a和b的取值变化决定了曲线在坐标系上的不同形状。从图中可以看到，椭圆曲线是相对X轴对称。
 
@@ -208,7 +208,7 @@ y^2 % p = (X^3 + 7) % p
 
 这条曲线画出来的样子大概是这样的:
 
-![椭圆曲线](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181023/bg3.jpg)
+![椭圆曲线](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20181023/bg3.jpg)
 
 在椭圆曲线的数学原理中，有一个点被称为“无穷远点”，这大致对应于0在加法中的作用。计算机中，它有时表示为X = Y = 0（虽然这不满足椭圆曲线方程，但可作为特殊情况进行检验）。
 
@@ -251,7 +251,7 @@ y = 07CF33DA18BD734C600B96A72BBC4749D5141C90EC8AC328AE52DDFE2E505BDB
 
 下图显示了在曲线上得到 G、2G、4G 的几何操作。
 
-![椭圆曲线](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181023/bg4.jpg)
+![椭圆曲线](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20181023/bg4.jpg)
 
 
 #### 比特币账户

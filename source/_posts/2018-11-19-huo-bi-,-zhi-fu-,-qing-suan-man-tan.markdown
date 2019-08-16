@@ -102,7 +102,7 @@ categories: blockchain
 
 假设客户在深圳建行汇款给北京工行，通过EIS处理一次跨行汇款的流程如下：
 
-![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181120/bg1.png)
+![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20181120/bg1.png)
 
 可以看到，清算中心在各地建立了一个个分站，分站和总中心通过卫星网络互联，总站和分站共同构成了清算网络，为其它接入EIS的各家商业银行提供清算服务。
 
@@ -145,7 +145,7 @@ CNAPS值得我们大说特说，今天银行的主力业务都跑在它的基础
 
 下面一张图就说明了CNAPS大小额的业务实现:
 
-![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181120/bg3.png)
+![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20181120/bg3.png)
 
 
 目前大部分手机网银跨行转账都没有手续费。所以如果你在晚上10点想跨行转账10万元，此时大额转账系统已经关闭了，建议你分成两个5万并且用加急方式来转账。
@@ -169,7 +169,7 @@ PS: 大小额支付的协议细节非常复杂，协议规范有上千页文档�
 
 最后来一张总体架构图:
 
-![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20181120/bg2.jpg)
+![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20181120/bg2.jpg)
 
 PS: 现场协议监控部署，`人行二代支付`是我听了上万遍的词汇啊，睡觉都无法摆脱~~~
 

@@ -14,7 +14,7 @@ blockchain是个新造词，至少在2008年之前网上是搜索不到这个词
 
 如果真正要较真blockchain这个单词第一次出现的地方，我想大概是中本聪的第一版bitcoin 源代码中；
 
-bitcoin v0.01源代码中，中本聪第一次在[函数注释中](https://github.com/memoryboxes/bitcoin_satoshi/blob/v0.01/main.h#L596) 完整的引用了`block chain`这个术语，鉴于中本聪在比特币白皮书发表的2年前已经开始编写源码；所以有理由确认：
+bitcoin v0.01源代码中，中本聪第一次在[函数注释中](https://github.com/brain-zhang/bitcoin_satoshi/blob/v0.01/main.h#L596) 完整的引用了`block chain`这个术语，鉴于中本聪在比特币白皮书发表的2年前已经开始编写源码；所以有理由确认：
 
 1. blockchain这个名词是2007-2008年间诞生于世间的
 2. 中本聪是比特币之父，比特币是blockchain之母
@@ -170,14 +170,14 @@ PS: 理论上，如果出现一台拥有着无限计算能力的新型的计算�
 
 创世块比较特殊，它不是挖出来的，是中本聪手工构造的；参见这里:
 
-https://github.com/memoryboxes/bitcoin_satoshi/blob/v0.01/main.cpp#L1439
+https://github.com/brain-zhang/bitcoin_satoshi/blob/v0.01/main.cpp#L1439
 
 
 关于创世块，之前我们提到一个有趣的事情：创世块的50BTC奖励是不能花的，这是为什么呢？
 
 这需要我们好好研究下中本聪发布的v0.01版本的比特币源码：
 
-https://github.com/memoryboxes/bitcoin_satoshi/tree/v0.01
+https://github.com/brain-zhang/bitcoin_satoshi/tree/v0.01
 
 1. 整个比特币系统接收一笔交易的时候怎么判断其合法性呢？就是判断这笔交易的vin是否关联着一笔合法交易的vout，这些vout统称UTXO，在初版比特币里面，判断一个合法的UTXO的标准就是有没有放进区块链的索引文件中；这个索引文件和区块链文件不是一个东西，他是单独的；如果你运行初版比特币软件(v0.01)；就可以看到中本聪把区块存储在blk0001.dat这样的文件里面，而把所有区块的索引存储在blkindex.dat这个文件里面；
 2. 那么问题就出现了，blkindex.dat 什么时机才能写入呢？通读源码发现，只有自己挖矿挖到区块，或者收到周围的广播区块的时候，才有机会写入blkindex.dat这个文件;
@@ -374,7 +374,7 @@ Stratum协议采用主动分配任务的方式，也就是说，矿池任何时�
 
 Stratum协议巧妙解决了这个问题，成功实现既可以给矿工增加足够的搜索空间，又只需要交互很少的数据量，这也是Stratum协议最具创新的地方。
 
-![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190123/bg2.png)
+![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20190123/bg2.png)
 
 再来回顾一下区块头的6个字段80字节，这个很关键，nVersion，nBits，hashPrevBlock这3个字段是固定的，nNonce，nTime这两个字段是矿工现在就可以改变的。增加搜索空间只能从hashMerkleroot下手，这个绕不过去。Stratum协议让矿工自己构造coinbase交易，coinbase的scriptSig字段有很多字节可以让矿工自由填充，而coinbase的改动意味着hashMerkleroot的改变。从coinbase构造hashMerkleroot无需全部交易，如上图所示，假如区块将包含13笔交易，矿池先对这13笔交易进行处理，最后只要把图中的4个黑点（Hash值）交付给矿工，同时将构造coinbase需要的信息交付给矿工，矿工就可以自己构造hashMerkleroot（图中的绿点都是矿工自行计算获得，两两合并Hash时，规定下一个黑点代表的hash值总是放在右边）。按照这种方式，假如区块包含N笔交易，矿池可以浓缩成log2(N)个hash值交付给矿工，这大大降低了矿池和矿工交互的数据量。
 
@@ -392,7 +392,7 @@ Stratum协议巧妙解决了这个问题，成功实现既可以给矿工增加�
 
 最后所有区块组成了blockchain:
 
-![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190123/bg1.jpg)
+![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20190123/bg1.jpg)
 
 
 ## SPV(简单支付)

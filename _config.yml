@@ -5,7 +5,7 @@
 url: https://happy123.me
 title: Living a Simple Life is a Happy Life
 subtitle: 有饭吃，自由自在，就非常开心
-author: memoryboxes
+author: brain-zhang
 simple_search: https://google.com/search
 description: 有饭吃，自由自在，就非常开心
 
@@ -64,7 +64,7 @@ blog_index_asides: [asides/recent_posts.html, asides/github.html, asides/categor
 # ----------------------- #
 
 # Github repositories
-github_user: memoryboxes
+github_user: brain-zhang
 github_repo_count: 10
 github_show_profile_link: true
 github_skip_forks: true

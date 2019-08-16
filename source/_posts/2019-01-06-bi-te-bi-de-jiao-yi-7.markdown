@@ -75,7 +75,7 @@ Yes! 这样做之后，在双方的资金池通道中，不管之前双方进行
  
 Alice和Bob是合作方，经常有比特币往来，所以他们决定各拿出0.5BTC放入通道中，便于业务往来。解释一下下方RSMC交易的结构，左侧为Alice的视角，右侧为Bob的视角。中间Funding Tx为共同可见，C1a和RD1a为Alice持有，C1b和RD1b为Bob持有。交易图中带有尖括号的签名表示待填入。
 
-![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190106/bg1.jpg)
+![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20190106/bg1.jpg)
 
 
 1. 双方各拿出0.5BTC，构建Funding Tx，输出为Alice和Bob的2/2多重签名。此时， Funding	Tx未签名，更不广播。
@@ -97,13 +97,13 @@ Alice和Bob各自0.5BTC的余额，此时Alice从Bob处购买了一件商品，�
 
 于是创建新的Commitment Tx，对于Alice来说是C2a 和RD2a，对于Bob来说是C2b和RD2b，过程与上面类似。
 
-![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190106/bg2.jpg)
+![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20190106/bg2.jpg)
 
 交易更新时的交易结构此时两个状态均是有效的，那么最核心的问题来了，如何才能彻底废弃掉C1a和C1b呢？
 
 RSMC采用了一个非常巧妙的方法，在C1a的第一个输出中，采用了Alice2和Bob的多重签名，Alice将Alice2	的私钥交给Bob，即表示Alice放弃C1a，承认C2a。
 
-![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190106/bg3.jpg)
+![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20190106/bg3.jpg)
 
 Alice交出Alice2的私钥给Bob，那么Bob就可以修改RD1a的输出给他自己，形成新的交易BR1a。
 
@@ -129,7 +129,7 @@ RSMC要求交易的双方一定要都缴纳一笔保证金，我每天都跟不�
 
 Alice想要支付0.5BTC给Bob，但她并没有一个渠道来和他进行交易。幸运的是，她和Charlie有一个交易渠道，而Charlie正好和Bob有一个交易渠道。这样Alice就能借助Charlie的交易渠道，通过哈希时间锁定合约（HTLC）来和Bob进行交易了。
 
-![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190106/bg4.png)
+![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20190106/bg4.png)
 
 为了完成这次交易，Alice就会给Bob发短信说：“嘿！我要给你付笔款。”这时Bob自己将收到一个随机数字（R），接着Bob便会回一个被哈希的数字（H）（你可以认为被哈希的数字R是随机数字的一种加密形式）给Alice。
 
