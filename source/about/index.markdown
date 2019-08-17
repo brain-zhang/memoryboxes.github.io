@@ -52,9 +52,9 @@ gpg --keyserver keys.gnupg.net --search-keys brain.zhang
 ```
 
 
-* pubkey finger print
+* pubkey finger
 
-# [!finger](https://github.com/brain-zhang/memoryboxes.github.io/blob/source/images/201908/bg1.jpg)
+![finger](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/201908/bg1.jpg)
 
 
 ## 联系我
