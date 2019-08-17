@@ -39,9 +39,9 @@ gpg --list-keys
 ```
 /home/brain/.gnupg/pubring.gpg
 -------------------------------
-pub   4096R/3ED25428 2019-08-16
-uid                  brain.zhang (happy123.me) <brain.zhangbin@outlook.com>
-sub   4096R/F60CBF88 2019-08-16
+pub   4096R/xxxxxxxx 2018-08-16
+uid                  brain.zhang (happy123.me) <brain.zhangbin#xxx.com>
+sub   4096R/yyyyyyyy 2018-08-16
 ```
 
 第一行显示公钥文件名（pubring.gpg），第二行显示公钥特征（4096位，Hash字符串和生成时间），第三行显示"用户ID"，第四行显示subkey。

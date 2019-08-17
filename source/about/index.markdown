@@ -53,12 +53,9 @@ gpg --keyserver keys.gnupg.net --search-keys brain.zhang
 
 
 * pubkey finger print
-```
-pub   4096R/3ED25428 2019-08-16
-      Key fingerprint = C034 B454 24CB ECE5 1737  D90A CCCF C364 3ED2 5428
-uid                  brain.zhang (happy123.me) <brain.zhangbin@outlook.com>
-sub   4096R/F60CBF88 2019-08-16
-```
+
+# [!finger](https://github.com/brain-zhang/memoryboxes.github.io/blob/source/images/201908/bg1.jpg)
+
 
 ## 联系我
 

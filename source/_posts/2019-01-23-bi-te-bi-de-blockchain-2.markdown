@@ -6,7 +6,6 @@ comments: true
 categories: blockchain
 ---
 
-
 比特币的发展史上，非常非常早期就出现了一种名为侧链(sideChains)的技术；
 
 这个技术早在2008年比特币代码尚未发布时，就在论坛上有所讨论，后来比特币网络开始运行，各种Geek点子层出不穷，从最初的namecoin(域名币)，到后来的（Counterparty）、万事达币（Mastercoin）和彩色币（ColoredCoin）等附生链；再到后来百链齐开，大家试图在完全不同的链上转移交换资产；以及最近到blockstream的[Liquid](https://blockstream.com/liquid/)，以及基于闪电网络的原子交换(Atomic Swap)，这个技术的发展一直不温不火，但毫无疑问，侧链技术绝对是blockchain技术的重要组成部分。
@@ -98,7 +97,7 @@ POW算力链，只有一份保障就够了，没有必要开启其他的同样�
 
 想象当中，两条链的结构是这样的:
 
-![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20190311/bg1.png)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190311/bg1.png)
 
 那么，挖矿的难度应该怎么设计呢？我们要求该父链区块的难度必须符合辅链的难度要求：
 
@@ -111,7 +110,7 @@ POW算力链，只有一份保障就够了，没有必要开启其他的同样�
 
 辅链除了用prev block 指针组成一条chain，还又引入了另外一个指针： parent block； 这样每几个block可以归附于一个parent block，挂接在主链的同一个block下面；这样就实现了挖一个主链block，附带挖多个辅链block；结构如下:
 
-![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20190311/bg2.png)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190311/bg2.png)
 
 在这张图中，主链的block100只挂接了辅链的blockB100，但是blockB101，blockB102都指向同样的parent block，就是blockB100，这样就实现了只用主链的blockB100，同时挂接辅链的三个区块(blockB100、blockB101、block102)；
 
@@ -132,16 +131,16 @@ POW算力链，只有一份保障就够了，没有必要开启其他的同样�
 
 最终的设计细节如下:
 
-![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20190311/bg3.png)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190311/bg3.png)
 
 
 AuxPOW协议对两条链都有一些数据结构方面的规定，对于父链，要求必须在区块的coinbase的scriptSig字段中插入如下格式的44字节数据：
 
-![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20190311/bg4.png)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190311/bg4.png)
 
 对于辅链，对原区块结构改动比较大，在nNonce字段和txn_count之间插入了5个字段，这种区块取名AuxPOW区块。
 
-![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20190311/bg5.png)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190311/bg5.png)
 
 
 > 混合挖矿要求父链和辅链的算法一致，是否支持混合挖矿是矿池的决定，矿工不知道是否在混合挖矿。矿池如果支持混合挖矿，需要对接所有辅链的节点。
@@ -252,7 +251,7 @@ https://bitcoinmagazine.com/articles/side-chains-challenges-potential/
 
 从侧链转比特币到主链的过程也是如此。这就是侧链双向锚定协议。
 
-![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20190311/bg6.jpg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190311/bg6.jpg)
 
 ## Blockstream Liquid协议
 
@@ -292,11 +291,11 @@ https://pastebin.com/JF3USKFT
 
 * Alice拿到带有鲍伯签名的交易RTX后，广播出FTX。此时的交易结构如下图,图中带有尖括号的签名表示待填入:
 
-![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20190311/bg7.jpg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190311/bg7.jpg)
 
 * Alice再看了一部电影，那么她需要再支付0.1BTC给鲍伯。于是，Alice构造另一笔交易PTX2：输入依然是交易FTX；输出为两个地址，其中Alice为0.8BTC，鲍伯为0.2BTC。Alice对该交易签名，并将交易和她的签名给鲍伯:
 
-![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20190311/bg8.jpg)
+![img](https://raw.githubusercontent.com/memoryboxes/memoryboxes.github.io/source/images/20190311/bg8.jpg)
 
 * 鲍伯可以随时签名并广播交易PTX2，当然，他依然可以广播交易PTX1。作为一名理性经济人，鲍伯必然总是广播自己收益最大的那笔交易，也就是当前的PTX2。在目前总是Alice付款的情况下，鲍伯总是乐于广播最后一个交易。
 
@@ -320,7 +319,7 @@ https://pastebin.com/JF3USKFT
 
 * 侧链技术可以锁定主链的币并将其等价Token转移到另一条链上，以及其逆过程；
 
-微支付通道技术实现了同一条链上，交易双方链下高速交易；
+* 微支付通道技术实现了同一条链上，交易双方链下高速交易；
 
 那么有没有一种办法，可以实现已经完全运行的区块链间的互通呢？ 比如比特币和以太坊之间的无需三方信任的兑换？
 
