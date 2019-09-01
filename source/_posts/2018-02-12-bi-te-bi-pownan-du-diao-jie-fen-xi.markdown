@@ -105,7 +105,7 @@ categories: blockchain
 
 代码参考这里:
 
-https://github.com/memoryboxes/bitcoin/blob/a1c3d8f14dca6a86fa103d86ef125e95372f860c/src/main.cpp#L857
+https://github.com/brain-zhang/bitcoin/blob/a1c3d8f14dca6a86fa103d86ef125e95372f860c/src/main.cpp#L857
 
 
 ## 知道nbits，如何推算全网算力
