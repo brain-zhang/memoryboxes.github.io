@@ -42,7 +42,7 @@ why         explain why packages or modules are needed (解释为什么需要依
 
 ## 既有项目
 
-假设你已经有了一个 go 项目， 比如在$GOPATH/github.com/memoryboxes/hello下， 你可以使用go mod init github.com/memoryboxes/hello在这个文件夹下创建一个空的 go.mod (只有第一行 module github.com/memoryboxes/hello)。
+假设你已经有了一个 go 项目， 比如在$GOPATH/github.com/brain-zhang/hello下， 你可以使用go mod init github.com/brain-zhang/hello在这个文件夹下创建一个空的 go.mod (只有第一行 module github.com/brain-zhang/hello)。
 
 然后你可以通过 go get ./...让它查找依赖，并记录在 go.mod 文件中 (你还可以指定 -tags, 这样可以把 tags 的依赖都查找到)。
 
@@ -61,7 +61,7 @@ replace (
   golang.org/x/text v0.3.0 => github.com/golang/text v0.3.0
 )
 ```
-依赖库中的replace对你的主 go.mod 不起作用，比如github.com/memoryboxes/hello的 go.mod 已经增加了replace, 但是你的 go.mod 虽然require了rpcx的库，但是没有设置replace的话， go get还是会访问golang.org/x。
+依赖库中的replace对你的主 go.mod 不起作用，比如github.com/brain-zhang/hello的 go.mod 已经增加了replace, 但是你的 go.mod 虽然require了rpcx的库，但是没有设置replace的话， go get还是会访问golang.org/x。
 
 所以如果想编译哪个项目，就在哪个项目中增加replace。
 

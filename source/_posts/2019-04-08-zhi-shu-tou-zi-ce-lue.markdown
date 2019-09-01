@@ -516,7 +516,7 @@ F * 0.5 = 20%
 
 代码放在这里：
 
-https://github.com/memoryboxes/kanglong
+https://github.com/brain-zhang/kanglong
  
 好啦，我们还是以沪深300为基准，看看这个策略和原指数的对比：
  
