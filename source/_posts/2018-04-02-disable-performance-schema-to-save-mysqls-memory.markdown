@@ -9,7 +9,9 @@ categories: tools
 
 访问量不大的话，可以在 my.conf 中加入以下配置，关掉性能优化。
 
+
 ```
 [mysqld]
 performance_schema=off
+
 ```

@@ -88,6 +88,7 @@ PS:Coinbase作为一个很经典的技术名词，其`coinbase.com`域名被现�
 
 用[在线getrawtransaction工具](http://chainquery.com/bitcoin-api/getrawtransaction/3a295e4d385f4074f6a7bb28f6103b7235cf48f8177b7153b0609161458ac517/1) 解码一下这笔交易，得到输出：
 
+
 ```
 {
 	"result": {
@@ -132,6 +133,7 @@ PS:Coinbase作为一个很经典的技术名词，其`coinbase.com`域名被现�
 	"error": null,
 	"id": null
 }
+
 ```
 
 #### 字段说明
@@ -177,8 +179,10 @@ spec规范在[这里](https://en.bitcoin.it/wiki/Protocol_documentation#tx)
 
 这笔交易的vin及vout中各有一个UTXO，我们解析下它的十六进制原始数据:
 
+
 ```
 01000000013bea4882ab19103266d31035176d3b65be1502a403fa263b458fc05ab6afa0b0000000008a47304402204f1eeeb46dbd896a4d421a14b156ad541afb4062a9076d601e8661c952b32fbf022018f01408dc85d503776946e71d942578ab551029b6bee7d3c30a8ce39f2f7ac0014104c4f00a8aa87f595b60b1e390f17fc64d12c1a1f505354a7eea5f2ee353e427b7fc0ac3f520dfd4946ab28ac5fa3173050f90c6b2d186333e998d7777fdaa52d5ffffffff01581b000000000000232103db3c3977c5165058bf38c46f72d32f4e872112dbafc13083a948676165cd1603ac00000000
+
 ```
 
 ##### version (4字节): 刚开始的4个字节是version，小端排序(Little Endian)，因此version为`0x00000001`
@@ -190,18 +194,22 @@ spec规范在[这里](https://en.bitcoin.it/wiki/Protocol_documentation#tx)
 ##### vin count (>=1字节): vin数目，此交易为`01`，采用的是[var_int](https://en.bitcoin.it/wiki/Protocol_documentation#Variable_length_integer)表示法，这样我们能方便的测算它的长度
 
 ##### vin (>=41字节): 所有的输入tx，是一个数组；这里只有一个tx，数据是:
+
 ```
 3bea4882ab19103266d31035176d3b65be1502a403fa263b458fc05ab6afa0b0000000008a47304402204f1eeeb46dbd896a4d421a14b156ad541afb4062a9076d601e8661c952b32fbf022018f01408dc85d503776946e71d942578ab551029b6bee7d3c30a8ce39f2f7ac0014104c4f00a8aa87f595b60b1e390f17fc64d12c1a1f505354a7eea5f2ee353e427b7fc0ac3f520dfd4946ab28ac5fa3173050f90c6b2d186333e998d7777fdaa52d5ffffffff
+
 ```
 
 简单说下vin中一笔tx内部结构:
 
 1. previous_output (32字节): 上一笔交易的HASH值，即这个花费的输入交易ID: 
 
+
 ```
     3bea4882ab19103266d31035176d3b65be1502a403fa263b458fc05ab6afa0b0
     -> 转为大端排序  
     b0a0afb65ac08f453b26fa03a40215be653b6d173510d366321019ab8248ea3b
+
 ```
 
 2. previous output index: 表示花费的是 previous_output 交易的第n个vout输出，这里是`00000000`
@@ -209,8 +217,10 @@ spec规范在[这里](https://en.bitcoin.it/wiki/Protocol_documentation#tx)
 3. script length (var_int变长，代表script的长度): 这里是`0x8a`，表示script长度为138字节
     
 4. scriptSig (整个解密脚本)： 这个结构我们之后会具体分析
+
 ```
 47304402204f1eeeb46dbd896a4d421a14b156ad541afb4062a9076d601e8661c952b32fbf022018f01408dc85d503776946e71d942578ab551029b6bee7d3c30a8ce39f2f7ac0014104c4f00a8aa87f595b60b1e390f17fc64d12c1a1f505354a7eea5f2ee353e427b7fc0ac3f520dfd4946ab28ac5fa3173050f90c6b2d186333e998d7777fdaa52d5
+
 ```
 
 5. sequence no (4个字节): `ffffffff`
@@ -220,8 +230,10 @@ spec规范在[这里](https://en.bitcoin.it/wiki/Protocol_documentation#tx)
 
 ##### vout (>=9字节): 所有的输出tx，是一个数组；这里只有一个tx，数据是:
 
+
 ```
 581b0000000000002103db3c3977c5165058bf38c46f72d32f4e872112dbafc13083a948676165cd1603ac
+
 ```
 
 简单说下vout中一笔tx内部结构:

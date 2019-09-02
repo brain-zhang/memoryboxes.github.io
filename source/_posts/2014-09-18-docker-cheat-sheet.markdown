@@ -8,14 +8,17 @@ categories: docker tools
 
 # container相关
 
+
 ```
 $ docker run -it xxx /bin/bash                                      // 启动一个container
 $ docker rm -f xxx                                                  // 结束一个container，加-f表示删除掉，这样比较干净
 $ docker run -it --add-host host:ip xxx /bin/bash                   // 启动一个container,增加/etc/hosts设定
 $ docker run -d -p 127.0.0.1:5000:5000 webapp python app.py         // 启动一个container,映射本地的5000端口
+
 ```
 
 # image 相关
+
 
 ```
 $ docker rmi -f xxx                                                 // 删除一个image，以下情况下不能删除:
@@ -23,6 +26,7 @@ $ docker rmi -f xxx                                                 // 删除一
                                                                     // * 有已创建的container依赖于这个image
                                                                     // build的过程会出现很多<none>的临时image，最好不要去手工清除
 $ docker build tag Dockerfile_dir                                   // build一个image
+
 ```
 
 # docker service 相关

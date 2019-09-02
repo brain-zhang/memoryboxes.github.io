@@ -27,31 +27,38 @@ categories: tools network
 
 用 ip route show 可以看到默认有local,main,default三个路由表，这三个路由表的名称命名来自 /etc/iproute2/rt_tables ，这里先在这个配置文件里面添加三个不同的路由表表名，
 
+
 ```
 echo “101 ChinaNet” >> /etc/iproute2/rt_tables
 echo ”102 ChinaCnc“ >> /etc/iproute2/rt_tables
 echo ”103 ChinaEdu“ >> /etc/iproute2/rt_tables
+
 ```
 
 之后建立这三个路由表的内容，因为这三个路由表的只是用来响应来自不同接口的，而不是用来相应从哪个接口出去的，所以只需要每个路由表里面建立默认网关即可。
+
 
 ```
 ip route add default via 1.1.1.254 dev eth0 table ChinaNet
 ip route add default via 2.2.2.254 dev eth1 table ChinaCnc
 ip route add default via 3.3.3.254 dev eth2 table ChinaEdu
+
 ```
 
 之后再加上三条规则，使来自不同的口的走不同的路由表
+
 
 ```
 ip rule add from 1.1.1.1 table ChinaNet
 ip rule add from 2.2.2.2 table ChinaCnc
 ip rule add from 3.3.3.3 table ChinaEdu
+
 ```
 
 至此无论是电信还是网通还是教育网用户，访问三个ip的任意一个地址都能够连通了。即便是服务器上本身的默认路由都没有设置，也能够让外面的用户正常访问。
 
 命令汇总：
+
 
 ```
 ip route show
@@ -67,5 +74,6 @@ ip route add default via 3.3.3.254 dev eth2 table ChinaEdu
 ip rule add from 1.1.1.1 table ChinaNet
 ip rule add from 2.2.2.2 table ChinaCnc
 ip rule add from 3.3.3.3 table ChinaEdu //如果用数字，可以不要上面的“echo”过程
+
 ```
 

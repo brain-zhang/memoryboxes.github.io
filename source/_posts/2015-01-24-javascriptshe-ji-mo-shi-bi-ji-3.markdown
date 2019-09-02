@@ -13,6 +13,7 @@ javascript 里面的继承是个非常复杂的话题，一言蔽之，就是你
 
 ### 一个简单的类
 
+
 ```
 /* class Person */
 function Person(name) {
@@ -25,9 +26,11 @@ Person.prototype.getName = functino() {
 
 var reader = new Person('memoryboxes');
 reader.getName();
+
 ```
 
 好，下面定义一个它的子类
+
 
 ```
 /* Class Author */
@@ -38,12 +41,15 @@ function Author(name, books) {
 Author.prototype = new Persion();  //set up the prototype chain
 Author.prototype.contructor = Author; //set the constructor attribute to author
 Author.getBooks = function() {return this.books;}
+
 ```
 
 容易费解的是这两行:
+
 ```
 Author.prototype = new Persion();  //set up the prototype chain
 Author.prototype.contructor = Author; //set the constructor attribute to author
+
 ```
 
 javascript中，每个对象都有一个原型对象，在创建一个对象时，javascript会自动将其原型对象设置为其构造函数的prototype属性所指的对象。
@@ -55,6 +61,7 @@ javascript中，每个对象都有一个原型对象，在创建一个对象时�
 
 最后，为了简化类的声明，可以将这些工作封装在extend函数中:
 
+
 ```
 function extend(subClass, superClass) {
     var F = function(){};
@@ -62,10 +69,12 @@ function extend(subClass, superClass) {
     subClass.prototype = new F();
     subClass.prototype.contructor = subClass;
 }
+
 ```
 作为改进，定义了一个新对象F，避免基类对象过大，创建实例浪费资源。
 
 但是这样还有个小缺点，声明 Author的时候，还要显式的调用一下`Person.call()`，下面这个版本进一步做了改进：
+
 ```
 function extend(subClass, superClass) {
     var F = function(){};
@@ -78,9 +87,11 @@ function extend(subClass, superClass) {
         superClass.prototype.contructor = superClass;
     }
 }
+
 ```
 
 增加了一个superclass属性来直接访问基类，这样声明Author的时候可以这么写:
+
 ```
 /* Class Author */
 function Author(name, books) {
@@ -89,6 +100,7 @@ function Author(name, books) {
 }
 extend(Author, Person);
 Author.getBooks = function() {return this.books;}
+
 ```
 
 ## 原型式继承

@@ -16,8 +16,10 @@ categories: blockchain
 
 然后我切换到TESTNET里面发了几笔交易，惊奇的发现sendfrom并不能花费uncomfirmed UTXO。执行:
 
+
 ```
 > bitcoin-cli sendfrom "" "1M72Sfpbz1BPpXFHz9m3CdqATR44Jvaydd" 0.01 0
+
 ```
 
 明明我已经发给测试账户0.1BTC过去了，getwalletinfo可以看到这个币了，我也把minconf设为0了，却在执行sendfrom的时候总是提示我`Account has insufficient funds`；
@@ -34,11 +36,14 @@ https://github.com/bitcoin/bitcoin/blob/e44150feed53317677b1e2073f3cb0cfc67b691c
 
 另外记一下远程调用bitcoind rpc接口的套路:
 
+
 ```
 >bitcoin_cli --rpcconnect=192.168.2.7 --rpcpassword="xxxxx" --rpcuser=test getwalletinfo
+
 ```
 
 相应的，bitcoin.conf也要允许远端调用rpc接口的权限:
+
 
 ```
 rpcuser=test
@@ -47,6 +52,7 @@ rpcallowip=192.168.2.0/255.255.255.0
 rpcport=8332
 rpcthreads=10
 server=1
+
 
 ```
 

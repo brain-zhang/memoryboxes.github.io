@@ -78,6 +78,7 @@ BIP-39定义了助记符码和种子的创建， 为了清楚起见，该过程�
 
 * 2、用SHA256 HASH原始熵，就可以创造一个随机序列的校验和。代码如下
 
+
 ```
 from binascii import unhexlify
 from hashlib import sha256
@@ -85,11 +86,13 @@ data = 'f' * 32
 data_unhexlify = unhexlify(data)
 h = hashlib.sha256(data_unhexlify)
 checksum = bin(int(h, 16))[2:].zfill(256)[:len(data) * 8 // 32]
+
 ```
 
 得到checksum为`0101`
 
 * 3、首先求得原始熵的二进制表示，然后将校验和添加到随机序列的末尾。代码如下:
+
 
 ```
 from binascii import unhexlify, hexlify
@@ -97,17 +100,22 @@ data = 'f' * 32
 data_unhexlify = unhexlify(data)
 body = bin(int(hexlify(data), 16))[2:].zfill(len(data) * 8)
 final_result = body + checksum
+
 ```
 得出的结果为
 
+
 ```
 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110101
+
 ```
 
 * 4、将序列划分为包含11位的不同部分。
 
+
 ```
 11111111111 11111111111 11111111111 11111111111 11111111111 11111111111 11111111111 11111111111 11111111111 11111111111 11111111111 11111110101
+
 ```
 
 * 5、将每个包含11位部分的值作为下标索引，与一个已经预先定义2048个单词的字典做对应。BIP39中对应的字典文件可以参考这里:
@@ -116,8 +124,10 @@ https://github.com/trezor/python-mnemonic/tree/master/mnemonic/wordlist
 
 以上二进制表示的下标值为:
 
+
 ```
 2047, 2047, 2047, 2047, 2047, 2047, 2047, 2047, 2047, 2047, 2047, 2037
+
 ```
 
 为什么单词数目是2048呢？ 其实seed可以有12-24个单词，所有的组合可能性为 2048^12 -- 2048^24；
@@ -126,8 +136,10 @@ https://github.com/trezor/python-mnemonic/tree/master/mnemonic/wordlist
 
 * 6、生成的有顺序的单词组，就是助记码(Mnemonic Code)。在咱们的例子中如果采用英文字典，对应的结果为:
 
+
 ```
 zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo wrong
+
 ```
 
 
@@ -185,6 +197,7 @@ Entropy(bits) | Checksum(bits)| Entropy + checksum(bits) | Mnemonic length(words
 
 3、PBKDF2使用HMAC-SHA512算法，使用2048次哈希来延伸助记符和salt参数，产生一个512位的值作为其最终输出。 这个512bits的值就是种子:
 
+
 ```
 > import hashlib
 > import hmac
@@ -197,6 +210,7 @@ Entropy(bits) | Checksum(bits)| Entropy + checksum(bits) | Mnemonic length(words
 > print(hexlify(seed))
 
 b'0d756ad408b442341ec4895e854fe5ee55d2a93c6544d3e77b073100e9739e35b897b3fc81ef622babd3f6d7347af2e870de86587b2663c462dd9425d3d3ef04'
+
 ```
 
 
@@ -217,12 +231,14 @@ https://pypi.org/project/bip32utils/
 
 * 2、 根种子输入到HMAC-SHA512中，得到一个512bits的输出:
 
+
 ```
 > import binascii
 > import hmac
 > seed = b'0d756ad408b442341ec4895e854fe5ee55d2a93c6544d3e77b073100e9739e35b897b3fc81ef622babd3f6d7347af2e870de86587b2663c462dd9425d3d3ef04'
 > entropy = binascii.hexlify(seed)
 > I = hmac.new(b"Bitcoin seed", entropy, hashlib.sha512).digest()
+
 ```
 
 * 3、 这个512bits的`I`可以分为两个部分，左边的256bits用作Master Private Key，右边的256bits用作Master Chain Code。Master Private Key又可以推导出Master Public Key。整个表示如下:
@@ -257,6 +273,7 @@ https://pypi.org/project/bip32utils/
 正如我们之前看到的，CKD函数可以被用来创造密钥树上任何层级的子密钥。这只需要三个输入量：一个密钥，一个链码以及想要的子密钥的索引。密钥以及链码这两个重要的部分被结合之后，就叫做扩展密钥（extended key）。术语“extended key”也被认为是“可扩展的密钥”，因为这种密钥可以用来衍生子密钥。
 
 引入我们之前的例子，这里我们第一层的扩展密钥为:
+
 ```
 > from bip32utils import BIP32Key
 > from binascii import hexlify
@@ -265,6 +282,7 @@ https://pypi.org/project/bip32utils/
 > print(root.ExtendedKey())
 
 xprv9s21ZrQH143K35KaAEjp6RjB4LoeCR3prWBv6vmX7HuGnPFygragV39uDC24D3UZvMnWbhame5nykoXCcfy1Rbgg8uqSzmwoQgFEqt2bUNy
+
 ```
 
 第一层的扩展私钥也被称之为`BIP32 Root Key`；
@@ -329,8 +347,10 @@ HD钱包树状结构提供了极大的灵活性。每一个母扩展密钥有40�
 
 在BIP-43标准下，为了延长的那个特殊规范，BIP-44提议了多账户结构作为“purpose”。所有遵循BIP-44的HD钱包依据只使用树的第一个分支的要求而被定义：m/44'/。 BIP-44指定了包含5个预定义树状层级的结构：
 
+
 ```
 m / purpose' / coin_type' / account' / change / address_index
+
 ```
 
 第一层的purpose总是被设定为44'。
@@ -374,8 +394,10 @@ m / purpose' / coin_type' / account' / change / address_index
 
 基于 BIP32和BIP43 的定义，赋予树状结构中的各层特殊的意义。让同一个 seed 可以支持多币种、多帐户等。各层定义如下：
 
+
 ```
 m / purpose' / coin_type' / account' / change / address_index
+
 ```
 
 其中的 purporse' 固定是 44'，代表使用 BIP44。而 coin_type' 用来表示不同币种，例如 Bitcoin 就是 0'，Ethereum 是 60'。

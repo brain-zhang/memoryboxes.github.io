@@ -38,6 +38,7 @@ PS: 学术界普遍怀疑其实 [Nick Szabo](https://www.blogger.com/profile/168
 
 地址分析：
 
+
 ```
 12tLs9c9RsALt4ockxa1hB4iTCTSmxj2me: unknown
 1933phfhK3ZgFQNLGSDXvqCn32k2buXY8a: MtGox user
@@ -65,19 +66,24 @@ PS: 学术界普遍怀疑其实 [Nick Szabo](https://www.blogger.com/profile/168
 1A6SDef1TJAM8Saw2SqmqFGhkWR1y3qMx2: MtGox deposit address
 16cou7Ht6WjTzuFyDBnht9hmvXytg6XdVT: MtGox user
 12ib7dApVFvg82TXKycWBNpN8kFyiAN1dr: unknown (early miner)
+
 ```
 
 呵呵，就在前几天，有人用`16cou7Ht6WjTzuFyDBnht9hmvXytg6XdVT`这个地址的私钥，签名发布了一段消息：
 
+
 ```
 Address 16cou7Ht6WjTzuFyDBnht9hmvXytg6XdVT does not belong to Satoshi or to Craig Wright.
 Craig is a liar and a fraud.
+
 ```
 
 这段消息的签名是:
 
+
 ```
 G39S6i4XsfQnixN5ePMjVPboWvGXdnW8xFFAXiwEriZFCclflbD7umP58u3Sl+dvvXC5BxBrRNkTMNf92O1UIXw=
+
 ```
 这段签名可以用Electrum的工具验证无误；懂一点技术的人自然明白这意味这什么。
 

@@ -6,6 +6,7 @@ comments: true
 categories: tools
 ---
 
+
 ```
 #!/bin/bash
 
@@ -15,4 +16,5 @@ categories: tools
 .output out.csv
 select username,password,email from passhouse order by site;
 !
+
 ```

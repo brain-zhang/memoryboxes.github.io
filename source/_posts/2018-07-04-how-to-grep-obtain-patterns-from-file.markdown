@@ -8,18 +8,22 @@ categories: tools
 
 有一个100G的大文本文件 emailinfo.dict，包含邮箱及用户昵称; 格式为
 
+
 ```
 hello@163.com,你是我的海
 ...
+
 ```
 
 
 有一个用户名文件user.txt，格式为:
 
+
 ```
 aaa
 xxxx
 ....
+
 ```
 
 我们希望找出emailinfo.dict中，以user.txt中用户名开头的所有内容。
@@ -27,10 +31,12 @@ xxxx
 
 首先将user.txt内容改为:
 
+
 ```
 ^aaa
 ^xxxx
 ....
+
 ```
 
 然后执行:

@@ -21,15 +21,18 @@ javascript中有三种原始类型:布尔型、数值型(不区分浮点数和�
 
 * 匿名函数
 
+
 ```
 (function(){
     var foo = 10;
     var bar = 2;
     alert(foo * bar);
 })();
+
 ```
 
 * 闭包
+
 
 ```
 var baz;
@@ -41,6 +44,7 @@ var baz;
     }
 })();
 baz(); //baz可以访问foo和bar，即使是在匿名函数外面执行
+
 ```
 
 * 作用域、嵌套函数和闭包
@@ -74,6 +78,7 @@ baz(); //baz可以访问foo和bar，即使是在匿名函数外面执行
 
 ### 用注释来模拟
 
+
 ```
 /*
 interface Composite {
@@ -101,6 +106,7 @@ CompositeForm.prototype.save= function() {
     ...
 }
 
+
 ```
 
 * 优点：简单明了，代码体积小
@@ -109,6 +115,7 @@ CompositeForm.prototype.save= function() {
 ### 用属性检查模仿接口
 
 约定所有类明确声明实现了那些接口，和这些类打交道的对象可以针对这些声明做检查。
+
 
 ```
 /*
@@ -150,12 +157,14 @@ function implements(objects) {
     return true;
 }
 
+
 ```
 
 * 优点:有错误检查
 * 缺点:每次调用都要检查，啰嗦，另外防不住有说了实现但没有干活的
 
 # 鸭式辨型模仿接口
+
 
 ```
 var Composite = new Intreface('Composite', ['add', 'remove']);
@@ -206,6 +215,7 @@ Interface.ensureImplements = function(object) {
         }
     }
 }
+
 
 ```
 

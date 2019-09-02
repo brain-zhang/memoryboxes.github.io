@@ -20,6 +20,8 @@ categories: vim tools
 
 #### Display CRLF as ^M:
 
+
 ```
 :e ++ff=unix
+
 ```

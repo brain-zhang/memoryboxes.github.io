@@ -157,12 +157,14 @@ AuxPOW协议对两条链都有一些数据结构方面的规定，对于父链�
 
 需要注意的一个字段是主链上的merkle_nonce； 因为一个矿工可能同时挖多条辅链，而每开采主链上一个合法的block，可能会带有数目不定的多条辅链，为了区分每条辅链的`链接位置`，即通过辅链的id确定这条辅链链接的索引号(也称为slot num)，引入了一个nonce，算法如下：
 
+
 ```
 unsigned int rand = merkle_nonce;
 rand = rand * 1103515245 + 12345;
 rand += chain_id;
 rand = rand * 1103515245 + 12345;
 slot_num = rand % merkle_size
+
 ```
 
 ##### 以上就是初代侧链的实现技术!

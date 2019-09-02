@@ -24,20 +24,25 @@ categories: develop
 
 我在ubuntu16.04下查看这个so文件来源;
 
+
 ```
 ~ locate libssl3.so
 /usr/lib/x86_64-linux-gnu/libssl3.so
+
 ```
 
 nm看一下:
+
 
 ```
 ~ nm /usr/lib/x86_64-linux-gnu/libssl3.so
 nm: /usr/lib/x86_64-linux-gnu/libssl3.so: no symbols
 
+
 ```
 
 奇怪，没有任何符号；继续用ldd看一下：
+
 
 ```
 ~ ldd /usr/lib/x86_64-linux-gnu/libssl3.so
@@ -55,18 +60,22 @@ ldd /usr/lib/x86_64-linux-gnu/libssl3.so
         librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007faf3b808000)
         /lib64/ld-linux-x86-64.so.2 (0x00007faf3d21d000)
 
+
 ```
 
 嗯，找到了一个有意思的依赖:libnss3.so
 
 再用命令dpkg看一下
 
+
 ```
 ~ dpkg -S /usr/lib/x86_64-linux-gnu/libnss3.so
 libnss3:amd64: /usr/lib/x86_64-linux-gnu/libnss3.so
+
 ```
 
 基本上确定是libnss3这个库引入的libssl3.so了，最后再用dpkg确认一下:
+
 
 ```
 ~ dpkg-query -L libnss3
@@ -97,12 +106,15 @@ libnss3:amd64: /usr/lib/x86_64-linux-gnu/libnss3.so
 /usr/share/lintian
 /usr/share/lintian/overrides
 /usr/share/lintian/overrides/libnss3
+
 ```
 
 ### libnss3是个什么东东?
 
+
 ```
 apt-cache show libnss3
+
 ```
 
 看了一下，发现是mozilla基金会搞得东东；再google一下，发现是自己孤陋寡闻了；
@@ -126,6 +138,7 @@ ubuntu上的curl默认链接的是openssl，而centos上面默认链接的是lib
 做事要做全套，我分别切换到ubuntu16.04和centos7.2上面，看看他们官方仓库中自带的curl是如何编译的。
 
 #### centos7.2
+
 
 ```
 ~ rpm -q --requires curl
@@ -154,8 +167,10 @@ rpmlib(FileDigests) <= 4.6.0-1
 rpmlib(PayloadFilesHavePrefix) <= 4.0-1
 rtld(GNU_HASH)
 rpmlib(PayloadIsXz) <= 5.2-1
+
 ```
 用的是libcurl = 7.29.0-51.el7；
+
 
 ```
 ~ rpm -q --requires libcurl
@@ -188,12 +203,16 @@ libnss3.so(NSS_3.12.5)(64bit)
 libnss3.so(NSS_3.2)(64bit)
 
 ....
+
 ```
 看到libnss3了,重点输出：
+
 ```
 libnss3.so
+
 ```
 那么这个包是谁提供的？输入如下命令：
+
 
 ```
 ~ rpm -qf /usr/lib64/libnss3.so 
@@ -214,18 +233,22 @@ libnss3.so
 /usr/lib64/libssl3.so
 /usr/lib64/nss/libnssckbi.so
 ...
+
 ```
 至此水落石出，还可以看到我们熟悉的证书cert8.db文件；但其实 curl 最终使用的根证书库并不是该文件。那 curl 使用的根证书文件在哪儿呢？
 
 使用 curl-config 命令行工具，能够了解更多：
+
 ```
 ~ curl-config --ca                        
 /etc/pki/tls/certs/ca-bundle.crt
+
 ```
 
 #### ubuntu16.04
 
 ubuntu16上面验证类似，不一一说明了~~~
+
 
 ```
 ~ dpkg-query -L libcurl3
@@ -246,7 +269,9 @@ ubuntu16上面验证类似，不一一说明了~~~
 /usr/lib/x86_64-linux-gnu/libcurl.so.3
 /usr/lib/x86_64-linux-gnu/libcurl.so.4
 
+
 ```
+
 
 ```
 ~ apt-cache depends  libcurl3
@@ -258,16 +283,20 @@ ubuntu16上面验证类似，不一一说明了~~~
   Depends: libssl1.0.0
   Depends: zlib1g
   Recommends: ca-certificates
+
 ```
 
 然后寻找libcurl的依赖库:
 
+
 ```
 ~ ldd /usr/lib/x86_64-linux-gnu/libcurl.so.4.4.0|grep ssl
 libssl.so.1.0.0 => /lib/x86_64-linux-gnu/libssl.so.1.0.0 (0x00007fbdf8aa0000)
+
 ```
 
 验证一下:
+
 
 ```
 ~ apt-cache depends openssl
@@ -278,6 +307,7 @@ openssl
   
 ~ apt-cache rdepends  libssl1.0.0 | grep curl
   libcurl3  
+
 ```
 
 

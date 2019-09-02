@@ -225,6 +225,7 @@ https://en.bitcoin.it/wiki/Payment_channels
 
 bitcoin.conf:
 
+
 ```
 rpcuser=xxxx
 rpcpassword=xxxx
@@ -241,12 +242,15 @@ server=1
 #daemon=1
 zmqpubrawblock=tcp://192.168.2.1:28332
 zmqpubrawtx=tcp://192.168.2.1:28333
+
 ```
 
 启动bitcoind:
 
+
 ```
 bitcoind --conf=/opt/blockdata/testnet3/bitcoin.conf --datadir=/opt//blockdata/ --deprecatedrpc=signrawtransaction >> test.log 2>&1
+
 ```
 
 #### 建立闪电网络节点
@@ -257,41 +261,53 @@ https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md
 
 * 安装go环境
 
+
 ```
 sudo apt-get install golang-1.11-go
+
 ```
 
 * 设置环境变量
 
+
 ```
 export GOPATH=~/gocode
 export PATH=$PATH:$GOPATH/bin
+
 ```
 
 * Clone && 编译
+
 
 ```
 go get -d github.com/lightningnetwork/lnd
 cd $GOPATH/src/github.com/lightningnetwork/lnd
 make && make install
+
 ```
 
 * 启动lnd
 
+
 ```
 lnd --bitcoin.active --bitcoin.testnet --debuglevel=debug --bitcoin.node=bitcoind --bitcoind.rpcuser=xxxx --bitcoind.rpcpass=xxxx --bitcoind.zmqpubrawblock=tcp://192.168.2.1:28332 --bitcoind.zmqpubrawtx=tcp://192.168.2.1:28333
+
 ```
 
 
 #### 建立一个新钱包，充值
 
+
 ```
 lncli --network=testnet create
+
 ```
 之后按照提示一路回车下去，建立一个新钱包，然后执行下列命令得到一个新地址
 
+
 ```
 lncli --network=testnet newaddress np2wkh
+
 ```
 
 * 去下面这几个网址列表领取一些免费的TestNet Bitcoin:
@@ -300,8 +316,10 @@ https://lnroute.com/testnet-faucets/
 
 * 执行下面命令看看余额
  
+
 ```
 lncli --network=testnet walletbalance
+
 ```
 
 
@@ -309,8 +327,10 @@ lncli --network=testnet walletbalance
 
 * 首先执行下面命令确认我们的节点的同步状态
 
+
 ```
 lncli --network=testnet getinfo
+
 ```
 确认`synced_to_chain`字段已经变成true，代表区块头同步完毕。
 
@@ -320,28 +340,36 @@ https://explorer.acinq.co/
 
 * 我们选一个channel数比较多的然后连接这个节点：cosmicApotheosis
 
+
 ```
 lncli --network=testnet connect 03a8334aba5660e241468e2f0deb2526bfd50d0e3fe808d882913e39094dc1a028@138.229.205.237:9735
+
 ```
 
 * 下一步建立通道，这里我们存0.1btc到通道里:
 
+
 ```
 lncli --network=testnet openchannel --node_key=03a8334aba5660e241468e2f0deb2526bfd50d0e3fe808d882913e39094dc1a028 --local_amt=10000000
+
 ```
 
 * 查看节点连接状态：
 
+
 ```
 lncli --network=testnet listpeers
+
 ```
 
 这里我们还需要等待3次确认，通道才能建立成功，记住刚才建立完的transaction id，去网上查询等待3次确认。
 
 * 检查通道的状态：
 
+
 ```
 lncli --network=testnet listchannels
+
 ```
 当通道打开的时候，就可以用闪电网络支付啦！
 
@@ -349,14 +377,18 @@ lncli --network=testnet listchannels
 
 * 我们去[satoshi.place](https://testnet.satoshis.place/) 随便来几笔涂鸦，得到一个支付地址:
 
+
 ```
 lntb25480n1pwrn3czpp5em4jyjp85rfq5l3489wepp8vu49a2ezly7hc65jmp4crgdymen0sdzy2pshjmt9de6zqen0wgsrydf58qs8q6tcv4k8xgrpwss8xct5daeks6tn9ecxcctrv5hqxqzjccqp2pg8zne6q7f6vsxyd30ja23e49ysmuy8qp3z9wxl400l64x0958qzn90e02dfdglp5e3c3s8me0tdnk33uakp269fl5j7enmzxhnkgncqacr95d
+
 ```
 
 * 在命令行里支付：
 
+
 ```
 lncli  --network=testnet sendpayment --pay_req  lntb25480n1pwrn3czpp5em4jyjp85rfq5l3489wepp8vu49a2ezly7hc65jmp4crgdymen0sdzy2pshjmt9de6zqen0wgsrydf58qs8q6tcv4k8xgrpwss8xct5daeks6tn9ecxcctrv5hqxqzjccqp2pg8zne6q7f6vsxyd30ja23e49ysmuy8qp3z9wxl400l64x0958qzn90e02dfdglp5e3c3s8me0tdnk33uakp269fl5j7enmzxhnkgncqacr95d
+
 ```
 
 顺利的话，瞬间支付成功。

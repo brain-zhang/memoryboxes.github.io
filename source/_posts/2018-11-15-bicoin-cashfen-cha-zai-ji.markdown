@@ -19,8 +19,10 @@ Bitcoin Cash 将于UNIX时间1542300000 (即北京时间2018年11月16日00：40
 
 执行 `git diff 802629f d9b12a --stat` 瞄一眼:
 
+
 ```
 699 files changed, 11634 insertions(+), 197401 deletions(-)
+
 ```
 
 看起来改了不少，但是从头review一遍，他们从2018-08-22搞到现在，啥实质改动都没有，就开了几个操作码，改了几个测试；原本MAXBLOCKSIZE就变成可配置的了，他们不过是稍稍改了一下判断条件而已，改动最大的反而是README和release notes文件，最值得吐槽的就是这个提交：

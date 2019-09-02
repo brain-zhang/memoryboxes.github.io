@@ -16,12 +16,14 @@ categories: develop
 
 #### 想要捕获所有的异常，可以直接捕获 Exception 即可：
 
+
 ```
 try:
    ...
 except Exception as e:
    ...
    log('Reason:', e)       # Important!
+
 ```
 这个将会捕获除了 `SystemExit` 、 `KeyboardInterrupt` 和 `GeneratorExit` 之外的所有异常。 如果你还想捕获这三个异常，将 Exception 改成 BaseException 即可。
 
@@ -31,14 +33,17 @@ except Exception as e:
 
 正因如此，如果你选择捕获所有异常，那么在某个地方（比如日志文件、打印异常到屏幕）打印确切原因就比较重要了。 如果你没有这样做，有时候你看到异常打印时可能摸不着头脑，就像下面这样：
 
+
 ```
 def parse_int(s):
     try:
         n = int(v)
     except Exception:
         print("Couldn't parse")
+
 ```        
 试着运行这个函数，结果如下：
+
 
 ```
 >>> parse_int('n/a')
@@ -46,9 +51,11 @@ Couldn't parse
 >>> parse_int('42')
 Couldn't parse
 >>>
+
 ```
 
 这时候你就会挠头想：“这咋回事啊？” 假如你像下面这样重写这个函数：
+
 
 ```
 def parse_int(s):
@@ -57,15 +64,18 @@ def parse_int(s):
     except Exception as e:
         print("Couldn't parse")
         print('Reason:', e)
+
 ```
 
 这时候你能获取如下输出，指明了有个编程错误：
+
 
 ```
 >>> parse_int('42')
 Couldn't parse
 Reason: global name 'v' is not defined
 >>>
+
 ```
 
 很明显，你应该尽可能将异常处理器定义的精准一些。 
@@ -75,32 +85,39 @@ Reason: global name 'v' is not defined
 
 #### 最可怕的例子是我们在处理临时文件的时候，用
 
+
 ```
 try:
     ....
 except:
     os.remove(temp_file)
+
 ```
 
 因为碍人的E722, 有人会自作聪明的改成:
+
 
 ```
 try:
     ....
 except Exception:
     os.remove(temp_file)
+
 ```
 
 正确的办法是:
+
 
 ```
 try:
     ....
 except BaseException:
     os.remove(temp_file)
+
 ```
 
 或者更确定的语义之下，每次都清理临时文件，这样更明确，处理更好一点:
+
 ```
 try:
     ....
@@ -108,6 +125,7 @@ except BaseException:
     logger.error(....)
 finally:
     os.remove(temp_file)
+
 ```
 
 参考:

@@ -18,14 +18,18 @@ categories: blockchain
 
 在[比特币的HD钱包-2](https://happy123.me/blog/2018/11/02/bi-te-bi-de-hdqian-bao-yan-hua-2/)中，我们已经算出来私钥的WIF表示:
 
+
 ```
 5KUN8s42BCTkQVMTy3oFfqeXE8awVskbDi6XbDMpRnFvHJW9fgk
+
 ```
 
 以及公钥:
 
+
 ```
 0489077434373547985693783396961781741114890330080946587550950125758215996319671114001858762817543140175961139571810325965930451644331549950109688554928624341
+
 ```
 
 #### 交易body
@@ -56,6 +60,7 @@ categories: blockchain
 
 #### 然后我们实现一个函数，将这些变量组合，最后得到原始交易值(对应bitcoin-cli的createrawTransaction)
 
+
 ```
 # Makes a transaction from the inputs
 # outputs is a list of [redeemptionSatoshis, outputScript]
@@ -76,6 +81,7 @@ def makeRawTransaction(outputTransactionHash, sourceIndex, scriptSig, outputs):
         formattedOutputs +
         "00000000" # lockTime
         )
+
 ```
 
 #### outputs构造
@@ -91,8 +97,10 @@ outputs是包含多个output的数组。在这个例子中，我们打算只构�
 
 这个scriptPubkey是这样子的:
 
+
 ```
 <pubkey>  OP_CHECKSIG
+
 ```
 
 PubKeyHash其实就是收币的地址，其它操作符都是现成的。
@@ -101,6 +109,7 @@ PubKeyHash其实就是收币的地址，其它操作符都是现成的。
 ## 如何构造一笔output
 
 一笔output的构造是简单的，所有东西都是现成的，而且这笔交易是个P2PK交易，输出非常简化，我们仅仅需要构造`<pubkey>  OP_CHECKSIG`即可:
+
 
 ```
 def makeOutput(value,  index, pubkey):
@@ -116,6 +125,7 @@ def makeOutput(value,  index, pubkey):
 > 581b000000000000232103db3c3977c5165058bf38c46f72d32f4e872112dbafc13083a948676165cd1603ac
 > outputs = ['581b000000000000232103db3c3977c5165058bf38c46f72d32f4e872112dbafc13083a948676165cd1603ac']
     
+
 ```
 
 ## 如何对一笔交易签名(scriptSig)
@@ -214,6 +224,7 @@ https://bitcointalk.org/index.php?topic=164655.0
 代码表示如下:
 
 
+
 ```
 
 def makeSignedTransaction(privateKey, outputTransactionHash, sourceIndex, scriptPubKey, outputs):
@@ -228,6 +239,7 @@ def makeSignedTransaction(privateKey, outputTransactionHash, sourceIndex, script
     signed_txn = makeRawTransaction(outputTransactionHash, sourceIndex, scriptSig, outputs)
     verifyTxnSignature(signed_txn)
     return signed_txn
+
 ```
 
 ## 广播交易
@@ -235,6 +247,7 @@ def makeSignedTransaction(privateKey, outputTransactionHash, sourceIndex, script
 好啦，构造了vin, vout，以及组合成一笔完整的交易，剩下的就是广播出去啦：
 
 比特币的网络协议非常简单，设置好一个Magic Number就可以加入，以下时广播代码：
+
 
 ```
 magic = 0xd9b4bef9
@@ -264,14 +277,17 @@ sock.send(msgUtils.getVersionMsg())
 sock.recv(1000) # receive version
 sock.recv(1000) # receive verack
 sock.send(msgUtils.getTxMsg("01000000013bea4882ab19103266d31035176d3b65be1502a403fa263b458fc05ab6afa0b0000000008a47304402204f1eeeb46dbd896a4d421a14b156ad541afb4062a9076d601e8661c952b32fbf022018f01408dc85d503776946e71d942578ab551029b6bee7d3c30a8ce39f2f7ac0014104c4f00a8aa87f595b60b1e390f17fc64d12c1a1f505354a7eea5f2ee353e427b7fc0ac3f520dfd4946ab28ac5fa3173050f90c6b2d186333e998d7777fdaa52d5ffffffff01581b000000000000232103db3c3977c5165058bf38c46f72d32f4e872112dbafc13083a948676165cd1603ac00000000".decode('hex')))
+
 ```
 
 HOST IP 怎么获取呢？
 
 如果你有一个全节点，可以直接调用RPC接口的getpeers函数。或者你直接执行:
 
+
 ```
 nslookup bitseed.xf2.org
+
 ```
 
 从公共服务器里面检索nodes，里面随便挑一个IP 吧。

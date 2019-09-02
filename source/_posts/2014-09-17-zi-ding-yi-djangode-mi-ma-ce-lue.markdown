@@ -9,6 +9,7 @@ Django 从1.4 版本开始，包含了一些安全方面的重要提升。其中
 
 Django 会使用你提供的第一个密码加密方法（在你的 setting.py 文件里要至少有一个方法）
 
+
 ```
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
@@ -18,6 +19,7 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher', # Insecure Hashes
     'django.contrib.auth.hashers.CryptPasswordHasher', # Insecure Hashes
 )
+
 ```
 
 但Django默认生成的密码策略往往会带上 md5_xxx, pbkdf2_xxx，同其他系统整合的时候，一般是没有这些前缀的，这就需要我们自定义一个密码策略。
@@ -31,6 +33,7 @@ PASSWORD_HASHERS = (
 ###step2
 
 在 ownmd5中 建立 hashers.py 文件，加入 OwnMd5PasswordHasher 类
+
 
 ```
 import hashlib
@@ -63,14 +66,17 @@ class OwnMD5PasswordHasher(BasePasswordHasher):
             (_('salt'), mask_hash(salt, show=4)),
             (_('hash'), mask_hash(hash)),
         ])
+
 ```
 ###step3
 
 将 OwnMD5PasswordHasher 加入到settings.py 中:
+
 ```
 PASSWORD_HASHERS = (
     'ownmd5.hashers.OwnMD5PasswordHasher',
 )
+
 ```
 这样，默认的user及auth模块都会采用自定义的md5算法。
 

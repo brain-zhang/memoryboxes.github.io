@@ -10,26 +10,34 @@ The quickest way to Penetrate GFW With ShadowSocks(Docker Container) On Centos7.
 
 ## Install Docker CE
 
+
 ```
 $ sudo yum install -y yum-utils   device-mapper-persistent-data  lvm2
 $ sudo yum-config-manager    --add-repo     https://download.docker.com/linux/centos/docker-ce.repo
 $ sudo yum install docker-ce
+
 ```
 
 ## start  docker
 
+
 ```
 sudo systemctl start docker
+
 ```
 
 ## pull shadowsocks container
+
 ```
 sudo docker pull oddrationale/docker-shadowsocks
+
 ```
 
 ## start shadowsocks service
+
 ```
 sudo docker run -d -p 1984:1984 oddrationale/docker-shadowsocks -s 0.0.0.0 -p 1984 -k $SSPASSWORD -m aes-256-cfb
+
 ```
 
 You can configure the service to run on a port of your choice. Just make sure the port number given to Docker is the same as the one given to shadowsocks. Also, it is highly recommended that you store the shadowsocks password in an environment variable as shown above. This way the password will not show in plain text when you run docker ps.

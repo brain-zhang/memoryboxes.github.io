@@ -24,21 +24,26 @@ categories: git tools
 
 * 先假设我有两个账号，一个是github上的，一个是公司gitlab上面的。先为不同的账号生成不同的ssh-key
 
-    ```
+    
+```
         ssh-keygen -t rsa -f ~/.ssh/id_rsa_work -c xxx@gmail.com
-    ```
+    
+```
 
     然后根据提示连续回车即可在~/.ssh目录下得到id_rsa_work和id_rsa_work.pub两个文件，id_rsa_work.pub文件里存放的就是我们要使用的key
 
-    ```
+    
+```
         ssh-keygen -t rsa -f ~/.ssh/id_rsa_github -c xxx@gmail.com
-    ```
+    
+```
 
     然后根据提示连续回车即可在~/.ssh目录下得到id_rsa_github和id_rsa_github.pub两个文件，id_rsa_gthub.pub文件里存放的就是我们要使用的key
 
 * 把id_rsa_xxx.pub中的key添加到github或gitlab上，这一步在github或gitlab上都有帮助，不再赘述
 
 * 编辑 `~/.ssh/config`，设定不同的git 服务器对应不同的key
+
 
 ```
     # Default github user(first@mail.com),注意User项直接填git，不用填在github的用户名
@@ -53,6 +58,7 @@ categories: git tools
      HostName 172.16.11.11
      User work
      IdentityFile ~/.ssh/id_rsa_work
+
 ```
 
 编辑完成后可以使用命令 `ssh -vT git@github.com` 看看是不是采用了正确的id_rsa_github.pub文件
@@ -60,6 +66,7 @@ categories: git tools
 这样每次push的时候系统就会根据不同的仓库地址使用不同的账号提交了
 
 * 从上面一步可以看到，ssh区分账号，其实靠的是HostName这个字段，因此如果在github上有多个账号，很容易的可以把不同的账号映射到不同的HostName上就可以了。比如我有A和B两个账号， 先按照步骤一生成不同的key文件，再修改`~/.ssh/config` 内容应该是这样的。
+
 
 ```
     # Default github user(A@mail.com),注意User项直接填git，不用填在github的用户名
@@ -74,6 +81,7 @@ categories: git tools
      HostName github.com
      User git
      IdentityFile ~/.ssh/id_rsa_github_B
+
 ```
 
 同时你的github的repo ssh url就要做相应的修改了，比如根据上面的配置,原连接地址是:
@@ -97,6 +105,7 @@ categories: git tools
 
 很简单， 直接更改 `repo/.git/config` 里面的url即可，把里面对应tag下的url增加一个就可以了。例:
 
+
 ```
 [remote "GitHub"]
     url = git@github.com:elliottcable/Paws.o.git
@@ -113,6 +122,7 @@ categories: git tools
 [remote "Origin"]
     url = git@github.com:Paws/Paws.o.git
     url = git@codaset.com:elliottcable/paws-o.git
+
 ```
 
 上面这个立即就是有4个远端仓库，不同的tag表示不同的远端仓库，最后的Origin标签写法表示默认push到github和codaset这两个远端仓库去。当然，你可以自己随意定制tag和url

@@ -99,6 +99,7 @@ https://fomo3d.hostedwiki.co/pages/Fomo3D%20Explained
 
 我投0.1Eth，就可以得到一个推荐链接，凡是点击这个链接进来的人，我都能拿奖励；所以大家很快就会看到各类自媒体的科普文章中，夹带类似以下格式的链接，你点进去买就立即是一个合格的韭菜了:
 
+
 ```
 https://exitscam.me/122334
 
@@ -107,6 +108,7 @@ https://exitscam.me/ethxxxxx
 https://exitscam.me/gogogogogog
 
 ~~~
+
 ```
 
 #### 庄家会跑路吗？

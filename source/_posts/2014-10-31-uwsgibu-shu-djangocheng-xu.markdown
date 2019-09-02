@@ -18,20 +18,24 @@ Python的web世界，部署首选uwsgi，既可独战，又可搭配Nginx等车�
 
 写一个最简单的test.py:
 
+
 ```
 # test.py
 def application(env, start_response):
     start_response('200 OK', [('Content-Type','text/html')])
     return "Hello World"
+
 ```
 
 python3的话需要返回一个binary
+
 
 ```
 # test.py
 def application(env, start_response):
     start_response('200 OK', [('Content-Type','text/html')])
     return [b"Hello World"]
+
 ```
 
 
@@ -54,6 +58,7 @@ http://127.0.0.1:8000/
 
 如果是>django1.6的话，会自动生成wsgi.py文件，没有的话编辑一个:
 
+
 ```
 #!/usr/bin/env python
 # coding: utf-8
@@ -69,6 +74,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
 
 from django.core.handlers.wsgi import WSGIHandler
 application = WSGIHandler()
+
 ```
 
 执行:

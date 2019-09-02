@@ -12,8 +12,10 @@ categories: docker mongodb tools
 
 Docker build不支持 --privileged，所以默认的/etc/init.d/mongod  这个脚本中的
 
+
 ```
 runuser -s /bin/bash mongod -c 'ulimit -S -c 0 >/dev/null 2>&1 ; numactl --interleave=all /usr/bin/mongod -f /etc/mongod.conf'
+
 ```
 
 这种写法就死翘翘了。
@@ -26,10 +28,12 @@ https://github.com/docker/docker/issues/1916
 
 最后只好在Dockerfile中这么搞:
 
+
 ```
     mongod --fork -f /etc/mongod.conf && \
     mongod --shutdown -f /etc/mongod.conf && \
     chown mongod:mongod /opt/lib/mongodbpath -R
+
 
 ```
 
@@ -37,14 +41,18 @@ https://github.com/docker/docker/issues/1916
 
 可是启动这个image为container后，执行:
 
+
 ```
 /etc/init.d/mongod start
+
 ```
 
 报错:
 
+
 ```
  [initandlisten] warning couldn't write to / rename file /datadir/journal/prealloc.0: couldn't open file /datadir/journal/prealloc.0 for writing errno:1 Operation not permitted
+
 ```
 
 虾米，明明已经加了mongod的group了。而且errorno是1，不是 `"errno:13 Permission denied"`，有点奇怪。
@@ -56,8 +64,10 @@ https://jira.mongodb.org/browse/SERVER-7583
 
 要再加一个指令:
 
+
 ```
 setcap cap_fowner+ep /usr/bin/mongod
+
 ```
 
 

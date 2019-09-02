@@ -15,6 +15,7 @@ PS:感叹elasticsearch在搜索和大数据聚合上面做的了不起的工作�
 
 #### 增加一条记录
 
+
 ```
 PUT /website/_doc/1
 {
@@ -22,9 +23,11 @@ PUT /website/_doc/1
   "text":  "I am starting to get the hang of this...",
   "date":  "2014/01/02"
 }
+
 ```
 
 #### 修改
+
 ```
 POST /website/_update/1
 {
@@ -33,9 +36,11 @@ POST /website/_update/1
       "views": 0
    }
 }
+
 ```
 
 #### 查询
+
 ```
 GET /website/_search
 
@@ -50,30 +55,38 @@ GET /_search
 {
     "query": YOUR_QUERY_HERE
 }
+
 ```
 
 #### 删除
+
 ```
 DELETE /website/_doc/1
+
 ```
 
 ## 文档功能API
 
 #### 获取映射信息
+
 ```
 GET /website/_mapping
+
 ```
 
 #### 测试分析器
+
 ```
 GET /website/_analyze
 {
   "field": "tweet",
   "text": "Black-cats" 
 }
+
 ```
 
 #### 多层级对象用扁平化的方法来存储，比如
+
 ```
 {
   "gb": {
@@ -101,8 +114,10 @@ GET /website/_analyze
   }
 }
 
+
 ```
 会被转换为如下内部对象:
+
 
 ```
 {
@@ -114,6 +129,7 @@ GET /website/_analyze
     "user.name.first":  [john],
     "user.name.last":   [smith]
 }
+
 ```
 
 #### 内部对象数组会丢失一部分相关信息，我们需要用嵌套对象(nested object)来处理
@@ -123,6 +139,7 @@ GET /website/_analyze
 #### 查询语句的结构
 
 * 一个查询语句 的典型结构：
+
 ```
 {
     QUERY_NAME: {
@@ -130,9 +147,11 @@ GET /website/_analyze
         ARGUMENT: VALUE,...
     }
 }
+
 ``` 
 
 * 如果是针对某个字段，那么它的结构如下：
+
 ```
 {
     QUERY_NAME: {
@@ -142,9 +161,11 @@ GET /website/_analyze
         }
     }
 }
+
 ```
 
 * 一条复合语句
+
 ```
 {
     "bool": {
@@ -159,11 +180,13 @@ GET /website/_analyze
         "minimum_should_match": 1
     }
 }
+
 ```
 
 #### 实战查询
 
 * 精确查询
+
 ```
 GET /website/_search
 {
@@ -177,9 +200,11 @@ GET /website/_search
     }
   }
 }
+
 ```
 
 * 多词组合
+
 ```
 GET /website/_search
 {
@@ -192,9 +217,11 @@ GET /website/_search
         }
     }
 }
+
 ```
 
 * 短语匹配
+
 ```
 GET /website/_search
 {
@@ -204,9 +231,11 @@ GET /website/_search
         }
     }
 }
+
 ```
 
 * 混合短语匹配
+
 ```
 GET /website/_search
 {
@@ -219,9 +248,11 @@ GET /website/_search
         }
     }
 }
+
 ```
 
 * 正则查询 (性能慢)
+
 ```
 GET /my_index/_search
 {
@@ -231,9 +262,11 @@ GET /my_index/_search
         }
     }
 }
+
 ```
 
 * 智能匹配
+
 ```
 GET /my_index/_search
 {
@@ -246,9 +279,11 @@ GET /my_index/_search
         }
     }
 }
+
 ```
 
 * 控制精度
+
 ```
 GET /website/_search
 {
@@ -275,9 +310,11 @@ GET /website/_search
     }
   }
 }
+
 ```
 
 * 按受欢迎度提升权重
+
 ```
 GET /blogposts/post/_search
 {
@@ -298,9 +335,11 @@ GET /blogposts/post/_search
 
 微调:
 https://www.elastic.co/guide/cn/elasticsearch/guide/current/boosting-by-popularity.html
+
 ```
 
 #### 排障
+
 ```
 GET /website/_validate/query?explain
 {
@@ -310,9 +349,11 @@ GET /website/_validate/query?explain
       }
    }
 }
+
 ```
 
 #### 结果排序
+
 
 ```
 GET /website/_search
@@ -324,11 +365,13 @@ GET /website/_search
     },
     "sort": { "date": { "order": "desc" }}
 }
+
 ```
 
 ## 索引操作
 
 #### 增加
+
 ```
 PUT /my_index
 {
@@ -339,15 +382,18 @@ PUT /my_index
         ...
     }
 }
+
 ```
 
 
 #### 删除
+
 ```
 DELETE /my_index
 DELETE /index_one,index_two
 DELETE /index_*
 DELETE /_all
+
 ```
 #### 配置
 
@@ -360,6 +406,7 @@ DELETE /_all
 每个主分片的副本数，默认值是 1 。对于活动的索引库，这个配置可以随时修改。
 
 #### 重新索引
+
 ```
 POST _reindex
 {
@@ -371,9 +418,12 @@ POST _reindex
   }
 }
 
+
 ```
 
 #### 释放空间
+
 ```
 POST /_all/_forcemerge?only_expunge_deletes=true
+
 ```

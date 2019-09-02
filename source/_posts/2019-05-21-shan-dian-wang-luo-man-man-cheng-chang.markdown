@@ -17,6 +17,8 @@ categories: blockchain
 #### 2.需要运行一个bitcoin全节点，因为都是命令行操作，所以要`手工创建钱包` -> `转账确保钱包有余额`
 
 * bitcoin.conf的配置文件模板
+
+
 ```
 rpcuser=xxxxx
 rpcpassword=xxxxx
@@ -29,24 +31,33 @@ rest=1
 testnet=1
 zmqpubrawblock=tcp://127.0.0.1:28332
 zmqpubrawtx=tcp://127.0.0.1:28333
+
 ```
 
 * 启动bitcoind
+
+
 ```
 bitcoin/bin/bitcoind --conf=~/bitcoin.conf --datadir=/opt/bitcoin/blockdata/ 
+
 ```
 
 * 同步后找到当前钱包收款地址
 
+
 ```
 bitcoin-cli listaddressgroupings
+
 ```
 
 * 发送一笔转账到此地址，也可以直接去[bitcoinfaucet](https://bitcoinfaucet.uo1.net/send.php)领一些测试币
 
 * 确认钱包余额
+
+
 ```
 bitcoin-cli getwalletinfo
+
 ```
 
 #### 3.运行一个LND Daemon
@@ -57,62 +68,99 @@ lnd支持比较广泛，我们用其0.6beta版本搭建；
 
 * 按照项目文档构建Go编译环境，编译生成lnd和lnd-cli两个可执行文件
 * 启动lnd daemon(注意这里没有启用验证，在mainnet上面切不可这么做)
+
+
 ```
 lnd --bitcoin.active --bitcoin.testnet --debuglevel=debug --bitcoin.node=bitcoind --bitcoind.rpcuser=xxxxx  --bitcoind.rpcpass='xxxxx' --bitcoind.zmqpubrawblock=tcp://127.0.0.1:28332 --bitcoind.zmqpubrawtx=tcp://127.0.0.1:28333 --no-macaroons
+
 ```
+
 * 之后lnd会通过bitcoind node同步区块头，大概需要10分钟
 * 创建lnd的钱包，保存seed，便于之后恢复
+
+
 ```
 lncli --network=testnet create
+
 ```
+
 * 创建一个segwit地址
+
+
 ```
 lncli --network=testnet newaddress np2wkh
 2NF5UC1ZgQzb8Ustm9JCTbQQTU5Ca438WWf
+
 ```
+
 * 打一些测试币给这个地址
+
+
 ```
 /bitcoin-cli sendtoaddress 2NF5UC1ZgQzb8Ustm9JCTbQQTU5Ca438WWf 0.005
+
 ```
+
 * 看一下钱包信息，收到款没有
+
+
 ```
 lncli --no-macaroons --network=testnet walletbalance
+
 ```
 
 
 #### 4. 建立通道
 
 * 直接到[1ml.com](https://1ml.com/testnet/)找最近连接数最多的节点, 比如[Node: aranguren.org](https://1ml.com/testnet/node/038863cf8ab91046230f561cd5b386cbff8309fa02e3f0c3ed161a3aeb64a643b9):
+
+
 ```
 node ID:038863cf8ab91046230f561cd5b386cbff8309fa02e3f0c3ed161a3aeb64a643b9@203.132.95.10:9735
+
 ```
 
 * 连接这个节点：
+
+
 ```
 lncli --no-macaroons --network=testnet connect 038863cf8ab91046230f561cd5b386cbff8309fa02e3f0c3ed161a3aeb64a643b9@203.132.95.10:9735
+
 ```
 
 * 建立通道，放一笔钱进去
+
+
 ```
 lncli --no-macaroons --network=testnet openchannel --node_key=038863cf8ab91046230f561cd5b386cbff8309fa02e3f0c3ed161a3aeb64a643b9 40000
+
 ```
 
 * 需要一段时间同步，然后看一下通道状态:
+
+
 ```
 lncli --network=testnet listchannels
+
 ```
 
 
 #### 5. 支付 
 
 * 首先到[testnet.satoshis.place](https://testnet.satoshis.place/)涂鸦两笔，得到一个支付地址:
+
+
 ```
 lntb1pwwykwhpp5jw4tekxmsqjwepw4070em7xe7gw3v8mxtenexmsp2np3pcc40jwqdqqxqruyqrzjqfcxsh9gr28y6ngphmk90q05ejfydpq89tjjc5rl36lfmtcv424hk9e8sgqqqvsqqqqqqqlgqqqqqeqqjqjpfnq26e2flenp79ywpyyftg3najf3wtpvkwuuw2h9y3dzdn7kc3342h6uzgf69ms8sx6fxsh5j2jcwzulr3dufryn9ljadm0wuj9fcpm86fax
+
 ```
 
 * lnd-cli支付
+
+
 ```
 lncli  sendpayment --pay_req lntb1pwwykwhpp5jw4tekxmsqjwepw4070em7xe7gw3v8mxtenexmsp2np3pcc40jwqdqqxqruyqrzjqfcxsh9gr28y6ngphmk90q05ejfydpq89tjjc5rl36lfmtcv424hk9e8sgqqqvsqqqqqqqlgqqqqqeqqjqjpfnq26e2flenp79ywpyyftg3najf3wtpvkwuuw2h9y3dzdn7kc3342h6uzgf69ms8sx6fxsh5j2jcwzulr3dufryn9ljadm0wuj9fcpm86fax 500
+
 ```
 
 #### 6. 收款

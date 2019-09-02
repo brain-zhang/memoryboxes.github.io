@@ -45,27 +45,33 @@ https://github.com/bitpay/copay/pull/9348
 
 感染恶意代码的程序，也不会全部发作。只有COPAY钱包运行时，他才会悄悄的窃取用户信息，并发送到下面这几台服务器：
 
+
 ```
 copayapi.host
 51.38.112.212
 145.249.104.239
 111.90.151.134
+
 ```
 
 我不知道截止到现在黑客获取了多少币，但整个事件非常惊悚。而且这个漏洞刚刚被发现，我认为还会持续有消息不灵通的受害者。
 
 另外，如果想查看自己的项目是否受到影响，可以运行：
 
+
 ```
 $ npm ls event-stream flatmap-stream...flatmap-stream@0.1.1...
+
 ```
 
 如果在输出里面包含了 flatmap-stream 则说明你也可能被攻击。
 
 如果使用 yarn 则可以运行：
 
+
 ```
 $ yarn why flatmap-stream
+
 ```
 
 

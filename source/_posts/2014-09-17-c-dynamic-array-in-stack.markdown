@@ -7,12 +7,14 @@ categories: C Array develop
 ---
 以前一直认为C99 只支持const int 定义数组，今天才学到C99里面是支持动态数组的。
 
+
 ```
 int main()
 {
     int x = 12;
     char pz[x];
 }
+
 ```
 C99是支持的。在gcc4+以上的版本里测试OK。
 

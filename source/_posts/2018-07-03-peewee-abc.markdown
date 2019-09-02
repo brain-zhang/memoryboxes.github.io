@@ -13,6 +13,7 @@ categories: develop python
 
 ## 定义Model
 
+
 ```
 from peewee import SqliteDatabase, Model, CharField
 
@@ -28,25 +29,31 @@ class User(Model):
     class Meta:
         database = db
 
+
 ```
 
 ## 创建
 
+
 ```
 >>> db.connect()
 >>> db.create_tables([User])
+
 ```
 
 ## 保存
+
 
 ```
 >>> user_record = User(name='Bob', password="", email="hello@world.com", birthday=date(1960, 1, 15), is_relative=True)
 >>> user_record.save()
 
+
 ```
 
 
 ## 批量插入
+
 
 ```
 fields = [User.username, User.password, User.email, User.birthday, User.is_relative]
@@ -57,19 +64,24 @@ user_records.append(
 )
 User.insert_many(user_records, fields=fields).execute()
 
+
 ```
 
 
 ## 查询
 
+
 ```
 for user in User.select().where(User.username.contains(username)):
     print(user.username ....)
+
 ```
 
 
 ## 关闭
 
+
 ```
 >>> db.close()
+
 ```

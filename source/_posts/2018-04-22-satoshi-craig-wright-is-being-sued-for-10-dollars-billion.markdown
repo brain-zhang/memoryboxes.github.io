@@ -35,21 +35,27 @@ Craig Wright 又在声明他是”中本聪”了.
 
 “中本聪”给出的签名是：
 
+
 ```
     MEUCIQDBKn1Uly8m0UyzETObUSL4wYdBfd4ejvtoQfVcNCIK4AIgZmMsXNQWHvo6KDd2Tu6euEl13VTC3ihl6XUlhcU+fM4=
+
 ```
 
 我们先对信息串进行base64解码，再转换成hex是：
 
+
 ```
     3045022100c12a7d54972f26d14cb311339b5122f8c187417dde1e8efb6841f55c34220ae0022066632c5cd4161efa3a2837764eee9eb84975dd54c2de2865e9752585c53e7cce
+
 ```
 
 很遗憾，我们可以在交易ID：
 
 
+
 ```
     828ef3b079f9c23829c56fe86e85b4a69d9e06e5b54ea597eef5fb3ffef509fe
+
 ```
 
 中找出这个签名。可通过：

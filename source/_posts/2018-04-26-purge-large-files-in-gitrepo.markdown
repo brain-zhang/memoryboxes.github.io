@@ -14,22 +14,28 @@ categories: develop
 
 1. 首先通过rev-list来找到仓库记录中的大文件：
 
+
 ```
 git rev-list --objects --all | grep "$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk '{print$1}')"
+
 ```
 
 2. 然后通过filter-branch来重写这些大文件涉及到的所有提交（重写历史记录）：
 
+
 ```
 git filter-branch -f --prune-empty --index-filter 'git rm -rf --cached --ignore-unmatch your-file-name' --tag-name-filter cat -- --all
+
 ```
 
 3. 再删除缓存的对象，顺便瘦身一下:
+
 
 ```
 git for-each-ref --format='delete %(refname)' refs/original | git update-ref --stdin
 git reflog expire --expire=now --all
 git gc --prune=now
+
 ```
 
 打完收工

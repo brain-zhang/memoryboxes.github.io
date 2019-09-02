@@ -8,13 +8,17 @@ categories: tools
 
 有时候需要压缩文件的时候同时分割一下:
 
+
 ```
 tar czvf - -C /mnt/g/dict/ weakpass_merge.dict |split -b 10000M - "weakpass.part.tar.gz."
+
 ```
 
 
 还原:
 
+
 ```
 cat weakpass.part.tar.gz.*|tar zxvf
+
 ```

@@ -29,6 +29,7 @@ Modules 是作为 experiment feature 加入到不久前正式发布的 Go 1.11 �
 
 ## go mod 命令
 
+
 ```
 download    download modules to local cache (下载依赖的 modules 到本地 cache)
 edit        edit go.mod from tools or scripts (编辑 go.mod 文件)
@@ -38,6 +39,7 @@ tidy        add missing and remove unused modules (增加丢失的 modules，去
 vendor      make vendored copy of dependencies (将依赖复制到 vendor 下)
 verify      verify dependencies have expected content (校验依赖)
 why         explain why packages or modules are needed (解释为什么需要依赖)
+
 ```
 
 ## 既有项目
@@ -54,12 +56,14 @@ why         explain why packages or modules are needed (解释为什么需要依
 
 在国内访问golang.org/x的各个包都需要梯子，你可以在 go.mod 中使用replace替换成 github 上对应的库。
 
+
 ```
 replace (
   golang.org/x/crypto v0.0.0-20180820150726-614d502a4dac => github.com/golang/crypto v0.0.0-20180820150726-614d502a4dac
   golang.org/x/net v0.0.0-20180821023952-922f4815f713 => github.com/golang/net v0.0.0-20180826012351-8a410e7b638d
   golang.org/x/text v0.3.0 => github.com/golang/text v0.3.0
 )
+
 ```
 依赖库中的replace对你的主 go.mod 不起作用，比如github.com/brain-zhang/hello的 go.mod 已经增加了replace, 但是你的 go.mod 虽然require了rpcx的库，但是没有设置replace的话， go get还是会访问golang.org/x。
 
@@ -69,20 +73,24 @@ replace (
 
 下面的版本都是合法的：
 
+
 ```
 gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7
 gopkg.in/vmihailenco/msgpack.v2 v2.9.1
 gopkg.in/yaml.v2 <=v2.2.1
 github.com/tatsushid/go-fastping v0.0.0-20160109021039-d7bb493dee3e
 latest
+
 ```
 版本号遵循如下规律：
+
 
 ```
 vX.Y.Z-pre.0.yyyymmddhhmmss-abcdefabcdef
 vX.0.0-yyyymmddhhmmss-abcdefabcdef
 vX.Y.(Z+1)-0.yyyymmddhhmmss-abcdefabcdef
 vX.Y.Z
+
 ```
 也就是版本号 + 时间戳 + hash，我们自己指定版本时只需要制定版本号即可，没有版本 tag 的则需要找到对应 commit 的时间和 hash 值。
 

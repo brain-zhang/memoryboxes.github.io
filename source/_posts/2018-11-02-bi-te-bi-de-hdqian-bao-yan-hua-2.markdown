@@ -15,9 +15,11 @@ styles: data-table
 
 一般来说，私钥是个256bit的随机字符。为了演示方便，我们用一个人民大众喜闻乐见的地址生成为例子，私钥选取为 sha256("satoshi")
 
+
 ```
 > printf "satoshi"|sha256sum
 da2876b3eb31edb4436fa4650673fc6f01f90de2f1793c4ec332b2387b09726f  -
+
 ```
 
 得到私钥为`da2876b3eb31edb4436fa4650673fc6f01f90de2f1793c4ec332b2387b09726f`
@@ -37,6 +39,7 @@ WIF-compressed | K or L | Base58Check encoding | L4XnHhvLC1b4ag9L2PM9kRicQxUoYT1
 
 得到WIF 代码示例:
 
+
 ```
 def gen_pubk_from_privk(private_key, compressed=True):
     # private_key = codecs.encode(os.urandom(32), 'hex').decode()
@@ -45,6 +48,7 @@ def gen_pubk_from_privk(private_key, compressed=True):
     public_pair = ecdsa.public_pair_for_secret_exponent(ecdsa.secp256k1.generator_secp256k1, secret_exponent)
     print('public pair:', public_pair)
     return public_pair
+
 
 ```
 
@@ -69,8 +73,10 @@ WIF格式分为非压缩和压缩格式，压缩私钥其实是对非压缩私�
 
 加上前缀04，完整的公钥为:
 
+
 ```
 K = 0489077434373547985693783396961781741114890330080946587550950125758215996319671114001858762817543140175961139571810325965930451644331549950109688554928624341
+
 ```
 
 
@@ -150,6 +156,7 @@ WIF格式和比特币地址都是用Base58Check编码表示的，Base58是Base64
 
 `satoshi`作为seed计算出私钥，进而计算出公钥K之后，最终进一步生成地址
 
+
 ```
 def genaddress_from_pubk(compressed=True)
     # 首先计算 RIPEMD160(SHA256(K))
@@ -157,9 +164,11 @@ def genaddress_from_pubk(compressed=True)
     # 再用Base58Check计算最终地址
     addr = encoding.hash160_sec_to_bitcoin_address(ripemd160)
     return addr
+
 ```
 
 因为公钥存在压缩形式和非压缩两种形式，所以完整的结果是:
+
 
 
 ```
@@ -175,6 +184,7 @@ uncompress address
 WIF: 5KUN8s42BCTkQVMTy3oFfqeXE8awVskbDi6XbDMpRnFvHJW9fgk
 hash160: 650d0497e014e60d4680fce6997d405de264f042
 Bitcoin address:1ADJqstUMBB5zFquWg19UqZ7Zc6ePCpzLE
+
 ```
 
 `satoshi`作为seed生成了两个地址:
@@ -247,6 +257,7 @@ https://github.com/sipa/bech32/blob/master/ref/python/segwit_addr.py
 
 下面可以列举一些已经公开的seed，这都是我用一些公开语料库随意碰撞出来的，你就知道这种方法的危险性啦：
 
+
 ```
 FINAL_CRACK_ADDRESS: hash160:sha256:seed:address:wif-priv
 FINAL_CRACK_ADDRESS:0a8ba9e453383d4561cbcdda36e5789c2870dd41:c:sha256:satoshi:1xm4vFerV3pSgvBFkyzLgT1Ew3HQYrS1V:L4XnHhvLC1b4ag9L2PM9kRicQxUoYT1Q36PQ21YtLNkrAdWZNos6
@@ -266,6 +277,7 @@ FINAL_CRACK_ADDRESS:00135d1c8f99cc657ad1f246bc5051ad03f95d32:u:sha256:Mussolini:
 FINAL_CRACK_ADDRESS:001ed6fae0af0b37126004029defcc4521b300dd:u:sha256:meagerness:11dwnVzCyGoMZcGDndQteWgR9b7FKsJMu:5JKVJhbZWXmHxj2MuttZCDaFk7TC9KBVYjbPRjztP63mmAUV6Vm
 FINAL_CRACK_ADDRESS:002607c11a2311825a087f37c95d7816e0491a9d:u:sha256:vertebrate:11nZPfxYPeDm4d4fd93BaFa1BezFRTP6F:5HsBbgzEXZEaeLRCZHs66ho2ekpFEqeAJyyBPe8YyMkCqCHWv6j
 ...
+
 ```
 
 
@@ -280,6 +292,7 @@ FINAL_CRACK_ADDRESS:002607c11a2311825a087f37c95d7816e0491a9d:u:sha256:vertebrate
 
 引用自:
 https://github.com/walletgeneratornet/WalletGenerator.net
+
 
 
 ```
@@ -487,6 +500,7 @@ name, networkVersion, privateKeyPrefix, WIF_Start, CWIF_Start
 "Testnet PIVX",        0x8b, 0xef, "9",    "c"
 "Testnet WACoins",     0x51, 0xd1, "8",    "[XY]"
 
+
 ```
 
 哈哈，洋洋大观啊。这也说明了folk一个山寨币的成本是如何的低；然后有了以太坊的ERC20之后，发一个新币的成本简直低到令人发指，也无怪乎场子里面骗子横行了。
@@ -517,6 +531,7 @@ Ethereum项目是不走寻常路的，他作为比特币之后最具创新性的
 
 
 可以采用[pyethereum](https://github.com/ethereum/pyethereum)这个库，用以下代码模拟以太坊地址的生成:
+
 
 ```
 # -*- coding: utf-8 -*-
@@ -560,13 +575,16 @@ if __name__ == '__main__':
     account_address = utils.checksum_encode(raw_address)
     print("word:{}:private:{}:address:{}".format(passpharse.decode('utf-8'), private_key.hex(), account_address))
     
+
 ```
+
 
 
 ```
 > python genaddr.py word2addr 'hello'
 
 word:hello:private:1c8aff950685c2ed4bc3174f3472287b56d9517b9c948127319a09a7a36deac8:address:0x5ccfa55C29F0522f062E3C15004E35a69dD45F6B
+
 ```
 
 以太坊账户方式的一个弱点是：为了阻止重放攻击，每笔交易必须有nonce。这就使得账户需要跟踪nonce的使用情况。而且，不再使用的账户，无法从账户状态中移除。
@@ -702,6 +720,7 @@ hash含义取决于版本字段。它是表示数据的hash，即P2KH的pubkey h
 
 这个校验和的计算比较繁琐，它是在GF（2 ^ 5）上定义的40bits的BCH码，校验和根据以下代码计算：
 
+
 ```
 uint64_t PolyMod(const data &v) {
     uint64_t c = 1;
@@ -718,6 +737,7 @@ uint64_t PolyMod(const data &v) {
     
     return c ^ 1;
 }
+
 ```
 具体的规则可以详细参考[这里](https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/cashaddr.md)。
 
@@ -728,20 +748,28 @@ uint64_t PolyMod(const data &v) {
 * 2.这个地址是一个主网地址，前缀为`bitcoincash:xxxxx`
 * 3.这个地址类型为`P2PKH`，version_bits为0000
 * 4.`1ADJqstUMBB5zFquWg19UqZ7Zc6ePCpzLE`进行base58 Decode，去掉末尾的4字节checksum，得到的hash值用list表示
+
 ```
 payload = [101, 13, 4, 151, 224, 20, 230, 13, 70, 128, 252, 230, 153, 125, 64, 93, 226, 100, 240, 66]
+
 ```
 * 5.加入version前缀
+
 ```
 payload = [0, 101, 13, 4, 151, 224, 20, 230, 13, 70, 128, 252, 230, 153, 125, 64, 93, 226, 100, 240, 66]
+
 ```
 * 6.将hash进行8bits->5bits BCH码的转换
+
 ```
 payload = [0, 1, 18, 16, 26, 1, 4, 23, 28, 0, 10, 14, 12, 3, 10, 6, 16, 3, 30, 14, 13, 6, 11, 29, 8, 1, 14, 30, 4, 25, 7, 16, 8, 8]
+
 ```
 * 7.计算校验和
+
 ```
 checksum=[24, 25, 19, 1, 12, 3, 18, 8]
+
 ```
 * 8.对payload + checksum进行base32编码，得到`qpjs6pyhuq2wvr2xsr7wdxtagpw7ye8sggcenpvrjg`
 * 9.加入前缀`bitcoincash:`，组合得到最后地址`bitcoincash:qpjs6pyhuq2wvr2xsr7wdxtagpw7ye8sggcenpvrjg`

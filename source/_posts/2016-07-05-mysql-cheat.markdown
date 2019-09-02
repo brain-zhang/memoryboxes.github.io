@@ -10,23 +10,29 @@ categories: mysql tools
 
 # 连接
 
+
 ```
 $ mysql -u root -p
+
 ```
 
 # list
+
 ```
 $ show DATABASES;
 $ show TABLES;
+
 ```
 
 # Error
 
 * ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
 
+
 ```
 $ mysqld --skip-grant-tables
 $ mysql -u root mysql
 $ mysql> UPDATE user SET Password=PASSWORD('my_password') where USER='root';
 $ mysql> FLUSH PRIVILEGES;
+
 ```

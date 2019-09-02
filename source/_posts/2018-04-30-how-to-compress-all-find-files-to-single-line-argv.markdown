@@ -8,6 +8,8 @@ categories: tools
 
 有时候find的所有文件要合并为一个argv管道到一个命令里面:
 
+
 ```
 find /path/to/directory/ -name *.csv -print0 | xargs -0 -I file cat file > merged.file
+
 ```

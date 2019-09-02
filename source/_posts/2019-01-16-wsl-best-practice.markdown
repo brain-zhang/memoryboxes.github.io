@@ -11,8 +11,10 @@ WSL用了一年，感觉还不错。尤其是在我的机器上pypy3.5版本的`
 WSL最让我满意的，是命令行里面可以结合Windows和Linux的命令行工具来管道处理，这个实在是太赞了。纯粹计算类的程序，Windows上面有很多现成的命令行工具，现在终于能:
 
 
+
 ```
 ping.exe -t xxx.xxx.xxx.xxx|grep xxxx|echo -I xxx ~~~
+
 ```
 
 这样来搞了，事实上，我自己写了很多Python脚本来处理Powershell自带的很多工具输出的内容，还有不少GPU运算程序大多数跑在Windows上面，能直接重定向到Linux上面实在太好了。
@@ -25,8 +27,10 @@ ping.exe -t xxx.xxx.xxx.xxx|grep xxxx|echo -I xxx ~~~
 
 * 如果开机之后插拔一个移动硬盘，需要手工在WSL中执行重新挂载命令：
 
+
 ```
 sudo umount /mnt/g && sudo mount -t drvfs "G:" /mnt/g
+
 ```
 
 

@@ -12,6 +12,7 @@ categories: develop
 
 ## requests
 
+
 ```
 def get_html(url):
     headers = {
@@ -27,9 +28,11 @@ def get_html(url):
     else:
         raise ValueError("Not valid response:{}".format(resp.content))
 
+
 ```
 
 ## beautifulsoup
+
 
 ```
 from bs4 import BeautifulSoup
@@ -38,11 +41,13 @@ def get_username(html):
     user_div = soup.find(id='uhd')
     username = user_div.find('h2', class_='mt').get_text().strip()
     return username
+
 ```
 
 ## phantomjs
 
 用法非常简单，但是每次都得去查文档，封装成一个傻瓜类比较实在
+
 
 ```
 class WebClient(object):
@@ -115,9 +120,11 @@ class WebClient(object):
     def driver(self):
         return self._driver
 
+
 ```
 
 用起来也很简单，拿登陆163邮箱做例子:
+
 
 ```
 def login_163(email, password):
@@ -149,4 +156,5 @@ def login_163(email, password):
     driver.quit()
 
     return login_info.strip() == email
+
 ```

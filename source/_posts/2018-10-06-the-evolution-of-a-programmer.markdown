@@ -12,29 +12,36 @@ categories: develop
 
 #### High School/Jr.High
 
+
 ```
   10 PRINT "HELLO WORLD"
   20 END
+
 ```
 
 #### First year in College
+
 
 ```
   program Hello(input, output)
     begin
       writeln('Hello World')
     end.
+
 ```
 
 #### Senior year in College
+
 
 ```
   (defun hello
     (print
       (cons 'Hello (list 'World))))
+
 ```
 
 #### New professional
+
 
 ```
   #include <stdio.h>
@@ -47,9 +54,11 @@ categories: develop
       printf("%s", message[i]);
     printf("\n");
   }
+
 ```
 
 #### Seasoned professional
+
 
 ```
   #include <iostream.h>
@@ -104,9 +113,11 @@ categories: develop
  
     return(0);
   }
+
 ```
 
 #### Master Programmer
+
 
 ```
   [
@@ -338,9 +349,11 @@ categories: develop
  
   return(0);
   }
+
 ```
 
 #### Apprentice Hacker
+
 
 ```
   #!/usr/local/bin/perl
@@ -356,53 +369,67 @@ categories: develop
     print ($msg);
   }
   1;
+
 ```
 
 #### Experienced Hacker
+
 
 ```
   #include <stdio.h>
   #define S "Hello, World\n"
   main(){exit(printf(S) == strlen(S) ? 0 : 1);}
+
 ```
 
 #### Seasoned Hacker
 
+
 ```
   % cc -o a.out ~/src/misc/hw/hw.c
   % a.out
+
 ```
 
 #### Guru Hacker
 
+
 ```
   % echo "Hello, world."
+
 ```
 
 #### New Manager
 
+
 ```
   10 PRINT "HELLO WORLD"
   20 END
+
 ```
 
 #### Middle Manager
+
 
 ```
   mail -s "Hello, world." bob@b12
   Bob, could you please write me a program that prints "Hello, world."?
   I need it by tomorrow.
   ^D
+
 ```
 
 #### Senior Manager
 
+
 ```
   % zmail jim
   I need a "Hello, world." program by this afternoon.
+
 ```
 
 #### Chief Executive
+
 
 ```
   % letter
@@ -414,4 +441,5 @@ categories: develop
   % damn!
   !: Event unrecognized
   % logout
+
 ```

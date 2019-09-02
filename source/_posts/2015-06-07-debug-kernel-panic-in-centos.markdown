@@ -41,11 +41,13 @@ kernel panic很让人心烦，启动时的panic更让人烦，没有挂上硬盘
 
 #### 在kernel 参数中加入调试开关，关闭ACPI，selinux
 
+
 ```
   title CentOS (2.6.32-358.el6.x86_64)
           root (hd0,0)
           kernel /vmlinuz-2.6.32-358.el6.x86_64 ro root=/dev/mapper/vg_localhost-lv_root rd_NO_LUKS rd_NO_MD rd_LVM_LV=vg_localhost/lv_swap crashkernel=128M LANG=zh_CN.UTF-8 rd_LVM_LV=vg_localhost/lv_root  KEYBOARDTYPE=pc KEYTABLE=us rd_NO_DM debug selinux=0 acpi=0
           initrd /initramfs-2.6.32-358.el6.x86_64.img
+
 ```    
 
 这是考验人品的时候，不管三七二十一，先把最有可能的问题点排除掉。另外redhat系的会在kernel后面加上 `rhgb quiet` 之类的参数，统统去掉，开机的时候好好盯着屏幕看看，有没有可疑的东东输出。 因为系统可能会在短时间内输出大量log而没有记录，你需要设置一下输出log的速率和暂停时机，更详细的参数可以在这里找到:

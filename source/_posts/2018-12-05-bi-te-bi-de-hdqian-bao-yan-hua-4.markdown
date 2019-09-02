@@ -229,10 +229,12 @@ https://www.cryptoground.com/mtgox-cold-wallet-monitor/
 
 这不，美国财政部话音刚落，立即有人给这两个地址发币，并使用了嘲弄性质的地址 `3FUCKdZ89fxsk6KVKMTWvCWshsfL8xgmM4`发送交易并附言:
 
+
 ```
 The U.S. government cannot ban Bitcoin addresses
 
 Chancellor on brink of second bailout for banks
+
 ```
 
 赤裸裸的打脸一个国家政府的行为是Geek们的最爱，你可以把它理解为小孩子的淘气行为，我真的很好奇，美国政府该如何去寻找这些发币者并惩罚他们呢？
@@ -275,9 +277,11 @@ Chancellor on brink of second bailout for banks
 
 对于私钥-公钥对(R1,U1)和(R2,U2)来说，如果
 
+
 ```
 U3=U1+U2
 R3=R1+R2
+
 ```
 那么U3、R3是一对（也就是说，私钥R3的公钥是U3），乘运算同理。
 

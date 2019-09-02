@@ -11,6 +11,7 @@ categories: javascript_pattern develop
 
 最简单的办法就是按传统方法创建一个类，用一个函数来做其构造器。
 
+
 ```
 var Book = function(isbn, title, author) {
     if (isbn === undefined) {
@@ -29,6 +30,7 @@ Book.prototype = {
     display: function(){...},
     checkIsdn: function(){...}
 };
+
 ```
 
 * 优点：简单
@@ -37,6 +39,7 @@ Book.prototype = {
 ## 语法修饰增强型
 
 用setattr,getattr等赋值取值方法及命名规范区别私有成员
+
 
 ```
 var Book = function(isbn, title, author) {
@@ -67,11 +70,13 @@ Book.prototype = {
     }
     .......
 };
+
 ```
 * 优点：简单，安全性也有所增强
 * 缺点：不是真正的私有成员，内部的成员还是有很大可能被修改的。
 
 ## 闭包实现私有成员
+
 
 ```
 var Book = function(iisbn, ititle, iauthor) {
@@ -108,6 +113,7 @@ Book.prototype = {
     display: fucntion(){},
     ....
 }
+
 ```
 
 这里应用了js的闭包特性，isbn等属性不再通过`this`来引用，而是放到函数的构造器里面。既要访问到私有成员，又要对外的方法放到函数的构造中，对私有成员没有依赖的函数用prototype。
@@ -116,6 +122,7 @@ Book.prototype = {
 * 缺点：private方法不再存在prototype里面，这样没生成一个新的对象实例都会为每个每个私有方法和特权方法生成一个新副本，耗费内存。
 
 ## 实现静态方法和属性
+
 
 ```
 var Book = (function() {
@@ -159,6 +166,7 @@ Book.prototype = {
     display: fucntion(){},
     ....
 }
+
 ```
 
 这里和`闭包实现私有成员`的区别就在于构造函数变成了一个内嵌函数，这样就创建了一个闭包，可以把静态的私有成员声明在最顶层。

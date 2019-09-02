@@ -10,6 +10,7 @@ openssl1.0.0 和 openssl1.0.1 使用Python3.6的绑定:
 
 <!-- more -->
 
+
 ```
 import ctypes
 import logging
@@ -36,9 +37,11 @@ if ssl_library.EC_KEY_generate_key(k) != 1:
     raise Exception("internal error")
 ssl_library.EC_KEY_free(k)
 
+
 ```
 
 这段代码在多线程的时候会出现segmentation fault error； google一下发现`EC_KEY_generate_key`并不是线程安全的；于是:
+
 
 ```
 openssl_locks = [threading.Lock() for _ in range(ssl_library.CRYPTO_num_locks())]
@@ -59,6 +62,7 @@ def openssl_threadid():
 
 ssl_library.CRYPTO_set_id_callback(openssl_threadid)
 ssl_library.CRYPTO_set_locking_callback(openssl_lock)
+
 ```
 
 

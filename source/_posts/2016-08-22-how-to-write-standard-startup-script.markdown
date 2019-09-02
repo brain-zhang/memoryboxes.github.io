@@ -11,6 +11,7 @@ centos6中的init.d systemV script升级为systemd startup script，让我们有
 <!-- more -->
 
 ## systemV init script template
+
 ```
 #!/bin/bash
 
@@ -134,6 +135,7 @@ case "$1" in
 esac
 
 exit $RETVAL
+
 ```
 
 
@@ -141,16 +143,19 @@ exit $RETVAL
 
 #### helloworld.conf
 
+
 ```
 node = 1
 
 [system]
 pidFilePath=/var/lib/helloworldtest/run/hello.pid
 logFilePath=/var/lib/helloworldtest/log/hello.log
+
 ```
 
 
 ####/usr/lib/systemd/system/helloworld.service
+
 ```
 [Unit]
 Description=helloworld
@@ -166,4 +171,5 @@ Restart=always
 
 [Install]
 WantedBy=default.target
+
 ```

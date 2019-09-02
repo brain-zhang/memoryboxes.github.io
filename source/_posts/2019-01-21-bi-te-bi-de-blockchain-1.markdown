@@ -260,8 +260,10 @@ https://en.wikipedia.org/wiki/Merkle_tree
 
 * 那么算出来的Nonce需要达到什么条件呢？
 
+
 ```
 SHA256(SHA256(Blockherder)) < F(nBits)
+
 ```
 
 其中，SHA256(SHA256(Blockherder))就是挖矿结果，F(nBits)是难度对应的目标值，两者都是256位，都当成大整数处理，直接对比大小以判断是否符合难度要求。

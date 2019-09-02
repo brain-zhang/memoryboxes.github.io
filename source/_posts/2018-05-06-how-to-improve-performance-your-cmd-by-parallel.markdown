@@ -12,14 +12,18 @@ categories: tools
 
 例如，一个1T的文本，百亿条数据，我想要:
 
+
 ```
 wc -l test.txt
+
 ```
 
 或者
 
+
 ```
 fgrep xxxx test.txt
+
 ```
 
 一般机器就会自觉进入`一核有难，其它核点赞`的看戏模式。
@@ -32,16 +36,20 @@ parallel 是一个perl脚本，通过分割输入，并行处理的方式来加�
 
 例如:
 
+
 ```
 wc -l test.txt
+
 ```
 
 简单想想就是用个for循环split文件，挨个wc，然后相加。parallel就是自动帮你把这类事情做掉而已。大道不过两三行，所谓外部排序，Map-Reduce莫不如是。
 
 ## 安装 (ubuntu 16.04LTS)
 
+
 ```
  apt-get install parallel
+
 ```
 
 
@@ -49,8 +57,10 @@ wc -l test.txt
 
 #### 最快的办法计算一个大文件的行数
 
+
 ```
 cat bigfile.txt | parallel --no-notice --pipe wc -l | awk '{s+=$1} END {print s}'
+
 ```
 
 非常的巧妙，先使用parallel命令‘mapping’出大量的wc -l调用，形成子计算，最后通过管道发送给awk进行汇总
@@ -59,31 +69,41 @@ cat bigfile.txt | parallel --no-notice --pipe wc -l | awk '{s+=$1} END {print s}
 #### SED, 想在一个巨大的文件里使用sed命令做大量的替换操作吗？
 
 常规做法：
+
 ```
 sed s^old^new^g bigfile.txt
+
 ```
 
 现在你可以：
+
 ```
 cat bigfile.txt | parallel --no-notice --pipe sed s^old^new^g
+
 ```
 
 #### GREP 一个非常大的文本文件
 
 以前你可能会这样：
 
+
 ```
 grep pattern bigfile.txt
+
 ```
 
 现在你可以这样：
+
 ```
 cat bigfile.txt | parallel --no-notice --pipe grep 'pattern'
+
 ```
 
 或者这样：
+
 ```
 cat bigfile.txt | parallel --no-notice --block 10M --pipe grep 'pattern'
+
 ```
 
 这第二种用法使用了 –block 10M参数，这是说每个内核处理1千万行——你可以用这个参数来调整每个CUP内核处理多少行数据。
@@ -93,13 +113,17 @@ cat bigfile.txt | parallel --no-notice --block 10M --pipe grep 'pattern'
 bzip2是比gzip更好的压缩工具，但它很慢！别折腾了，我们有办法解决这问题。
 
 以前的做法：
+
 ```
 cat bigfile.bin | bzip2 --best > compressedfile.bz2
+
 ```
 
 现在这样：
+
 ```
 cat bigfile.bin | parallel --no-notice --pipe --recend '' -k bzip2 --best > compressedfile.bz2
+
 ```
 
 ## 扩展
@@ -110,10 +134,12 @@ cat bigfile.bin | parallel --no-notice --pipe --recend '' -k bzip2 --best > comp
 
 #### 版本1
 
+
 ```
 with io.open(sys.argv[1], encoding='utf-8') as fp:
     for line in fp:
         print(lazy_pinyin(line))
+
 ```
 
 lazy_pinyin的效率奇慢无比，这回陷入了一核有难，其它核+内存+磁盘全部看戏模式
@@ -123,6 +149,7 @@ lazy_pinyin的效率奇慢无比，这回陷入了一核有难，其它核+内�
 
 #### 版本2
 
+
 ```
 from multiprocessing import Pool
 pool = Pool(16)
@@ -130,6 +157,7 @@ with io.open(sys.argv[1], encoding='utf-8') as fp:
     pool.map(lazy_pinyin, fp, 16)
     pool.close()
     pool.join()
+
 ```
 
 嗯，很好，16个核都跑起来了；但是你有很快尴尬的发现，map把文件一把load进来，内存有难了
@@ -146,18 +174,22 @@ with io.open(sys.argv[1], encoding='utf-8') as fp:
 
 #### 版本3
 
+
 ```
 import fileinput
 
 if __name__ == '__main__':
     for line in fileinput.input():
         lazy_pinyin(line)
+
 ```
 
 然后执行:
 
+
 ```
 cat bigfile.txt| parallel --no-notice --pipe python pinyinconv.py > pinyin.result
+
 ```
 
 享受所有CPU满负荷运载的工头压榨工人的快感吧
@@ -172,8 +204,10 @@ cat bigfile.txt| parallel --no-notice --pipe python pinyinconv.py > pinyin.resul
 
 * 我有一些参数想传给程序，怎么办？
 
+
 ```
  seq 3|parallel --no-notice -q echo seq{}
+
 ```
 
 * 这个命令很好，但是语法好像啰嗦了一些，还有其它的替代命令吗？

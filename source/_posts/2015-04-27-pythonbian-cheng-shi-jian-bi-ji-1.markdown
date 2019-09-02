@@ -32,6 +32,7 @@ categories: develop DesignPattern
 
 * 我最中意的一种实现:
 
+
 ```
     class Borg:
         _shared_state = {}
@@ -44,6 +45,7 @@ categories: develop DesignPattern
             self.val = arg
         def __str__(self):
             return self.val
+
 ```
 
 ## 结构型设计

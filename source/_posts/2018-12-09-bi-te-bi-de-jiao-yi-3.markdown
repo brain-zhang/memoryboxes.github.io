@@ -18,6 +18,7 @@ styles: data-table
 scriptSig是一笔UTXO的开锁脚本，scriptPubKey是输出UTXO的加锁脚本，一笔交易就是打开上家的保险箱，将资金转移到下家的保险箱并重新加锁的过程:
 
 * 上家-TransA: id(b0a0afb65ac08f453b26fa03a40215be653b6d173510d366321019ab8248ea3b) -> vout scriptPubkey (转移到保险箱A，并给A上锁)
+
 ```
 			{
 				"value": 0.00010000,
@@ -31,9 +32,11 @@ scriptSig是一笔UTXO的开锁脚本，scriptPubKey是输出UTXO的加锁脚本
 						"1ADJqstUMBB5zFquWg19UqZ7Zc6ePCpzLE"
 					]
 				}
+
 ```
 
 * 转移-TransB: id(3a295e4d385f4074f6a7bb28f6103b7235cf48f8177b7153b0609161458ac517) -> vin scriptSig (解锁保险箱A，拿出资金)
+
 
 ```
 			{
@@ -45,9 +48,11 @@ scriptSig是一笔UTXO的开锁脚本，scriptPubKey是输出UTXO的加锁脚本
 				},
 				"sequence": 4294967295
 			}
+
 ```
 
 * 下家-TransB: id(3a295e4d385f4074f6a7bb28f6103b7235cf48f8177b7153b0609161458ac517) ->vout scriptPubkey (转移到保险箱B，并给B上锁)
+
 ```
 			{
 				"value": 0.00007000,
@@ -62,6 +67,7 @@ scriptSig是一笔UTXO的开锁脚本，scriptPubKey是输出UTXO的加锁脚本
 					]
 				}
 			}
+
 ```
 
 具体怎么理解这两个东东呢？我们还需要一点前置知识。
@@ -91,10 +97,12 @@ https://davidederosa.com/basic-blockchain-programming/bitcoin-script-language-pa
 
 现在想象我们有一台非常简单的计算器，它的CPU只有一个16位的寄存器，以及非常小的内存(520B)；我们需要设计一种语言，实现一些最简单的计算，比如：
 
+
 ```
 x = 0x23
 x += 0x4b
 x *= 0x1e
+
 ```
 
 然后转换为类似汇编语言的比较简单的操作码形式, 我们需要以下指令集：
@@ -109,8 +117,10 @@ MUL(V) | `ad` V | `0xad` | 16bits(0x1e) | 寄存器值*0x1e; `0x6e * 0x1e = 0x0c
 
 在上面这个表格中，我们定义了三种最简单的操作码：`0xab, 0xac, 0xad`，跟在这三个操作码后面的2个字节就是操作数；将上面的计算步骤用代码表示如下(小端排序):
 
+
 ```
 ab 23 00 ac 4b 00 ad 1e 00
+
 ```
 
 我们可以实现一个最简单的脚本逻辑，顺序parse这段代码，并转换为相应的操作码，然后进行运算；
@@ -125,6 +135,7 @@ ab 23 00 ac 4b 00 ad 1e 00
 没错，就是我们最常用的数据结构：栈(STACK)。
 
 比如下面这个函数:
+
 
 ```
 int foo() {
@@ -143,24 +154,31 @@ int foo() {
 
     /* 4 */
 }
+
 ```
 1. 第一步函数刚刚跳转执行，栈初始化为空。[]
 2. 第二步，三个变量`a,b,c`压入栈中(PUSH STACK)
+
 ```
 [12]
 [12, a4 00]
 [12, a4 00, e7 a5 02 00]
+
 ```
 3. 结合我们上面的操作码，计算`a,b,c`的和，并将结果压栈
+
 ```
 [12, a4 00, e7 a5 02 00, 9d a6 02 00]
+
 ```
 4. 返回结果，并将栈元素弹出(POP STACK)，恢复到初始状态。
+
 ```
 [12, a4 00, e7 a5 02 00]
 [12, a4 00]
 [12]
 []
+
 ```
 
 ### Script Language
@@ -188,16 +206,21 @@ OP_1 -- OP_16 | 0x51 -- 0x60 | 将0x01 -- 0x10 压入栈中
 
 然后下面一段示例脚本代码：
 
+
 ```
 54 57 00 60
+
 ```
 或者直接翻译为:
 
+
 ```
 OP_4 OP_7 OP_0 OP_16
+
 ```
 
 作用就是将四个值依次压栈，栈状态可以表示为:
+
 
 ```
 []
@@ -205,6 +228,7 @@ OP_4 OP_7 OP_0 OP_16
 [04, 07]
 [04, 07, 00]
 [04, 07, 00, 10]
+
 ```
 
 此时栈顶元素值为0x10，前面我们说了，栈顶元素即返回值，所以这个脚本的返回值为0x10。当然，这个脚本现在就是将四个值压栈，并没有什么实际作用。
@@ -227,20 +251,24 @@ OP_PUSHDATA3 | `0x4e` L D | 32bits| L bytes
 
 举个例子:
 
+
 ```
 4c 14 11 06 03 55 04 8a
 0c 70 3e 63 2e 31 26 30
 24 06 6c 95 20 30
+
 ```
 
 前面的`0x4c`代表是`OP_PUSHDATA1`操作符，后面的`0x14`代表压入20个字节，然后后面跟着20字节的数据
 
 此时栈状态可以表示为:
 
+
 ```
 [11 06 03 55 04 8a 0c 70
  3e 63 2e 31 26 30 24 06
  6c 95 20 30]
+
 ```
 
 另外，为了节省空间，还有一个非常取巧的设计:
@@ -252,14 +280,18 @@ L | L D | 8bits (0x01-0x4b) | L bytes
 
 比如下面的例子:
 
+
 ```
 07 8f 49 b2 e2 ec 7c 44
+
 ```
 
 最前面的`07`代表着直接将后面7个字节压栈
 
+
 ```
 [8f 49 b2 e2 ec 7c 44]
+
 ```
 
 
@@ -277,17 +309,22 @@ OP_SUB | 0x94
 
 例如:
 
+
 ```
 55 59 93 56 94
+
 ```
 
 或者直接翻译为:
 
+
 ```
 OP_5 OP_9 OP_ADD OP_6 OP_SUB
+
 ```
 
 每一步操作的栈状态:
+
 
 ```
 []              # 初始化
@@ -296,6 +333,7 @@ OP_5 OP_9 OP_ADD OP_6 OP_SUB
 [14]            # POP; POP; OP_ADD(5, 9)
 [14, 6]         # OP_6
 [8]             # POP; POP; OP_SUB(14, 6)
+
 ```
 
 最后的结果是8
@@ -313,17 +351,22 @@ OP_EQUALVERIFY跟OP_EQUAL作用相同，但是比较之后还要执行一个 OP_
 
 跟之前的算术操作码结合起来的一个例子:
 
+
 ```
 02 c3 72 02 03 72 01 c0 93 87
+
 ```
 
 翻译为
 
+
 ```
 [c3 72] [03 72] [c0] OP_ADD OP_EQUAL
+
 ```
 
 执行起来是这样子的：
+
 
 ```
 []                      # 栈初始化
@@ -332,6 +375,7 @@ OP_EQUALVERIFY跟OP_EQUAL作用相同，但是比较之后还要执行一个 OP_
 [c3 72, 03 72, c0]      # `01 c0`代表c0直接入栈
 [c3 72, c3 72]          # 栈顶弹出c000, 0372, 相加得 c3 72
 [1]                     # 栈顶弹出c372，c372，比较为真
+
 ```
 
 最后这个表达式结果为1。
@@ -348,23 +392,29 @@ OP_DUP | 0x76
 
 例子:
 
+
 ```
 04 b9 0c a2 fe 76 87
+
 ```
 
 翻译为:
 
+
 ```
 [b9 0c a2 fe] OP_DUP OP_EQUAL
+
 ```
 
 执行起来是这样子的：
+
 
 ```
 []                          # 栈初始化
 [b9 0c a2 fe]               # 04代表后面4个字节压栈
 [b9 0c a2 fe, b9 0c a2 fe]  # 复制栈顶4字节然后压栈
 [1]                         # 弹出栈顶8字节，比较结果为真
+
 ```
 
 可以看出来，如果OP_DUP后面跟着OP_EQUAL，执行结果永远为真。
@@ -393,8 +443,10 @@ OP_CHECKSIG 弹出前两个堆栈项，第一个是ECDSA公钥，第二个是der
 
 #### 首先然我们来解析一下TransA的 scritPubkey 加锁脚本
 
+
 ```
 76a914650d0497e014e60d4680fce6997d405de264f04288ac
+
 ```
 			
 翻译为
@@ -407,14 +459,18 @@ OP_CHECKSIG 弹出前两个堆栈项，第一个是ECDSA公钥，第二个是der
 
 最后翻译为:
 
+
 ```
 OP_DUP OP_HASH160 650d0497e014e60d4680fce6997d405de264f042 OP_EQUALVERIFY OP_CHECKSIG
+
 ```
 
 再简化一下
 
+
 ```
 OP_DUP OP_HASH160 <PubkeyHash> OP_EQUALVERIFY OP_CHECKSIG
+
 ```
 
 这段脚本代表 TransA的发起者把一笔钱转入到保险箱后，用这个脚本设置了一把锁，谁能提供另外一个脚本，跟此脚本合并运算后，栈元素全部出栈，并且最后出栈元素为真，那么就视为解锁成功，可以花费这笔钱。
@@ -434,28 +490,36 @@ OP_DUP OP_HASH160 <PubkeyHash> OP_EQUALVERIFY OP_CHECKSIG
 
 #### 那么我们提供的解锁脚本TransB的scriptSig 同样解析一遍看一下
 
+
 ```
 47304402204f1eeeb46dbd896a4d421a14b156ad541afb4062a9076d601e8661c952b32fbf022018f01408dc85d503776946e71d942578ab551029b6bee7d3c30a8ce39f2f7ac0014104c4f00a8aa87f595b60b1e390f17fc64d12c1a1f505354a7eea5f2ee353e427b7fc0ac3f520dfd4946ab28ac5fa3173050f90c6b2d186333e998d7777fdaa52d5
+
 ```
 
 解析为:
 
 1.0x47代表后面71个字节入栈，这其实就是签名`Sig`:
 
+
 ```
 304402204f1eeeb46dbd896a4d421a14b156ad541afb4062a9076d601e8661c952b32fbf022018f01408dc85d503776946e71d942578ab551029b6bee7d3c30a8ce39f2f7ac001
+
 ```
 
 2.0x41后面代表65个字节入栈，这是`Pubkey`:
 
+
 ```
 04c4f00a8aa87f595b60b1e390f17fc64d12c1a1f505354a7eea5f2ee353e427b7fc0ac3f520dfd4946ab28ac5fa3173050f90c6b2d186333e998d7777fdaa52d5
+
 ```
 
 最终简化为
 
+
 ```
 <Sig> <PubKey>
+
 ```
 
 这就是我们开锁的钥匙！
@@ -474,6 +538,7 @@ OP_DUP OP_HASH160 <PubkeyHash> OP_EQUALVERIFY OP_CHECKSIG
 `<Sig> <PubKey>`
 
 
+
 ```
 []                                                              # 初始化
 [Sig]                                                           # 将scriptSig中的sig信息入栈
@@ -488,6 +553,7 @@ OP_DUP OP_HASH160 <PubkeyHash> OP_EQUALVERIFY OP_CHECKSIG
 [Sig, Pubkey, OP_CHECKSIG]                                      # 将scriptPubKey中的 OP_CHECKSIG入栈
 [1]                                                             # 执行OP_CHECKSIG，用Pubkey检查Sig的有效性；检查通过
 []                                                              # Gooooooooood!! 钥匙合法，开锁成功
+
 ```
 
 最后合并运算的结果返回为True。解锁成功。
@@ -505,8 +571,10 @@ OP_DUP OP_HASH160 <PubkeyHash> OP_EQUALVERIFY OP_CHECKSIG
 
 TransB的scriptPubkey 构造为:
 
+
 ```
 03db3c3977c5165058bf38c46f72d32f4e872112dbafc13083a948676165cd1603 OP_CHECKSIG
+
 ```
 
 ?? 这怎么跟我们上一笔TransA的scriptPubkey长的不一样？
@@ -519,9 +587,11 @@ TransB的scriptPubkey 构造为:
 
 总结一下这种交易的scriptPubkey加锁脚本以及scriptSig解锁脚本：
 
+
 ```
 scriptPubkey: <pubkey> OP_CHECKSIG
 scriptSig: <sig>
+
 ```
 
 如果你感兴趣的话，自己去找找这笔交易对应的scriptSig吧。

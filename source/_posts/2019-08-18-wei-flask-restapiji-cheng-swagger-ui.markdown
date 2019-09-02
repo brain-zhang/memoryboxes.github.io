@@ -33,6 +33,7 @@ restplus能让人很方便的通过几个decorator就可以集成很漂亮的res
 
 #### 构建api对象
 
+
 ```
 from flask import Flask
 from flask_restplus import Api, Resource, fields
@@ -46,6 +47,7 @@ api = Api(app, version='1.0', title='Chainhorn API',
 )
 
 ns = api.namespace('node', description='node operations')
+
 ```
 
 最重要的是构建了`api`对象，这样就可以为后面的资源增加url路由、参数解析同能；
@@ -53,6 +55,7 @@ ns = api.namespace('node', description='node operations')
 下面紧跟着构建了一个`ns` --`namespace`对象，作用是为不同的资源，不同的url分组，这样最后反映到界面上好看一点；
 
 #### 修饰
+
 
 ```
 @ns.route('')
@@ -62,6 +65,7 @@ ns = api.namespace('node', description='node operations')
           '''get node info'''
           info = spv.getinfo()
           return {'nodeinfo': info}, 200
+
 ```
 
 最简单的，用`@ns.route('')`，就定义了根url， 然后后面的套路都是相似的，为资源实现get方法，就直接响应 http Get请求了；
@@ -70,6 +74,8 @@ ns = api.namespace('node', description='node operations')
 
 如果直接在url后面跟参数，那么很方便的用 `ns.param`定义一下即可:
 下面这个函数就直接接受一个 `/broadcast/tx12345` 这样的tx12345作为参数`tx`
+
+
 ```
 @ns.route('/broadcast/<string:tx>')
   class WalletBroadcastTx(Resource):
@@ -79,9 +85,11 @@ ns = api.namespace('node', description='node operations')
           '''broadcast raw tx'''
           sendrawtransaction(spv, tx)
           return {'broadcast': 'ok'}, 200
+
 ```
 
 如果要放在FormData里面，可以用`ns.expect`来限制；它可以接受一个对象传入；比如上面的例子，要把`tx`字段放到POST请求的Form Data中，要这样做:
+
 
 ```
 TxModel = {'tx': fields.String(required=True, description='The hex tx')}
@@ -93,7 +101,8 @@ TxModel = {'tx': fields.String(required=True, description='The hex tx')}
           '''broadcast raw tx'''
           sendrawtransaction(spv, api.payload['tx'])
           return {'broadcast': 'ok'}, 200
-```          
+
+```
 
 #### Response参数处理
 
@@ -110,6 +119,7 @@ https://flask-restplus.readthedocs.io/en/stable/parsing.html
 
 首先我们先定义验证规则:
 
+
 ```
 auth = HTTPTokenAuth()
 tokens = {
@@ -124,9 +134,11 @@ def verify_token(token):
       return True
   else:
       return False
+
 ```
 
 然后在每个url 请求处理函数前面加上修饰符`auth_login_required`；比如我们最开始的例子:
+
 
 ```
 @ns.route('')
@@ -138,11 +150,13 @@ class NodeGetInfo(Resource):
       info = spv.getinfo()
       return {'nodeinfo': info}, 200
 
+
 ```
 
 这样后台验证就有了；那么前台输入呢？
 
 这个例子里面，我们需要前台输入的时候在HTTP Header里面传入两个Key: APIKEY和APPKEY；直接用用Swagger UI自带的组件实现就可以了，把api对象构造为:
+
 
 ```
 AUTHORIZATIONS = {
@@ -155,7 +169,7 @@ AUTHORIZATIONS = {
         'type': 'apiKey',
         'in': 'header',
         'name': 'APPID'
-    }    
+    }
 }
 api = Api(app,
         version='v1',
@@ -164,6 +178,7 @@ api = Api(app,
         title='Chainhorn API',
         description='Chainhorn API',
 )
+
 
 ```
 

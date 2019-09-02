@@ -24,10 +24,12 @@ Docker的默认网络是非常弱的，他使用的是一个虚拟网桥和conta
 
 * 采用官方默认的搞法，用NAT:
 
+
 ```
 ip addr add 10.12.0.117/21 dev em1
 
 docker run -d --name web -p 10.12.0.117:80:80 centos/simpleweb
+
 ```
 
    这种方法简单，但也有上面所说的各种缺点

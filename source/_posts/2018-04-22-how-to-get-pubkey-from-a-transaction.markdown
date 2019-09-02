@@ -27,6 +27,7 @@ https://btc.com/0998ef06442994c147aec242e6973dfe3d512b05bde880793051a48bd021fc33
 
 得到了这笔交易解析后的完整输出:
 
+
 ```
 transaction
 {
@@ -57,6 +58,7 @@ transaction
     }
     version 1
 }
+
 ```
 
 注意script那一段，就是分成了两部分，前面一个中括号里面是签名，后面是公钥。
@@ -66,6 +68,7 @@ transaction
 
 
 写个小脚本parse一下这个公钥，就可以看看是不是和地址对应啦:
+
 
 ```
 #!/usr/bin/env python
@@ -91,14 +94,17 @@ def PubkeyToAddress(pubkey_hex):
 pubkey = "044da006f958beba78ec54443df4a3f52237253f7ae8cbdb17dccf3feaa57f3126da0a0909f11998130c2d0e86a485f4e79ee466a183a476c432c68758ab9e630b"
 print(len(pubkey))
 print("Address: %s" % PubkeyToAddress(pubkey))
+
 ```
 
 
 输出是这样的:
 
+
 ```
 130
 Address: 1HUBHMij46Hae75JPdWjeZ5Q7KaL7EFRSD
+
 ```
 
 

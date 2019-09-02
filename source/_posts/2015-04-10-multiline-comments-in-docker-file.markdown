@@ -12,6 +12,7 @@ categories: docker tools
 
 有个比较偏门的写注释的方法:
 
+
 ```
 RUN mkdir -p /home/build/npm3 && \
     mkdir -p /home/build/smartprobe && \
@@ -23,6 +24,7 @@ RUN mkdir -p /home/build/npm3 && \
     `#====================================================` \
     `#=============checkout and install python==============` \
     ... && \
+
 
 ```
 

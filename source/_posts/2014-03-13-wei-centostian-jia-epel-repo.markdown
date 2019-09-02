@@ -107,61 +107,81 @@ http://mirrors.163.com/.help/centos.html
 
 * 重装某个包
 
+
 ```
 rpm -ivh --replacepkgs xxx.rpm
+
 ```
 
 * 修改prefix
 
+
 ```
 rpm -qp --queryformat "%{defaultprefix}\n" <packagefile>
 rpm -ivh --prefix <packagefile>
+
 ```
 
 * 查询某个包包含的文件
 
+
 ```
 rpm -ql <packagefile>
 rpm -qs <packagefile>
+
 ```
 
 * 查询某个包包含的配置文件
 
+
 ```
 rpm -qc <packagefile>
+
 ```
 
 * 查询某个包安装时要执行的脚本文件
 
+
 ```
 rpm -q --scripts <packagefile>
+
 ```
 
 
 * 查询某个文件属于哪个包
 
+
 ```
 rpm -qf <filepath>
+
 ```
 
 * 查询某个可执行文件的配置文件和log文件
 
+
 ```
 rpm -qcf <filepath>
+
 ```
 
 * 寻找最近安装的包
+
 ```
 find /bin -type f -mtime -14 | rpm -qF
 rpm -qa --queryformat '%{installtime} %{name}-%{version}-%{release} %{installtime:date}\n' | sort -nr +1 | sed -e 's/^[^ ]* //'
+
 ```
 
 * 寻找最大的安装包
+
 ```
 rpm -qa --queryformat '%{name-%{version}-%{release} %{size}\n' | sort -nr +1}'
+
 ```
 
 * 解压一个rpm文件
+
 ```
 rpm2cpio xxx.rpm | cpio -div
+
 ```

@@ -18,12 +18,14 @@ sort -uo 一个1T的文件，让最高配的google cloud instance (48 core/512G)
 
 ### 三步:
 
+
 ```
 split -l 1000000000 huge-file small-chunk
 
 for X in small-chunk*; do sort -u < $X > sorted-$X; done
 
 sort -u -m sorted-small-chunk* > sorted-huge-file && rm -rf small-chunk* sorted-small-chunk*
+
 ```
 
 ### 小TIPS:
@@ -32,8 +34,10 @@ sort -u -m sorted-small-chunk* > sorted-huge-file && rm -rf small-chunk* sorted-
 
 可以利用awk的数组是内存hash表的特性，直接awk来做，前提是你内存够大，瞎估估需要十倍于数据的内存吧:
 
+
 ```
 cat xxxxx zzz | awk '{ if (!seen[$0]++) { print $0; } }' > xxx_zzz.uniq.txt
+
 ```
 
 ### PS:

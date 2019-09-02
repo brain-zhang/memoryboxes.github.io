@@ -122,8 +122,10 @@ styles: data-table
 
 * 这张图中，我们引入了一个脚本，称之为 `Pubkey Script`；具体内容是:
 
+
 ```
 OP_DUP OP_HASH160 <PubkeyHash> OP_EQUALVERIFY OP_CHECKSIG
+
 ```
 
 呵呵，像天书吧，不要怕；这是我们特有的保险锁构造。细节会在后面讲到。这里你可以这样简单理解：

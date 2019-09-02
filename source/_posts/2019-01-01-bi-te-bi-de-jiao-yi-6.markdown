@@ -93,6 +93,7 @@ https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki
 
 那么我们再来复习下一笔P2PKH交易的结构:
 
+
 ```
 {
 	"result": {
@@ -137,6 +138,7 @@ https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki
 	"error": null,
 	"id": null
 }
+
 ```
 
 在整笔交易里面，输入输出信息以及金额大小属于第一部分，scriptSig属于第二部分。
@@ -153,18 +155,22 @@ https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki
 首先回顾下P2PKH的锁定脚本(scriptPubKey)与解锁脚本(scriptSig)内容
 
 * P2PKH
+
 ```
   scriptSig:    <signature> <pubkey>
   scriptPubKey: OP_DUP OP_HASH160 <20-byte hash of Pubkey> OP_EQUALVERIFY OP_CHECKSIG
+
 ```
 
 再来看一下P2WPKH的脚本内容
 
 * P2WPKH  
+
 ```
   scriptSig:    (empty)
   scriptPubKey: 0 <20-byte hash of Pubkey>
   witness:      <signature> <pubkey>
+
 ```
 
 P2WPKH的锁定脚本较P2PKH要精简不少，第一位的数字0是版本号，有了版本号，未来脚本升级就能更容易的向前兼容。
@@ -175,16 +181,20 @@ P2WPKH的解锁脚本为空，而真正的解锁脚本内容被移到了原交�
 
 * P2SH
 
+
 ```
   scriptSig:    0 <SigA> <SigB> <2 PubkeyA PubkeyB PubkeyC PubkeyD PubkeyE 5 CHECKMULTISIG>
   scriptPubKey: HASH160 <20-byte hash of redeem script> EQUAL
+
 ```
 
 * P2WSH  
+
 ```
   scriptSig:    (empty)
   scriptPubKey: 0 <32-byte hash of redeem script>
   witness:      0 <SigA> <SigB> <2 PubkeyA PubkeyB PubkeyC PubkeyD PubkeyE 5 CHECKMULTISIG>
+
 ```
 
 P2WSH锁定脚本与P2WPKH类似，第一位是版本号，第二位是赎回脚本(Redeem script)的Hash值。
@@ -215,14 +225,18 @@ P2WSH锁定脚本与P2WPKH类似，第一位是版本号，第二位是赎回脚
 
 传统交易的txid是以下序列 double sha256的结果:
 
+
 ```
 [nVersion][txins][txouts][nLockTime]
+
 ```
 
 最后开发者们又引入了另外一个id，称之为wtxid；它是对整个交易double sha256的结果:
 
+
 ```
 [nVersion][marker][flag][txins][txouts][witness][nLockTime]
+
 ```
 
 我们知道，每笔交易的txid是临时计算的，并不入块。但是整个Block是以所有交易的txid以Merkle Tree的形式组织的(这部分知识我们还没讲，需要到后面将bitcoin blockchain的时候提到)；现在多了一个wtxid，该怎么办呢？
@@ -241,6 +255,7 @@ P2WSH锁定脚本与P2WPKH类似，第一位是版本号，第二位是赎回脚
 
 
 最后附上这段龌龊的代码：
+
 
 ```
 std::vector<unsigned char> GenerateCoinbaseCommitment(CBlock& block, const CBlockIndex* pindexPrev, 
@@ -272,6 +287,7 @@ std::vector<unsigned char> GenerateCoinbaseCommitment(CBlock& block, const CBloc
     UpdateUncommittedBlockStructures(block, pindexPrev, consensusParams);  //更新区块其他结构
     return commitment;
 }
+
 
 ```
 
@@ -316,10 +332,12 @@ std::vector<unsigned char> GenerateCoinbaseCommitment(CBlock& block, const CBloc
 
 P2WPKH植入P2SH后，交易信息如下：
 
+
 ```
   scriptSig:    0 <20-byte hash of Pubkey>
   scriptPubKey: HASH160 <20-byte hash of script> EQUAL
   witness:      <signature> <pubkey>
+
 ```
 
 此处的脚本Hash值为RIPEMD160(SHA256(0 <20-byte hash of Pubkey>))的结果，将该脚本Hash转换为P2SH地址，就是一个兼容segwit的地址，不支持隔离见证的客户端可以正常支付比特币给这种P2SH地址。
@@ -353,10 +371,12 @@ Bitcoin这个东西，实在不能以常理来琢磨啊。
 
 比特币的区块大小限制为1000000bytes，由于witness数据不包含在这个限制中，为了防止witness数据被滥用，仍然对总的区块大小做了限制。引入了一个新概念叫块重量(Block weight):
 
+
 ```
 Block weight = Base size * 3 + Total size
 Base size是不包含witness数据的块大小
 Total size是包含了witness数据的总大小
+
 ```
 
 隔离见证限制Block weight <= 4000000
@@ -418,9 +438,11 @@ Block Header + 所有Transaction的数据（witness数据，老版本看不见�
 对于新版本节点： 
 Block的size的计算方式做了调整，引入了Block weight的概念。 
 
+
 ```
 block weight = base_size * 4 + witness_size 
 block weight <= 4M
+
 ```
 
 其中，base_size就是block的前2部分数据（header + 没有witness的所有交易数据）
