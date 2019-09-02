@@ -3,7 +3,7 @@ layout: post
 title: "吴恩达机器学习笔记-1"
 date: 2019-09-01 15:59:41 +0800
 comments: true
-categories: develop, ai
+categories: develop ai
 ---
 
 这个系列教程大名鼎鼎，之前我都是用到啥就瞎试一通；最近花了两个周，认认真真把这些基础知识重新学了一遍；做个笔记；
