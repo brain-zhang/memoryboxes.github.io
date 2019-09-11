@@ -33,7 +33,9 @@ h_\theta(x)=g(\theta^TX)
 $$
 
 其中：
+
 * X 代表特征向量
+
 * g 代表逻辑函数（logistic function）, 是一个常用的逻辑函数为 S形函数（Sigmoid function），公式为：
 
 $$
