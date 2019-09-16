@@ -5,7 +5,9 @@ date: 2019-09-16 16:55:56 +0800
 comments: true
 categories: develop ai
 ---
+
 神经网络学习, 反向传播算法， 模型优化
+
 {:..info}
 
 <!-- more -->
