@@ -8,7 +8,7 @@ categories: develop ai
 
 神经网络学习, 反向传播算法， 模型优化
 
-{:..info}
+{:.info}
 
 <!-- more -->
 
