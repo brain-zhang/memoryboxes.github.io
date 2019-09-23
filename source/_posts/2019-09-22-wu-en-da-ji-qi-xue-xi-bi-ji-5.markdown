@@ -68,15 +68,15 @@ def normalize(X):
 def pca(x, keep_dims=None):
     if not keep_dims:
         keep_dims = x.shape[1] - 1
-    # todo 进行归一化
+    # 进行归一化
     normalize_x = normalize(x)
-    # todo 求出协方差矩阵
+    # 求出协方差矩阵
     cov_x = covariance_matrix(x)
-    # todo 奇异值分解
+    # 奇异值分解
     U, S, V = np.linalg.svd(cov_x)  # U: principle components (n, n)
-    # todo 选取前 keep_dims 维特征
+    # 选取前 keep_dims 维特征
     reduction = U[:, :keep_dims]
-    # todo 得到降维的结果
+    # 得到降维的结果
     return np.matmul(x, reduction)
 
 x = np.random.uniform(size=(10, 10))
@@ -86,8 +86,10 @@ pca(x).shape
 ## 异常检测
 
 用途:
-1.识别欺骗。特征：用户多久登录一次，访问过的页面，在论坛发布的帖子数量，甚至是打字速度等。构建模型来识别那些不符合该模式的用户,
-2.数据中心。特征：内存使用情况，被访问的磁盘数量，CPU 的负载，网络的通信量等。构建模型来判断某些计算机是不是有可能出错了。
+
+1. 识别欺骗。特征：用户多久登录一次，访问过的页面，在论坛发布的帖子数量，甚至是打字速度等。构建模型来识别那些不符合该模式的用户,
+
+2. 数据中心。特征：内存使用情况，被访问的磁盘数量，CPU 的负载，网络的通信量等。构建模型来判断某些计算机是不是有可能出错了。
 
 #### 高斯分布
 
