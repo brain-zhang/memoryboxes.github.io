@@ -70,7 +70,7 @@ categories: blockchain
 
 local_balance和remote_balance可以在不关闭通道的情况下多次更新，但是如果不关闭或者拼接通道，通道容量无法更改；
 
-![img](https://blog.muun.com/content/images/2019/04/hourglass--1--1.png)
+![img](https://github.com/brain-zhang/memoryboxes.github.io/blob/source/images/20191106/bg1.jpg)
 
 >我们可以把它想象成一个沙漏，虽然沙子的总量是固定的，但是我们可以在沙漏的上下部之间移动啥子，如果想要改变沙子的总量，就需要打破沙漏；
 
@@ -81,7 +81,7 @@ local_balance和remote_balance可以在不关闭通道的情况下多次更新�
 
 每次你付款时，都会把local_balance的部分余额推给对端的ROBERT。 同样的，当收到一笔付款时，local_balance也会增加，remote_balance会减少；
 
-![img](https://blog.muun.com/content/images/2019/04/2-2.png)
+![img](https://github.com/brain-zhang/memoryboxes.github.io/blob/source/images/20191106/bg2.jpg)
 
 >如图：当你支付ROBERT 1BTC时，你的local_balance减少1BTC，而remote_balance增加1BTC;
 
@@ -106,7 +106,7 @@ https://yalls.org/about/
 
 这个时候的闪电网络拓扑是这样的：
 
-![img](https://blog.muun.com/content/images/2019/04/3-2.png)
+![img](https://github.com/brain-zhang/memoryboxes.github.io/blob/source/images/20191106/bg3.jpg)
 
 >你打开了一个连接到LNTOP的支付通道，并在其中放入2个BTC，你的local_balance是2BTC，remote_balance为0BTC
 
@@ -129,21 +129,20 @@ https://yalls.org/about/
 
 嗯......，当然不会这么简单......在一个复杂的网络中，即使你在直接相连的通道中有足够的remote_balance，但你不能保证支付路径上的每一个节点都有充足的remote_balance； 让我们揭示网络中所有节点的local_balance和remote_balance，来更好的理解资金如何流动。
 
-
-![img](https://blog.muun.com/content/images/2019/04/4-2.png)
+![img](https://github.com/brain-zhang/memoryboxes.github.io/blob/source/images/20191106/bg4.jpg)
 
 >如图: LNTOP是一个大的中转节点，与他相邻的每个节点都有LNTOP提供的remote_balance
 
 这样你与LNTOP的支付通道中，你的remote_balance为3BTC， 而LNTOP与ANGELA的支付渠道中，LNTOP的remote_balance为2BTC，这样ANGELA最多能发送给你2BTC；
 
-![img](https://blog.muun.com/content/images/2019/04/Gif_1-2.gif)
+![img](https://github.com/brain-zhang/memoryboxes.github.io/blob/source/images/20191106/bg5.gif)
 
 >如图：ANGELA为你发送了1BTC
 
 
 但是在这个网络中，SOPHIE甚至不能发送1BTC给你。如果你看一下SOPHIE和你之间的支付路线，就会发现LNTOP没有接收SOPHIE付款的能力；
 
-对于收款，要求每个路由节点与你(接收方)之间都需要与前一个相邻的节点具有足够的remote_balance；因此，即使你可能通过相邻节点获得了remote_balance，但是整个支付路径上的某些节点可能并没有足够的remote_balance；这样你仍然不能完成收款；
+对于收款，要求每个路由节点与你(接收方)之间都需要与前一个相邻的节点具有足够的Inbound Capacity；因此，即使你可能通过相邻节点获得了Inbound Capacity，但是整个支付路径上的某些节点可能并没有足够的Inbound Capacity；这样你仍然不能完成收款；
 
 最致命的一点是，这种"显示所有节点的remote_balance和local_balance"的事情在闪电网络中是做不到的；作为网络的一个节点，我们只能知道其他支付通道的容量，而不知道它是如何在相连的两个节点之间分配资金的；
 
@@ -153,11 +152,11 @@ https://yalls.org/about/
 
 ##### 商人节点
 
-商人节点主要需求是收款，因此，他需要remote_balance，并且从客户到商人节点之间的支付路径上每一个节点，都要有足够的remote_balance;
+商人节点主要需求是收款，因此，他需要Inbound Capacity，并且从客户到商人节点之间的支付路径上每一个节点，都要有足够的Inbound Capacity;
 
 ##### 用户节点
 
-用户主要通过闪电网络发送资金，偶尔也会从朋友那里收到一些钱； 对于这些用户，他们的关键是要连接到的节点具有足够的资金能路由给商家；这些用户需要少量的remote_balance即可；
+用户主要通过闪电网络发送资金，偶尔也会从朋友那里收到一些钱； 对于这些用户，他们的关键是要连接到的节点具有足够的资金能路由给商家；这些用户需要保有少量的remote_balance即可；
 
 
 ##### 路由节点
@@ -173,14 +172,15 @@ https://yalls.org/about/
 
 #### 结论
 
-我们讨论了一个支付通道具有的特性，其通道容量、local_balance、remote_balance； 我们看到，闪电网络是一个丰富的生态，将来里面会有各种各样的角色参与其中；目前来看，如何注入足够Inbound Capacity，保持闪电网络有充裕的流动性似乎是个棘手问题；而且不少人攻击这最终会导致比特币运营中心化；
+我们讨论了一个支付通道具有的特性，其通道容量、local_balance、remote_balance、Inbound Capacity, Outbound Capacity； 我们看到，闪电网络是一个丰富的生态，将来里面会有各种各样的角色参与其中；目前来看，如何注入足够Inbound Capacity，保持闪电网络有充裕的流动性似乎是个棘手问题；而且不少人攻击这最终会导致比特币运营中心化；
 
 但我得说，这些批评者过于心急了；就像比特币诞生初期，很多传统的经济学家批评比特币的`通缩`特性一样；
 
 为了解决这些问题，社区以一个惊人的创新速度不断提出解决方法，包括WIP、Lightning Loop、多路径余额合并平衡等等；我们也将会在后面的文章中一一介绍；
 
-最后，数字货币世界还是处于蛮荒狂野时代，不是那么多事情都是理所当然的;乔帮主的训诫还是需要时时温习:饥渴求知，虚怀若愚(Stay Hungry, Stay Foolish)
+最后，数字货币世界还是处于蛮荒狂野时代，不是那么多事情都是理所当然的; 每个人的言论都需要批判吸收； 
 
+乔帮主的训诫还是需要时时温习：饥渴求知，虚怀若愚(Stay Hungry, Stay Foolish)
 
 
 #### 引用
