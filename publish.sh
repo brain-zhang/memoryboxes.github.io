@@ -1,7 +1,7 @@
 #/bin/bash
 
 # image url(put images folders of branch source):
-# ![背景](https://github.com/brain-zhang/memoryboxes.github.io/blob/source/images/201612/bg1.jpg)
+# ![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20191106/bg0.png)
 #cd _deploy && git pull && cd ../
 bundle exec rake generate
 echo "happy123.me" > public/CNAME
