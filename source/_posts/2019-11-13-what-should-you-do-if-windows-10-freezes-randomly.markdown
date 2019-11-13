@@ -30,3 +30,12 @@ https://www.partitionwizard.com/partitionmagic/win10-freezes-randomly.html
 1. Chrome的硬件加速关闭试一试
 
 2. 如果有Intel的核显，关闭`Panel Self Refresh`试一试
+
+>Apparently, disabling Panel Self Refresh (PSR) in the Intel HD Graphics Control Panel application fixed the issue.
+>On Lenovo notebook right click on desktop -> Intel Graphics Control Panel -> Energy management -> Panel Self Refresh -> set to Disabled.
+>I also set the display to max performance, but I don't think this is relevant.
+>Once disabled, I've no more experienced any freeze for several days.
+
+参考：
+
+https://forums.lenovo.com/t5/ThinkPad-X-Series-Laptops/X270-generic-freeze/td-p/3927475/page/5
