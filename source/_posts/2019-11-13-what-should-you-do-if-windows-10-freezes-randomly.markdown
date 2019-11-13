@@ -17,7 +17,7 @@ categories: tools
 
 https://www.partitionwizard.com/partitionmagic/win10-freezes-randomly.html
 
-最后无奈之下挂在winGDB，是的，就是这么无聊，追到了Chrome里面；
+最后无奈之下挂载winGDB，是的，就是这么无聊，追到了Chrome里面；
 
 我发现，只要关闭Chrome的 "设置->高级->使用硬件加速模式"，问题概率就会大大降低；
 
