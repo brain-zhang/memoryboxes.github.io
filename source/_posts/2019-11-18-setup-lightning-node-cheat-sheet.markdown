@@ -24,7 +24,7 @@ bitcoind --conf=/opt/bitcoin/blockdata/bitcoin.conf --datadir=/opt/bitcoin/block
 ```
 
 #### bitcoin.conf
-````
+```
 rpcuser=user
 rpcpassword=password
 #rpcallowip=127.0.0.1/16
@@ -39,7 +39,7 @@ zmqpubrawblock=tcp://127.0.0.1:28332
 zmqpubrawtx=tcp://127.0.0.1:28333
 
 #walletnotify=/usr/bin/echo "hello"
-````
+```
 
 
 ## Lnd
@@ -114,8 +114,6 @@ https://github.com/ElementsProject/lightning
 ```
 cat /etc/systemd/system/lightning.service
 
-# c-Lightning: systemd unit
-# /etc/systemd/system/lightning.service
 
 [Unit]
 Description=c-Lightning daemon
