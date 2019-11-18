@@ -3,7 +3,7 @@ layout: post
 title: "Hello Lightning Network -1"
 date: 2019-11-05 17:17:48 +0800
 comments: true
-categories: blockchain
+categories: blockchain lightning
 ---
 ## 简明闪电网络科普-1
 

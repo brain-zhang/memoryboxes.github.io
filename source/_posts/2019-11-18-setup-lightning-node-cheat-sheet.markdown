@@ -3,7 +3,7 @@ layout: post
 title: "Setup Lightning Node Cheat Sheet"
 date: 2019-11-18 15:14:19 +0800
 comments: true
-categories: blockchain
+categories: blockchain lightning
 ---
 
 运营一个闪电节点的基本命令速查；
