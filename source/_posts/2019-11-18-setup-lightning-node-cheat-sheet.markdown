@@ -138,6 +138,7 @@ WantedBy=multi-user.target
 ```
 
 * 配置文件:
+
 ```
 ~/.lightning/config
 
