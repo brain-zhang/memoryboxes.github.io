@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "比特币的交易-7"
+title: "Hello Lightning Network -0"
 date: 2019-01-06 17:34:55 +0800
 comments: true
-categories: blockchain
+categories: blockchain lightning
 ---
 
 比特币的交易网络最为人诟病的一点便是交易性能：全网每秒 7 笔左右的交易速度，远低于传统的金融交易系统；同时，等待 6 个块的可信确认将导致约 1 个小时的最终确认时间。
