@@ -6,19 +6,14 @@ comments: true
 categories: blockchain lightning
 ---
 
-
 在上一篇文章中我们评论道：闪电网络是一个丰富的生态，将来里面会有各种各样的角色参与其中；目前来看，如何注入足够Inbound Capacity，保持闪电网络有充裕的流动性似乎是个棘手问题；而且不少人攻击这最终会导致比特币运营中心化；
 
 
-我们这篇文章就来探讨为了解决Inbound Capacity问题，目前lightningLab的一个实验项目：
-
-[loop](https://github.com/lightninglabs/loop)
-
-<!-- more -->
-
-在介绍loop之前，我们还需要复习并深化闪电网络的一些基础知识；即RSMC 和HTLC；这些基础我们曾在[之前的文章中](https://happy123.me/blog/2019/01/06/bi-te-bi-de-jiao-yi-7/)简要介绍过，但只是对网上的资料做了一番整理，人云亦云而已，实在是辜负了闪电网络；
+为了研究如何解决Inbound Capacity的问题，我们还需要复习并深化闪电网络的一些基础知识；即RSMC 和HTLC；这些基础我们曾在[之前的文章中](https://happy123.me/blog/2019/01/06/bi-te-bi-de-jiao-yi-7/)简要介绍过，但只是对网上的资料做了一番整理，人云亦云而已，实在是辜负了闪电网络；
 
 如果把闪电网络比作一支跌宕起伏的乐章，那RSMC和HTLC就是其中最华彩的两个小节，围绕这两个基础技术所衍生的种种细节Tooltips就是其中的伴奏，整个乐章美不胜收。那么，让我们沉下心来仔细体味吧；
+
+<!-- more -->
 
 
 ## RSMC (Recoverable Sequence Maturity Contract) -- 序列到期可撤销合约RSMC
@@ -231,7 +226,7 @@ OP ENDIF
 
 ![img](https://raw.githubusercontent.com/brain-zhang/memoryboxes.github.io/source/images/20191126/htlc2-1.jpg)
 
-这个图跟我们在更新Commitment Tx的时候没有多大区别，最大的不同就是我们多了一个Output: 即C2a,C2b中的第二个Output;
+这个图跟我们在更新Commitment Tx的时候没有多大区别，最大的不同就是我们多了一个Output: 即C2a,C2b中的Output2;
 
 这个输出就代表着0.1BTC的HTLC的完整逻辑；要花费它可以有两种方式，就是我们上面所定义的两种路径：
 
@@ -282,9 +277,7 @@ HTLC 构造之后，为了终止 HTLC Off-chain 需要双方同意渠道的状�
 
 ## 总结
 
-为了研究解决Inbound Capacity的问题，我们不可避免的又把闪电网路的细节回顾了一遍；
-
-为了学习loop，我们需要理解HTLC；但文章也因此拉长了，我们想偷个懒，Loop放到下一篇文章再来介绍；
+为了研究解决Inbound Capacity的问题，我们不可避免的又把闪电网路的细节回顾了一遍；我们需要理解HTLC；但文章也因此拉长了，我们把解决方案的探讨留给下一篇文章。
 
 
 #### 最后，让我们再次自我鞭策：饥渴求知，虚怀若愚(Stay Hungry, Stay Foolish)
