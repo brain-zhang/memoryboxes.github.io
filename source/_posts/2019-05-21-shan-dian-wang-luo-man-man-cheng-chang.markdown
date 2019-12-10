@@ -3,7 +3,7 @@ layout: post
 title: "闪电网络慢慢成长"
 date: 2019-05-21 09:44:25 +0800
 comments: true
-categories: blockchain
+categories: blockchain lightning
 ---
 学习一件事情的最好办法就是尽可能去用。
 
