@@ -630,7 +630,7 @@ word:hello:private:1c8aff950685c2ed4bc3174f3472287b56d9517b9c948127319a09a7a36de
 
 经历了无休止的利益、法律、技术等等辩论后，以太坊社区分裂了。争论的结果就是诞生了ETH Classic (即ETC)项目；一批坚持`代码即正义`者分裂出来创造了ETH Classic 网络，这个项目称自己才是真正的以太坊，并承认黑客的攻击行为且继续将这条链运行下去。而现在仍旧运行的Ethereum网络保护了投资者的利益，做出了妥协；
 
-这个分叉开启于Ethereum网络Block编号为[1920000](https://gastracker.io/block/0x94365e3a8c0b35089c1d1195081fe7489b528a84b22199c916180db8b28ade7f)区块。
+这个分叉开启于Ethereum网络Block编号为[1192000](https://etherscan.io/block/1192000)区块。
 
 这是世界上第一次公开的人为的区块链分叉事件。但是好戏才刚刚开始。
 
