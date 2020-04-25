@@ -49,7 +49,7 @@ $ cd BangToken
 $ truffle init
 ```
 
-3.  开始编辑我们的棒棒糖Token合约
+3. 开始编辑我们的棒棒糖Token合约
 
 ```
 $ vim contracts/BangToken.sol
