@@ -50,7 +50,7 @@ $ truffle init
 ```
 
 3.  开始编辑我们的棒棒糖Token合约
-4.
+
 ```
 $ vim contracts/BangToken.sol
 
