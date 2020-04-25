@@ -46,11 +46,11 @@ categories: blockchain
 ```
 $ mkdir BangToken
 $ cd BangToken
-$ truffle init 
+$ truffle init
 ```
 
 3.  开始编辑我们的棒棒糖Token合约
-
+4.
 ```
 $ vim contracts/BangToken.sol
 
@@ -58,13 +58,13 @@ pragma solidity ^0.5.0;
 contract BangToken {
     mapping (address => uint256) public balanceOf;
     constructor(uint256 initialSupply) public {
-        balanceOf[msg.sender] = initialSupply;              
+        balanceOf[msg.sender] = initialSupply;
     }
     function transfer(address _to, uint256 _value) public {
-        require(balanceOf[msg.sender] >= _value);           
-        require(balanceOf[_to] + _value >= balanceOf[_to]); 
-        balanceOf[msg.sender] -= _value;                    
-        balanceOf[_to] += _value;                  
+        require(balanceOf[msg.sender] >= _value);
+        require(balanceOf[_to] + _value >= balanceOf[_to]);
+        balanceOf[msg.sender] -= _value;
+        balanceOf[_to] += _value;
     }
 }
 ```
@@ -78,6 +78,7 @@ var BangToken = artifacts.require("BangToken");
 module.exports = function(deployer) {
   deployer.deploy(BangToken);
 };
+
 ```
 
 5. 编译部署上链
@@ -91,8 +92,8 @@ $ truffle migrate
 * 可以在部署的时候指定货币的总体供应量
 * 可以执行央行的角色，把货币分发给其他人；至于分发的方式，就看你的心情了
     - 可以像以太坊众筹一样，为某个时间点的所有比特币持有者做个快照，然后按照比特币的持有量给所有持有人发币
-    - 可以搞宣传诈骗，引那些不明真相的群众花钱来买你成本只有0.001ETH的棒棒糖币
-    - 纯粹为了玩，发行1000万亿货币随机分发给所有以太坊玩家
+    - 可以搞宣传诈骗，先创建一个美轮美奂的高大上的网站，然后引那些不明真相的群众花钱来买你成本只有0.001ETH的棒棒糖币
+    - 纯粹为了玩，发行1000万亿货币随机分发给所有以太坊玩家；这也是大多数山寨Token的初始发行办法--先把场子热起来；
 
 
 这个合虽然简单，但是已经完成了货币的基本功能：贮存和转移，而且是一个全球通用的，不需要任何组织背书，完全依赖于以太坊的数学体系运转的电子货币；
@@ -104,7 +105,7 @@ $ truffle migrate
 
 上面的货币虽然简单好用，但是有一些缺陷：
 
-* 初始发行量定了就不能改了，以后不能在增发货币
+* 初始发行量定了就不能改了，以后不能再增发货币
 * 发行出去的货币无法注销
 * 初始发行者的权利不能转让
 * 无法开展融资等活动
@@ -112,6 +113,6 @@ $ truffle migrate
 
 为了解决这些问题，我们想要一个更高级一点的棒棒糖货币；毕竟，金融就是一件把事情越做越复杂的活儿，这样才好浑水摸鱼嘛^_^；
 
-这么搞下来10行代码肯定不止了，但是程序员最大的特称就是造轮子，早就有人把这些东西封装成现成的库合约了，我们引入一下，代码量反而更少了；
+这么搞下来10行代码肯定不止了，但是程序员最大的特长就是造轮子，早就有人把这些东西封装成现成的库合约了，我们引入一下，代码量反而更少了；
 
 ~~~ 填坑中
