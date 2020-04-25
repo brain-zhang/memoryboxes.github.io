@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "十行代码颠覆世界金融体系"
+title: "十行代码挑战世界金融体系"
 date: 2020-04-23 15:47:39 +0800
 comments: true
 categories: blockchain
