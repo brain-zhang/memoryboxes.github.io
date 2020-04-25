@@ -50,6 +50,7 @@ $ truffle init
 ```
 
 3.  开始编辑我们的棒棒糖Token合约
+
 ```
 $ vim contracts/BangToken.sol
 
@@ -77,7 +78,6 @@ var BangToken = artifacts.require("BangToken");
 module.exports = function(deployer) {
   deployer.deploy(BangToken);
 };
-
 ```
 
 5. 编译部署上链
