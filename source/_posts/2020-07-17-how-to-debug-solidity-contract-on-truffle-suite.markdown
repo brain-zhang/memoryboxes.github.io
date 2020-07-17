@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to debug solidity contract on truffle suite"
+title: "How to do logging on solidity contract with truffle suite"
 date: 2020-07-17 17:33:45 +0800
 comments: true
 categories: blockchain
@@ -18,11 +18,13 @@ https://github.com/trufflesuite/truffle-logger-example
 
 步骤如下：
 
-1. 首先在主合约的同级目录添加Console.sol合约:
+* 首先在主合约的同级目录添加Console.sol合约:
 
-https://github.com/trufflesuite/truffle/blob/truffleLogger/packages/core/lib/logging/Console.sol
+```
+wget https://raw.githubusercontent.com/trufflesuite/truffle/truffleLogger/packages/core/lib/logging/Console.sol
+```
 
-2. 然后在部署脚本里面增加这个库的链接(以官方示例MetaCoin为例)
+* 然后在部署脚本里面增加这个库的链接(以官方示例MetaCoin为例)
 
 ```
 $ vim migrations/2_deploy_contracts.js
@@ -41,7 +43,7 @@ module.exports = function(deployer) {
 
 ```
 
-3. 在需要打印log的单元测试中引入Console.sol
+* 在需要打印log的单元测试中引入Console.sol
 
 ```
 $ vim test/TestMetaCoin.sol
