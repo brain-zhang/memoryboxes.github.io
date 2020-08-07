@@ -48,7 +48,6 @@ $ mkdir CakeCoin
 $ cd CakeCoin
 $ truffle init
 ```
-
 3. 开始编辑我们的棒棒糖Token合约
 
 ```
@@ -68,7 +67,6 @@ contract CakeCoin {
     }
 }
 ```
-
 4. 编写一个部署脚本
 
 ```
@@ -80,7 +78,6 @@ module.exports = function(deployer) {
 };
 
 ```
-
 5. 编译部署上链
 
 ```
@@ -102,7 +99,7 @@ $ truffle migrate
 
 ### 第二版
 
-虽然这个CakeCoin已经具备了最简单的发行和转账的功能，但是查询总发行零，账户持有量等等操作只能通过与合约交互来实现，对于非码农人士太困难了，我们就增加必要的接口:
+虽然这个CakeCoin已经具备了最简单的发行和转账的功能，但是查询总发行量，账户持有量等等操作只能通过与合约交互来实现，对于非码农人士太困难了，我们需要增加必要的接口:
 
 ```
 pragma solidity ^0.5.0;
@@ -143,9 +140,9 @@ contract CakeCoin {
 
 然后提供一个web UI操作界面，具体代码可以参考：
 
-https://github.com/brain-zhang/CakeCoin/tree/branches/1.2
+https://github.com/brain-zhang/CakeCoin/tree/branches/1.2/src
 
-### 第二版
+### 第三版
 
 上面的货币虽然简单好用，但是有一些缺陷：
 
@@ -162,5 +159,91 @@ https://github.com/brain-zhang/CakeCoin/tree/branches/1.2
 https://github.com/OpenZeppelin/openzeppelin-contracts
 
 我们引入一下，代码量反而更少了；
+
+```
+pragma solidity ^0.4.0;
+
+import 'openzeppelin-solidity/contracts/token/ERC20/StandardToken.sol';
+
+contract CakeCoin is StandardToken {
+    string public constant name = 'CakeCoin';
+    string public constant symbol = 'CAKECOIN';
+    uint8 public constant decimals = 2;
+    uint constant _initial_supply = 10000;
+
+    function CakeCoin() public {
+        totalSupply_ = _initial_supply;
+        balances[msg.sender] = _initial_supply;
+        emit Transfer(address(0), msg.sender, _initial_supply);
+    }
+}
+
+```
+
+以上的合约相比我们第二版，可以一眼看出有几个变化:
+
+1. 有了个正式的名字 `CakeCoin`, 这是ERC20的规范
+2. 有了个正式的货币符号 `CAKECOIN`, 这是ERC20的规范
+3. 有了精度限制, 这是ERC20的规范
+4. 有了初始发行量, 这是ERC20的规范
+5. 有了以上这些明文约定的东西，就很容易被第三方的交易所解析，可以直接上架交易
+
+`openzeppelin-contracts` 项目发展非常快，为了便于演示，我们先采用其早期版本作为基础库；其truffle-config.js配置如下：
+
+https://github.com/brain-zhang/CakeCoin/blob/branches/1.3/truffle-config.js``
+
+执行下面命令重新部署:
+
+```
+truffle migrate --reset
+```
+
+
+如此一来我们就有了一个完整的符合[ERC20](https://docs.openzeppelin.com/contracts/3.x/erc20)规范的代币；让我们先在命令行里面体验一下其能力：
+
+```
+$ truffle console
+
+truffle(development)> CakeCoin.address
+
+'0xb634675Ea3B3aDBb2B72A975cD7Ed04Be79c4873'
+
+```
+
+得到了合约的部署地址，然后我们执行下列命令看一下货币发行总量:
+
+```
+truffle(development)> let supply = await CakeCoin.deployed().then(instance => instance.totalSupply())
+truffle(development)> supply.toString()
+
+'10000'
+```
+
+接着，我们用本地的测试区块链上创建的账户进行一笔转账，并验证其余额:
+
+```
+truffle(development)> let accounts;
+truffle(development)> web3.eth.getAccounts((err,res) => { accounts = res });
+truffle(development)> CakeCoin.deployed().then(instance => { instance.balanceOf(accounts[0]).then((balance) => console.log(balance.toString())) })
+truffle(development)> 10000
+
+truffle(development)> CakeCoin.deployed().then(instance => { instance.transfer(accounts[1], 100) })
+
+truffle(development)> CakeCoin.deployed().then(instance => { instance.balanceOf(accounts[0]).then((balance) => console.log(balance.toString())) })
+truffle(development)> 9900
+
+truffle(development)> CakeCoin.deployed().then(instance => { instance.balanceOf(accounts[1]).then((balance) => console.log(balance.toString())) })
+truffle(development)> 100
+
+```
+
+OK，验证完毕，这样我们创造了一个符合ERC20规范，可以直接上架交易所，具备基本的发行、转账功能的代币；但是我们得到的还不止于此~~~
+
+ERC20最大的功能创新是使用了approve和transferFrom的两步式交易。这个流程允许代币的持有人授权其他地址操纵他们的代币。这通常用于授权给某一个合约地址，进行代币的分发，但也可以用于交易所的场景。
+
+例如，某个公司正在销售ICO的代币，他们使用授权某个众筹合约的地址进行一定数量的代币分发。这个众筹合约就可以使用transferFrom把代币从持有人的余额中转账给ICO代币的买方;
+
+下面我们就演示如何创建一个众筹合约来配合我们的CakeCoin实现一个自动化的代币分发
+
 
 ~~~ 填坑中
