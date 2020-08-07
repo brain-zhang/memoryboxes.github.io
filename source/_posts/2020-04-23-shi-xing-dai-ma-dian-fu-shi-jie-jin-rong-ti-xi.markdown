@@ -13,7 +13,7 @@ categories: blockchain
 
 众所周知，自从Ethereum的ERC20、ERC223、ERC777等Token合约标准诞生以来，在Ethereum上面发行一种货币的成本低的令人发指，我测算，按照现在的ETH汇率，大概10块人民币就能让你发行一个具有发行、转账、增发、销毁等基本功能的电子货币，如果导入OpenZeppelin程序库，在部署合约的时候多出100块钱左右，就可以拥有一个具有融资上限、拍卖、行权计划和其他更复杂的功能的货币。
 
-伟大的先知Andreas M. Antonopoulos 曾经在2014年加拿大关于比特币的听证会上表示，未来的货币发行市场可能会超出所有人的想象，一个十几岁的屁大小子，用10行代码足以创造最灵活最有信用的货币；借助区块链的技术，一个幼儿园的童星创造的货币，可能比历史上最有权力的君王创造的货币用户更多；
+先知Andreas M. Antonopoulos 曾经在2014年加拿大关于比特币的听证会上表示，未来的货币发行市场可能会超出所有人的想象，一个十几岁的屁大小子，用10行代码足以创造最灵活最有信用的货币；借助区块链的技术，一个幼儿园的童星创造的货币，可能比历史上最有权力的君王创造的货币用户更多；
 
 虽然比特币发明以来，把它的代码Folk一份，修改两个参数就出来"颠覆世界"的山寨币已经数不胜数，但真正把"造币"这件事情变成无门槛，像吃棒棒糖一样容易的，还是得说以太坊的ERC20的横空出世；
 
@@ -44,18 +44,18 @@ categories: blockchain
 2. 然后我们用Truffle命令建立一个简单的模板项目
 
 ```
-$ mkdir BangToken
-$ cd BangToken
+$ mkdir CakeCoin
+$ cd CakeCoin
 $ truffle init
 ```
 
 3. 开始编辑我们的棒棒糖Token合约
 
 ```
-$ vim contracts/BangToken.sol
+$ vim contracts/CakeCoin.sol
 
 pragma solidity ^0.5.0;
-contract BangToken {
+contract CakeCoin {
     mapping (address => uint256) public balanceOf;
     constructor(uint256 initialSupply) public {
         balanceOf[msg.sender] = initialSupply;
@@ -74,9 +74,9 @@ contract BangToken {
 ```
 $ vim migrations/2_deploy_contact.js
 
-var BangToken = artifacts.require("BangToken");
+var CakeCoin = artifacts.require("CakeCoin");
 module.exports = function(deployer) {
-  deployer.deploy(BangToken);
+  deployer.deploy(CakeCoin);
 };
 
 ```
@@ -100,6 +100,50 @@ $ truffle migrate
 
 不要小看这10行代码哦，在所谓的“区块链技术”纷纷攘攘的日子里，很多所谓的金融创新就是靠着这样的代码，大肆圈钱；甚至有个国家，咱就不指明了，发行个啥石油币，本质上一样的套路；
 
+### 第二版
+
+虽然这个CakeCoin已经具备了最简单的发行和转账的功能，但是查询总发行零，账户持有量等等操作只能通过与合约交互来实现，对于非码农人士太困难了，我们就增加必要的接口:
+
+```
+pragma solidity ^0.5.0;
+
+contract CakeCoin {
+/* This creates an array with all balances */
+    mapping (address => uint256) public balanceOf;
+    uint256 public totalSupply;
+
+    event TransferEvent(address indexed _from, address indexed _to, uint256 _value);
+
+    /* Initializes contract with initial supply tokens to the creator of the contract */
+    constructor(uint256 initialSupply) public {
+        balanceOf[msg.sender] = initialSupply;
+        totalSupply = initialSupply;
+        // Give the creator all initial tokens
+    }
+
+    /* Send coins */
+    function transfer(address _to, uint256 _value) public {
+        require(balanceOf[msg.sender] >= _value);
+        // Check if the sender has enough
+        require(balanceOf[_to] + _value >= balanceOf[_to]);
+        // Check for overflows
+        balanceOf[msg.sender] -= _value;
+        // Subtract from the sender
+        balanceOf[_to] += _value;
+        // Add the same to the recipient
+        emit TransferEvent(msg.sender, _to, _value);
+    }
+
+        function getBalance(address addr) public view returns(uint) {
+                return balanceOf[addr];
+        }
+}
+
+```
+
+然后提供一个web UI操作界面，具体代码可以参考：
+
+https://github.com/brain-zhang/CakeCoin/tree/branches/1.2
 
 ### 第二版
 
@@ -111,8 +155,12 @@ $ truffle migrate
 * 无法开展融资等活动
 * .....
 
-为了解决这些问题，我们想要一个更高级一点的棒棒糖货币；毕竟，金融就是一件把事情越做越复杂的活儿，这样才好浑水摸鱼嘛^_^；
+为了解决这些问题，我们想要一个更高级一点的糖果货币；毕竟，金融就是一件把事情越做越复杂的活儿，这样才好浑水摸鱼嘛^_^；
 
-这么搞下来10行代码肯定不止了，但是程序员最大的特长就是造轮子，早就有人把这些东西封装成现成的库合约了，我们引入一下，代码量反而更少了；
+这么搞下来10行代码肯定不止了，但是程序员最大的特长就是造轮子，早就有人把这些东西封装成现成的库合约了,比如这个项目：
+
+https://github.com/OpenZeppelin/openzeppelin-contracts
+
+我们引入一下，代码量反而更少了；
 
 ~~~ 填坑中
