@@ -190,7 +190,7 @@ contract CakeCoin is StandardToken {
 
 `openzeppelin-contracts` 项目发展非常快，为了便于演示，我们先采用其早期版本作为基础库；其truffle-config.js配置如下：
 
-https://github.com/brain-zhang/CakeCoin/blob/branches/1.3/truffle-config.js``
+https://github.com/brain-zhang/CakeCoin/blob/branches/1.3/truffle-config.js
 
 执行下面命令重新部署:
 
@@ -247,3 +247,8 @@ ERC20最大的功能创新是使用了approve和transferFrom的两步式交易�
 
 
 ~~~ 填坑中
+
+
+### 总结
+
+最后，也许你已经被这些名词、规范、绕来绕去的工具链给搞晕了；那么我们只需要认清一件事，就是这个领域在高速的发展，今天被热捧的概念，也许明天就会被抛弃；在这种蛮荒时代，骗子层出不穷，要当心啊~~~
