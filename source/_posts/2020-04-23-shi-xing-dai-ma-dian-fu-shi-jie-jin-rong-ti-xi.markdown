@@ -248,6 +248,10 @@ ERC20最大的功能创新是使用了approve和transferFrom的两步式交易�
 
 ~~~ 填坑中
 
+```
+CakeCoin.deployed().then(instance => { instance.transfer(Faucet.address, 100) })
+```
+
 
 ### 总结
 
