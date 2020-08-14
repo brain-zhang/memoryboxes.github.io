@@ -245,12 +245,102 @@ ERC20最大的功能创新是使用了approve和transferFrom的两步式交易�
 
 下面我们就演示如何创建一个众筹合约来配合我们的CakeCoin实现一个自动化的代币分发
 
+#### 首先我们需要建立一个接收CakeCoin的合约Demo
+
+```
+pragma solidity ^0.4;
+
+import 'openzeppelin-solidity/contracts/token/ERC20/StandardToken.sol';
+
+// A faucet for ERC20 token CakeCoin
+contract CakeCoinFaucet {
+
+        StandardToken public CakeCoin;
+        address public CakeCoinOwner;
+
+        // CakeCoinFaucet constructor, provide the address of CakeCoin contract and
+        // the owner address we will be approved to transferFrom
+        constructor(address _CakeCoin, address _CakeCoinOwner) public {
+
+                // Initialize the CakeCoin from the address provided
+                CakeCoin = StandardToken(_CakeCoin);
+                CakeCoinOwner = _CakeCoinOwner;
+        }
+
+        function withdraw(uint withdraw_amount) public {
+
+        // Limit withdrawal amount to 10 CakeCoin
+        require(withdraw_amount <= 1000);
+
+                // Use the transferFrom function of CakeCoin
+                CakeCoin.transferFrom(CakeCoinOwner, msg.sender, withdraw_amount);
+    }
+
+        // REJECT any incoming ether
+        function () public payable { revert(); }
+
+}
+
+```
+这个合约的作用非常简单，就是接收CakeCoin，然后允许接收者提现到指定地址；
+
+#### 修改migrate同时部署CakeCoin以及CakeCoinFaucet
+
+因为CakeCoinFaucet依赖于CakeCoin合约的部署，所以我们修订之前的2_deploy_contracts.js为:
+
+```
+const CakeCoin = artifacts.require("CakeCoin");
+const CakeCoinFaucet = artifacts.require("CakeCoinFaucet");
+
+module.exports = function(deployer, network, accounts) {
+  var owner = accounts[0];
+  deployer.deploy(CakeCoin, {from:owner}).then(function(){
+    // Then deploy CakeCoinFaucet and pass the address of CakeCoinToken  and the
+    // address of the owner of all the CakeCoin who will approve CakeCoinFaucet
+    console.log(CakeCoin.address);
+    return deployer.deploy(CakeCoinFaucet, CakeCoin.address, owner);
+  });
+};
+
+```
+
+注意，CakeCoin部署完毕后，才能得到实际的合约地址，然后CakeCoinFaucet的合约部署需要传入这个地址；
+
+
+#### 验证
+
+首先看一下CakeCoin初始发币数目:
+
+```
+truffle(development)> let accounts;
+truffle(development)> web3.eth.getAccounts((err,res) => { accounts = res });
+truffle(development)> CakeCoin.deployed().then(instance => { instance.balanceOf(accounts[0]).then((balance) => console.log(balance.toString())) })
+truffle(development)> 10000
+```
+
+看一下第二个测试地址的币:
+
+```
+truffle(development)> CakeCoin.deployed().then(instance => { instance.balanceOf(accounts[0]).then((balance) => console.log(balance.toString())) })
+truffle(development)> 0
+```
+
+好了，我们先转账到CakeCoinFaucet合约1000个CakeCoin;
+```
+truffle(development)> CakeCoin.deployed().then(instance => { instance.approve(CakeCoinFaucet.address, 1000) })
+truffle(development)> CakeCoin.deployed().then(instance => { instance.balanceOf(accounts[0]).then((balance) => console.log(balance.toString())) })
+truffle(development)> 9000
+```
+
+提现试一下:
+```
+truffle(development)> CakeCoinFaucet.deployed().then(instance => { instance.withdraw(accounts[1], 1000) })
+truffle(development)> CakeCoin.deployed().then(instance => { instance.balanceOf(accounts[1]).then((balance) => console.log(balance.toString())) })
+truffle(development)> 1000
+```
 
 ~~~ 填坑中
 
-```
-CakeCoin.deployed().then(instance => { instance.transfer(Faucet.address, 100) })
-```
 
 
 ### 总结
