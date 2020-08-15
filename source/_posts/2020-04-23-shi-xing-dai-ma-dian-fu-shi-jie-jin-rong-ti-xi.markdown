@@ -325,18 +325,16 @@ truffle(development)> CakeCoin.deployed().then(instance => { instance.balanceOf(
 truffle(development)> 0
 ```
 
-好了，我们先转账到CakeCoinFaucet合约1000个CakeCoin
+好了，我们先批准CakeCoinFaucet合约对CakeCoin的控制
 
 ```
-truffle(development)> CakeCoin.deployed().then(instance => { instance.approve(CakeCoinFaucet.address, 1000) })
-truffle(development)> CakeCoin.deployed().then(instance => { instance.balanceOf(accounts[0]).then((balance) => console.log(balance.toString())) })
-truffle(development)> 9000
+truffle(development)> CakeCoin.deployed().then(instance => { instance.approve(CakeCoinFaucet.address, 10000) })
 ```
 
 提现试一下:
 
 ```
-truffle(development)> CakeCoinFaucet.deployed().then(instance => { instance.withdraw(accounts[1], 1000) })
+truffle(development)> CakeCoinFaucet.deployed().then(instance => { instance.withdraw(1000, {from:web3.eth.accounts[1]}) })
 truffle(development)> CakeCoin.deployed().then(instance => { instance.balanceOf(accounts[1]).then((balance) => console.log(balance.toString())) })
 truffle(development)> 1000
 ```
