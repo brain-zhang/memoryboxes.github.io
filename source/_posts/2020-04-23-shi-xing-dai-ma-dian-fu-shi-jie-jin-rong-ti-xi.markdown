@@ -334,7 +334,8 @@ truffle(development)> CakeCoin.deployed().then(instance => { instance.approve(Ca
 提现试一下:
 
 ```
-truffle(development)> CakeCoinFaucet.deployed().then(instance => { instance.withdraw(1000, {from:web3.eth.accounts[1]}) })
+truffle(development)> CakeCoinFaucet.deployed().then(instance => { faucet = instance})
+truffle(development)> faucet.withdraw(1000, {from:web3.eth.accounts[1]})
 truffle(development)> CakeCoin.deployed().then(instance => { instance.balanceOf(accounts[1]).then((balance) => console.log(balance.toString())) })
 truffle(development)> 1000
 ```
