@@ -340,6 +340,52 @@ truffle(development)> CakeCoin.deployed().then(instance => { instance.balanceOf(
 truffle(development)> 1000
 ```
 
+#### 功能增强
+
+翻阅[ERC20基类代码](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol)可以发现，它其实没有什么神奇之处，只不过是把各个电子货币的名称、发行量、支持接口标准化了而已，其中最重要的增强就是为其它合约支持ERC20代币提供了两个接口approve和trnasfrom；
+
+我们当然可以在ERC20的标准之上添加其它增强功能
+
+##### 比如创始人可以随时销毁这个合约
+
+```
+contract owned {
+      address payable owner;
+      // Contract constructor: set owner
+      constructor() public {
+              owner = msg.sender;
+      }
+      // Access control modifier
+      modifier onlyOwner {
+             require(msg.sender == owner,
+                     "Only the contract owner can call this function");
+           _;
+      }
+}
+
+contract CakeCoin is StandardToken, owned {
+       // Contract destructor
+       function destroy() public onlyOwner {
+               selfdestruct(owner);
+       }
+}
+
+```
+
+##### 比如创始人可以销毁代币，或者增发代币
+
+https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20Burnable.sol
+
+
+##### 比如创始人可以临时终止代币的使用
+
+https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20Pausable.sol
+
+#### 甚至可以在某个合适的时间点对代币金融系统做个快照
+
+https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20Snapshot.sol
+
+
 #### 妖魔横行
 
 我们用10行代码就创建了可以在技术层面媲美现代金融系统中最安全的电子货币，这一切是如此轻而易举，总觉得有哪些地方不大对劲~~~
@@ -360,6 +406,9 @@ truffle(development)> 1000
 人人都能发币，发行的货币可以毫无限制、毫无门槛的上架全世界交易流通的去中心化交易所，这就像是一个不受监管、零门槛的IPO市场，会发生什么就不用再多说了吧;
 
 这是一个完全颠覆传统证券市场、传统赌博行业的一个新兴割韭菜基地；赌博投机者以其敢为人先的魄力，绝对的技术Geek范、对新技术的开放心态、野兽般的学习进取精神，还有绝妙的工程能力让人肃然起敬；
+
+
+### 第四版
 
 ~~~ 填坑中
 
