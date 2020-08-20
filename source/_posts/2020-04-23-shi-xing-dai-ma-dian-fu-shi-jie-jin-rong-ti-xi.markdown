@@ -452,6 +452,10 @@ http://github.com/ethereum/EIPs/issues/777
 
 同样的，增强越多，实施就越慢，ERC777也还在社区讨论中......
 
+注意，开发ERC777 Token上架UniSwap，如果代码处理不当，会有非常严重的安全风险，今年已经有无数Hack事件教用户做人了，请参考下面的最佳实践：
+
+https://github.com/OpenZeppelin/exploit-uniswap
+
 
 ### 番外篇(ERC721)
 
