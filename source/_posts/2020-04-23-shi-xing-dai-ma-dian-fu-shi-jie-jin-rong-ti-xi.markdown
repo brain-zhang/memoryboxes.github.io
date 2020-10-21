@@ -48,6 +48,7 @@ $ mkdir CakeCoin
 $ cd CakeCoin
 $ truffle init
 ```
+
 3. 开始编辑我们的棒棒糖Token合约
 
 ```
@@ -66,6 +67,7 @@ contract CakeCoin {
         balanceOf[_to] += _value;
     }
 }
+
 ```
 4. 编写一个部署脚本
 
@@ -486,7 +488,7 @@ https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/tok
 
 到目前为止，我们已经为所有现实世界中拥有的证券化手段搬上了区块链，但是注意到了吗？这一切还有局限：
 
-从ERC20到ERC721，每个提案都是根据区块链应用的一步步发展慢慢提出草案来标准化的；刚开始大家想的比较简单，就是一类资产对应一个合约；但很快，就有了更大的远景，比如：
+从ERC20到ERC721，每个提案都是根据区块链应用的一步步发展慢慢提出草案来标准化的；刚开始大家想的比较简单，就是一类资产对应一个合约；但很快，就有了更大的愿景，比如：
 
 如何在一个合约中发行多个代币，或多项资产？
 
