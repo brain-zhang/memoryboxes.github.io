@@ -174,3 +174,6 @@ ul, ol {margin-bottom: 0.6em;}
 	margin:0px;
 	padding:0px;
 }
+
+// disable toc in index
+.blog-index #markdown-toc {  display: none;}
