@@ -26,6 +26,8 @@ User=ubuntu
 Type=forking
 PIDFile=/run/bitcoind/bitcoind.pid
 Restart=on-failure
+StandardOutput=/var/log/bitcoind.log
+StandardError=/var/log/bitcoind.log
 
 # Hardening measures
 ####################
@@ -50,3 +52,30 @@ WantedBy=multi-user.target
 ```
 
 ## Reload systemctl daemon
+
+```
+systemctl daemon-reload
+```
+
+## Enabled new bitcoind service
+
+```
+systemctl enable bitcoind
+```
+
+## Commands to start or stop the service
+
+```
+systemctl stop bitcoind
+systemctl start bitcoind
+```
+
+## Show service status
+
+```
+systemctl status bitcoind.service
+```
+
+More info in:
+
+https://github.com/bitcoin/bitcoin/tree/master/contrib/init
