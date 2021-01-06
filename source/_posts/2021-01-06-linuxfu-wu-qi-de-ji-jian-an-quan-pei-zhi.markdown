@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "linux服务器的极简安全配置"
+title: "linux服务器极简安全配置"
 date: 2021-01-06 17:33:38 +0800
 comments: true
 categories: tools
