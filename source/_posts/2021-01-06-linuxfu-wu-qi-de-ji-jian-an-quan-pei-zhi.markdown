@@ -21,43 +21,43 @@ categories: tools
 
 1. 增加一个用户组 `develop`
 
-```
-groupadd develop
-```
+    ```
+    groupadd develop
+    ```
 
 2. 增加一个用户`brain`，设置密码，并把他加入到组 `develop`
 
-```
-useradd -d /home/brain -s /bin/bash -m brain
-passwd brain
-usermod -a -G develop brain
-```
+    ```
+    useradd -d /home/brain -s /bin/bash -m brain
+    passwd brain
+    usermod -a -G develop brain
+    ```
 
 3. 允许用户登录
 
-```
-vim /etc/sudoers
-```
+    ```
+    vim /etc/sudoers
+    ```
 
-找到类似下面的一行，并在后面增加一行
+    找到类似下面的一行，并在后面增加一行
 
-```
-root     ALL=(ALL:ALL) ALL
-brain    ALL=(ALL) NOPASSWD: ALL
-```
+    ```
+    root     ALL=(ALL:ALL) ALL
+    brain    ALL=(ALL) NOPASSWD: ALL
+    ```
 
-上面的NOPASSWD表示，切换sudo的时候，不需要输入密码，这样比较省事。如果出于安全考虑，也可以强制要求输入密码。
+    上面的NOPASSWD表示，切换sudo的时候，不需要输入密码，这样比较省事。如果出于安全考虑，也可以强制要求输入密码。
 
-```
-root    ALL=(ALL:ALL) ALL
-brain    ALL=(ALL:ALL) ALL
-```
+    ```
+    root    ALL=(ALL:ALL) ALL
+    brain    ALL=(ALL:ALL) ALL
+    ```
 
-然后，切换到新用户的身份，检查到这一步为止，是否一切正常。
+    然后，切换到新用户的身份，检查到这一步为止，是否一切正常。
 
-```
-su brain
-```
+    ```
+    su brain
+    ```
 
 
 #### 防火墙
@@ -78,12 +78,12 @@ su brain
 
 1. 端口
 
-```
-vim /etc/ssh/sshd_config
+    ```
+    vim /etc/ssh/sshd_config
 
-Port 22
-->
-Port 12222
+    Port 22
+    ->
+    Port 12222
 ```
 
 2. DNS
@@ -91,7 +91,7 @@ Port 12222
 
 3. Key
 
-首先，确定有SSH公钥（一般是文件~/.ssh/id_rsa.pub），如果没有的话，使用ssh-keygen命令生成一个
+    首先，确定有SSH公钥（一般是文件~/.ssh/id_rsa.pub），如果没有的话，使用ssh-keygen命令生成一个
 
 
 
