@@ -24,6 +24,7 @@ categories: tools
 ```
 groupadd develop
 ```
+
 2. 增加一个用户`brain`，设置密码，并把他加入到组 `develop`
 
 ```
@@ -31,6 +32,7 @@ useradd -d /home/brain -s /bin/bash -m brain
 passwd brain
 usermod -a -G develop brain
 ```
+
 3. 允许用户登录
 
 ```
@@ -83,6 +85,7 @@ Port 22
 ->
 Port 12222
 ```
+
 2. DNS
 
 
