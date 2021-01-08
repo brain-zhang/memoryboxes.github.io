@@ -106,9 +106,10 @@ categories: tools
 
     首先，确定有SSH公钥（一般是文件~/.ssh/id_rsa.pub），如果没有的话，使用ssh-keygen命令生成一个
 
-
     ```
     echo "ssh-rsa [your public key]" > ~/.ssh/authorized_keys
+    ```
+    ```
     sudo chmod 600 ~/.ssh/authorized_keys && chmod 700 ~/.ssh/
     ```
 
@@ -117,11 +118,21 @@ categories: tools
 
     ```
     PermitRootLogin no
+    ```
+    ```
     PermitEmptyPasswords no
+    ```
+    ```
     PasswordAuthentication no
+    ```
 
+    ```
     RSAAuthentication yes
+    ```
+    ```
     PubkeyAuthentication yes
+    ```
+    ```
     AuthorizedKeysFile .ssh/authorized_keys
     ```
 
@@ -147,6 +158,8 @@ categories: tools
     centos:
     ```
     yum -y install epel-release
+    ```
+    ```
     sudo yum install fail2ban
     ```
 
@@ -159,7 +172,7 @@ categories: tools
 
 2. 编辑规则文件
 
-    ```
+```
     vim /etc/fail2ban/jail.local
     [DEFAULT]
     ignoreip = 127.0.0.1/8
@@ -179,11 +192,11 @@ categories: tools
     port    = 12222
     action = %(action_mwl)s
     logpath = /var/log/secure
-    ```
+```
 
 3. 设定邮件转发
 
-    ```
+```
     vim /etc/nail.rc
 
     ## Add sendmail settings
@@ -194,11 +207,11 @@ categories: tools
     set smtp-auth=login
     set ssl-verify=ignore
     set nss-config-dir=/etc/pki/nssdb
-    ```
+```
 
 4. 设定邮件模板
 
-    ```
+```
      vim /etc/fail2ban/action.d/mail-whois-lines.conf
 
     # Fail2Ban configuration file
@@ -253,11 +266,11 @@ categories: tools
     #
     dest = root
 
-    ```
+```
 
 6. 启动服务，查看状态
 
-    ```
+```
     systemctl start fail2ban
     systemctl status fail2ban
-    ```
+```
