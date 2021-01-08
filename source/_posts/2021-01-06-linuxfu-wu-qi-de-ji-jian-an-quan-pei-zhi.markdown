@@ -96,21 +96,168 @@ categories: tools
 
 2. DNS
 
+    ```
+    UseDNS no
+    ```
+    提升ssh连接速度
+
 
 3. Key
 
     首先，确定有SSH公钥（一般是文件~/.ssh/id_rsa.pub），如果没有的话，使用ssh-keygen命令生成一个
 
+
+    ```
+    echo "ssh-rsa [your public key]" > ~/.ssh/authorized_keys
+    sudo chmod 600 ~/.ssh/authorized_keys && chmod 700 ~/.ssh/
+    ```
+
+    修改/etc/ssh/sshd_config
+
+
+    ```
+    PermitRootLogin no
+    PermitEmptyPasswords no
+    PasswordAuthentication no
+
+    RSAAuthentication yes
+    PubkeyAuthentication yes
+    AuthorizedKeysFile .ssh/authorized_keys
+    ```
+
 4. 重新启动sshd服务让配置生效
 
+    ```
+    systemctl restart sshd
+    ```
 
+5. 验证
+
+    注意，此时不要退出终端；而是另开一个终端，验证配置无误，可以正常登陆后再关闭老终端；
+
+    如果出现什么问题无法登录，而之前的终端窗口又关闭了，如果是远程机房，那就有得麻烦了。所以一切验证无误后再收工，是个好习惯。
 
 
 #### Fail2Ban
 
-警惕那些不怀好意的撞库者
+警惕那些不怀好意的撞库者，用Fail2Ban 将尝试暴力破解的脚本小子自动封禁
 
-jail.local
+1. 安装
 
-nail.rc
+    centos:
+    ```
+    yum -y install epel-release
+    sudo yum install fail2ban
+    ```
 
+    ubuntu:
+    ```
+    sudo apt-get install fail2ban
+    ```
+
+
+
+2. 编辑规则文件
+
+    ```
+    vim /etc/fail2ban/jail.local
+    [DEFAULT]
+    ignoreip = 127.0.0.1/8
+    bantime  = 86400
+    maxretry = 5
+    findtime = 1800
+    destemail = xxxx@xxx.com
+    sender = xxxx@gmail.com
+    mta = mail
+    protocol = tcp
+    banaction = firewallcmd-ipset
+    action = %(action_mwl)s
+
+    [sshd]
+    enabled = true
+    filter  = sshd
+    port    = 12222
+    action = %(action_mwl)s
+    logpath = /var/log/secure
+    ```
+
+3. 设定邮件转发
+
+    ```
+    vim /etc/nail.rc
+
+    ## Add sendmail settings
+    set from=xxxx@gmail.com
+    set smtp=smtps:smtp.gmail.com:587
+    set smtp-auth-user=xxxx@gmail.com
+    set smtp-auth-password=xxxxx
+    set smtp-auth=login
+    set ssl-verify=ignore
+    set nss-config-dir=/etc/pki/nssdb
+    ```
+
+4. 设定邮件模板
+
+    ```
+     vim /etc/fail2ban/action.d/mail-whois-lines.conf
+
+    # Fail2Ban configuration file
+    #
+    # Author: Cyril Jaquier
+    #
+    #
+
+    [Definition]
+
+    # Option: actionstart
+    # Notes.: command executed once at the start of Fail2Ban.
+    # Values: CMD
+    #
+    actionstart = printf %%b "Hi,\n The jail <name> has been started successfully.\n Regards,\n Fail2Ban"|mail -s "[Fail2Ban] <name>: started on `uname -n`" <dest>
+
+    # Option: actionstop
+    # Notes.: command executed once at the end of Fail2Ban
+    # Values: CMD
+    #
+    actionstop = printf %%b "Hi,\n The jail <name> has been stopped.\n Regards,\n Fail2Ban"|mail -s "[Fail2Ban] <name>: stopped on `uname -n`" <dest>
+
+    # Option: actioncheck
+    # Notes.: command executed once before each actionban command
+    # Values: CMD
+    #
+    actioncheck =
+
+    # Option: actionban
+    # Notes.: command executed when banning an IP. Take care that the
+    # command is executed with Fail2Ban user rights.
+    # Tags: See jail.conf(5) man page
+    # Values: CMD
+    #
+    actionban = printf %%b "Hi,\n The IP <ip> has just been banned by Fail2Ban after <failures> attempts against <name>.\n\n Here are more information about <ip>:\n `whois <ip>`\n `/bin/curl http://ip.taobao.com/service/getIpInfo.php?ip=<ip>`\n\n Regards,\n Fail2Ban"|mail -s "[Fail2Ban] <name>: banned <ip> from `uname -n`" <dest>
+
+    # Option: actionunban
+    # Notes.: command executed when unbanning an IP. Take care that the
+    # command is executed with Fail2Ban user rights.
+    # Tags: See jail.conf(5) man page
+    # Values: CMD
+    #
+    actionunban =
+
+    [Init]
+
+    # Default name of the chain
+    #
+    name = default
+
+    # Destination/Addressee of the mail
+    #
+    dest = root
+
+    ```
+
+6. 启动服务，查看状态
+
+    ```
+    systemctl start fail2ban
+    systemctl status fail2ban
+    ```
