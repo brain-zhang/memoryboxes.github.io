@@ -153,7 +153,7 @@ categories: tools
 
 警惕那些不怀好意的撞库者，用Fail2Ban 将尝试暴力破解的脚本小子自动封禁
 
-1. 安装
+* 安装
 
     centos:
     ```
@@ -170,7 +170,7 @@ categories: tools
 
 
 
-2. 编辑规则文件
+* 编辑规则文件
 
 ```
     vim /etc/fail2ban/jail.local
@@ -194,7 +194,7 @@ categories: tools
     logpath = /var/log/secure
 ```
 
-3. 设定邮件转发
+* 设定邮件转发
 
 ```
     vim /etc/nail.rc
@@ -209,7 +209,7 @@ categories: tools
     set nss-config-dir=/etc/pki/nssdb
 ```
 
-4. 设定邮件模板
+* 设定邮件模板
 
 ```
      vim /etc/fail2ban/action.d/mail-whois-lines.conf
@@ -268,7 +268,7 @@ categories: tools
 
 ```
 
-6. 启动服务，查看状态
+* 启动服务，查看状态
 
 ```
     systemctl start fail2ban
