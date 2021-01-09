@@ -291,4 +291,5 @@ categories: tools
 ```
     systemctl start fail2ban
     systemctl status fail2ban
+    fail2ban-client status
 ```
