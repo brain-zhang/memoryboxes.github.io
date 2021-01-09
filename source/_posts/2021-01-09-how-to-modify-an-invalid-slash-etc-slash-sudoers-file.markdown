@@ -6,7 +6,7 @@ comments: true
 categories: tools
 ---
 
-刚说小心驶得万年船，就想自己找方便，手工裸编辑 `/etc/sudoers` 文件把sudo权限搞挂了...-_-
+刚说小心驶得万年船，就想自己偷奸耍滑，手工裸编辑 `/etc/sudoers` 文件把sudo权限搞挂了...-_-
 
 仔细瞅了瞅，少加了一个冒号，导致现在进退两难...
 
@@ -37,7 +37,6 @@ Error executing command as another user: Not authorized
 https://github.com/NixOS/nixpkgs/issues/18012
 
 
-最后的教训是，人就是这样，要求别人头头是道，轮到自己偷奸耍滑；早用`visudo`还有这种事吗？
+最后的教训是：人就是这样，要求别人头头是道，轮到自己偷奸耍滑；早用`visudo`还有这种事吗？
 
-三省吾身，不说了，我得赶紧把其它偷奸耍滑的行为全补好;
-
+三省吾身，不说了，我得赶紧检查下自己其它耍滑头找方便留下的口子;
