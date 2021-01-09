@@ -29,7 +29,13 @@ categories: tools
 
     ```
     useradd -d /home/brain -s /bin/bash -m brain
+    ```
+
+    ```
     passwd brain
+    ```
+
+    ```
     usermod -a -G develop brain
     ```
 
@@ -43,6 +49,9 @@ categories: tools
 
     ```
     root     ALL=(ALL:ALL) ALL
+    ```
+
+    ```
     brain    ALL=(ALL) NOPASSWD: ALL
     ```
 
@@ -50,6 +59,9 @@ categories: tools
 
     ```
     root    ALL=(ALL:ALL) ALL
+    ```
+
+    ```
     brain    ALL=(ALL:ALL) ALL
     ```
 
@@ -109,6 +121,7 @@ categories: tools
     ```
     echo "ssh-rsa [your public key]" > ~/.ssh/authorized_keys
     ```
+
     ```
     sudo chmod 600 ~/.ssh/authorized_keys && chmod 700 ~/.ssh/
     ```
@@ -119,9 +132,11 @@ categories: tools
     ```
     PermitRootLogin no
     ```
+
     ```
     PermitEmptyPasswords no
     ```
+
     ```
     PasswordAuthentication no
     ```
@@ -129,9 +144,11 @@ categories: tools
     ```
     RSAAuthentication yes
     ```
+
     ```
     PubkeyAuthentication yes
     ```
+
     ```
     AuthorizedKeysFile .ssh/authorized_keys
     ```
@@ -159,6 +176,7 @@ categories: tools
     ```
     yum -y install epel-release
     ```
+
     ```
     sudo yum install fail2ban
     ```
