@@ -90,6 +90,34 @@ sdc         8:32   0  300G  0 disk
 ls /sys/block/sdb/bcache/dev/slaves
 ```
 
+#### 查看缓存模式
+
+```
+# cat /sys/block/bcache0/bcache/cache_mode
+
+[writethrough] writeback writearound none
+
+```
+
+#### 更改缓存模式
+
+```
+# echo writeback > /sys/block/bcache0/bcache/cache_mode
+# cat /sys/block/bcache0/bcache/cache_mode
+
+writethrough [writeback] writearound none
+
+```
+
+#### 查看缓存数据量
+
+```
+# cat /sys/block/bcache0/bcache/dirty_data
+
+4.1G
+```
+
+
 #### 格式化、挂载
 
 ```
