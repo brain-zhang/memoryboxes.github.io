@@ -19,18 +19,27 @@ Bcache是从Linux-3.10开始正式并入内核主线的，因此，要使用Bcac
 
 Bcache支持三种缓存策略，分别是：writeback、writethrough、writearoud，默认使用writethrough，缓存策略可动态修改。
 
-writeback 回写策略：回写策略默认是关闭的，如果开启此策略，则所有的数据将先写入缓存盘，然后等待系统将数据回写入后端数据盘中。
-writethrough 写通策略：默认的就是写通策略，此模式下，数据将会同时写入缓存盘和后端数据盘。
-writearoud ：选择此策略，数据将直接写入后端磁盘。
+* writeback 回写策略：回写策略默认是关闭的，如果开启此策略，则所有的数据将先写入缓存盘，然后等待系统将数据回写入后端数据盘中。
+
+* writethrough 写通策略：默认的就是写通策略，此模式下，数据将会同时写入缓存盘和后端数据盘。
+
+* writearoud ：选择此策略，数据将直接写入后端磁盘。
 
 
 Write-misses写缺失(写入的数据不在缓存中)有两种处理方式：
 
     * Write allocate方式将写入位置读入缓存，然后采用write-hit（缓存命中写入）操作。写缺失操作与读缺失操作类似。
+
     * No-write allocate方式并不将写入位置读入缓存，而是直接将数据写入存储。这种方式下，只有读操作会被缓存。
 
 无论是Write-through还是Write-back都可以使用写缺失的两种方式之一。只是通常Write-back采用Write allocate方式，而Write-through采用No-write allocate方式；因为多次写入同一缓存时，Write allocate配合Write-back可以提升性能；而对于Write-through则没有帮助。
 
+## 安装
+
+```
+sudo apt-get update
+sudo apt-get install bcache-tools
+```
 
 ## 操作
 
@@ -56,11 +65,12 @@ make-bcache -C /dev/sdc -w4k -b1M --writeback
 ```
 
 #### 添加缓存盘
+
 要为bcache后端磁盘添加缓存盘，在创建缓存盘成功之后，首先需要获取该缓存盘的cset.uuid
 
 ```
 # ls /sys/fs/bcache/
-5d9e80f1-e4b7-48f5-ace2-f2f391877ea7 
+5d9e80f1-e4b7-48f5-ace2-f2f391877ea7
 
 # bash -c 'echo 5d9e80f1-e4b7-48f5-ace2-f2f391877ea7 > /sys/block/bcache0/bcache/attach'
 ```
@@ -96,7 +106,7 @@ echo "/dev/bcache0 /opt ext4 rw 0 0" >> /etc/fstab
 #### 测试性能
 
 ```
-/ fio -filename=/dev/sda -direct=1 -iodepth 1 -thread -rw=randwrite -ioengine=psync -bs=16k -size=2G -numjobs=10 -runtime=60 -group_reporting -name=mytest
+# fio -filename=/dev/sda -direct=1 -iodepth 1 -thread -rw=randwrite -ioengine=psync -bs=16k -size=2G -numjobs=10 -runtime=60 -group_reporting -name=mytest
 ```
 
 ## 停用Bcache
