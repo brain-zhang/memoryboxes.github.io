@@ -61,7 +61,7 @@ make-bcache -B /dev/sdb
 #### 创建缓存盘(SSD)
 
 ```
-make-bcache -C /dev/sdc -w4k -b1M --writeback
+make-bcache -C /dev/sdc  -b1M --writeback
 ```
 
 #### 添加缓存盘
@@ -106,7 +106,7 @@ echo "/dev/bcache0 /opt ext4 rw 0 0" >> /etc/fstab
 #### 测试性能
 
 ```
-# fio -filename=/dev/sda -direct=1 -iodepth 1 -thread -rw=randwrite -ioengine=psync -bs=16k -size=2G -numjobs=10 -runtime=60 -group_reporting -name=mytest
+# fio -filename=/dev/sdb -direct=1 -iodepth 1 -thread -rw=randwrite -ioengine=psync -bs=16k -size=2G -numjobs=10 -runtime=60 -group_reporting -name=mytest
 ```
 
 ## 停用Bcache
