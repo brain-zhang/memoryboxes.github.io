@@ -61,9 +61,6 @@ gpg --keyserver keys.gnupg.net --search-keys brain.zhang
 ## 联系我
 
 -----------------------------
-
-Email Base64: YnJhaW4uemhhbmdiaW5Ab3V0bG9vay5jb20K
-
 ```
 $ echo "YnJhaW4uemhhbmdiaW5Ab3V0bG9vay5jb20K"|base64 -d
 ```
