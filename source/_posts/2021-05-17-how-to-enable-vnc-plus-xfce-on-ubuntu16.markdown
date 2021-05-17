@@ -44,5 +44,3 @@ vncserver -kill :1
 
 settings -> window manager -> keyboard -> switch window for same application -> clear
 
-
-#### 打完收工
