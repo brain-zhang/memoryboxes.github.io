@@ -3,7 +3,7 @@ layout: post
 title: "How to enable VNC+xfce on ubuntu16"
 date: 2021-05-17 17:13:32 +0800
 comments: true
-categories: linux, tools
+categories: tools linux
 ---
 
 #### 安装桌面环境和vncserver
