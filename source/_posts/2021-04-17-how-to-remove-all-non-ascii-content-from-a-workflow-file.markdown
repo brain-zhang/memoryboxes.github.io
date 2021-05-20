@@ -12,8 +12,15 @@ categories: tools
 grep --colour='auto' -P '[^\x00-\x7]' file
 ```
 
-#### tr remove characters 
+#### tr remove characters
 
 ```
 LC_ALL=C tr -dc '\0-\177' <file >newfile
+```
+
+
+#### ignore Invalid or incomplete multibyte or wide character
+
+```
+cat $file|iconv -f utf8 -c -t ascii//IGNORE
 ```
