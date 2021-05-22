@@ -12,6 +12,6 @@ categories: tools
 
 https://serverfault.com/questions/592744/how-to-hide-a-password-passed-as-command-line-argument
 
-https://serverfault.com/questions/592744/how-to-hide-a-password-passed-as-command-line-argument
+https://stackoverflow.com/questions/3830823/hiding-secret-from-command-line-parameter-on-unix
 
 做软件设计的时候一定要考虑命令行传递密码的替代方案；
