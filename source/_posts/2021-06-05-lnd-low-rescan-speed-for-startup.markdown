@@ -3,7 +3,7 @@ layout: post
 title: "lnd low rescan speed for startup"
 date: 2021-06-05 17:31:07 +0800
 comments: true
-categories: blockchain
+categories: blockchain lightning
 ---
 
 Lnd启动的时候需要扫描最近数百个区块来验证安全性，做rescan动作的时候慢的出奇，有时候需要30分钟才能完成这个动作：
